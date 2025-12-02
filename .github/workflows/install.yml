@@ -92,7 +92,7 @@ jobs:
       - name: Replace icon
         run: cp logo.ico MFA-src/MFAAvalonia/Assets/logo.ico
 
-      # 3. 安装 .NET
+      # 3. 安装 NET10
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -191,4 +191,5 @@ jobs:
           gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release.yml -f tag=${{ needs.meta.outputs.tag }}
           gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release_note.yml -f tag=${{ needs.meta.outputs.tag }}
         env:
+
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
