@@ -103,10 +103,10 @@ jobs:
         shell: pwsh
         run: |
           cd MFA-src
-          dotnet publish -c Release -r win-${{ matrix.arch == 'x86_64' }} --self-contained true
+          dotnet publish -c Release -r win-${{ matrix.arch ==  'x86_64' && 'x64' }} --self-contained true
           cd ..
           New-Item -ItemType Directory -Force -Path MFA | Out-Null
-          Copy-Item -Path "MFA-src/bin/AnyCPU/Release/win-${{ matrix.arch == 'x86_64'  }}/publish/*" -Destination "MFA" -Recurse -Force
+          Copy-Item -Path "MFA-src/bin/AnyCPU/Release/win-${{ matrix.arch == 'x86_64' && 'x64' }}/publish/*" -Destination "MFA" -Recurse -Force
 
       # 5. 下载指定版本的 MaaFramework
       - name: Download MaaFramework
