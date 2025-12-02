@@ -100,6 +100,7 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.0.x
+
       # 编译修改过的 MFAAvalonia
       - name: Build MFAAvaloni
         shell: pwsh
@@ -107,14 +108,9 @@ jobs:
           cd MFA-src
           dotnet publish -c Release -r win-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }} --self-contained true
           cd ..
-          # ===== 先打印实际生成的 publish 目录 =====
-          Write-Host ">>> 查找所有 publish 目录:"
-          Get-ChildItem -Recurse -Directory MFA-src | Where-Object { $_.Name -eq "publish" }
-          # ===== 再复制 =====
           New-Item -ItemType Directory -Force -Path MFA | Out-Null
-          Copy-Item -Path "MFA-src/MFAAvalonia/bin/Release/net10.0/win-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }}/publish/*" -Destination "MFA" -Recurse -Force
-      
-
+          Copy-Item -Path "$($_.FullName)/*" -Destination "MFA" -Recurse -Force
+    
       # 5. 下载指定版本的 MaaFramework
       - name: Download MaaFramework
         uses: robinraju/release-downloader@v1
