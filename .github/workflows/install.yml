@@ -68,7 +68,7 @@ jobs:
   install:
     needs: meta
     runs-on: ubuntu-latest
-    
+
     strategy:
       matrix:
         os: [win]
@@ -81,7 +81,7 @@ jobs:
 
       # 1. 拉指定版本的 MFAAvalonia 源码
       - name: Checkout MFAAvalonia source
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           repository: SweetSmellFox/MFAAvalonia
           ref: ${{ env.MFA_VERSION }}
@@ -89,24 +89,26 @@ jobs:
           fetch-depth: 1
 
       # 2. 替换图标
-      - name: Replace icon
-        run: cp logo.ico MFA-src/MFAAvalonia/Assets/logo.ico
+      - name: Replace MFAAvalonia icon
+        run: 
+          cp logo.ico MFA-src/MFAAvalonia/Assets/logo.ico
+          echo "已替换 Windows 版 MFAAvalonia 的 logo.ico"
 
       # 3. 安装 .NET
       - name: Setup .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: '10.0.x'
+          dotnet-version: 10.0.x
 
      # 编译修改过的 MFAAvalonia
       - name: Build MFAAvalonia
         shell: pwsh
         run: |
           cd MFA-src
-          dotnet publish -c Release -r win-${{ matrix.arch ==  'x86_64' && 'x64' }} --self-contained true
+          dotnet publish -c Release -r win-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }} --self-contained true
           cd ..
           New-Item -ItemType Directory -Force -Path MFA | Out-Null
-          Copy-Item -Path "MFA-src/bin/AnyCPU/Release/win-${{ matrix.arch == 'x86_64' && 'x64' }}/publish/*" -Destination "MFA" -Recurse -Force
+          Copy-Item -Path "MFA-src/bin/AnyCPU/Release/win-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }}/publish/*" -Destination "MFA" -Recurse -Force
 
       # 5. 下载指定版本的 MaaFramework
       - name: Download MaaFramework
