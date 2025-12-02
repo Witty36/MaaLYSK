@@ -99,15 +99,16 @@ jobs:
           dotnet-version: '10.0.x'
 
       # 4. 编译并指定 exe 名字
-      - name: Build MFAAvalonia
+        - name: Build MFAAvalonia
         run: |
           cd MFA-src
-          dotnet publish \
-            -c Release \
-            -r win-x64 \
-            --self-contained true \
-            -p:AssemblyName=MaaLYSK \
-            MFAAvalonia/MFAAvalonia.csproj   # 明确指定项目文件路径
+          dotnet msbuild \
+            MFAAvalonia/MFAAvalonia.csproj \
+            -t:Publish \
+            -p:Configuration=Release \
+            -p:Runtime=win-x64 \
+            -p:SelfContained=true \
+            -p:AssemblyName=MaaLYSK
           cd ..
           mkdir -p MFA
           cp -r MFA-src/bin/Release/net10.0/win-x64/publish/* MFA/
