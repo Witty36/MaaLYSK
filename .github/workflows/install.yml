@@ -21,7 +21,7 @@ on:
 
 env:
   # ===== 只需改这里 =====
-  MFA_VERSION: v2.5.0      # MFAAvalonia 版本
+  MFA_VERSION: v2.0.5      # MFAAvalonia 版本
   MAAFW_VERSION: v5.1.2    # MaaFramework 版本
   # =====================
 
