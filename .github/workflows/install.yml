@@ -88,20 +88,21 @@ jobs:
           path: MFA-src
           fetch-depth: 1
 
-      # 2. 替换图标
+      # 替换图标文件
       - name: Replace MFAAvalonia icon
-        run: 
+        run: |
           cp logo.ico MFA-src/MFAAvalonia/Assets/logo.ico
           echo "已替换 Windows 版 MFAAvalonia 的 logo.ico"
 
-      # 3. 安装 .NET
+
+       # 设置 .NET 版本
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: 10.0.x
 
-     # 编译修改过的 MFAAvalonia
-      - name: Build MFAAvalonia
+      # 编译修改过的 MFAAvalonia
+      - name: Build MFAAvaloni
         shell: pwsh
         run: |
           cd MFA-src
