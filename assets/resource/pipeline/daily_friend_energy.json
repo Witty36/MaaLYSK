@@ -1,0 +1,74 @@
+{
+  "进入领好友体力": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "next": ["领好友体力准备", "[JumpBack]导航回主页面"]
+  },
+  "领好友体力准备": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["主页面识别.png"],
+        "roi": [20, 56, 49, 35]
+      }
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "next": ["点击好友"]
+  },
+  "点击好友": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["进入好友体力.png"],
+        "roi": [24, 141, 31, 41],
+        "green_mask": true,
+        "threshold": [0.5]
+      }
+    },
+
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["好友体力领取"]
+  },
+  "好友体力领取": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["好友体力领取.png"],
+        "roi": [402, 1137, 200, 61]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "timeout": 5000,
+    "next": ["好友领取_点击"]
+  },
+
+  "好友领取_点击": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [26, 750, 5, 6]
+      }
+    },
+
+    "next": ["stop", "[JumpBack]导航回主页面"]
+  }
+}

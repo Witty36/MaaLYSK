@@ -1,84 +1,97 @@
 {
-    "controller": [
-        {
-            "name": "安卓端",
-            "type": "Adb"
-        },
-        {
-            "name": "桌面端",
-            "type": "Win32",
-            "win32": {
-                "class_regex": ".*",
-                "window_regex": "Visual Studio"
-            }
-        }
-    ],
-    "resource": [
-        {
-            "name": "官服",
-            "path": [
-                "{PROJECT_DIR}/resource"
-            ]
-        },
-        {
-            "name": "B 服",
-            "path": [
-                "{PROJECT_DIR}/resource",
-                "{PROJECT_DIR}/resource_bilibili"
-            ]
-        }
-    ],
-    "agent_demo": {
-        "child_exec": "python",
-        "child_args": [
-            "{PROJECT_DIR}/agent/main.py"
-        ]
+  "name": "MaaLYSK",
+  "url": "https://github.com/Witty36/MaaLYSK",
+  "custom_title": "MAA恋与深空",
+  "version": "v0.0.1",
+  "icon": "logo.ico",
+  "controller": [
+    {
+      "name": "ADB模拟器",
+      "type": "Adb"
     },
-    "task": [
-        {
-            "name": "普通任务",
-            "entry": "MyTask1"
-        },
-        {
-            "name": "选项任务",
-            "entry": "MyTask2",
-            "option": [
-                "任务选项1"
-            ]
-        },
-        {
-            "name": "参数任务",
-            "entry": "MyTask3",
-            "option": [
-                "任务选项1"
-            ],
-            "pipeline_override": {}
-        },
-        {
-            "name": "带Custom的任务",
-            "entry": "MyTask4"
-        }
-    ],
-    "option": {
-        "任务选项1": {
-            "cases": [
-                {
-                    "name": "文本1",
-                    "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本1"
-                        }
-                    }
-                },
-                {
-                    "name": "文本2",
-                    "pipeline_override": {
-                        "OcrTask": {
-                            "text": "文本2"
-                        }
-                    }
-                }
-            ]
-        }
+    {
+      "name": "桌面端",
+      "type": "Win32",
+      "win32": {
+        "class_regex": ".*",
+        "window_regex": "Visual Studio"
+      }
     }
+  ],
+  "resource": [
+    {
+      "name": "官服",
+      "path": ["{PROJECT_DIR}/resource"]
+    }
+  ],
+  "agent_demo": {
+    "child_exec": "python",
+    "child_args": ["{PROJECT_DIR}/agent/main.py"]
+  },
+  "task": [
+    {
+      "name": "恋与深空启动",
+      "entry": "启动游戏版本",
+      "option": ["请选择游戏版本", "使用指定账号登录"],
+      "check": true,
+      "doc": "目前官服可以成功启动，其他渠道的可能爱莫能助啦"
+    },
+    {
+      "name": "恋与深空关闭",
+      "entry": "关闭游戏"
+    },
+    {
+      "name": "领日常体力",
+      "entry": "进入领体力"
+    },
+    {
+      "name": "领好友体力",
+      "entry": "进入领好友体力"
+    },
+    {
+      "name": "商城日常领取",
+      "entry": "进入商城日常领取"
+    },
+    {
+      "name": "商城周常领取",
+      "entry": "进入商城周常领取"
+    }
+  ],
+  "option": {
+    "请选择游戏版本": {
+      "cases": [
+        {
+          "name": "恋与深空官服",
+          "pipeline_override": {
+            "恋与深空官服": {
+              "enabled": true
+            },
+            "sub_启动深空官服": {
+              "enabled": true
+            }
+          }
+        }
+      ]
+    },
+    "使用指定账号登录": {
+      "cases": [
+        {
+          "name": "no",
+          "pipeline_override": {
+            "切换账号启动": {
+              "enabled": false
+            }
+          }
+        },
+        {
+          "name": "yes",
+          "pipeline_override": {
+            "切换账号启动": {
+              "enabled": true
+            }
+          }
+        }
+      ]
+    }
+  }
 }

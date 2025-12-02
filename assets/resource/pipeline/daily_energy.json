@@ -1,0 +1,101 @@
+{
+  "进入领体力": {
+    "next": ["领体力准备", "[JumpBack]导航回主页面"]
+  },
+  "领体力准备": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["主页面识别.png"],
+        "roi": [20, 56, 49, 35]
+      }
+    },
+    "next": ["点击日程"]
+  },
+  "点击日程": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["进入日程.png"],
+        "roi": [563, 559, 191, 186]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "pre_delay": 5000,
+    "next": ["补给"]
+  },
+  "补给": {
+    "pre_delay": 1000,
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["补给.png"],
+        "roi": [498, 1159, 179, 137]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["体力领取1", "体力领取2", "stop"],
+    "post_delay": 3000,
+    "timeout": 2000
+  },
+  "体力领取1": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["体力领取.png"],
+        "roi": [432, 823, 162, 64]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["体力领取_点击"],
+    "timeout": 5000
+  },
+  "体力领取2": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["体力领取.png"],
+        "roi": [432, 823, 162, 64]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["体力领取_点击"],
+    "timeout": 5000
+  },
+  "体力领取_点击": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["体力领取成功.png"],
+        "roi": [239, 474, 257, 281]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [60, 328, 12, 9]
+      }
+    },
+    "next": ["stop", "[JumpBack]体力领取_点击1"]
+  },
+  "体力领取_点击1": {
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [60, 328, 12, 9]
+      }
+    }
+  }
+}

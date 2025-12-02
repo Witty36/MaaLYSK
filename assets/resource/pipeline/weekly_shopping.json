@@ -1,0 +1,283 @@
+{
+  "进入商城周常领取": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "next": ["商城周常领取准备", "[JumpBack]导航回主页面"]
+  },
+  "商城周常领取准备": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["主页面识别.png"],
+        "roi": [20, 56, 49, 35]
+      }
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "next": ["周常_点击商城"]
+  },
+  "周常_点击商城": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": ["商城"],
+        "roi": [638, 909, 61, 74]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["周常_点击礼包"]
+  },
+  "周常_点击礼包": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "roi": [194, 173, 115, 79],
+        "expected": ["礼包"]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "timeout": 5000,
+    "next": ["周常_商城向下滑1"]
+  },
+  "周常_商城向下滑1": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Swipe",
+      "param": {
+        "begin": [41, 1146, 1, 1],
+        "end": [[37, 307, 1, 1]]
+      }
+    },
+    "next": ["周常_商城向下滑2"]
+  },
+  "周常_商城向下滑2": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Swipe",
+      "param": {
+        "begin": [41, 1146, 1, 1],
+        "end": [[37, 307, 1, 1]]
+      }
+    },
+    "next": ["商城每周礼包左", "商城每周礼包右"]
+  },
+  "商城每周礼包左": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["商城每周免费礼包.png"],
+        "roi": [69, 269, 292, 966],
+        "threshold": [0.7]
+      }
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "next": ["点击每周礼包左"]
+  },
+  "商城每周礼包右": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["商城每周免费礼包.png"],
+        "roi": [351, 292, 286, 948],
+        "threshold": [0.7]
+      }
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "next": ["点击每周礼包右"]
+  },
+  "点击每周礼包左": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["商城免费点击.png"],
+        "roi": [69, 269, 292, 966],
+        "threshold": [0.7]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["每周礼包领取"]
+  },
+  "点击每周礼包右": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["商城免费点击.png"],
+        "roi": [351, 292, 286, 948],
+        "threshold": [0.7]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["每周礼包领取"]
+  },
+  "每周礼包领取": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["商城免费点击.png"],
+        "roi": [254, 882, 224, 90]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "post_delay": 5000,
+    "next": ["商城每周点击"]
+  },
+  "商城每周点击": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [45, 1039, 2, 4]
+      }
+    },
+    "next": ["周常_点击兑换", "[JumpBack]商城每周点击1"]
+  },
+  "商城每周点击1": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [45, 1039, 2, 4]
+      }
+    }
+  },
+  "周常_点击兑换": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": ["兑换"],
+        "roi": [538, 192, 93, 52]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    }
+  },
+  "周常_极空许愿券": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["极空许愿券.png"],
+        "roi": [46, 376, 312, 176]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["极空许愿券领取", "辉耀磁石领取"]
+  },
+  "极空许愿券领取": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["商店购买.png"],
+        "roi": [256, 743, 215, 68]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["[JumpBack]周常点击", "周常_辉耀磁石"]
+  },
+
+  "周常点击": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": ["获得奖励", "奖励", "获得", "奖", "获"],
+        "roi": [273, 376, 190, 79]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [16, 759, 2, 4]
+      }
+    }
+  },
+  "周常_辉耀磁石": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["辉耀磁石.png"],
+        "roi": [46, 376, 312, 176]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["购买两个"]
+  },
+  "购买两个": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["加号.png"],
+        "roi": [556, 685, 37, 36]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["辉耀磁石领取"]
+  },
+  "辉耀磁石领取": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["商店购买.png"],
+        "roi": [256, 743, 215, 68]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "next": ["[JumpBack]周常点击", "是否商城页面"]
+  }
+}

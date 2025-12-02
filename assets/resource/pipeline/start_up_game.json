@@ -1,0 +1,81 @@
+{
+  "启动游戏版本": {
+    "next": ["恋与深空官服"]
+  },
+  "启动再等等": {
+    "post_delay": 5000
+  },
+  "恋与深空官服": {
+    "enabled": false,
+    "next": [
+      "是否主页面",
+      "[JumpBack]sub_关闭公告",
+      "[JumpBack]sub_进入游戏",
+      "[JumpBack]sub_启动深空官服"
+    ],
+    "focus": "启动恋与深空官服"
+  },
+  "是否主页面": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["主页面识别.png"],
+        "roi": [20, 56, 49, 35]
+      }
+    }
+  },
+  "关闭游戏": {
+    "next": ["stop", "[JumpBack]sub_关闭深空官服"],
+    "focus": "关闭恋与深空官服"
+  },
+  "sub_关闭深空官服": {
+    "action": {
+      "type": "StopApp",
+      "param": {
+        "package": "com.papegames.lysk.cn"
+      }
+    }
+  },
+  "sub_启动深空官服": {
+    "enabled": false,
+    "action": {
+      "type": "StartApp",
+      "param": {
+        "package": "com.papegames.lysk.cn"
+      }
+    },
+    "next": ["启动再等等"]
+  },
+  "sub_关闭公告": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": ["系统公告.png"],
+        "roi": [436, 141, 236, 142]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": [111, 1065, 3, 9]
+      }
+    },
+    "pre_wait_freezes": 3000,
+    "post_wait_freezes": 300
+  },
+  "sub_进入游戏": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": ["进入游戏"],
+        "roi": [125, 914, 480, 231]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "post_wait_freezes": 100,
+    "post_delay": 1000
+  }
+}
