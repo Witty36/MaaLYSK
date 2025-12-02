@@ -97,6 +97,11 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
+      #动态更改.csproj文件使得指定exe名字
+      - name: Modify .csproj to set AssemblyName
+        run: |
+          cd MFA-src
+          sed -i 's/<PropertyGroup>/<PropertyGroup>\n<AssemblyName>MaaLYSK<\/AssemblyName>/' MFAAvalonia/MFAAvalonia.csproj
 
       # 4. 编译并指定 exe 名字
         - name: Build MFAAvalonia
