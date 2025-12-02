@@ -97,27 +97,18 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '10.0.x'
-      #动态更改.csproj文件使得指定exe名字
-      - name: Modify .csproj to set AssemblyName
-        run: |
-          cd MFA-src
-          sed -i 's/<PropertyGroup>/<PropertyGroup>\n<AssemblyName>MaaLYSK<\/AssemblyName>/' MFAAvalonia/MFAAvalonia.csproj
-
+      
       # 4. 编译并指定 exe 名字
         - name: Build MFAAvalonia
         run: |
           cd MFA-src
-          dotnet msbuild \
-            MFAAvalonia/MFAAvalonia.csproj \
-            -t:Publish \
-            -p:Configuration=Release \
-            -p:Runtime=win-x64 \
-            -p:SelfContained=true \
-            -p:AssemblyName=MaaLYSK
+          dotnet publish \
+            -c Release \
+            -r win-x64 \
+            --self-contained true
           cd ..
           mkdir -p MFA
           cp -r MFA-src/bin/Release/net10.0/win-x64/publish/* MFA/
-
 
       # 5. 下载指定版本的 MaaFramework
       - name: Download MaaFramework
