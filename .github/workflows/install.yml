@@ -106,10 +106,12 @@ jobs:
             -c Release \
             -r win-x64 \
             --self-contained true \
-            -p:AssemblyName=MaaLYSK
+            -p:AssemblyName=MaaLYSK \
+            MFAAvalonia/MFAAvalonia.csproj   # 明确指定项目文件路径
           cd ..
           mkdir -p MFA
           cp -r MFA-src/bin/Release/net10.0/win-x64/publish/* MFA/
+
 
       # 5. 下载指定版本的 MaaFramework
       - name: Download MaaFramework
