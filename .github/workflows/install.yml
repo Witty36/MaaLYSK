@@ -77,7 +77,7 @@ jobs:
       - name: Download MaaFramework
         uses: robinraju/release-downloader@v1
         with:
-          repository: MaaLYSK/MaaFramework
+          repository: MaaXYZ/MaaFramework
           fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
           #latest: true
           tag: "v5.1.0"
