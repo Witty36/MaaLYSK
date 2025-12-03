@@ -19,12 +19,6 @@ on:
       - "**.py"
   workflow_dispatch:
 
-env:
-  # ===== 只需改这里 =====
-  MFA_VERSION: v2.0.5      # MFAAvalonia 版本
-  MAAFW_VERSION: v5.1.2    # MaaFramework 版本
-  # =====================
-
 jobs:
   meta:
     runs-on: ubuntu-latest
@@ -65,80 +59,102 @@ jobs:
       tag: ${{ steps.set_tag.outputs.tag }}
       is_release: ${{ steps.set_tag.outputs.is_release }}
       is_prerelease: ${{ steps.set_tag.outputs.is_prerelease }}
+
   install:
     needs: meta
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         os: [win]
         arch: [x86_64]
       fail-fast: false
+
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: true
 
-      # 1. 拉指定版本的 MFAAvalonia 源码
-      - name: Checkout MFAAvalonia source
-        uses: actions/checkout@v5
-        with:
-          repository: SweetSmellFox/MFAAvalonia
-          ref: ${{ env.MFA_VERSION }}
-          path: MFA-src
-          fetch-depth: 1
-
-      # 替换图标文件
-      - name: Replace MFAAvalonia icon
-        run: |
-          cp logo.ico MFA-src/MFAAvalonia/Assets/logo.ico
-          echo "已替换 Windows 版 MFAAvalonia 的 logo.ico"
-
-
-       # 设置 .NET 版本
-      - name: Setup .NET
-        uses: actions/setup-dotnet@v5
-        with:
-          dotnet-version: 10.0.x
-
-      # 编译修改过的 MFAAvalonia
-      - name: Build MFAAvaloni
-        shell: pwsh
-        run: |
-          cd MFA-src
-          dotnet publish -c Release -r win-${{ matrix.arch == 'x86_64' && 'x64' || 'arm64' }} --self-contained true
-          cd ..
-          New-Item -ItemType Directory -Force -Path MFA | Out-Null
-          Copy-Item -Path "$($_.FullName)/*" -Destination "MFA" -Recurse -Force
-    
-      # 5. 下载指定版本的 MaaFramework
       - name: Download MaaFramework
         uses: robinraju/release-downloader@v1
         with:
           repository: MaaLYSK/MaaFramework
           fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
-          tag: ${{ env.MAAFW_VERSION }}
+          #latest: true
+          tag: "v5.1.0"
           out-file-path: "deps"
           extract: true
 
-      # 6. 移除 MFA 自带 runtime（保持原逻辑）
       - name: Remove built-in runtime in MFA
-        run: rm -rf MFA/runtimes
+        if: matrix.os != 'android'
+        shell: bash
+        run: |
+          rm -rf MFA/runtimes
 
-      # 7. 后续安装流程（保持原逻辑）
+      - name: Download MFAAvalonia
+        if: matrix.os != 'android'
+        id: download_mfa
+        uses: robinraju/release-downloader@v1
+        with:
+          repository: SweetSmellFox/MFAAvalonia
+          fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
+          #latest: true
+          tag: "v2.0.5"
+          out-file-path: "MFA"
+          extract: true
+
+      - name: Clean up MFAAvalonia archive
+        if: matrix.os != 'android'
+        shell: bash
+        run: |
+          ARCHIVE_FILE_PATH="${{ fromJson(steps.download_mfa.outputs.downloaded_files)[0] }}"
+          rm -f "${ARCHIVE_FILE_PATH}"
+          echo "Archive cleanup command executed for MFAAvalonia."
+
+        #查找并重命名 MFAAvalonia.exe 为 MaaLYSK
+      - name: Rename MFAAvalonia and change icon
+        shell: bash
+        run: |
+          echo "Processing MFAAvalonia files..."
+
+          if [ -f "MFA/MFAAvalonia.exe" ]; then
+            mv "MFA/MFAAvalonia.exe" "MFA/MaaLYSK.exe"
+            echo "Renamed MFAAvalonia.exe to MaaLYSK.exe"
+          else
+            echo "MFAAvalonia.exe not found in MFA directory"
+          fi
+
       - name: Install
         shell: bash
         run: |
           python -m pip install -r ./requirements.txt
           python ./install.py ${{ needs.meta.outputs.tag }}
-          mkdir -p install
-          rsync -av --ignore-existing MFA/ install/
-          cp -v "tools/DependencySetup_依赖库安装.bat" install/
+
+          if [[ "${{ matrix.os }}" != "android" ]]; then
+            if [ -d "MFA" ]; then
+              echo "Copying MFA files to install directory..."
+              mkdir -p install
+              rsync -av --ignore-existing MFA/ install/
+            else
+              echo "MFA directory not found, skipping copy."
+            fi
+            if [[ "${{ matrix.os }}" == "win" ]]; then
+              mkdir -p install
+              cp -v "tools/DependencySetup_依赖库安装.bat" install/
+            fi
+          else
+            echo "Skipping copy MFA for Android."
+          fi
+
+      - name: Replace Icon
+        shell: bash
+        run: |
+          cp logo.ico install/Assets/logo.ico
 
       - uses: actions/upload-artifact@v4
         with:
-          name: MaaLYSK-atrix.os }}-${{ matrix.arch }}
+          name: MaaLYSK-${{ matrix.os }}-${{ matrix.arch }}
           path: "install"
+
   changelog:
     name: Generate changelog
     runs-on: ubuntu-latest
@@ -174,7 +190,7 @@ jobs:
           for f in *; do
             (cd $f && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
           done
-          
+
       - uses: softprops/action-gh-release@v2
         with:
           files: assets/*
@@ -182,6 +198,7 @@ jobs:
           body: ${{ needs.changelog.outputs.release_body }}
           draft: false
           prerelease: ${{ needs.meta.outputs.is_prerelease == 'true' }}
+
         # Mirror酱为第三方分发服务，新项目默认关闭
         # 若有需要请联系 Mirror酱 开通，直接自行开启是无法使用的
         # https://mirrorchyan.com/
