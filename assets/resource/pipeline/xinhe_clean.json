@@ -1,0 +1,189 @@
+{
+    "进入芯核分解": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["芯核_点击前往清理"]
+    },
+    "芯核_点击前往清理": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核_前往清理.png"],
+                "roi": [403, 652, 155, 50]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [4, 4, -2, -2]
+            }
+        },
+        "focus": "芯核上限,前往分解芯核",
+        "next": ["芯核_前往分解_识图", "芯核_前往分解_OCR"]
+    },
+    "芯核_前往分解_OCR": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["分解", "分", "解"],
+                "roi": [504, 1187, 108, 34]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["芯核_快速选择分解"]
+    },
+    "芯核_前往分解_识图": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核_前往分解.png"],
+                "roi": [482, 1177, 140, 56]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["芯核_快速选择分解"]
+    },
+    "芯核_快速选择分解": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核_快速选择分解.png"],
+                "roi": [123, 1174, 149, 57]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["芯核_全选已弃置_识图", "芯核_全选已弃置_OCR"]
+    },
+    "芯核_全选已弃置_识图": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核_全选已弃置.png"],
+                "roi": [538, 505, 34, 39]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": "选择所有已弃置芯核",
+        "next": ["芯核_确认选择分解"]
+    },
+    "芯核_全选已弃置_OCR": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["全选已弃置", "已弃置", "全选", "弃置"],
+                "roi": [146, 508, 106, 32]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": "选择所有已弃置芯核",
+        "next": ["芯核_确认选择分解"]
+    },
+    "芯核_确认选择分解": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核_确认选择分解.png"],
+                "roi": [426, 855, 101, 46]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["芯核_批量分解"]
+    },
+    "芯核_批量分解": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核_批量分解.png"],
+                "roi": [464, 1179, 122, 51]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["芯核_批量分解确认"]
+    },
+    "芯核_批量分解确认": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核_批量分解确认.png"],
+                "roi": [418, 967, 116, 53]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": [
+            "芯核_进入芯核狩猎",
+            "[JumpBack]芯核_返回上级页面",
+            "[JumpBack]芯核_分解点击"
+        ]
+    },
+    "芯核_分解点击": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["获得奖励"],
+                "roi": [270, 385, 188, 66]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [64, 818, 4, 3]
+            }
+        },
+        "max_hit": 2
+    },
+    "芯核_返回上级页面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["mainmap/导航回主页面（芯核分解）.png"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        }
+    },
+    "芯核_进入芯核狩猎": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["芯核狩猎", "芯核", "狩猎"],
+                "roi": [130, 656, 137, 60]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        }
+    }
+}

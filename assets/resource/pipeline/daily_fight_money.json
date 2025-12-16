@@ -1,0 +1,77 @@
+{
+    "日常_进入零点追踪_豆佬": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "追踪豆佬准备",
+            "[JumpBack]点击零点追踪",
+            "[JumpBack]点击作战",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "追踪豆佬准备": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/豆佬.png"],
+                "roi": [394, 121, 237, 318]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["选择追踪豆佬关卡"]
+    },
+    "选择追踪豆佬关卡": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["9"],
+                "roi": [408, 306, 60, 68]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [427, 330, 28, 30]}
+        },
+        "next": ["豆佬自动追击1次"]
+    },
+    "豆佬自动追击1次": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/自动追击1次.png"],
+                "roi": [208, 939, 45, 45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [179, 952, 30, 20]}
+        },
+        "focus": "追击豆佬一次",
+        "next": ["[JumpBack]点击退出领取popop", "stop"]
+    },
+    "豆佬自动追击10次": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/自动追击10次.png"],
+                "roi": [335, 945, 49, 35]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": "追击豆佬十次",
+        "next": ["[JumpBack]点击退出领取popop", "stop"]
+    }
+}

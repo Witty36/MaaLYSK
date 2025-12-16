@@ -1,0 +1,268 @@
+{
+    "进入商城周常领取": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "商城周常领取准备",
+            "[JumpBack]点击商城",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "商城周常领取准备": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["是否商城页面.png"],
+                "roi": [91, 187, 48, 61]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["周常_点击礼包"]
+    },
+
+    "周常_点击礼包": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [194, 173, 115, 79],
+                "expected": ["礼包", "礼", "包"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "timeout": 5000,
+        "next": ["周常_商城向下滑1"]
+    },
+    "周常_商城向下滑1": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [41, 1146, 1, 1],
+                "end": [37, 307, 1, 1]
+            }
+        },
+        "pre_delay": 1000,
+        "next": ["周常_商城向下滑2"]
+    },
+    "周常_商城向下滑2": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [41, 1146, 1, 1],
+                "end": [37, 307, 1, 1]
+            }
+        },
+        "post_wait_freezes": 500,
+        "next": ["商城每周礼包"]
+    },
+    "商城每周礼包": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["商城每周免费礼包.png"],
+                "roi": [60, 279, 583, 926],
+                "order_by": "Score",
+                "threshold": [0.85]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "timeout": 5000,
+        "on_error": ["[JumpBack]商城每周礼包点击", "周常_点击兑换"],
+        "next": ["每周礼包领取", "每周礼包售罄"]
+    },
+    "每周礼包领取": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["商城免费点击.png"],
+                "roi": [254, 882, 224, 90],
+                "threshold": [0.5]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": "成功领取每周礼包",
+        "post_delay": 1000,
+        "next": ["商城每周礼包点击"]
+    },
+    "每周礼包售罄": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["售罄", "售", "罄"],
+                "roi": [262, 879, 197, 71]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "focus": "每周礼包售罄",
+        "next": ["商城每周礼包点击"]
+    },
+    "商城每周礼包点击": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [53, 788, 3, 2]
+            }
+        },
+        "next": ["周常_点击兑换", "[JumpBack]点击退出领取popop"]
+    },
+
+    "周常_点击兑换": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["兑换", "兑", "换"],
+                "roi": [538, 192, 93, 52]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["进入快乐小铺", "[JumpBack]滑动寻找小铺"]
+    },
+    "滑动寻找小铺": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [672, 270, 1, 1],
+                "end": [272, 273, 1, 1],
+                "duration": 500
+            }
+        },
+        "post_wait_freezes": 1000,
+        "next": []
+    },
+    "进入快乐小铺": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["快乐小铺", "快乐", "小铺"],
+                "roi": [31, 252, 629, 52]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 1000,
+        "focus": {
+            "Node.Recognition.Succeed": "进入快乐小铺",
+            "Node.Nextlist.Failed": "没有可以购买的物品,请进行检查"
+        },
+        "timeout": 5000,
+        "next": ["周常_极空许愿券", "周常_辉耀磁石"]
+    },
+    "周常_极空许愿券": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["极空许愿券.png"],
+                "roi": [46, 376, 312, 176]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["极空许愿券领取"]
+    },
+    "极空许愿券领取": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["商店购买.png"],
+                "roi": [256, 743, 215, 68]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_wait_freezes": 1000,
+        "focus": "每周极空许愿券购买成功",
+        "next": ["周常_辉耀磁石", "[JumpBack]点击退出领取popop"]
+    },
+
+    "周常_辉耀磁石": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["辉耀磁石.png"],
+                "roi": [46, 376, 312, 176]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["购买两个"]
+    },
+    "购买两个": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["加号.png"],
+                "roi": [556, 685, 37, 36]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["辉耀磁石领取"]
+    },
+    "辉耀磁石领取": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["商店购买.png"],
+                "roi": [251, 814, 220, 65],
+                "threshold": [0.6]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_wait_freezes": 1000,
+        "focus": "每周辉耀磁石购买成功",
+        "next": ["是否商城页面", "[JumpBack]点击退出领取popop"]
+    }
+}

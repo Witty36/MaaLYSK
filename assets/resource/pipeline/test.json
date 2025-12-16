@@ -1,0 +1,32 @@
+{
+    "NodeA": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["empty.png"],
+                "roi": [100, 200, 50, 50]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["NodeB"]
+    },
+    "NodeB": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["A"],
+                "roi": [150, 250, 60, 60]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [150, 250, 60, 60]
+            }
+        },
+        "next": ["NodeB"]
+    }
+}

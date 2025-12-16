@@ -1,0 +1,48 @@
+{
+    "进入限时活动": {
+        "enabled": false,
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "活动领取准备",
+            "[JumpBack]点击活动",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "活动领取准备": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["限时任务", "限时", "任务"],
+                "roi": [125, 1038, 99, 73]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [153, 1064, 35, 17]}
+        },
+        "timeout": 5000,
+        "next": ["[JumpBack]活动一键领取"]
+    },
+    "活动一键领取": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["日常一键领取.png"],
+                "roi": [531, 1128, 164, 58]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [593, 1146, 53, 18]}
+        },
+        "next": []
+    }
+}

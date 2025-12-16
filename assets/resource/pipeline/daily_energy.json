@@ -1,0 +1,94 @@
+{
+    "进入领体力": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "点击补给",
+            "[JumpBack]点击日程",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+
+    "点击补给": {
+        "pre_delay": 1000,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["补给.png"],
+                "roi": [498, 1159, 179, 137]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 2000,
+        "next": ["体力领取1", "体力领取2"],
+        "timeout": 2000,
+        "focus": {"Node.NextList.Failed": "无可领取体力,请检查时间"}
+    },
+    "体力领取1": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["体力领取.png"],
+                "roi": [432, 823, 162, 64]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": "午间体力领取成功",
+        "next": ["体力领取_点击"],
+        "timeout": 5000
+    },
+    "体力领取2": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["体力领取.png"],
+                "roi": [141, 1004, 160, 57]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": "晚间体力领取成功",
+        "next": ["体力领取_点击"],
+        "timeout": 5000
+    },
+    "体力领取_点击": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["体力领取成功.png"],
+                "roi": [239, 474, 257, 281]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [60, 328, 12, 9]
+            }
+        },
+        "next": ["[JumpBack]体力领取_点击1", "stop"]
+    },
+    "体力领取_点击1": {
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [60, 328, 12, 9]
+            }
+        },
+        "max_hit": 2
+    }
+}

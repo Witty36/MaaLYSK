@@ -1,0 +1,71 @@
+{
+    "点击退出领取popop": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [53, 788, 3, 2]
+            }
+        },
+        "max_hit": 5,
+        "next": []
+    },
+    "点击退出popop": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [53, 788, 3, 2]
+            }
+        },
+        "next": ["返回等待"]
+    },
+    "获取奖励退出点击": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["获得奖励", "奖励", "获得"],
+                "roi": [273, 376, 190, 79]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [53, 788, 3, 2]
+            }
+        },
+        "next": []
+    },
+    "体力耗尽不再继续": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["道具", "道", "具"],
+                "roi": [412, 407, 137, 48]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "focus": "体力已耗尽",
+        "next": ["点击退出领取popop"]
+    },
+    "网络连接失败popop": {
+        "recognition": {
+            "type": "OCR",
+            "param": {"expected": ["网络"], "roi": [138, 516, 50, 29]}
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [456, 667, 42, 20]}
+        },
+        "focus": "网络连接失败,尝试点击关闭弹窗"
+    }
+}

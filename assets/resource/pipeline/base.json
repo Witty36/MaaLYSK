@@ -1,0 +1,147 @@
+{
+    "stop": {
+        "action": "StopTask"
+    },
+    "点击日程": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["进入日程.png"],
+                "roi": [563, 559, 191, 186]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 2000,
+        "next": []
+    },
+    "点击活动": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["进入活动.png"],
+                "roi": [647, 728, 40, 52],
+                "green_mask": true
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 2000,
+        "next": []
+    },
+    "点击许愿": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [638, 835, 57, 50],
+                "expected": ["许愿", "愿", "许"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [654, 841, 22, 14]
+            }
+        },
+        "post_delay": 5000,
+        "next": []
+    },
+    "点击商城": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [638, 909, 61, 74],
+                "expected": ["商城"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 2000,
+        "next": []
+    },
+    "点击作战": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [319, 1185, 52, 38],
+                "expected": ["作战", "作", "战"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [338, 1175, 16, 14]
+            }
+        },
+        "post_delay": 2000,
+        "next": []
+    },
+    "点击约会": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [203, 1198, 55, 33],
+                "expected": ["约会", "约", "会"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [224, 1186, 12, 10]
+            }
+        },
+        "post_delay": 2000,
+        "next": []
+    },
+    "点击思念": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [430, 1197, 55, 26],
+                "expected": ["思念", "思", "念"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [459, 1186, 9, 7]
+            }
+        },
+        "post_delay": 2000,
+        "next": []
+    },
+    "点击零点追踪": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [137, 309, 153, 58],
+                "expected": ["零点追踪", "零点", "追踪"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["零点追踪页面确认"]
+    },
+    "零点追踪页面确认": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/豆佬.png"],
+                "roi": [394, 121, 237, 318]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": []
+    }
+}

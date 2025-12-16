@@ -1,0 +1,219 @@
+{
+    "导航回主页面": {
+        "next": [
+            "已在主页面",
+            "[JumpBack]导航回上级页面（绿码白）",
+            "[JumpBack]导航回上级页面（绿码黑）",
+            "[JumpBack]导航回主页面（主线绿码）",
+            "[JumpBack]导航回主页面（思念）",
+            "[JumpBack]导航回主页面（体力）",
+            "[JumpBack]导航回主页面（约会）",
+            "[JumpBack]导航回主页面（战斗）",
+            "[JumpBack]导航回主页面（主线）",
+            "[JumpBack]导航回主页面（商城）",
+            "[JumpBack]导航回主页面（芯核分解）",
+            "[JumpBack]点击退出popop"
+        ]
+    },
+    "返回上一级页面": {
+        "next": [
+            "导航回上级页面（绿码白）",
+            "导航回上级页面（绿码黑）",
+            "导航回主页面（主线绿码）",
+            "导航回主页面（思念）",
+            "导航回主页面（体力）",
+            "导航回主页面（约会）",
+            "导航回主页面（战斗）",
+            "导航回主页面（主线）",
+            "导航回主页面（商城）",
+            "导航回主页面（芯核分解）",
+            "点击退出popop"
+        ]
+    },
+    "已在主页面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["主页面识别.png"],
+                "roi": [20, 56, 49, 35]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": []
+    },
+    "导航回主页面（主线绿码）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（主线绿码）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "导航回上级页面（绿码黑）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（绿码黑）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "导航回上级页面（绿码白）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（绿码白）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "导航回主页面（思念）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（思念）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "导航回主页面（体力）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（日程）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "pre_delay": 500,
+        "next": ["返回等待"]
+    },
+    "导航回主页面（约会）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（约会）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "导航回主页面（战斗）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（战斗）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "导航回主页面（主线）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（主线）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "导航回主页面（商城）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（商城）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "导航回主页面（芯核分解）": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": "mainmap/导航回主页面（芯核分解）.png",
+                "green_mask": true,
+                "threshold": 0.45,
+                "roi": [0, 0, 127, 145]
+            }
+        },
+        "pre_delay": 500,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "返回等待": {
+        "post_delay": 2000
+    }
+}

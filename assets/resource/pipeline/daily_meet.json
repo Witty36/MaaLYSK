@@ -1,0 +1,43 @@
+{
+    "进入主页面互动": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["主页面互动准备", "[JumpBack]导航回主页面"]
+    },
+    "主页面互动准备": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["主页面识别.png"],
+                "roi": [20, 56, 49, 35]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [320, 588, 19, 22]
+            }
+        },
+        "next": ["[JumpBack]主页面互动点击"]
+    },
+    "主页面互动点击": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [320, 588, 19, 22]
+            }
+        },
+        "post_delay": 2000,
+        "max_hit": 10
+    }
+}

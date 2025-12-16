@@ -1,0 +1,139 @@
+{
+    "进入日常收尾": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "日常收尾准备",
+            "[JumpBack]点击日程",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "日常收尾准备": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["任务", "任", "务"],
+                "roi": [74, 1175, 125, 79]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["日常收尾点击每日"]
+    },
+    "日常收尾点击每日": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["每日"],
+                "roi": [162, 160, 53, 26]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["[JumpBack]日常收尾领取", "日常签到准备"]
+    },
+    "日常收尾领取": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["日常一键领取.png"],
+                "roi": [483, 1103, 136, 55]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [529, 1120, 42, 23]}
+        },
+        "post_delay": 500,
+        "focus": "每日任务领取",
+        "next": ["[JumpBack]日常一键领取点击"]
+    },
+
+    "日常一键领取点击": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [529, 1120, 42, 23]}
+        },
+        "max_hit": 5,
+        "post_delay": 500,
+        "next": []
+    },
+    "日常收尾领取完成": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["领取.png"],
+                "roi": [456, 365, 221, 140]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "inverse": true,
+        "next": ["日常签到准备"]
+    },
+
+    "日常签到准备": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["签到", "签", "到"],
+                "roi": [396, 1193, 88, 45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["日常签到页面确认", "[JumpBack]日常签到准备"]
+    },
+    "日常签到页面确认": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["签到", "签", "到"],
+                "roi": [579, 50, 113, 59]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["日常签到领取"]
+    },
+    "日常签到领取": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["日常签到领取.png"],
+                "roi": [88, 306, 562, 777],
+                "threshold": [0.5]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": {
+            "Node.Recognition.Failed": "[color:red]日常签到领取失败,请手动领取[/color]",
+            "Node.Action.Succeeded": "日常签到成功!"
+        },
+        "next": ["stop"]
+    }
+}

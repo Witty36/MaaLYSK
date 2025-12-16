@@ -1,0 +1,145 @@
+{
+    "日常_进入芯核狩猎": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "芯核狩猎准备",
+            "[JumpBack]点击作战",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "芯核狩猎准备": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["芯核狩猎", "芯核", "狩猎"],
+                "roi": [130, 656, 137, 60]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 4000,
+        "next": [
+            "[JumpBack]芯核_点击前往清理",
+            "日常_选择红绿芯核",
+            "日常_选择黄紫芯核",
+            "日常_选择粉蓝芯核"
+        ]
+    },
+    "日常_选择红绿芯核": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核今日未开放.png"],
+                "roi": [138, 546, 48, 58],
+                "green_mask": true
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [207, 484, 26, 20]
+            }
+        },
+        "inverse": true,
+        "post_delay": 2000,
+        "post_wait_freezes": 500,
+        "focus": "红绿芯核追击一次",
+        "next": ["芯核是否解锁", "[JumpBack]芯核向左滑动"]
+    },
+    "日常_选择黄紫芯核": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核今日未开放.png"],
+                "roi": [421, 581, 38, 45],
+                "green_mask": true
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [484, 490, 27, 16]
+            }
+        },
+        "inverse": true,
+        "post_delay": 2000,
+        "post_wait_freezes": 500,
+        "focus": "黄紫芯核追击一次",
+        "next": ["芯核是否解锁", "[JumpBack]芯核向左滑动"]
+    },
+    "日常_选择粉蓝芯核": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核今日未开放.png"],
+                "roi": [431, 874, 47, 44],
+                "green_mask": true
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [360, 901, 14, 16]
+            }
+        },
+        "inverse": true,
+        "post_delay": 2000,
+        "post_wait_freezes": 500,
+        "focus": "粉蓝芯核追击一次",
+        "next": ["芯核是否解锁", "[JumpBack]芯核向左滑动"]
+    },
+    "芯核是否解锁": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/芯核是否解锁.png"],
+                "roi": [93, 874, 51, 121]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["芯核自动追击1次"]
+    },
+    "芯核向左滑动": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [100, 475, 1, 1],
+                "end": [615, 477, 1, 1]
+            }
+        },
+        "next": []
+    },
+    "芯核自动追击1次": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["fight/自动追击1次.png"],
+                "roi": [177, 1167, 54, 38]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [159, 1183, 33, 12]
+            }
+        },
+        "next": ["[JumpBack]点击退出领取popop", "stop"]
+    }
+}

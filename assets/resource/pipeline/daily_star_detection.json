@@ -1,0 +1,160 @@
+{
+    "进入星间探测": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "星间探测准备",
+            "[JumpBack]点击许愿",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "星间探测准备": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["星间探测", "星间", "探测"],
+                "roi": [626, 107, 71, 66]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_wait_freezes": 500,
+        "next": [
+            "是否探测中",
+            "收取探测信号",
+            "银砂星系_开始探测",
+            "[JumpBack]前往银砂星系"
+        ]
+    },
+    "是否探测中": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["信号探测中", "中", "探测中"],
+                "roi": [211, 497, 285, 65]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "focus": {"Node.Recognition.Succeeded": "探测未完成"},
+        "next": ["结束探测"]
+    },
+    "结束探测": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["星间探测_结束探测.png"],
+                "roi": [474, 1011, 56, 56]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["确认结束探测"]
+    },
+    "确认结束探测": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["星间探测_确定.png"],
+                "roi": [379, 698, 207, 74]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [4, 4, -2, -2]
+            }
+        },
+        "focus": {"Node.Action.Succeeded": "[color:orange]消耗加速魔方进行收取[/color]"},
+        "next": ["收取探测信号", "[JumpBack]星间探测点击"]
+    },
+    "收取探测信号": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["收取信号", "信号", "收取"],
+                "roi": [278, 1061, 179, 67]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 5000,
+        "next": ["银砂星系_开始探测", "[JumpBack]星间探测点击", "[JumpBack]前往银砂星系"]
+    },
+    "星间探测点击": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [53, 788, 3, 2]
+            }
+        },
+        "next": []
+    },
+    "前往银砂星系": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["前往银砂星系", "前往银砂", "银砂"],
+                "roi": [151, 1000, 171, 51]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": []
+    },
+    "银砂星系_开始探测": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["开始探测", "探测", "开始"],
+                "roi": [180, 1007, 114, 118]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [30, 30, -60, -60]
+            }
+        },
+        "pre_delay": 1000,
+        "next": ["确认消耗银砂磁石"]
+    },
+    "确认消耗银砂磁石": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["星间探测_确定.png"],
+                "roi": [384, 637, 186, 56]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [4, 4, -2, -2]
+            }
+        },
+        "focus": {"Node.Action.Succeeded": "银砂星系探测完成"},
+        "next": ["stop"]
+    }
+}

@@ -1,0 +1,74 @@
+{
+    "进入日常思念升级": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "点击第一张思念",
+            "[JumpBack]点击思念",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "点击第一张思念": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["思念"],
+                "roi": [582, 46, 113, 69]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [149, 367, 28, 26]}
+        },
+        "post_delay": 1000,
+        "next": ["点击思念升级", "[JumpBack]右滑寻找可升级思念"]
+    },
+    "点击思念升级": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["升级"],
+                "roi": [139, 1153, 72, 38]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 2000,
+        "next": ["点击消耗一个升级材料"]
+    },
+    "点击消耗一个升级材料": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["思念升级材料选择.png"],
+                "roi": [99, 1132, 87, 89]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": []
+    },
+    "右滑寻找可升级思念": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [677, 649, 14, 19]}
+        },
+        "post_delay": 1000,
+        "next": []
+    }
+}
