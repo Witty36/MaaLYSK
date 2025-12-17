@@ -9,27 +9,12 @@
             "param": {}
         },
         "next": [
-            "商城周常领取准备",
+            "周常_点击礼包",
             "[JumpBack]点击商城",
             "[JumpBack]返回上一级页面",
             "[JumpBack]导航回主页面"
         ]
     },
-    "商城周常领取准备": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": ["是否商城页面.png"],
-                "roi": [91, 187, 48, 61]
-            }
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "next": ["周常_点击礼包"]
-    },
-
     "周常_点击礼包": {
         "recognition": {
             "type": "OCR",
@@ -72,7 +57,7 @@
                 "end": [37, 307, 1, 1]
             }
         },
-        "post_wait_freezes": 500,
+        "pre_delay": 500,
         "next": ["商城每周礼包"]
     },
     "商城每周礼包": {
@@ -183,8 +168,8 @@
         },
         "post_delay": 1000,
         "focus": {
-            "Node.Recognition.Succeed": "进入快乐小铺",
-            "Node.Nextlist.Failed": "没有可以购买的物品,请进行检查"
+            "Node.Action.Succeeded": "进入快乐小铺",
+            "Node.PipelineNode.Failed": "[color:red]快乐小铺没有可购买物品[/color]"
         },
         "timeout": 5000,
         "next": ["周常_极空许愿券", "周常_辉耀磁石"]

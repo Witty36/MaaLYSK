@@ -15,8 +15,9 @@
             "param": {}
         },
         "post_delay": 2000,
-        "next": []
+        "next": ["商城页面确认"]
     },
+
     "点击活动": {
         "recognition": {
             "type": "TemplateMatch",
@@ -62,7 +63,21 @@
             "type": "Click",
             "param": {}
         },
-        "post_delay": 2000,
+        "next": ["商城页面确认"]
+    },
+    "商城页面确认": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["特权"],
+                "roi": [124, 197, 59, 41]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "post_delay": 1000,
         "next": []
     },
     "点击作战": {
@@ -82,6 +97,7 @@
         "post_delay": 2000,
         "next": []
     },
+
     "点击约会": {
         "recognition": {
             "type": "OCR",

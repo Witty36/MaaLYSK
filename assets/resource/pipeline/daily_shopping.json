@@ -9,27 +9,12 @@
             "param": {}
         },
         "next": [
-            "商城日常领取准备",
+            "日常_点击礼包",
             "[JumpBack]点击商城",
             "[JumpBack]返回上一级页面",
             "[JumpBack]导航回主页面"
         ]
     },
-    "商城日常领取准备": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": ["是否商城页面.png"],
-                "roi": [91, 187, 48, 61]
-            }
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "next": ["日常_点击礼包"]
-    },
-
     "日常_点击礼包": {
         "recognition": {
             "type": "OCR",
