@@ -15,7 +15,7 @@
             "type": "TemplateMatch",
             "param": {
                 "template": ["主页面识别.png"],
-                "roi": [676, 50, 31, 37]
+                "roi": [20, 56, 49, 35]
             }
         },
         "action": {
