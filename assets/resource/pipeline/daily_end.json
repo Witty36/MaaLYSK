@@ -131,7 +131,7 @@
             "param": {}
         },
         "focus": {
-            "Node.Recognition.Failed": "[color:red]日常签到领取失败,请手动领取[/color]",
+            "Node.Action.Failed": "[color:red]日常签到领取失败,请手动领取[/color]",
             "Node.Action.Succeeded": "日常签到成功!"
         },
         "next": ["stop"]
