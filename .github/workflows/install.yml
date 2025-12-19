@@ -145,16 +145,16 @@ jobs:
           echo "Archive cleanup command executed for MFAAvalonia."
         #查找并重命名 MFAAvalonia.exe 为 MaaLYSK
 
-      # - name: Rename MFAAvalonia and change icon
-      #   shell: bash
-      #   run: |
-      #     echo "Processing MFAAvalonia files..."
-      #     if [ -f "MFA/MFAAvalonia.exe" ]; then
-      #       mv "MFA/MFAAvalonia.exe" "MFA/MaaLYSK.exe"
-      #       echo "Renamed MFAAvalonia.exe to MaaLYSK.exe"
-      #     else
-      #       echo "MFAAvalonia.exe not found in MFA directory"
-      #     fi
+      - name: Rename MFAAvalonia and change icon
+        shell: bash
+        run: |
+          echo "Processing MFAAvalonia files..."
+          if [ -f "MFA/MFAAvalonia.exe" ]; then
+            mv "MFA/MFAAvalonia.exe" "MFA/MaaLYSK.exe"
+            echo "Renamed MFAAvalonia.exe to MaaLYSK.exe"
+          else
+            echo "MFAAvalonia.exe not found in MFA directory"
+          fi
 
       - name: Install
         shell: bash
