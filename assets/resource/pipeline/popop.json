@@ -67,5 +67,16 @@
             "param": {"target": [456, 667, 42, 20]}
         },
         "focus": "网络连接失败,尝试点击关闭弹窗"
+    },
+    "断线重连popop": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {"template": ["popop/再次重连.png"], "roi": [379, 628, 193, 68]}
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": "断线重连失败,尝试再次重连"
     }
 }
