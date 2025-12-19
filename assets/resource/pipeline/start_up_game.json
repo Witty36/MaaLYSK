@@ -12,6 +12,7 @@
             "[JumpBack]sub_关闭公告",
             "[JumpBack]sub_进入游戏",
             "[JumpBack]网络连接失败popop",
+            "[JumpBack]断线重连popop",
             "[JumpBack]sub_启动深空官服"
         ],
         "focus": "启动恋与深空官服"
