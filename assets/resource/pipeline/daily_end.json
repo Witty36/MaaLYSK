@@ -57,7 +57,8 @@
         },
         "post_delay": 500,
         "focus": "每日任务领取",
-        "next": ["[JumpBack]日常一键领取点击"]
+        "timeout": 500,
+        "next": ["日常一键领取点击"]
     },
 
     "日常一键领取点击": {
@@ -69,7 +70,6 @@
             "type": "Click",
             "param": {"target": [529, 1120, 42, 23]}
         },
-        "max_hit": 5,
         "post_delay": 500,
         "next": []
     },
@@ -101,7 +101,11 @@
             "type": "Click",
             "param": {}
         },
-        "next": ["日常签到页面确认", "[JumpBack]日常签到准备"]
+        "next": [
+            "日常签到页面确认",
+            "[JumpBack]日常签到准备",
+            "[JumpBack]点击退出领取popop"
+        ]
     },
     "日常签到页面确认": {
         "recognition": {
