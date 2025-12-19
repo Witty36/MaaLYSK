@@ -28,6 +28,7 @@
             "param": {"target": [149, 367, 28, 26]}
         },
         "post_delay": 1000,
+        "post_wait_freezes": {"target": [116, 1095, 109, 59], "time": 1000},
         "next": ["点击思念升级", "[JumpBack]右滑寻找可升级思念"]
     },
     "点击思念升级": {
