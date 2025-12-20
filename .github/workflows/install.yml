@@ -156,6 +156,17 @@ jobs:
             echo "MFAAvalonia.exe not found in MFA directory"
           fi
 
+      - name: Rename MaaYuan
+        shell: bash
+        run: |
+          echo "Processing MFAAvalonia files..."
+          if [ -f "MFA/MaaYuan.exe" ]; then
+            mv "MFA/MaaYuan.exe" "MFA/MaaLYSK.exe"
+            echo "Renamed MaaYuan.exe to MaaLYSK.exe"
+          else
+            echo "MaaYuan.exe not found in MFA directory"
+          fi
+
       - name: Install
         shell: bash
         run: |
