@@ -1,0 +1,48 @@
+{
+    "进入月卡领取": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "日常_点击特权",
+            "[JumpBack]点击商城",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "日常_点击特权": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [94, 188, 103, 63],
+                "expected": ["特权"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "timeout": 5000,
+        "next": ["月卡领取"]
+    },
+    "月卡领取": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [519, 631, 93, 88],
+                "expected": ["领取"]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "timeout": 5000,
+        "next": ["stop"]
+    }
+}

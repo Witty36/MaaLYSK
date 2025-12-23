@@ -78,7 +78,9 @@
                 "target_offset": [4, 4, -2, -2]
             }
         },
-        "focus": {"Node.Action.Succeeded": "[color:orange]消耗加速魔方进行收取[/color]"},
+        "focus": {
+            "Node.Action.Succeeded": "[color:orange]消耗加速魔方进行收取[/color]"
+        },
         "next": ["收取探测信号", "[JumpBack]星间探测点击"]
     },
     "收取探测信号": {
@@ -94,7 +96,11 @@
             "param": {}
         },
         "post_delay": 5000,
-        "next": ["银砂星系_开始探测", "[JumpBack]星间探测点击", "[JumpBack]前往银砂星系"]
+        "next": [
+            "银砂星系_开始探测",
+            "[JumpBack]前往银砂星系",
+            "[JumpBack]星间探测点击"
+        ]
     },
     "星间探测点击": {
         "recognition": {
@@ -104,7 +110,7 @@
         "action": {
             "type": "Click",
             "param": {
-                "target": [53, 788, 3, 2]
+                "target": [19, 936, 12, 13]
             }
         },
         "next": []
@@ -121,6 +127,7 @@
             "type": "Click",
             "param": {}
         },
+        "pre_delay": 1000,
         "next": []
     },
     "银砂星系_开始探测": {
@@ -138,6 +145,7 @@
             }
         },
         "pre_delay": 1000,
+        "post_delay": 1000,
         "next": ["确认消耗银砂磁石"]
     },
     "确认消耗银砂磁石": {
@@ -151,10 +159,63 @@
         "action": {
             "type": "Click",
             "param": {
-                "target_offset": [4, 4, -2, -2]
+                "target": [456, 655, 42, 14]
             }
         },
+        "pre_delay": 1000,
         "focus": {"Node.Action.Succeeded": "银砂星系探测完成"},
         "next": ["stop"]
+    },
+    "辉曜星系_开始探测": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["开始探测", "探测", "开始"],
+                "roi": [425, 1013, 116, 111]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [30, 30, -60, -60]
+            }
+        },
+        "pre_delay": 1000,
+        "post_delay": 1000,
+        "next": ["确认消耗辉曜磁石"]
+    },
+    "确认消耗辉曜磁石": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["星间探测_确定.png"],
+                "roi": [384, 637, 186, 56]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [456, 655, 42, 14]
+            }
+        },
+        "pre_delay": 500,
+        "post_delay": 500,
+        "focus": {"Node.Action.Succeeded": "辉曜星系探测完成"},
+        "next": ["stop"]
+    },
+    "前往辉曜星系": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["前往辉曜星系", "前往辉曜", "辉曜"],
+                "roi": [429, 1004, 153, 45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+
+        "next": []
     }
 }

@@ -1,0 +1,69 @@
+{
+    "进入喵喵牌抽卡": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["开始喵喵牌抽卡"]
+    },
+    "开始喵喵牌抽卡": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["购买"],
+                "roi": [463, 1159, 75, 36]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["喵喵牌抽卡确定"]
+    },
+    "喵喵牌抽卡确定": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["确定"],
+                "roi": [447, 646, 61, 30]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["是否集齐9个徽章", "[JumpBack]喵喵牌再抽一次"]
+    },
+    "是否集齐9个徽章": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["9"],
+                "roi": [558, 971, 18, 26]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["stop"]
+    },
+    "喵喵牌再抽一次": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["再抽一次"],
+                "roi": [442, 1070, 103, 29]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": []
+    }
+}

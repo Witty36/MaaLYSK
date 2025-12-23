@@ -13,6 +13,7 @@
             "[JumpBack]sub_进入游戏",
             "[JumpBack]网络连接失败popop",
             "[JumpBack]断线重连popop",
+            "[JumpBack]sub_点击账号登录",
             "[JumpBack]sub_启动深空官服"
         ],
         "focus": "启动恋与深空官服"
@@ -79,6 +80,20 @@
             "param": {}
         },
         "post_wait_freezes": 100,
+        "post_delay": 1000
+    },
+    "sub_点击账号登录": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["login/账号登录.png"],
+                "roi": [242, 715, 227, 83]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
         "post_delay": 1000
     }
 }

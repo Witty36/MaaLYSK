@@ -1,0 +1,239 @@
+{
+    "点击自动": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["自动", "自", "动"],
+                "roi": [473, 1203, 33, 18]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [482, 1206, 16, 11]}
+        },
+        "next": [
+            "抓娃娃选先后手",
+            "娃娃机点击空白继续",
+            "男主抓娃娃",
+            "[JumpBack]抓娃娃蓝色按钮",
+            "[JumpBack]过剧情"
+        ]
+    },
+    "抓娃娃选先后手": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "lower": [94, 89, 117],
+                "upper": [114, 109, 137],
+                "roi": [242, 610, 274, 68],
+                "count": 1000
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["让我抓娃娃_上", "让我抓娃娃_下"]
+    },
+    "让我抓娃娃_上": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": [
+                    "沈星回",
+                    "黎深",
+                    "祁煜",
+                    "夏以昼",
+                    "星",
+                    "深",
+                    "祁",
+                    "以"
+                ],
+                "roi": [73, 749, 121, 47]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [309, 560, 96, 18]}
+        },
+        "next": [
+            "娃娃机点击空白继续",
+            "男主抓娃娃",
+            "[JumpBack]抓娃娃蓝色按钮",
+            "[JumpBack]过剧情"
+        ]
+    },
+    "让我抓娃娃_下": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["秦彻", "彻"],
+                "roi": [73, 749, 121, 47]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [317, 636, 97, 19]}
+        },
+        "next": [
+            "娃娃机点击空白继续",
+            "男主抓娃娃",
+            "[JumpBack]抓娃娃蓝色按钮",
+            "[JumpBack]过剧情"
+        ]
+    },
+    "让我抓娃娃_上_TM": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/秦彻让我抓.png"],
+                "roi": [221, 57, 247, 325]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [309, 560, 96, 18]}
+        },
+        "next": [
+            "娃娃机点击空白继续",
+            "男主抓娃娃",
+            "[JumpBack]抓娃娃蓝色按钮",
+            "[JumpBack]过剧情"
+        ]
+    },
+    "让我抓娃娃_下_TM": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/秦彻让我抓.png"],
+                "roi": [221, 57, 247, 325]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [317, 636, 97, 19]}
+        },
+        "next": [
+            "娃娃机点击空白继续",
+            "男主抓娃娃",
+            "[JumpBack]抓娃娃蓝色按钮",
+            "[JumpBack]过剧情"
+        ]
+    },
+
+    "娃娃机点击空白继续": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["点击空白区域继续", "空白区域", "空白", "继续"],
+                "roi": [239, 1096, 247, 176]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [19, 936, 12, 13]}
+        },
+        "next": ["是否娃娃机页面", "[JumpBack]点击退出popop"]
+    },
+    "过剧情": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["自动", "自", "动"],
+                "roi": [473, 1203, 33, 18]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "post_delay": 2000
+    },
+    "娃娃位置确认": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/娃娃位置确认.png"],
+                "roi": [268, 867, 195, 85]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "post_delay": 4000,
+        "next": ["抓娃娃蓝色按钮"]
+    },
+    "抓娃娃蓝色按钮": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/抓娃娃蓝色按钮.png"],
+                "roi": [299, 1128, 58, 48]
+            }
+        },
+        "action": {
+            "type": "LongPress",
+            "param": {
+                "duration": 580,
+                "target": [323, 1146, 13, 14]
+            }
+        },
+        "pre_delay": 500,
+        "post_delay": 1000,
+        "next": ["抓娃娃绿色按钮"]
+    },
+    "抓娃娃绿色按钮": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/抓娃娃绿色按钮.png"],
+                "roi": [141, 1132, 51, 42]
+            }
+        },
+        "action": {
+            "type": "LongPress",
+            "param": {
+                "duration": 320,
+                "target": [159, 1147, 11, 8]
+            }
+        },
+        "pre_delay": 500,
+        "post_delay": 1900,
+        "next": ["抓娃娃粉色按钮"]
+    },
+    "抓娃娃粉色按钮": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/抓娃娃粉色按钮.png"],
+                "roi": [475, 1127, 71, 51]
+            }
+        },
+        "action": {
+            "type": "LongPress",
+            "param": {
+                "duration": 350,
+                "target": [503, 1146, 17, 13]
+            }
+        },
+        "pre_delay": 500,
+        "post_delay": 10000,
+        "timeout": 5000,
+        "next": ["过剧情"]
+    },
+    "男主抓娃娃": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/男主抓娃娃.png"],
+                "roi": [79, 426, 162, 190]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["娃娃机返回"]
+    }
+}

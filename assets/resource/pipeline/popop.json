@@ -7,7 +7,7 @@
         "action": {
             "type": "Click",
             "param": {
-                "target": [53, 788, 3, 2]
+                "target": [19, 936, 12, 13]
             }
         },
         "max_hit": 5,
@@ -21,10 +21,38 @@
         "action": {
             "type": "Click",
             "param": {
-                "target": [53, 788, 3, 2]
+                "target": [19, 936, 12, 13]
             }
         },
         "next": ["返回等待"]
+    },
+    "退出喵喵牌确定popop": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["确定"],
+                "roi": [448, 646, 63, 32]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["返回等待"]
+    },
+    "退出剧情回顾popop": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["popop/剧情回顾popop.png"],
+                "roi": [648, 94, 44, 47]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": "退出剧情回顾"
     },
     "获取奖励退出点击": {
         "recognition": {
@@ -37,7 +65,7 @@
         "action": {
             "type": "Click",
             "param": {
-                "target": [53, 788, 3, 2]
+                "target": [19, 936, 12, 13]
             }
         },
         "next": []
@@ -71,7 +99,10 @@
     "断线重连popop": {
         "recognition": {
             "type": "TemplateMatch",
-            "param": {"template": ["popop/再次重连.png"], "roi": [379, 628, 193, 68]}
+            "param": {
+                "template": ["popop/再次重连.png"],
+                "roi": [379, 628, 193, 68]
+            }
         },
         "action": {
             "type": "Click",

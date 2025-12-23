@@ -1,0 +1,45 @@
+{
+    "进入福利签到": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "点击精彩活动",
+            "[JumpBack]点击活动",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "点击精彩活动": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["精彩活动", "精彩", "精", "彩"],
+                "roi": [207, 1192, 102, 34]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["点击福利签到"]
+    },
+    "点击福利签到": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["event/心动挚礼.png"],
+                "roi": [85, 157, 350, 986]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        }
+    }
+}

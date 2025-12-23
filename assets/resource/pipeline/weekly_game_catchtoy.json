@@ -1,0 +1,271 @@
+{
+    "进入娃娃机": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "娃娃机_点击快乐出游",
+            "[JumpBack]点击约会",
+            "[JumpBack]返回上一级页面",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "娃娃机_点击快乐出游": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/快乐出游.png"],
+                "roi": [152, 539, 122, 122]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "focus": {
+            "Node.Action.Succeeded": "进入快乐出游"
+        },
+        "post_delay": 400,
+        "next": [
+            "[JumpBack]娃娃机_选择沈星回",
+            "[JumpBack]娃娃机_选择黎深",
+            "[JumpBack]娃娃机_选择祁煜",
+            "[JumpBack]娃娃机_选择秦彻",
+            "[JumpBack]娃娃机_选择夏以昼"
+        ]
+    },
+    "娃娃机_选择沈星回": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/沈星回.png"],
+                "roi": [196, 193, 99, 106]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "enabled": true,
+        "max_hit": 1,
+        "next": ["进入娃娃机页面"]
+    },
+    "娃娃机_选择黎深": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/黎深.png"],
+                "roi": [380, 411, 122, 114]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "enabled": true,
+        "max_hit": 1,
+        "next": ["进入娃娃机页面"]
+    },
+    "娃娃机_选择祁煜": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/祁煜.png"],
+                "roi": [186, 624, 118, 111]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "enabled": true,
+        "max_hit": 1,
+        "next": ["进入娃娃机页面"]
+    },
+    "娃娃机_选择秦彻": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/秦彻.png"],
+                "roi": [422, 819, 110, 111]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "enabled": true,
+        "max_hit": 1,
+        "next": ["进入娃娃机页面"]
+    },
+    "娃娃机_选择夏以昼": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/夏以昼.png"],
+                "roi": [202, 1013, 94, 106]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "enabled": true,
+        "max_hit": 1,
+        "next": ["进入娃娃机页面"]
+    },
+    "进入娃娃机页面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/娃娃机进入.png"],
+                "roi": [396, 358, 156, 98]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [451, 431, 18, 13]
+            }
+        },
+        "pre_delay": 500,
+        "post_delay": 1000,
+        "post_wait_freezes": 500,
+        "next": ["确认选好平衡捕手", "[JumpBack]选择平衡捕手"]
+    },
+    "确认选好平衡捕手": {
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "lower": [187, 106, 89],
+                "upper": [207, 126, 109],
+                "roi": [350, 877, 269, 93],
+                "count": 500
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["让我抓娃娃_上", "让我抓娃娃_下"]
+    },
+    "选择平衡捕手": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/平衡捕手.png"],
+                "roi": [385, 904, 188, 45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [483, 919, 21, 13]}
+        },
+        "next": ["娃娃机是否上限", "[JumpBack]娃娃机出发"]
+    },
+    "娃娃机是否上限": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["0"],
+                "roi": [399, 1193, 18, 22]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["娃娃机切换人物", "[JumpBack]返回上一级页面"]
+    },
+    "娃娃机出发": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["出发", "出", "发"],
+                "roi": [314, 1105, 93, 51]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["娃娃机游戏中页面"]
+    },
+    "娃娃机游戏中页面": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["自动", "自", "动"],
+                "roi": [473, 1203, 33, 18]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": ["点击自动"]
+    },
+    "娃娃机返回": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/娃娃机返回.png"],
+                "roi": [0, 0, 88, 132]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [26, 63, 8, 9]
+            }
+        },
+        "next": ["娃娃机确定退出", "娃娃机点击空白继续"]
+    },
+    "娃娃机确定退出": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["确定"],
+                "roi": [446, 646, 65, 32]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "next": ["是否娃娃机页面", "[JumpBack]点击退出popop"]
+    },
+    "是否娃娃机页面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/娃娃机页面确认.png"],
+                "roi": [211, 554, 257, 218]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        }
+    },
+    "娃娃机切换人物": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["weekly/切换人物.png"],
+                "roi": [673, 146, 40, 41]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target_offset": [5, 5, -10, -10]
+            }
+        }
+    }
+}
