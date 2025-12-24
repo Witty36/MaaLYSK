@@ -43,6 +43,7 @@
             }
         },
         "pre_delay": 1000,
+        "post_delay": 1000,
         "next": ["周常_商城向下滑2"]
     },
     "周常_商城向下滑2": {
@@ -57,9 +58,15 @@
                 "end": [37, 307, 1, 1]
             }
         },
-        "pre_delay": 500,
-        "post_delay": 500,
-        "next": ["商城每周礼包"]
+        "pre_delay": 1000,
+        "post_wait_freezes": 500,
+        "post_delay": 2000,
+        "timeout": 5000,
+        "focus": {
+            "Node.PipelineNode.Failed": "[color:red]无每周礼包可领取[/color]"
+        },
+        "next": ["商城每周礼包"],
+        "on_error": ["[JumpBack]商城每周礼包点击", "周常_点击兑换"]
     },
     "商城每周礼包": {
         "recognition": {
@@ -67,8 +74,7 @@
             "param": {
                 "template": ["商城每周免费礼包.png"],
                 "roi": [60, 279, 583, 926],
-                "order_by": "Score",
-                "threshold": [0.85]
+                "order_by": "Score"
             }
         },
         "action": {
@@ -76,7 +82,6 @@
             "param": {}
         },
         "timeout": 5000,
-        "on_error": ["[JumpBack]商城每周礼包点击", "周常_点击兑换"],
         "next": ["每周礼包领取", "每周礼包售罄"]
     },
     "每周礼包领取": {
@@ -119,7 +124,7 @@
         "action": {
             "type": "Click",
             "param": {
-                "target": [53, 788, 3, 2]
+                "target": [19, 936, 12, 13]
             }
         },
         "next": ["周常_点击兑换", "[JumpBack]点击退出领取popop"]
@@ -168,11 +173,6 @@
             "param": {}
         },
         "post_delay": 1000,
-        "focus": {
-            "Node.Action.Succeeded": "进入快乐小铺",
-            "Node.PipelineNode.Failed": "[color:red]快乐小铺没有可购买物品[/color]"
-        },
-        "timeout": 5000,
         "next": ["确认进入快乐小铺"]
     },
     "确认进入快乐小铺": {
@@ -187,9 +187,19 @@
             "type": "DoNothing",
             "param": {}
         },
-        "next": ["周常_极空许愿券", "周常_辉耀磁石"]
+        "focus": {
+            "Node.Action.Succeeded": "进入快乐小铺",
+            "Node.PipelineNode.Failed": "[color:red]快乐小铺没有可购买物品[/color]"
+        },
+        "timeout": 5000,
+        "next": ["小铺_极空许愿券", "小铺_辉耀磁石"],
+        "on_error": [
+            "进入心砂商店",
+            "[JumpBack]滑动寻找小铺",
+            "[JumpBack]点击退出领取popop"
+        ]
     },
-    "周常_极空许愿券": {
+    "小铺_极空许愿券": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -201,9 +211,9 @@
             "type": "Click",
             "param": {}
         },
-        "next": ["极空许愿券领取"]
+        "next": ["小铺极空许愿券领取"]
     },
-    "极空许愿券领取": {
+    "小铺极空许愿券领取": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -215,12 +225,13 @@
             "type": "Click",
             "param": {}
         },
-        "post_wait_freezes": 1000,
-        "focus": "每周极空许愿券购买成功",
-        "next": ["周常_辉耀磁石", "[JumpBack]点击退出领取popop"]
+        "pre_delay": 500,
+        "post_delay": 1000,
+        "focus": "快乐小铺极空许愿券购买成功",
+        "next": ["小铺_辉耀磁石", "[JumpBack]点击退出领取popop"]
     },
 
-    "周常_辉耀磁石": {
+    "小铺_辉耀磁石": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -246,9 +257,9 @@
             "type": "Click",
             "param": {}
         },
-        "next": ["辉耀磁石领取"]
+        "next": ["小铺辉耀磁石领取"]
     },
-    "辉耀磁石领取": {
+    "小铺辉耀磁石领取": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -261,8 +272,95 @@
             "type": "Click",
             "param": {}
         },
-        "post_wait_freezes": 1000,
-        "focus": "每周辉耀磁石购买成功",
+        "pre_delay": 500,
+        "post_delay": 1000,
+        "focus": "快乐小铺辉耀磁石购买成功",
+        "next": [
+            "进入心砂商店",
+            "[JumpBack]滑动寻找小铺",
+            "[JumpBack]点击退出领取popop"
+        ]
+    },
+    "进入心砂商店": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["心砂商店", "心砂"],
+                "roi": [31, 252, 629, 52]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 1000,
+        "timeout": 5000,
+        "next": ["确认进入心砂商店"]
+    },
+    "确认进入心砂商店": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["记忆心砂_稀有.png"],
+                "roi": [632, 54, 41, 38]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "focus": {
+            "Node.Action.Succeeded": "进入心砂商店",
+            "Node.PipelineNode.Failed": "[color:red]心砂商店没有可购买物品[/color]"
+        },
+        "timeout": 5000,
+        "next": ["紫砂_极空许愿券"]
+    },
+    "紫砂_极空许愿券": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["紫砂购买.png"],
+                "roi": [513, 449, 87, 42]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [545, 465, 18, 11]}
+        },
+        "next": ["[JumpBack]购买五个", "紫砂极空许愿券领取"]
+    },
+    "购买五个": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["加号.png"],
+                "roi": [556, 685, 37, 36]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "pre_delay": 500,
+        "post_delay": 500,
+        "max_hit": 7,
+        "next": []
+    },
+    "紫砂极空许愿券领取": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["商店购买.png"],
+                "roi": [252, 798, 221, 66]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 1000,
+        "focus": "心砂_珍贵极空许愿券购买成功",
         "next": ["是否商城页面", "[JumpBack]点击退出领取popop"]
     }
 }

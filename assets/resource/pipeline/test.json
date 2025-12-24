@@ -17,16 +17,24 @@
         "recognition": {
             "type": "OCR",
             "param": {
-                "expected": ["A"],
-                "roi": [150, 250, 60, 60]
+                "expected": [
+                    "沈星回",
+                    "黎深",
+                    "祁煜",
+                    "夏以昼",
+                    "星",
+                    "深",
+                    "祁",
+                    "以",
+                    "秦彻"
+                ],
+                "roi": [73, 749, 121, 47]
             }
         },
         "action": {
-            "type": "Click",
-            "param": {
-                "target": [150, 250, 60, 60]
-            }
+            "type": "DoNothing",
+            "param": {}
         },
-        "next": ["NodeB"]
+        "next": []
     }
 }

@@ -99,8 +99,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [win]
-        arch: [x86_64]
+        os: [win, macos, linux]
+        arch: [aarch64, x86_64]
       fail-fast: false
 
     steps:
