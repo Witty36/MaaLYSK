@@ -1,0 +1,146 @@
+{
+    "手机信息处理": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "进入手机",
+            "[JumpBack]导航回主页面"
+        ]
+    },
+    "进入手机": {
+        "pre_delay": 1000,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "手机入口.png"
+                ],
+                "roi": [
+                    37,
+                    1039,
+                    50,
+                    57
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 2000,
+        "next": [
+            "判断有无短信"
+        ],
+        "timeout": 2000,
+    },
+    // TODO:需要完善“有短信则处理，无短信则跳出循环”的逻辑
+    "判断有无短信": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "短信识别.png"
+                ],
+                "roi": [
+                    573,
+                    145,
+                    70,
+                    819
+                ]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "读取短信",
+            "无短信"
+        ],
+        "timeout": 2000,
+        "focus": {
+            "Node.NextList.Success": "检测到${count}条短信",
+            "Node.NextList.Failed": "未检测到短信"
+        },
+        "cache": true
+    },
+    "无短信": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {}
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "next": [
+            "stop"
+        ],
+        "focus": "未检测到短信"
+    },
+    "读取短信": {
+        "pre_delay": 1000,
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "短信识别.png"
+                ]
+            }
+        },
+        "post_delay": 2000,
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "timeout": 3000,
+        "focus": "",
+        "next": [
+            "处理短信"
+        ]
+    },
+    "处理短信": {
+        // 处理选项，但是暂无案例。
+        // 暂定思路为：出现输入框并且画面静止，即代表选项选择完成。
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "post_delay": 1000,
+        "next": [
+            "手机返回"
+        ],
+        "timeout": 3000
+    },
+    "手机返回": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": [
+                    "手机返回.png"
+                ],
+                "roi": [
+                    0,
+                    49,
+                    68,
+                    42
+                ]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 1500,
+        "next": [
+            "判断有无短信"
+        ],
+        "timeout": 3000
+    }
+}
