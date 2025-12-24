@@ -13,17 +13,15 @@
 
 🌟喜欢MaaLYSK就在仓库右上角点个星星吧🌟
 
-<p align="center">
-  <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
-  <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20-blueviolet">
-  <img alt=".NET" src="https://img.shields.io/badge/.NET-≥%208-512BD4?logo=csharp">
-  <img alt="license" src="https://img.shields.io/github/license/Witty36/MaaLYSK">
-  <br>
-  <img alt="commit" src="https://img.shields.io/github/commit-activity/m/Witty36/MaaLYSK">
-  <img alt="stars" src="https://img.shields.io/github/stars/Witty36/MaaLYSK?style=social">
-  <img alt="downloads" src="https://img.shields.io/github/downloads/Witty36/MaaLYSK/total?style=social">
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![platform](https://img.shields.io/badge/platform-Windows%20%7C%20-blueviolet)
+![.NET](https://img.shields.io/badge/.NET-≥%208-512BD4?logo=csharp)
+![license](https://img.shields.io/github/license/Witty36/MaaLYSK)
 
-<div align="center">
+![commit](https://img.shields.io/github/commit-activity/m/Witty36/MaaLYSK)
+![stars](https://img.shields.io/github/stars/Witty36/MaaLYSK?style=social)
+![downloads](https://img.shields.io/github/downloads/Witty36/MaaLYSK/total?style=social)
+
 [简体中文]
 </div>
 
