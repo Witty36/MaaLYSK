@@ -1,5 +1,5 @@
 {
-    "手机信息处理": {
+    "进入自动读短信": {
         "recognition": {
             "type": "DirectHit",
             "param": {}
@@ -9,7 +9,9 @@
             "param": {}
         },
         "next": [
-            "进入手机",
+            "确认在信息页面",
+            "[JumpBack]选择手机信息",
+            "[JumpBack]进入手机",
             "[JumpBack]导航回主页面"
         ]
     },
@@ -18,15 +20,8 @@
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": [
-                    "手机入口.png"
-                ],
-                "roi": [
-                    37,
-                    1039,
-                    50,
-                    57
-                ]
+                "template": ["phone/手机入口.png"],
+                "roi": [37, 1039, 50, 57]
             }
         },
         "action": {
@@ -34,113 +29,254 @@
             "param": {}
         },
         "post_delay": 2000,
-        "next": [
-            "判断有无短信"
-        ],
         "timeout": 2000,
+        "next": []
     },
-    // TODO:需要完善“有短信则处理，无短信则跳出循环”的逻辑
-    "判断有无短信": {
+    "选择手机信息": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
-                "template": [
-                    "短信识别.png"
-                ],
-                "roi": [
-                    573,
-                    145,
-                    70,
-                    819
-                ]
+                "template": ["phone/手机信息.png"],
+                "roi": [631, 962, 73, 77]
             }
         },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "next": [
-            "读取短信",
-            "无短信"
-        ],
-        "timeout": 2000,
-        "focus": {
-            "Node.NextList.Success": "检测到${count}条短信",
-            "Node.NextList.Failed": "未检测到短信"
-        },
-        "cache": true
-    },
-    "无短信": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "next": [
-            "stop"
-        ],
-        "focus": "未检测到短信"
-    },
-    "读取短信": {
-        "pre_delay": 1000,
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": [
-                    "短信识别.png"
-                ]
-            }
-        },
-        "post_delay": 2000,
         "action": {
             "type": "Click",
-            "param": {}
+            "param": {"target": [653, 989, 24, 18]}
         },
-        "timeout": 3000,
-        "focus": "",
-        "next": [
-            "处理短信"
-        ]
+        "next": []
     },
-    "处理短信": {
-        // 处理选项，但是暂无案例。
-        // 暂定思路为：出现输入框并且画面静止，即代表选项选择完成。
-        "action": {
-            "type": "DoNothing",
-            "param": {}
+    "确认在信息页面": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [546, 36, 129, 87],
+                "expected": ["信息", "信", "息"]
+            }
         },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [46, 292, 1, 1],
+                "end": [48, 391, 1, 1],
+                "duration": 500
+            }
+        },
+        "pre_delay": 500,
         "post_delay": 1000,
         "next": [
-            "手机返回"
-        ],
-        "timeout": 3000
+            "[JumpBack]读沈星回信息",
+            "[JumpBack]读黎深信息",
+            "[JumpBack]读祁煜信息",
+            "[JumpBack]读秦彻信息",
+            "[JumpBack]读夏以昼信息",
+            "[JumpBack]返回短信页面"
+        ]
     },
-    "手机返回": {
+    "读祁煜信息": {
         "recognition": {
-            "type": "TemplateMatch",
+            "type": "OCR",
             "param": {
-                "template": [
-                    "手机返回.png"
-                ],
-                "roi": [
-                    0,
-                    49,
-                    68,
-                    42
-                ]
+                "roi": [212, 117, 142, 1074],
+                "expected": ["祁煜"],
+                "order_by": "Expected"
             }
         },
         "action": {
             "type": "Click",
             "param": {}
         },
-        "post_delay": 1500,
+        "max_hit": 1,
+        "focus": {
+            "Node.Action.Succeeded": "开始读祁煜短信"
+        },
         "next": [
-            "判断有无短信"
-        ],
-        "timeout": 3000
+            "[JumpBack]选择第一条短信",
+            "[JumpBack]发送短信",
+            "[JumpBack]点击输入信息",
+            "[JumpBack]退出获取奖励popop",
+            "[JumpBack]退出牵绊度提升popop"
+        ]
+    },
+    "读沈星回信息": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [212, 117, 142, 1074],
+                "expected": ["沈星回", "星回"],
+                "order_by": "Expected"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "max_hit": 1,
+        "focus": {
+            "Node.Action.Succeeded": "开始读沈星回短信"
+        },
+        "next": [
+            "[JumpBack]选择第一条短信",
+            "[JumpBack]发送短信",
+            "[JumpBack]点击输入信息",
+            "[JumpBack]退出获取奖励popop",
+            "[JumpBack]退出牵绊度提升popop"
+        ]
+    },
+    "读黎深信息": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [212, 117, 142, 1074],
+                "expected": ["黎深"],
+                "order_by": "Expected"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "max_hit": 1,
+        "focus": {
+            "Node.Action.Succeeded": "开始读黎深短信"
+        },
+        "next": [
+            "[JumpBack]选择第一条短信",
+            "[JumpBack]发送短信",
+            "[JumpBack]点击输入信息",
+            "[JumpBack]退出获取奖励popop",
+            "[JumpBack]退出牵绊度提升popop"
+        ]
+    },
+    "读秦彻信息": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [212, 117, 142, 1074],
+                "expected": ["秦彻"],
+                "order_by": "Expected"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "max_hit": 1,
+        "focus": {
+            "Node.Action.Succeeded": "开始读秦彻短信"
+        },
+        "next": [
+            "[JumpBack]选择第一条短信",
+            "[JumpBack]发送短信",
+            "[JumpBack]点击输入信息",
+            "[JumpBack]退出获取奖励popop",
+            "[JumpBack]退出牵绊度提升popop"
+        ]
+    },
+    "读夏以昼信息": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [212, 117, 142, 1074],
+                "expected": ["夏以昼", "以昼"],
+                "order_by": "Expected"
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "max_hit": 1,
+        "focus": {
+            "Node.Action.Succeeded": "开始读夏以昼短信"
+        },
+        "next": [
+            "[JumpBack]选择第一条短信",
+            "[JumpBack]发送短信",
+            "[JumpBack]点击输入信息",
+            "[JumpBack]退出获取奖励popop",
+            "[JumpBack]退出牵绊度提升popop"
+        ]
+    },
+    "选择第一条短信": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["phone/短信发送键_未选中.png"],
+                "roi": [539, 793, 83, 86]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [356, 928, 26, 12]}
+        },
+        "pre_delay": 500,
+        "timeout": 5000,
+        "next": ["发送短信"]
+    },
+    "发送短信": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["phone/短信发送键_选中.png"],
+                "roi": [539, 793, 83, 86]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [571, 827, 14, 12]}
+        },
+        "post_delay": 2000,
+        "next": []
+    },
+    "点击输入信息": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["点击输入信息", "输入", "信息"],
+                "roi": [123, 1146, 207, 76]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [176, 1175, 64, 17]}
+        },
+        "next": []
+    },
+    "返回短信页面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["mainmap/导航回主页面（绿码白）.png"],
+                "roi": [0, 0, 88, 132],
+                "green_mask": true,
+                "threshold": 0.45
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_wait_freezes": 500,
+        "timeout": 5000,
+        "next": ["已在信息页面"]
+    },
+    "已在信息页面": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "roi": [546, 36, 129, 87],
+                "expected": ["信息", "信", "息"]
+            }
+        },
+        "action": {
+            "type": "Swipe",
+            "param": {
+                "begin": [46, 292, 1, 1],
+                "end": [48, 391, 1, 1],
+                "duration": 500
+            }
+        },
+        "next": []
     }
 }
