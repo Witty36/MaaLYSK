@@ -1,30 +1,31 @@
 <div align="center">
-<img alt="LOGO" src="https://api.flowersink.com/img/MaaLYSK_logo.png" width="256" height="256" />
+  <img alt="LOGO" src="https://api.flowersink.com/img/MaaLYSK_logo.png" width="256" height="256" />
 
 # MaaLYSK
 
-基于全新架构的**恋与深空**日常/肝活小助手。图像技术 + 模拟控制，解放双手！
+  基于全新架构的**恋与深空**日常/肝活小助手。图像技术 + 模拟控制，解放双手！
 
-由 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 强力驱动！
+  由 [MaaFramework](https://github.com/MaaXYZ/MaaFramework) 强力驱动！
 
-图形界面基于 **[MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia)**。
+  图形界面基于 **[MFAAvalonia](https://github.com/SweetSmellFox/MFAAvalonia)**。
 
-<a href="https://github.com/Witty36/MaaLYSK" target="_blank" style="font-weight: bold;">🔗 本项目 GitHub 仓库</a><br>
+  <a href="https://github.com/Witty36/MaaLYSK" target="_blank" style="font-weight: bold;">🔗 本项目 GitHub 仓库</a><br>
 
-🌟喜欢MaaLYSK就在仓库右上角点个星星吧🌟
+  🌟喜欢MaaLYSK就在仓库右上角点个星星吧🌟
 
-<p align="center">
-  <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
-  <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet">
-  <img alt=".NET" src="https://img.shields.io/badge/.NET-≥%2010-512BD4?logo=csharp">
-  <img alt="license" src="https://img.shields.io/github/license/Witty36/MaaLYSK">
+  <div style="display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-top: 10px;width:75%">
+    <img alt="Python" src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white">
+    <img alt="platform" src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-blueviolet">
+    <img alt=".NET" src="https://img.shields.io/badge/.NET-≥%2010-512BD4?logo=csharp">
+    <img alt="license" src="https://img.shields.io/github/license/Witty36/MaaLYSK">
+    <img alt="commit" src="https://img.shields.io/github/commit-activity/m/Witty36/MaaLYSK">
+    <img alt="stars" src="https://img.shields.io/github/stars/Witty36/MaaLYSK?style=social">
+    <img alt="downloads" src="https://img.shields.io/github/downloads/Witty36/MaaLYSK/total?style=social">
+  </div>
+  
   <br>
-  <img alt="commit" src="https://img.shields.io/github/commit-activity/m/Witty36/MaaLYSK">
-  <img alt="stars" src="https://img.shields.io/github/stars/Witty36/MaaLYSK?style=social">
-  <img alt="downloads" src="https://img.shields.io/github/downloads/Witty36/MaaLYSK/total?style=social">
-</p>
 
-[简体中文]
+  [简体中文]
 </div>
 
 ## 免责条款
