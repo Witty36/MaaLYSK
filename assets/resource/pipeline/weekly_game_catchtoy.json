@@ -152,7 +152,7 @@
             "type": "DoNothing",
             "param": {}
         },
-        "next": ["让我抓娃娃_上", "让我抓娃娃_下"]
+        "next": ["娃娃机是否上限", "[JumpBack]娃娃机出发"]
     },
     "选择平衡捕手": {
         "recognition": {
@@ -166,7 +166,7 @@
             "type": "Click",
             "param": {"target": [483, 919, 21, 13]}
         },
-        "next": ["娃娃机是否上限", "[JumpBack]娃娃机出发"]
+        "next": []
     },
     "娃娃机是否上限": {
         "recognition": {
@@ -238,7 +238,7 @@
             "type": "Click",
             "param": {}
         },
-        "next": ["是否娃娃机页面", "[JumpBack]点击退出popop"]
+        "next": ["是否娃娃机页面", "[JumpBack]退出点击popop"]
     },
     "是否娃娃机页面": {
         "recognition": {

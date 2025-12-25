@@ -12,6 +12,7 @@
             "param": {"target": [482, 1206, 16, 11]}
         },
         "next": [
+            "[JumpBack]我想接着抓",
             "抓娃娃选先后手",
             "娃娃机点击空白继续",
             "男主抓娃娃",
@@ -60,7 +61,8 @@
             "娃娃机点击空白继续",
             "男主抓娃娃",
             "[JumpBack]抓娃娃蓝色按钮",
-            "[JumpBack]过剧情"
+            "[JumpBack]过剧情",
+            "[JumpBack]我想接着抓"
         ]
     },
     "让我抓娃娃_下": {
@@ -78,23 +80,15 @@
         "next": [
             "娃娃机点击空白继续",
             "男主抓娃娃",
-            "[JumpBack]抓娃娃蓝色按钮",
-            "[JumpBack]过剧情"
+            "[JumpBack]我想接着抓",
+            "[JumpBack]过剧情",
+            "[JumpBack]抓娃娃蓝色按钮"
         ]
     },
-    "让我抓娃娃_上_TM": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": ["weekly/秦彻让我抓.png"],
-                "roi": [221, 57, 247, 325]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {"target": [309, 560, 96, 18]}
-        },
+    "ceshi": {
         "next": [
+            "[JumpBack]我想接着抓",
+            "抓娃娃选先后手",
             "娃娃机点击空白继续",
             "男主抓娃娃",
             "[JumpBack]抓娃娃蓝色按钮",
@@ -116,8 +110,9 @@
         "next": [
             "娃娃机点击空白继续",
             "男主抓娃娃",
-            "[JumpBack]抓娃娃蓝色按钮",
-            "[JumpBack]过剧情"
+            "[JumpBack]我想接着抓",
+            "[JumpBack]过剧情",
+            "[JumpBack]抓娃娃蓝色按钮"
         ]
     },
 
@@ -133,7 +128,7 @@
             "type": "Click",
             "param": {"target": [19, 936, 12, 13]}
         },
-        "next": ["是否娃娃机页面", "[JumpBack]点击退出popop"]
+        "next": ["是否娃娃机页面", "[JumpBack]退出点击popop"]
     },
     "过剧情": {
         "recognition": {
@@ -220,7 +215,7 @@
         "pre_delay": 500,
         "post_delay": 10000,
         "timeout": 5000,
-        "next": ["过剧情"]
+        "next": ["过剧情", "我想接着抓"]
     },
     "男主抓娃娃": {
         "recognition": {
@@ -235,5 +230,20 @@
             "param": {}
         },
         "next": ["娃娃机返回"]
+    },
+    "我想接着抓": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["我想接着抓"],
+                "roi": [292, 617, 147, 69]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [317, 636, 97, 19]}
+        },
+        "post_delay": 2000,
+        "next": []
     }
 }
