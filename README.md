@@ -1,5 +1,5 @@
 <div align="center">
-<img alt="LOGO" src="https://api.flowersink.com/img/MAALYSKlogo.ico" width="256" height="256" />
+<img alt="LOGO" src="https://api.flowersink.com/img/MaaLYSK_logo.png" width="256" height="256" />
 
 # MaaLYSK
 
