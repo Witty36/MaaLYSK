@@ -1,25 +1,17 @@
 ---
-# https://vitepress.dev/reference/default-theme-home-page
-layout: home
-
-hero:
-  name: "MaaLYSK"
-  text: "基于全新架构 MaaFrameWork 的恋与深空日常/肝活小助手。图像技术+模拟控制，解放双手！"
-  tagline: My great project tagline
-  actions:
-    - theme: brand
-      text: 什么是MaaLYSK？
-      link: /user/0.0-什么是MaaLYSK？.md
-    - theme: alt
-      text: 快速开始
-      link: /user/1.1-快速开始.md
-
-features:
-  - title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+layout: false
 ---
 
+<script setup>
+import { onMounted } from 'vue'
+import { useRouter } from 'vitepress'
+
+const router = useRouter()
+
+onMounted(() => {
+  // 访问根目录时，自动跳转到 zh_cn
+  // 使用 window.location 确保跳转最稳健
+  const basePath = '/MaaLYSK'
+  window.location.href = `${basePath}/zh_cn/`
+})
+</script>
