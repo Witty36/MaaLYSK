@@ -57,7 +57,7 @@
             "param": {"target": [179, 952, 30, 20]}
         },
         "focus": "追击豆佬一次",
-        "next": ["[JumpBack]点击退出领取popop", "stop"]
+        "next": ["[JumpBack]退出领取点击popop", "stop"]
     },
     "豆佬自动追击10次": {
         "recognition": {
@@ -72,6 +72,6 @@
             "param": {}
         },
         "focus": "追击豆佬十次",
-        "next": ["[JumpBack]点击退出领取popop", "stop"]
+        "next": ["[JumpBack]退出领取点击popop", "stop"]
     }
 }

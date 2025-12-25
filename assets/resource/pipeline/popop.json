@@ -1,5 +1,5 @@
 {
-    "点击退出领取popop": {
+    "退出领取点击popop": {
         "recognition": {
             "type": "DirectHit",
             "param": {}
@@ -13,7 +13,7 @@
         "max_hit": 5,
         "next": []
     },
-    "点击退出popop": {
+    "退出点击popop": {
         "recognition": {
             "type": "DirectHit",
             "param": {}
@@ -54,7 +54,7 @@
         },
         "focus": "退出剧情回顾"
     },
-    "获取奖励退出点击": {
+    "退出获取奖励popop": {
         "recognition": {
             "type": "OCR",
             "param": {
@@ -67,6 +67,36 @@
             "param": {
                 "target": [19, 936, 12, 13]
             }
+        },
+        "next": []
+    },
+    "退出牵绊度提升popop": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["牵绊度提升", "牵绊度", "提升"],
+                "roi": [78, 331, 254, 96]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [19, 936, 12, 13]
+            }
+        },
+        "next": []
+    },
+    "退出点击空白继续popop": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["点击空白区域继续", "空白区域", "空白", "继续"],
+                "roi": [239, 1096, 247, 176]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {"target": [19, 936, 12, 13]}
         },
         "next": []
     },
@@ -83,7 +113,7 @@
             "param": {}
         },
         "focus": "体力已耗尽",
-        "next": ["点击退出领取popop"]
+        "next": ["退出领取点击popop"]
     },
     "网络连接失败popop": {
         "recognition": {
