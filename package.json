@@ -1,5 +1,12 @@
 {
-	"devDependencies": {
-		"prettier-plugin-multiline-arrays": "^3.0.6"
-	}
+  "devDependencies": {
+    "@types/node": "^25.0.3",
+    "prettier-plugin-multiline-arrays": "^3.0.6",
+    "vitepress": "^2.0.0-alpha.15"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs"
+  }
 }
