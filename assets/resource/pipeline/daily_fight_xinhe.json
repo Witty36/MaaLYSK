@@ -149,6 +149,6 @@
                 "target": [159, 1183, 33, 12]
             }
         },
-        "next": ["[JumpBack]点击退出领取popop", "stop"]
+        "next": ["[JumpBack]退出领取点击popop", "stop"]
     }
 }

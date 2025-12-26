@@ -14,7 +14,7 @@
             "[JumpBack]导航回主页面（芯核分解）",
             "[JumpBack]退出剧情回顾popop",
             "[JumpBack]退出喵喵牌确定popop",
-            "[JumpBack]点击退出popop"
+            "[JumpBack]退出点击popop"
         ]
     },
     "返回上一级页面": {
@@ -31,7 +31,7 @@
             "导航回主页面（芯核分解）",
             "退出剧情回顾popop",
             "退出喵喵牌确定popop",
-            "点击退出popop"
+            "退出点击popop"
         ]
     },
     "已在主页面": {

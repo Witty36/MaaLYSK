@@ -90,7 +90,11 @@
             "param": {}
         },
         "post_delay": 1000,
-        "next": ["账号登录切换", "[JumpBack]用户中心", "[JumpBack]切换账号公告确认"]
+        "next": [
+            "账号登录切换",
+            "[JumpBack]用户中心",
+            "[JumpBack]切换账号公告确认"
+        ]
     },
 
     "切换账号公告确认": {
@@ -125,7 +129,7 @@
         "recognition": {
             "type": "OCR",
             "param": {
-                "expected": ["he"],
+                "expected": ["89"],
                 "roi": [194, 655, 65, 197]
             }
         },

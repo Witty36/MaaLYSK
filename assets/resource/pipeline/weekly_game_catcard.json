@@ -219,7 +219,7 @@
             "type": "Click",
             "param": {}
         },
-        "next": ["是否喵喵牌页面", "[JumpBack]点击退出popop"]
+        "next": ["是否喵喵牌页面", "[JumpBack]退出点击popop"]
     },
     "是否喵喵牌页面": {
         "recognition": {
