@@ -131,8 +131,8 @@ jobs:
         with:
           repository: Witty36/MFAAvalonia
           fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
-          #latest: true
-          tag: "v2.2.1"
+          latest: true
+          #tag: "v2.2.1"
           out-file-path: "MFA"
           extract: true
 

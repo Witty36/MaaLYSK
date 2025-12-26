@@ -61,7 +61,7 @@
             }
         },
         "focus": "追击哈特一次",
-        "next": ["[JumpBack]点击退出领取popop", "stop"]
+        "next": ["[JumpBack]退出领取点击popop", "stop"]
     },
     "哈特自动追击10次": {
         "recognition": {
@@ -78,7 +78,7 @@
             }
         },
         "focus": "追击哈特10次",
-        "next": ["[JumpBack]点击退出领取popop", "stop"]
+        "next": ["[JumpBack]退出领取点击popop", "stop"]
     },
     "哈特自动追击体力耗尽": {
         "recognition": {

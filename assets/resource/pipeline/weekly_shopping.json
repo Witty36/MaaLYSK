@@ -27,7 +27,7 @@
             "type": "Click",
             "param": {}
         },
-        "timeout": 5000,
+        "post_delay": 500,
         "next": ["周常_商城向下滑1"]
     },
     "周常_商城向下滑1": {
@@ -39,7 +39,8 @@
             "type": "Swipe",
             "param": {
                 "begin": [41, 1146, 1, 1],
-                "end": [37, 307, 1, 1]
+                "end": [37, 307, 1, 1],
+                "duration": 800
             }
         },
         "pre_delay": 1000,
@@ -55,7 +56,8 @@
             "type": "Swipe",
             "param": {
                 "begin": [41, 1146, 1, 1],
-                "end": [37, 307, 1, 1]
+                "end": [37, 307, 1, 1],
+                "duration": 800
             }
         },
         "pre_delay": 1000,
@@ -127,7 +129,7 @@
                 "target": [19, 936, 12, 13]
             }
         },
-        "next": ["周常_点击兑换", "[JumpBack]点击退出领取popop"]
+        "next": ["周常_点击兑换", "[JumpBack]退出领取点击popop"]
     },
 
     "周常_点击兑换": {
@@ -196,7 +198,7 @@
         "on_error": [
             "进入心砂商店",
             "[JumpBack]滑动寻找小铺",
-            "[JumpBack]点击退出领取popop"
+            "[JumpBack]退出领取点击popop"
         ]
     },
     "小铺_极空许愿券": {
@@ -228,7 +230,7 @@
         "pre_delay": 500,
         "post_delay": 1000,
         "focus": "快乐小铺极空许愿券购买成功",
-        "next": ["小铺_辉耀磁石", "[JumpBack]点击退出领取popop"]
+        "next": ["小铺_辉耀磁石", "[JumpBack]退出领取点击popop"]
     },
 
     "小铺_辉耀磁石": {
@@ -278,7 +280,7 @@
         "next": [
             "进入心砂商店",
             "[JumpBack]滑动寻找小铺",
-            "[JumpBack]点击退出领取popop"
+            "[JumpBack]退出领取点击popop"
         ]
     },
     "进入心砂商店": {
@@ -361,6 +363,6 @@
         },
         "post_delay": 1000,
         "focus": "心砂_珍贵极空许愿券购买成功",
-        "next": ["是否商城页面", "[JumpBack]点击退出领取popop"]
+        "next": ["是否商城页面", "[JumpBack]退出领取点击popop"]
     }
 }

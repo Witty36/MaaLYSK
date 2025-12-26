@@ -104,7 +104,7 @@
         "next": [
             "日常签到页面确认",
             "[JumpBack]日常签到准备",
-            "[JumpBack]点击退出领取popop"
+            "[JumpBack]退出领取点击popop"
         ]
     },
     "日常签到页面确认": {

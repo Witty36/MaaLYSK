@@ -6,7 +6,7 @@
         "post_delay": 5000
     },
     "恋与深空官服": {
-        "enabled": false,
+        "enabled": true,
         "next": [
             "是否主页面",
             "[JumpBack]sub_关闭公告",
@@ -25,7 +25,8 @@
                 "template": ["主页面识别.png"],
                 "roi": [20, 56, 49, 35]
             }
-        }
+        },
+        "next": ["stop"]
     },
     "关闭游戏": {
         "next": ["[JumpBack]sub_关闭深空官服"],
@@ -41,7 +42,7 @@
         "next": ["stop"]
     },
     "sub_启动深空官服": {
-        "enabled": false,
+        "enabled": true,
         "action": {
             "type": "StartApp",
             "param": {
