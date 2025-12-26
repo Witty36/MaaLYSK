@@ -25,7 +25,7 @@
             }
         },
         "focus": "芯核上限,前往分解芯核",
-        "next": ["芯核_前往分解_识图", "芯核_前往分解_OCR"]
+        "next": ["芯核_前往分解_TM", "芯核_前往分解_OCR"]
     },
     "芯核_前往分解_OCR": {
         "recognition": {
@@ -41,7 +41,7 @@
         },
         "next": ["芯核_快速选择分解"]
     },
-    "芯核_前往分解_识图": {
+    "芯核_前往分解_TM": {
         "recognition": {
             "type": "TemplateMatch",
             "param": {
@@ -142,7 +142,8 @@
         "next": [
             "芯核_进入芯核狩猎",
             "[JumpBack]芯核_返回上级页面",
-            "[JumpBack]芯核_分解点击"
+            "[JumpBack]芯核_分解点击",
+            "[JumpBack]点击作战"
         ]
     },
     "芯核_分解点击": {
@@ -171,7 +172,8 @@
         "action": {
             "type": "Click",
             "param": {}
-        }
+        },
+        "post_delay": 2000
     },
     "芯核_进入芯核狩猎": {
         "recognition": {
