@@ -145,7 +145,7 @@ jobs:
           rm -rf MFA/runtimes
 
       - name: Modify MFAAvalonia exe icon
-        if: matrix.arch == 'x86_64'
+        if: matrix.os == 'win' && matrix.arch == 'x86_64'
         shell: bash
         run: |
           # 下载 rcedit
