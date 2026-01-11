@@ -123,10 +123,10 @@ jobs:
         id: download_mfa
         uses: robinraju/release-downloader@v1
         with:
-          repository: Witty36/MFAAvalonia
+          repository: SweetSmellFox/MFAAvalonia
           fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
           #latest: true
-          tag: "v2.2.7-beta1"
+          tag: "v2.2.7"
           out-file-path: "MFA"
           extract: true
 
@@ -143,6 +143,18 @@ jobs:
         shell: bash
         run: |
           rm -rf MFA/runtimes
+
+      - name: Modify MFAAvalonia exe icon
+        if: matrix.arch == 'x86_64'
+        shell: bash
+        run: |
+          # 下载 rcedit
+          curl -L https://github.com/electron/rcedit/releases/download/v2.0.0/rcedit-x64.exe -o rcedit.exe
+
+          # 修改 exe 图标
+          ./rcedit.exe "MFA/MFAAvalonia.exe" --set-icon "logo.ico"
+
+          echo "MFAAvalonia icon modified successfully" 
 
         #查找并重命名 MFAAvalonia.exe 为 MaaLYSK
       - name: Rename MFAAvalonia and change icon
@@ -243,11 +255,3 @@ jobs:
           draft: false
           prerelease: ${{ needs.meta.outputs.is_prerelease == 'true' }}
           overwrite_files: true
-
-      - name: Trigger MirrorChyanUploading
-        shell: bash
-        run: |
-          gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release.yml -f tag=${{ needs.meta.outputs.tag }}
-          gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release_note.yml -f tag=${{ needs.meta.outputs.tag }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
