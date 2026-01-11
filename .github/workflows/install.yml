@@ -180,7 +180,7 @@ jobs:
           fi
 
       - name: Install
-        shell: bash
+        shell: bash        # 可以继续用 bash，里面调用 cmd
         run: |
           python -m pip install -r ./requirements.txt
           python ./install.py ${{ needs.meta.outputs.tag }}
@@ -189,7 +189,12 @@ jobs:
             if [ -d "MFA" ]; then
               echo "Copying MFA files to install directory..."
               mkdir -p install
-              rsync -av --ignore-existing MFA/ install/
+              # Windows 用 robocopy，其余用 rsync
+              if [[ "${{ matrix.os }}" == "win" ]]; then
+                cmd //c robocopy MFA install //E //NFL //NDL //NJH //NJS
+              else
+                rsync -av --ignore-existing MFA/ install/
+              fi
             else
               echo "MFA directory not found, skipping copy."
             fi
