@@ -180,7 +180,7 @@ jobs:
           fi
 
       - name: Install
-        shell: bash        # 可以继续用 bash，里面调用 cmd
+        shell: bash
         run: |
           python -m pip install -r ./requirements.txt
           python ./install.py ${{ needs.meta.outputs.tag }}
@@ -191,7 +191,8 @@ jobs:
               mkdir -p install
               # Windows 用 robocopy，其余用 rsync
               if [[ "${{ matrix.os }}" == "win" ]]; then
-                cmd //c robocopy MFA install //E //NFL //NDL //NJH //NJS
+                # 让 robocopy 任何≤7的退出码都算成功
+                cmd //c 'robocopy "MFA" "install\" //E //NFL //NDL //NJH //NJS || if %ERRORLEVEL% LEQ 7 exit 0'
               else
                 rsync -av --ignore-existing MFA/ install/
               fi
