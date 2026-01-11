@@ -96,7 +96,7 @@ jobs:
 
   install:
     needs: meta
-    runs-on: ubuntu-latest
+    runs-on: ${{ (matrix.os == 'win' && 'windows-latest') || 'ubuntu-latest' }}
     strategy:
       matrix:
         os: [win, macos, linux]
