@@ -24,3 +24,60 @@
 
     --vp-c-brand-soft: rgba(185, 178, 255, 0.2);
 }
+
+.VPNavBarMenuLink:has(.nav-version-badge) {
+    padding: 0;
+}
+
+.VPNavBarMenuLink.nav-version-link .vpi-chevron-right {
+    display: none;
+}
+
+.nav-version-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 14px;
+    border: 1px solid rgba(139, 128, 210, 0.26);
+    border-radius: 999px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(250, 249, 255, 0.88)),
+        radial-gradient(circle at 16% 38%, rgba(255, 207, 116, 0.2), transparent 28%);
+    box-shadow:
+        0 0 0 1px rgba(151, 140, 255, 0.08) inset,
+        0 6px 18px rgba(151, 140, 255, 0.16);
+    color: #30313d;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.nav-version-spark {
+    color: #ffc75f;
+    font-size: 16px;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(255, 199, 95, 0.65);
+}
+
+.nav-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-contact-link svg {
+    width: 18px;
+    height: 18px;
+}
+
+.dark .nav-version-badge {
+    border-color: rgba(208, 203, 255, 0.32);
+    background:
+        linear-gradient(180deg, rgba(42, 42, 58, 0.95), rgba(32, 32, 46, 0.9)),
+        radial-gradient(circle at 16% 38%, rgba(255, 207, 116, 0.18), transparent 30%);
+    box-shadow:
+        0 0 0 1px rgba(185, 178, 255, 0.12) inset,
+        0 6px 18px rgba(185, 178, 255, 0.12);
+    color: #f0efff;
+}

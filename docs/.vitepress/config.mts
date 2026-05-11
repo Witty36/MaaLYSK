@@ -1,11 +1,19 @@
-import {defineConfig} from "vitepress";
+import { defineConfig } from "vitepress";
 import fs from "fs";
 import path from "path";
+
+const rootDir = process.cwd();
+const interfaceJsonPath = path.resolve(rootDir, "assets", "interface.json");
+const interfaceConfig = JSON.parse(
+    fs.readFileSync(interfaceJsonPath, "utf-8"),
+) as {
+    version?: string;
+};
 
 // 侧边栏生成函数
 function getSidebar(langDir: string, subDir: string) {
     // 物理路径：docs/zh_cn/manual
-    const absPath = path.resolve(process.cwd(), "docs", langDir, subDir);
+    const absPath = path.resolve(rootDir, "docs", langDir, subDir);
     if (!fs.existsSync(absPath)) return [];
 
     return fs
@@ -32,13 +40,23 @@ function getSidebar(langDir: string, subDir: string) {
         });
 }
 
+const qqGroupLink =
+    "https://qm.qq.com/cgi-bin/qm/qr?k=74p64gDsFVQD0q7VY4yI6dgBo7p6H9GG&jump_from=webapi&authKey=/cejhv0J4X5LQ6cg+emj87fWIcNOSTL5gWBnn2VD4I0cw0ciNd3LxL1++sqUkl4a";
+const latestReleaseVersion = interfaceConfig.version ?? "unknown";
+const latestReleaseLink = "https://github.com/Witty36/MaaLYSK/releases/latest";
+const qqIconSvg =
+    '<svg viewBox="0 0 1024 1024" aria-hidden="true"><path d="M824.8 613.2c-16-51.4-34.4-94.6-62.7-165.3C766.5 262.2 689.3 112 511.5 112 331.7 112 256.2 265.2 261 447.9c-28.4 70.8-46.7 113.6-62.7 165.3-34 109.5-23 154.8-14.6 155.8 18 2.2 70.1-82.4 70.1-82.4 0 49 25.2 112.9 79.8 159-26.4 8.1-85.7 29.9-71.6 53.8 11.4 19.3 196.2 12.3 249.5 6.3 53.3 6 238.1 13 249.5-6.3 14.1-23.8-45.3-45.7-71.6-53.8 54.6-46.2 79.8-110.1 79.8-159 0 0 52.1 84.6 70.1 82.4 8.5-1.1 19.5-46.4-14.5-155.8z" fill="currentColor"></path></svg>';
+const latestVersionBadge = `<span class="nav-version-badge"><span class="nav-version-spark">✦</span><span>${latestReleaseVersion}</span></span>`;
+const contactLinkText = `<span class="nav-contact-link"><span>联系我们</span>${qqIconSvg}</span>`;
+const contactLinkTextEn = `<span class="nav-contact-link"><span>Contact Us</span>${qqIconSvg}</span>`;
+
 export default defineConfig({
     base: "/",
     title: "MaaLYSK",
     description: "MaaLYSK Documentation",
     // 静态资源引用
     head: [
-        ["link", {rel: "icon", href: "/logo.ico"}],
+        ["link", { rel: "icon", href: "/logo.ico" }],
         // 引入 RemixIcon 图标库 CSS
         [
             "link",
@@ -78,20 +96,14 @@ export default defineConfig({
                                 buttonText: "Search",
                                 buttonAriaLabel: "Search",
                             },
-                            modal: {noResultsText: "No results for"},
+                            modal: { noResultsText: "No results for" },
                         },
                     },
                 },
             },
         },
         socialLinks: [
-            {
-                icon: {
-                    svg: '<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M824.8 613.2c-16-51.4-34.4-94.6-62.7-165.3C766.5 262.2 689.3 112 511.5 112 331.7 112 256.2 265.2 261 447.9c-28.4 70.8-46.7 113.6-62.7 165.3-34 109.5-23 154.8-14.6 155.8 18 2.2 70.1-82.4 70.1-82.4 0 49 25.2 112.9 79.8 159-26.4 8.1-85.7 29.9-71.6 53.8 11.4 19.3 196.2 12.3 249.5 6.3 53.3 6 238.1 13 249.5-6.3 14.1-23.8-45.3-45.7-71.6-53.8 54.6-46.2 79.8-110.1 79.8-159 0 0 52.1 84.6 70.1 82.4 8.5-1.1 19.5-46.4-14.5-155.8z" fill="currentColor"></path></svg>',
-                },
-                link: "https://qm.qq.com/cgi-bin/qm/qr?k=74p64gDsFVQD0q7VY4yI6dgBo7p6H9GG&jump_from=webapi&authKey=/cejhv0J4X5LQ6cg+emj87fWIcNOSTL5gWBnn2VD4I0cw0ciNd3LxL1++sqUkl4a",
-            },
-            {icon: "github", link: "https://github.com/Witty36/MaaLYSK"},
+            { icon: "github", link: "https://github.com/Witty36/MaaLYSK" },
         ],
     },
 
@@ -123,12 +135,22 @@ export default defineConfig({
                 },
                 nav: [
                     {
+                        text: latestVersionBadge,
+                        link: latestReleaseLink,
+                        activeMatch: "^$",
+                        class: "nav-version-link",
+                    },
+                    {
                         text: '<i class="ri-book-read-line"></i> 用户手册',
                         link: "/zh_cn/manual/1.1",
                     },
                     {
                         text: '<i class="ri-code-s-slash-line"></i> 开发文档',
                         link: "/zh_cn/develop/0.0",
+                    },
+                    {
+                        text: contactLinkText,
+                        link: qqGroupLink,
                     },
                 ],
                 sidebar: {
@@ -154,12 +176,22 @@ export default defineConfig({
             themeConfig: {
                 nav: [
                     {
+                        text: latestVersionBadge,
+                        link: latestReleaseLink,
+                        activeMatch: "^$",
+                        class: "nav-version-link",
+                    },
+                    {
                         text: '<i class="ri-book-read-line"></i> User Manual',
                         link: "/en_us/manual/1.1",
                     },
                     {
                         text: '<i class="ri-code-s-slash-line"></i> Developer Guide',
                         link: "/en_us/develop/0.0",
+                    },
+                    {
+                        text: contactLinkTextEn,
+                        link: qqGroupLink,
                     },
                 ],
                 sidebar: {

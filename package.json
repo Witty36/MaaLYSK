@@ -1,11 +1,11 @@
 {
 	"devDependencies": {
-		"@nekosu/prettier-plugin-maafw-sort": "^1.0.5",
 		"@nekosu/maa-tools": "1.0.23",
+		"@nekosu/prettier-plugin-maafw-sort": "^1.0.5",
 		"@types/node": "^25.0.3",
 		"mermaid": "^10.9.0",
 		"prettier-plugin-multiline-arrays": "^3.0.6",
-		"vitepress": "^2.0.0-alpha.15"
+		"vitepress": "^2.0.0-alpha.17"
 	},
 	"scripts": {
 		"docs:dev": "vitepress dev docs",
