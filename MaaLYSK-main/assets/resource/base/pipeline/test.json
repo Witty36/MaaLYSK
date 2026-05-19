@@ -1,0 +1,46 @@
+{
+	"NodeA": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["empty.png"],
+				"roi": [100, 200, 50, 50]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["NodeB"]
+	},
+	"NodeB": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": " [×,×,x,X,✕,✖]",
+				"roi": [334, 961, 55, 56]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": []
+	},
+	"NodeC": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+
+		"next": [
+			"撩动氤氲结束",
+			"[JumpBack]划动挥散雾气",
+			"[JumpBack]撩动氤氲剧情点点"
+		]
+	}
+}

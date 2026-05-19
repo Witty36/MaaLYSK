@@ -1,0 +1,117 @@
+{
+	"task": [
+		{
+			"name": "🐱周常喵喵牌",
+			"entry": "进入喵喵牌",
+			"default_check": false,
+			"option": ["囤积达上限是否继续", "喵喵牌游玩男主"],
+			"description": "可选囤积达上限是否继续,如果不继续的话记得检查2400巧克力有没有达到",
+			"pipeline_override": {
+				"选择沈星回": {
+					"focus": {
+						"Node.Action.Succeeded": "进入沈星回喵喵牌"
+					},
+					"next": ["进入喵喵牌页面"]
+				},
+				"选择黎深": {
+					"focus": {
+						"Node.Action.Succeeded": "进入黎深喵喵牌"
+					},
+					"next": ["进入喵喵牌页面"]
+				},
+				"选择祁煜": {
+					"focus": {
+						"Node.Action.Succeeded": "进入祁煜喵喵牌"
+					},
+					"next": ["进入喵喵牌页面"]
+				},
+				"选择秦彻": {
+					"focus": {
+						"Node.Action.Succeeded": "进入秦彻喵喵牌"
+					},
+					"next": ["进入喵喵牌页面"]
+				},
+				"选择夏以昼": {
+					"focus": {
+						"Node.Action.Succeeded": "进入夏以昼喵喵牌"
+					},
+					"next": ["进入喵喵牌页面"]
+				}
+			}
+		}
+	],
+	"option": {
+		"囤积达上限是否继续": {
+			"type": "switch",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"喵喵牌出发": {
+							"next": ["囤积达上限继续", "喵喵牌游戏中页面"]
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"囤积达上限继续": {
+							"action": {
+								"param": {
+									"target": [226, 684, 28, 16]
+								}
+							},
+							"next": ["进入喵喵牌"]
+						}
+					}
+				}
+			]
+		},
+		"喵喵牌游玩男主": {
+			"type": "checkbox",
+			"default_case": ["沈星回", "黎深", "祁煜", "秦彻", "夏以昼"],
+			"cases": [
+				{
+					"name": "沈星回",
+					"pipeline_override": {
+						"选择沈星回": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "黎深",
+					"pipeline_override": {
+						"选择黎深": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "祁煜",
+					"pipeline_override": {
+						"选择祁煜": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "秦彻",
+					"pipeline_override": {
+						"选择秦彻": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "夏以昼",
+					"pipeline_override": {
+						"选择夏以昼": {
+							"enabled": true
+						}
+					}
+				}
+			]
+		}
+	}
+}

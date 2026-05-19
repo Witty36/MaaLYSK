@@ -1,0 +1,319 @@
+{
+	"task": [
+		{
+			"name": "💫免费福利签到",
+			"entry": "stop",
+			//"entry": "进入福利签到",
+			"default_check": false,
+			"description": "<span style=\"color:orange\">当前签到：目前关闭中</span><br>初步适配了进入活动读剧情，如果有其它活动,也可以选择提前进入一次页面过下剧情"
+		},
+		{
+			"name": "🛍️限时活动商城领取",
+			//	"entry": "stop",
+			"entry": "进入活动商城领取",
+			"default_check": false,
+			"description": "<span style=\"color:orange\">当前版本：热雾迷津</span><br>请尽量确保代币足够再使用，不然会卡住"
+		},
+		{
+			"name": "🌟限时活动每日领取",
+			//	"entry": "stop",
+			"entry": "进入限时活动",
+			"default_check": false,
+			//"option": ["韶华宴岁领取", "吉财临门领取", "金叶盈福领取"],
+			"description": "<span style=\"color:orange\">当前版本：热雾迷津</span><br>限时活动领取每日任务奖励，初步适配了进入活动读剧情，如果有问题就提前进入一次页面过下剧情"
+		},
+		{
+			"name": "✨限时活动读剧情",
+			//"entry": "stop",
+			"entry": "进入节日活动读剧情",
+			"option": ["选择读的热雾迷津剧情"],
+			"default_check": false,
+			"description": "<span style=\"color:orange\">当前版本：热雾迷津</span><br><span style=\"color:red\">尽量在剧情全解锁后再使用，如有未解锁剧情，不会自动结束，最好单独进行！</span><br>限时活动读剧情，初步适配了进入活动读剧情，如果有问题就提前进入一次剧情页面过下剧情。<br><span style=\"color:red\">撩动氤氲划动雾气如果划不上，手动划一下即可。</span>",
+			"pipeline_override": {
+				"点成2倍速": {
+					"timeout": 300000,
+					"next": [
+						"[JumpBack]选剧情祁煜",
+						"[JumpBack]选剧情选项",
+						"[JumpBack]跳过吹气",
+						"[JumpBack]剧情圈圈选项点一点",
+						"[JumpBack]自动过剧情点点",
+						"[JumpBack]live剧情等待",
+						"[JumpBack]为他唱生日歌",
+						"[JumpBack]结束唱歌",
+						"[JumpBack]加载页面等待_竖屏",
+						"[JumpBack]加载页面等待_横屏",
+						"过剧情结束标志-热雾迷津"
+					]
+				}
+			}
+		},
+		{
+			"name": "🌈限时活动小游戏",
+			//"entry": "stop",
+			"entry": "进入限时活动小游戏",
+			"default_check": false,
+			//	"option": ["刷到xx分停止", "叮咚奇跃参数自定义"],
+			"description": "<span style=\"color:orange\">当前版本：心隙拾意</span><br>反复在第一关刷一刷分数。用的祁煜游戏页面，用不了使用小鱼的页面进入小游戏1、由于个别电脑卡顿可能会提前结束任务，重新开始就好<br>2、请单独运行此任务，否则后续任务可能无法进行<br>3、为增加容错，增加了每个点都尝试点点的操作，会有点像在乱点，属正常现象。介意的可以自己手打游戏<br>4、最好先手打一遍小鱼关卡解锁第一关"
+		}
+	],
+	"option": {
+		"选择读的热雾迷津剧情": {
+			"type": "select",
+			"label": "选择读的剧情",
+			"description": "热雾迷津--温澜秘响or撩动氤氲",
+			"cases": [
+				{
+					"name": "温澜秘响",
+					"description": "消耗云雾团糕读温澜秘响剧情",
+
+					"pipeline_override": {
+						"选择剧情菜单": {
+							"recognition": {
+								"type": "TemplateMatch",
+								"param": {
+									"template": [
+										"event/热雾迷津(202605温泉卡)/温澜秘响剧情.png"
+									],
+									"threshold": 0.5,
+									"roi": [18, 921, 185, 139]
+								}
+							},
+							"next": ["有剩余剧情体力"]
+						}
+					}
+				},
+				{
+					"name": "撩动氤氲",
+					"description": "消耗和鸣泉水读撩动氤氲剧情",
+					"pipeline_override": {
+						"选择剧情菜单": {
+							"recognition": {
+								"type": "TemplateMatch",
+								"param": {
+									"template": [
+										"event/热雾迷津(202605温泉卡)/撩动氤氲剧情.png"
+									],
+									"roi": [167, 1015, 153, 143]
+								}
+							},
+							"next": [
+								"进入撩动氤氲页面",
+								"[JumpBack]自动过剧情",
+								"[JumpBack]首次进入撩动氤氲"
+							]
+						}
+					}
+				}
+			]
+		},
+		"选择读的生日剧情": {
+			"type": "select",
+			"label": "选择读的剧情",
+			"description": "选择衣帽间对话还是生日剧情",
+			"cases": [
+				{
+					"name": "衣帽间对话",
+					"description": "制作衣帽间的衣服并过对话剧情",
+
+					"pipeline_override": {
+						"进入生日剧情": {
+							"next": ["进入衣帽间制作"]
+						}
+					}
+				},
+				{
+					"name": "4段生日剧情",
+					"description": "生日活动页面，4段生日剧情",
+					"pipeline_override": {
+						"进入生日剧情": {
+							"next": ["进入生日读剧情"]
+						}
+					},
+					"option": ["送娃娃模式选择"]
+				}
+			]
+		},
+		"送娃娃模式选择": {
+			"type": "select",
+			"description": "如果选择送出娃娃过剧情,需要娃娃已通过审核",
+			"cases": [
+				{
+					"name": "全都送",
+					"description": "没有装扮过娃娃，直接是初始状态也送",
+					"pipeline_override": {
+						"找找生日剧情4": {
+							"next": ["准备好送出娃娃", "准备好送出娃娃_未装扮"]
+						}
+					}
+				},
+				{
+					"name": "装扮过送",
+					"description": "装扮过一次，点击“准备好了”送出并过剧情",
+					"pipeline_override": {
+						"找找生日剧情4": {
+							"next": ["准备好送出娃娃"]
+						}
+					}
+				},
+				{
+					"name": "直接停止剧情",
+					"description": "不过剧情4，直接停止",
+					"pipeline_override": {
+						"找找生日剧情4": {
+							"next": []
+						}
+					}
+				}
+			]
+		},
+		"叮咚奇跃参数自定义": {
+			"type": "input",
+			"description": "由于各自电脑延时网络状况不同,开放自定义参数口",
+			"inputs": [
+				{
+					"name": "press1",
+					"description": "第一个小跳长按的时长(ms),建议参数90-160",
+					"label": "第一个小跳按下时长",
+					"pipeline_type": "int",
+					"default": "140"
+				},
+				{
+					"name": "delay1",
+					"description": "第一个小跳识别的延时(ms),建议参数10-700",
+					"label": "第一个小跳延时",
+					"pipeline_type": "int",
+					"default": "100"
+				},
+				{
+					"name": "press2",
+					"description": "第二个小跳长按的时长(ms),建议参数180-300",
+					"label": "第二个小跳按下时长",
+					"pipeline_type": "int",
+					"default": "220"
+				},
+				{
+					"name": "delay2",
+					"description": "第二个小跳识别的延时(ms),建议参数10-600",
+					"label": "第二个小跳延时",
+					"pipeline_type": "int",
+					"default": "50"
+				}
+			],
+			"pipeline_override": {
+				"第一个小跳": {
+					"duration": "{press1}",
+					"pre_delay": "{delay1}"
+				},
+				"第二个小跳": {
+					"duration": "{press2}",
+					"pre_delay": "{delay2}"
+				}
+			}
+		},
+		"刷到xx分停止": {
+			"type": "input",
+			"inputs": [
+				{
+					"name": "score",
+					"description": "默认刷满20000",
+					"label": "刷到xx分停止",
+					"pipeline_type": "string",
+					"default": "20000"
+				}
+			],
+			"pipeline_override": {
+				"积分是否已满": {
+					"expected": ["{score}"]
+				}
+			}
+		},
+		"韶华宴岁领取": {
+			"type": "switch",
+			"description": "领经营任务奖励",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"进入韶华宴岁": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"进入韶华宴岁": {
+							"enabled": false
+						}
+					}
+				}
+			]
+		},
+		"吉财临门领取": {
+			"type": "switch",
+			"description": "领所有可领的,识别时间比较长,耐心等待",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"进入吉财临门": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"进入吉财临门": {
+							"enabled": false
+						}
+					}
+				}
+			]
+		},
+		"金叶盈福领取": {
+			"type": "switch",
+			"description": "免费摇福",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"进入金叶盈福": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"进入金叶盈福": {
+							"enabled": false
+						}
+					}
+				}
+			]
+		},
+		"韶华宴岁小游戏模式": {
+			"type": "select",
+			"cases": [
+				{
+					"name": "聚客探听",
+					"pipeline_override": {
+						"进入限时活动小游戏": {
+							"next": ["进入聚客探听"]
+						}
+					}
+				},
+				{
+					"name": "邀约花笺",
+					"pipeline_override": {
+						"进入限时活动小游戏": {
+							"next": ["进入邀约花笺"]
+						}
+					}
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,436 @@
+{
+	"点击自动": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["自动", "自", "动"],
+				"roi": [473, 1203, 33, 18]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [482, 1206, 16, 11]
+			}
+		},
+		"post_delay": 2000,
+		"next": [
+			"抓娃娃选先后手",
+			"娃娃机结算退出继续",
+			"尝试抢男主娃娃",
+			"我开始抓娃娃",
+			"[JumpBack]过剧情"
+		],
+		"on_error": ["null"]
+	},
+	"抓娃娃选先后手": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["让我抓娃娃_上", "让我抓娃娃_下"]
+	},
+	"让我抓娃娃_上": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": [
+					"沈星回",
+					"星回",
+					"沈",
+					"黎",
+					"黎深",
+					"祁煜",
+					"夏以昼",
+					"星",
+					"深",
+					"祁",
+					"以"
+				],
+				"roi": [73, 749, 121, 47]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [346, 564, 16, 6]
+			}
+		},
+		"repeat": 2,
+		"repeat_delay": 500,
+		"post_delay": 1000,
+		"focus": {
+			"Node.Action.Succeeded": "抓娃娃选择上面选项"
+		},
+		"next": ["我开始抓娃娃", "尝试抢男主娃娃"],
+		"on_error": ["让我抓娃娃_上"]
+	},
+	"让我抓娃娃_下": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["秦彻", "秦"],
+				"roi": [73, 749, 121, 47]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [353, 643, 15, 6]
+			}
+		},
+		"repeat": 2,
+		"repeat_delay": 500,
+		"post_delay": 1000,
+		"focus": {
+			"Node.Action.Succeeded": "抓娃娃选择下面选项"
+		},
+		"next": ["我开始抓娃娃", "尝试抢男主娃娃"],
+		"on_error": ["让我抓娃娃_下"]
+	},
+	"我开始抓娃娃": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": [
+					"playtime/catchtoy/抓娃娃蓝色按钮.png",
+					"playtime/catchtoy/抓娃娃蓝色按钮1.png"
+				],
+				"roi": [253, 1095, 149, 139],
+				"threshold": 0.6,
+				"order_by": "Score"
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"post_delay": 2000,
+		"focus": {
+			"Node.Recognition.Succeeded": "开始抓二爪娃娃"
+		},
+		"timeout": 30000,
+		"next": [
+			"娃娃机结算退出继续",
+			"尝试抢男主娃娃",
+			"[JumpBack]娃娃机对话_上_我来抓",
+			"[JumpBack]娃娃机对话_下_我来抓",
+			"[JumpBack]过剧情",
+			"[JumpBack]抓娃娃绿色按钮"
+		],
+		"on_error": ["null"]
+	},
+	"尝试抢男主娃娃": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["playtime/catchtoy/男主抓娃娃.png"],
+				"roi": [79, 426, 162, 190],
+				"threshold": 0.6
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": "尝试和男主抢夺抓娃娃权",
+		"next": [
+			"娃娃机确认换人",
+			"娃娃机结算退出继续",
+			"[JumpBack]娃娃机对话_上_我来抓",
+			"[JumpBack]娃娃机对话_下_我来抓",
+			"[JumpBack]娃娃机换人切换",
+			"[JumpBack]娃娃机切换被拒绝",
+			"[JumpBack]过剧情"
+		],
+		"on_error": ["娃娃机返回"]
+	},
+	"娃娃机换人切换": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["playtime/catchtoy/换人切换.png"],
+				"roi": [10, 138, 88, 99]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 5000,
+		"next": []
+	},
+	"娃娃机切换被拒绝": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["他拒绝了", "拒绝", "他"],
+				"roi": [12, 141, 217, 90]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"post_delay": 10000,
+		"focus": {
+			"Node.Recognition.Succeeded": "他拒绝了"
+		},
+		"next": []
+	},
+	"娃娃机确认换人": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["该我了", "该我"],
+				"roi": [12, 141, 217, 90]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "成功抢到抓娃娃权"
+		},
+		"post_delay": 5000,
+		"timeout": 40000,
+		"next": ["确认我开始抓娃娃"],
+		"on_error": ["null"]
+	},
+	"确认我开始抓娃娃": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": [
+					"playtime/catchtoy/抓娃娃蓝色按钮.png",
+					"playtime/catchtoy/抓娃娃蓝色按钮1.png"
+				],
+				"roi": [253, 1095, 149, 139],
+				"threshold": 0.6,
+				"order_by": "Score"
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["点击娃娃机复位按钮"],
+		"on_error": ["null"]
+	},
+	"点击娃娃机复位按钮": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["playtime/catchtoy/娃娃机复位按钮.png"],
+				"roi": [7, 222, 101, 103]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [53, 272, 5, 5]
+			}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "复位一下"
+		},
+		"post_delay": 1500,
+		"next": ["娃娃机复位按钮确定"],
+		"on_error": ["点击娃娃机复位按钮"]
+	},
+	"娃娃机复位按钮确定": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["确定"],
+				"roi": [414, 592, 135, 184]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1500,
+		"next": ["我开始抓娃娃"],
+		"on_error": ["娃娃机复位按钮确定"]
+	},
+	"娃娃机结算退出继续": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"playtime/catchtoy/娃娃机结算页面.png"
+								],
+								"roi": [36, 177, 677, 477]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"点击空白区域继续",
+									"空白区域",
+									"空白区域继",
+									"空白",
+									"继续"
+								],
+								"replace": [
+									["自", "白"],
+									["百", "白"]
+								],
+								"roi": [239, 1096, 247, 176]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [229, 1062, 24, 11]
+			}
+		},
+		"post_delay": 3000,
+		"next": [
+			"是否娃娃机页面",
+			"快乐出游再来一局页面",
+			"[JumpBack]退出牵绊度提升popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]快乐出游结算退出",
+			"[JumpBack]退出新娃娃获得popop",
+			"[JumpBack]退出各类弹窗(无快乐出游退出)"
+		],
+		"on_error": ["null"]
+	},
+	"过剧情": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["自动", "自", "动"],
+				"roi": [473, 1203, 33, 18]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"timeout": 1000,
+		"rate_limit": 500,
+		"next": ["自动过剧情点点"],
+		"on_error": ["null"]
+	},
+	"抓娃娃绿色按钮": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": [
+					"playtime/catchtoy/抓娃娃绿色按钮.png",
+					"playtime/catchtoy/抓娃娃绿色按钮1.png"
+				],
+				"roi": [98, 1095, 149, 121],
+				"threshold": 0.6,
+				"order_by": "Score"
+			}
+		},
+		"action": {
+			"type": "LongPress",
+			"param": {
+				"duration": 320,
+				"target": [159, 1147, 11, 8]
+			}
+		},
+		"pre_delay": 1000,
+		"post_delay": 1900,
+		"timeout": 8000,
+		"next": ["抓娃娃蓝色按钮"],
+		"on_error": ["null"]
+	},
+	"抓娃娃蓝色按钮": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": [
+					"playtime/catchtoy/抓娃娃蓝色按钮.png",
+					"playtime/catchtoy/抓娃娃蓝色按钮1.png"
+				],
+				"roi": [253, 1095, 149, 139],
+				"threshold": 0.6,
+				"order_by": "Score"
+			}
+		},
+		"action": {
+			"type": "LongPress",
+			"param": {
+				"duration": 580,
+				"target": [323, 1146, 13, 14]
+			}
+		},
+		"pre_delay": 2000,
+		"post_delay": 1000,
+		"timeout": 8000,
+		"next": ["抓娃娃粉色按钮"],
+		"on_error": ["null"]
+	},
+	"抓娃娃粉色按钮": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": [
+					"playtime/catchtoy/抓娃娃粉色按钮.png",
+					"playtime/catchtoy/抓娃娃粉色按钮1.png"
+				],
+				"roi": [421, 1103, 182, 123],
+				"threshold": 0.6,
+				"order_by": "Score"
+			}
+		},
+		"action": {
+			"type": "LongPress",
+			"param": {
+				"duration": 350,
+				"target": [503, 1146, 17, 13]
+			}
+		},
+		"pre_delay": 500,
+		"post_delay": 15000,
+		"next": [],
+		"on_error": ["null"]
+	}
+}

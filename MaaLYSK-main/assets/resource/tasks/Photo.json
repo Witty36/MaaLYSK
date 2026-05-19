@@ -1,0 +1,174 @@
+{
+	"task": [
+		{
+			"name": "📷周常拍大头贴",
+			"entry": "进入大头贴拍照",
+			"default_check": false,
+			"option": ["选择大头贴拍照男主"],
+			"description": "完成周常拍大头贴的任务",
+			"pipeline_override": {
+				"选择沈星回": {
+					"focus": {
+						"Node.Action.Succeeded": "进入沈星回拍大头贴"
+					},
+					"next": ["进入大头贴页面"]
+				},
+				"选择黎深": {
+					"focus": {
+						"Node.Action.Succeeded": "进入黎深拍大头贴"
+					},
+					"next": ["进入大头贴页面"]
+				},
+				"选择祁煜": {
+					"focus": {
+						"Node.Action.Succeeded": "进入祁煜拍大头贴"
+					},
+					"next": ["进入大头贴页面"]
+				},
+				"选择秦彻": {
+					"focus": {
+						"Node.Action.Succeeded": "进入秦彻拍大头贴"
+					},
+					"next": ["进入大头贴页面"]
+				},
+				"选择夏以昼": {
+					"focus": {
+						"Node.Action.Succeeded": "进夏以昼拍大头贴"
+					},
+					"next": ["进入大头贴页面"]
+				}
+			}
+		},
+		{
+			"name": "📸周常拍写真",
+			"entry": "进入写真拍照",
+			"default_check": false,
+			"option": ["选择写真拍照男主"],
+			"description": "完成周常拍写真的任务",
+			"pipeline_override": {
+				"选择沈星回": {
+					"focus": {
+						"Node.Action.Succeeded": "进入沈星回拍写真"
+					},
+					"next": ["进入写真页面"]
+				},
+				"选择黎深": {
+					"focus": {
+						"Node.Action.Succeeded": "进入黎深拍写真"
+					},
+					"next": ["进入写真页面"]
+				},
+				"选择祁煜": {
+					"focus": {
+						"Node.Action.Succeeded": "进入祁煜拍写真"
+					},
+					"next": ["进入写真页面"]
+				},
+				"选择秦彻": {
+					"focus": {
+						"Node.Action.Succeeded": "进入秦彻拍写真"
+					},
+					"next": ["进入写真页面"]
+				},
+				"选择夏以昼": {
+					"focus": {
+						"Node.Action.Succeeded": "进入夏以昼拍写真"
+					},
+					"next": ["进入写真页面"]
+				}
+			}
+		}
+	],
+	"option": {
+		"选择大头贴拍照男主": {
+			"type": "select",
+			"cases": [
+				{
+					"name": "拍祁煜",
+					"pipeline_override": {
+						"选择祁煜": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "拍沈星回",
+					"pipeline_override": {
+						"选择沈星回": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "拍黎深",
+					"pipeline_override": {
+						"选择黎深": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "拍秦彻",
+					"pipeline_override": {
+						"选择秦彻": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "拍夏以昼",
+					"pipeline_override": {
+						"选择夏以昼": {
+							"enabled": true
+						}
+					}
+				}
+			]
+		},
+		"选择写真拍照男主": {
+			"type": "select",
+			"cases": [
+				{
+					"name": "拍祁煜",
+					"pipeline_override": {
+						"选择祁煜": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "拍沈星回",
+					"pipeline_override": {
+						"选择沈星回": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "拍黎深",
+					"pipeline_override": {
+						"选择黎深": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "拍秦彻",
+					"pipeline_override": {
+						"选择秦彻": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "拍夏以昼",
+					"pipeline_override": {
+						"选择夏以昼": {
+							"enabled": true
+						}
+					}
+				}
+			]
+		}
+	}
+}

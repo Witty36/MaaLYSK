@@ -10,7 +10,7 @@ MaaLYSK更新日志
 
   ❗❗本次更新由于**更新了UI页面**，原先的配置可能有所更新(如**定时配置**、**启动路径**等），请在运行前**检查选项与配置**！
 
-  如果内置更新出现问题（如exe文件消失、UI报错等）请手动前往[Mirror酱](https://github.com/MaaAssistantArknights/MaaLYSK/releases)或[Github](https://github.com/MaaAssistantArknights/MaaLYSK/releases)下载最新版本，而不是重新下载旧版本后继续内置更新。
+  如果内置更新出现问题（如exe文件消失、UI报错等）请手动前往[[Mirror酱](https://mirrorchyan.com/zh/projects?source=MaaLYSKnotice&rid=MaaLYSK)]或[[Github](https://github.com/Witty36/MaaLYSK/releases)]下载最新版本，而不是重新下载旧版本后继续内置更新。
 
 ### 📕 公测版v0.4.1-beta3更新内容
 

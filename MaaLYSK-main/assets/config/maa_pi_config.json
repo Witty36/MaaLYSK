@@ -1,0 +1,61 @@
+{
+    "resource": "官服",
+    "controller": "ADB模拟器",
+    "adb": {
+        "adb_path": "D:/Program Files/Netease/MuMu/nx_main/adb.exe",
+        "address": "127.0.0.1:16384",
+        "screencap": "64",
+        "input": "18446744073709551607",
+        "config": {
+            "extras": {
+                "mumu": {
+                    "enable": true,
+                    "index": 0,
+                    "path": "D:/Program Files/Netease/MuMu"
+                }
+            }
+        }
+    },
+    "task": [
+        {
+            "name": "📷周常拍大头贴",
+            "option": {},
+            "__key": "3aa89b31-b4e6-447f-a401-4bc0e2ff36c0"
+        },
+        {
+            "name": "📸周常拍写真",
+            "option": {},
+            "__key": "f49e56ad-d180-4e32-80a9-c54bb6202308"
+        },
+        {
+            "name": "📓周常记录手账",
+            "option": {},
+            "__key": "42425464-9876-4ad8-bc18-806bad18704c"
+        },
+        {
+            "name": "🐱周常喵喵牌",
+            "option": {},
+            "__key": "27ad1618-a8b6-403c-aae2-ed4b782f0a05"
+        },
+        {
+            "name": "👥陪我一起",
+            "option": {
+                "陪我运动选择男主": [
+                    "沈星回"
+                ],
+                "陪我学习选择男主": [
+                    "沈星回"
+                ],
+                "陪我睡觉选择男主": [
+                    "沈星回"
+                ]
+            },
+            "__key": "7a2785ea-7161-4189-92b7-6a7fdc656f65"
+        },
+        {
+            "name": "🗓️周常收尾",
+            "option": {},
+            "__key": "5869c552-d284-4c20-a05c-a92fffbb7215"
+        }
+    ]
+}

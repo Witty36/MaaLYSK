@@ -1,0 +1,153 @@
+{
+	"task": [
+		{
+			"name": "⚡️体力瓶消耗",
+			"entry": "进入消耗体力瓶",
+			"default_check": false,
+			"option": ["体力瓶消耗模式"],
+			"description": "只用快过期的是指只消耗7天内要过期的体力瓶<br>快过期的全用指周末把体力瓶全用了<br><span style=\"color:red\">不使用数字填0，不能空着，使用前检查体力瓶个数</span><br>可能会有没点到的情况，请自行检查或调整点击延时，延时单位为ms，默认2000ms即2s"
+		}
+	],
+	"option": {
+		"体力瓶消耗模式": {
+			"type": "select",
+			"cases": [
+				{
+					"name": "只用快过期的",
+					"description": "只消耗7天内要过期的体力瓶",
+					"option": ["选择消耗的体力瓶数量", "自定义体力瓶消耗延时"],
+					"pipeline_override": {
+						"确认在体力瓶页面": {
+							"next": [
+								"[JumpBack]识别金体力瓶",
+								"[JumpBack]识别深紫体力瓶",
+								"[JumpBack]识别浅紫体力瓶",
+								"结束使用体力瓶"
+							]
+						}
+					}
+				},
+				{
+					"name": "都用",
+					"description": "使用所有可用的体力瓶",
+					"option": ["选择消耗的体力瓶数量", "自定义体力瓶消耗延时"],
+					"pipeline_override": {
+						"确认在体力瓶页面": {
+							"next": [
+								"[JumpBack]识别金体力瓶_无限时",
+								"[JumpBack]识别深紫体力瓶_无限时",
+								"[JumpBack]识别浅紫体力瓶_无限时",
+								"[JumpBack]向右滑找找体力瓶",
+								"结束使用体力瓶"
+							]
+						}
+					}
+				},
+				{
+					"name": "快过期的全用",
+					"description": "周末把要过期的全用了",
+					"option": ["自定义体力瓶按下时长"],
+					"pipeline_override": {
+						"确认在体力瓶页面": {
+							"next": [
+								"[JumpBack]识别金体力瓶_长按",
+								"[JumpBack]识别深紫体力瓶_长按",
+								"[JumpBack]识别浅紫体力瓶_长按",
+								"结束使用体力瓶"
+							]
+						}
+					}
+				}
+			]
+		},
+		"选择消耗的体力瓶数量": {
+			"type": "input",
+			"inputs": [
+				{
+					"name": "金色体力瓶",
+					"default": "0",
+					"pipeline_type": "int"
+				},
+				{
+					"name": "深紫体力瓶",
+					"default": "0",
+					"pipeline_type": "int"
+				},
+				{
+					"name": "浅紫体力瓶",
+					"default": "0",
+					"pipeline_type": "int"
+				}
+			],
+			"pipeline_override": {
+				"识别金体力瓶": {
+					"max_hit": "{金色体力瓶}"
+				},
+				"识别深紫体力瓶": {
+					"max_hit": "{深紫体力瓶}"
+				},
+				"识别浅紫体力瓶": {
+					"max_hit": "{浅紫体力瓶}"
+				},
+				"识别金体力瓶_无限时": {
+					"max_hit": "{金色体力瓶}"
+				},
+				"识别深紫体力瓶_无限时": {
+					"max_hit": "{深紫体力瓶}"
+				},
+				"识别浅紫体力瓶_无限时": {
+					"max_hit": "{浅紫体力瓶}"
+				}
+			}
+		},
+		"自定义体力瓶消耗延时": {
+			"type": "input",
+			"inputs": [
+				{
+					"name": "自定义体力瓶消耗延时",
+					"label": "自定义延时",
+					"description": "体力瓶加一的时长，默认2s，单位为ms，填2000即为2s",
+					"default": "2000",
+					"pipeline_type": "int"
+				}
+			],
+			"pipeline_override": {
+				"识别金体力瓶": {
+					"post_delay": "{自定义体力瓶消耗延时}"
+				},
+				"识别深紫体力瓶": {
+					"post_delay": "{自定义体力瓶消耗延时}"
+				},
+				"识别浅紫体力瓶": {
+					"post_delay": "{自定义体力瓶消耗延时}"
+				},
+				"确定使用体力瓶": {
+					"post_delay": "{自定义体力瓶消耗延时}"
+				}
+			}
+		},
+		"自定义体力瓶按下时长": {
+			"type": "input",
+			"inputs": [
+				{
+					"name": "自定义体力瓶按下时长",
+					"label": "自定义按下时长",
+					"description": "体力瓶长按下去的时长，默认1.5s，单位为ms，填2000即为2s",
+					"default": "1500",
+					"pipeline_type": "int"
+				}
+			],
+			"pipeline_override": {
+				"识别金体力瓶_长按": {
+					"duration": "{自定义体力瓶按下时长}"
+				},
+				"识别深紫体力瓶_长按": {
+					"duration": "{自定义体力瓶按下时长}"
+				},
+				"识别浅紫体力瓶_长按": {
+					"duration": "{自定义体力瓶按下时长}"
+				}
+			}
+		}
+	}
+}

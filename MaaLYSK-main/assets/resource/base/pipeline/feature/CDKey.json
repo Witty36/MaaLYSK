@@ -1,0 +1,114 @@
+{
+	"进入兑换码兑换": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["兑换码_主页面启动", "[JumpBack]导航回主页面"]
+	},
+	"兑换码_主页面启动": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["mainmap/主页面识别.png"],
+				"roi": [20, 56, 49, 35]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["兑换码_点击设置"]
+	},
+	"兑换码_点击设置": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["switch_account/设置.png"],
+				"roi": [590, 1188, 48, 48]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["兑换码_点击更多"]
+	},
+	"兑换码_点击更多": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "更多",
+				"roi": [443, 1128, 229, 132]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["兑换码_进入兑换页面"]
+	},
+	"兑换码_进入兑换页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["兑换", "兑换码"],
+				"replace": [["兌换", "兑换码"]],
+				"roi": [439, 1019, 199, 85]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["点击兑换码框"]
+	},
+	"点击兑换码框": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "兑换",
+				"replace": [["兌换", "兑换"]],
+				"roi": [255, 599, 196, 92]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [-117, -64, -42, -21]
+			}
+		},
+		"next": "输入兑换码"
+	},
+	"输入兑换码": {
+		"action": {
+			"type": "InputText",
+			"param": {
+				"input_text": "xxx"
+			}
+		},
+		"next": ["兑换码_点击兑换"]
+	},
+	"兑换码_点击兑换": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "兑换",
+				"replace": [["兌换", "兑换"]],
+				"roi": [255, 599, 196, 92]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"repeat": 3,
+		"focus": {
+			"Node.Action.Succeeded": "兑换码使用成功!"
+		}
+	}
+}

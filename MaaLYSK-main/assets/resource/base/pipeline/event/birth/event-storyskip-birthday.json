@@ -1,0 +1,250 @@
+{
+	"进入生日剧情": {
+		"next": ["进入生日读剧情"]
+	},
+	"进入生日读剧情": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"进入生日剧情页",
+			"[JumpBack]自动过剧情",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"进入生日剧情页": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/daily_get/夜雨流明菜单.png"],
+				"roi": [10, 1179, 701, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 3000,
+		"repeat": 3,
+		"next": ["已在生日剧情页"],
+		"on_error": ["null"]
+	},
+	"已在生日剧情页": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["织愿计划", "织愿", "计划"],
+				"roi": [0, 249, 121, 65]
+			}
+		},
+		"timeout": 8000,
+		"next": [
+			"[JumpBack]找找生日剧情4",
+			"[JumpBack]找找生日剧情3",
+			"[JumpBack]找找生日剧情2",
+			"[JumpBack]找找生日剧情1"
+		],
+		"on_error": ["null"]
+	},
+	"找找生日剧情1": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["1"],
+								"replace": [
+									["I", "1"],
+									["l", "1"],
+									["i", "1"]
+								],
+								"roi": [64, 1016, 119, 113]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情未解锁.png"],
+								"roi": [135, 1062, 105, 106],
+								"threshold": 0.6
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "阅读第1段剧情",
+		"max_hit": 1,
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["null"]
+	},
+	"找找生日剧情2": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["2"],
+								"replace": [
+									["z", "2"],
+									["Z", "2"]
+								],
+								"roi": [135, 1062, 105, 106]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情未解锁.png"],
+								"roi": [212, 1041, 106, 107],
+								"threshold": 0.6
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "阅读第2段剧情",
+		"max_hit": 1,
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["null"]
+	},
+	"找找生日剧情3": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["3"],
+								"replace": [["I", "3"]],
+								"roi": [212, 1041, 106, 107]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情未解锁.png"],
+								"roi": [296, 1050, 106, 106],
+								"threshold": 0.6
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "阅读第3段剧情",
+		"max_hit": 1,
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["null"]
+	},
+	"找找生日剧情4": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["4"],
+				"roi": [296, 1050, 106, 106]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "阅读第4段剧情",
+		"max_hit": 1,
+		"post_delay": 2000,
+		"next": ["准备好送出娃娃"],
+		"on_error": ["null"]
+	},
+	"准备好送出娃娃": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["准备好了", "准备"],
+				"roi": [371, 757, 216, 109]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "准备送出娃娃",
+		"post_delay": 1000,
+		"repeat": 2,
+		"next": ["自动过剧情"],
+		"on_error": ["null"]
+	},
+	"准备好送出娃娃_未装扮": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["未装扮娃娃", "默认娃"],
+				"roi": [114, 470, 487, 165]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [474, 675, 13, 7]
+			}
+		},
+		"focus": "确定送出默认娃娃",
+		"post_delay": 1000,
+		"repeat": 2,
+		"next": ["准备好送出娃娃"],
+		"on_error": ["null"]
+	},
+	"生日剧情读完结束": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"roi": [108, 1082, 45, 38],
+				"upper": [191, 141, 137],
+				"lower": [171, 121, 117],
+				"count": 10
+			}
+		},
+		"next": ["stop"]
+	}
+}

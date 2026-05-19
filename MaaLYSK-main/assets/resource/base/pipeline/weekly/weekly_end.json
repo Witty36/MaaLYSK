@@ -1,0 +1,49 @@
+{
+	"进入周常收尾": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"周常收尾准备",
+			"[JumpBack]点击日程",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"周常收尾准备": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["任务", "任", "务"],
+				"roi": [74, 1175, 125, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 3000,
+		"next": ["周常收尾点击每周"]
+	},
+	"周常收尾点击每周": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["每周"],
+				"roi": [327, 140, 200, 60]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 10000,
+		"next": ["任务收尾领取"],
+		"on_error": ["日程活跃度100", "日程活跃度未满100"]
+	}
+}

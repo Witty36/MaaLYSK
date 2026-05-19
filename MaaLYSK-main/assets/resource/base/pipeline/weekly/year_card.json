@@ -1,0 +1,67 @@
+{
+	"进入年卡领取": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"年卡_点击特权",
+			"[JumpBack]点击商城",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"年卡_点击特权": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["特权"],
+				"roi": [94, 188, 103, 63]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["点击周年臻享"]
+	},
+	"点击周年臻享": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["周年臻享", "周年"],
+				"roi": [50, 244, 658, 69]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 5000,
+		"focus": {
+			"Node.PipelineNode.Failed": "<span style=\"color:red\">没有可领取的年卡奖励</span>"
+		},
+		"next": ["年卡领取"]
+	},
+	"年卡领取": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [239, 1044, 243, 233],
+				"expected": ["领取"]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "年卡奖励领取成功"
+		},
+		"next": ["stop"]
+	}
+}

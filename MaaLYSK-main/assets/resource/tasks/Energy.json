@@ -1,0 +1,15 @@
+{
+	"task": [
+		{
+			"name": "🍰领日常体力",
+			"entry": "进入领体力",
+			"default_check": true,
+			"description": "中午10:00~14:00，晚上16:00~20:00期间领取~<br>月卡免费补领"
+		},
+		{
+			"name": "📬领好友体力",
+			"entry": "进入领好友体力",
+			"default_check": true
+		}
+	]
+}

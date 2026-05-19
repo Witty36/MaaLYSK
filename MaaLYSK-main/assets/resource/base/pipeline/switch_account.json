@@ -1,0 +1,183 @@
+{
+	"进入主页面切换账号": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["主页面切换账号", "[JumpBack]导航回主页面"]
+	},
+	"主页面切换账号": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["mainmap/主页面识别.png"],
+				"roi": [20, 56, 49, 35]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["点击设置"]
+	},
+	"点击设置": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["switch_account/设置.png"],
+				"roi": [590, 1188, 48, 48]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["点击退出账号"]
+	},
+	"点击退出账号": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["switch_account/退出账号.png"],
+				"roi": [96, 1161, 149, 42]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["确认退出账号"]
+	},
+	"确认退出账号": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["switch_account/确定退出账号.png"],
+				"roi": [405, 640, 163, 43]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["[JumpBack]切换账号公告确认", "账号登录切换"]
+	},
+	"切换账号启动": {
+		"enabled": false,
+		"next": [
+			"主页面切换账号",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]切换账号公告确认",
+			"用户中心",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空官服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动游戏并使用指定账号登录"
+	},
+	"用户中心": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["login/用户中心.png"],
+				"roi": [676, 50, 31, 37],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"next": [
+			"账号登录切换",
+			"[JumpBack]用户中心",
+			"[JumpBack]切换账号公告确认"
+		]
+	},
+	"切换账号公告确认": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["login/公告关闭.png"],
+				"roi": [393, 930, 176, 62]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"账号登录切换": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["login/账号登录切换.png"],
+				"roi": [547, 600, 68, 52]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["选择登录账号", "[JumpBack]向下找找账号"]
+	},
+	"向下找找账号": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["login/找找账号标志.png"],
+				"roi": [547, 600, 68, 52]
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [455, 734],
+				"end": [455, 703],
+				"duration": 1000,
+				"end_hold": 500
+			}
+		},
+		"post_delay": 1500,
+		"next": []
+	},
+	"选择登录账号": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["89"],
+				"roi": [194, 655, 65, 197]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"timeout": 10000,
+		"next": ["点击账号登录"],
+		"on_error": ["选择登录账号"]
+	},
+	"点击账号登录": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["login/账号登录.png", "login/账号登录1.png"],
+				"roi": [242, 715, 227, 83]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"next": ["恋与深空官服"]
+	}
+}

@@ -1,0 +1,89 @@
+{
+	"进入热雾迷津": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"max_hit": 1,
+		"next": [
+			"[JumpBack]跳过引导",
+			"热雾迷津菜单",
+			"[JumpBack]自动过剧情",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"跳过引导": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["跳过引导", "跳过", "引导", "指导"],
+				"roi": [471, 5, 245, 168]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 2000,
+		"timeout": 4000,
+		"next": ["确认返回教学引导popop"],
+		"on_error": ["null"]
+	},
+	"热雾迷津菜单": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/daily_get/热雾迷津菜单.png"],
+				"roi": [10, 1179, 701, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"repeat": 2,
+		"next": ["[JumpBack]跳过引导", "热雾迷津限时领取"]
+	},
+	"热雾迷津限时领取": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["临泉手册", "临泉", "手册"],
+				"roi": [570, 166, 145, 94]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 5000,
+		"post_delay": 2000,
+		"next": ["热雾迷津一键领取"]
+	},
+	"热雾迷津一键领取": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["一键领取", "键领取", "领取"],
+				"roi": [446, 1070, 196, 123]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"repeat": 5,
+		"post_delay": 2000,
+		"focus": "热雾迷津每日领取成功!",
+		"next": []
+	}
+}

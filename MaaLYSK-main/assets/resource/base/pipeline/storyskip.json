@@ -1,0 +1,345 @@
+{
+	"进入自动过剧情": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["自动过剧情_TM", "自动过剧情"]
+	},
+	"自动过剧情": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自", "动"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [453, 1182, 69, 56]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自", "动"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [429, 1137, 126, 137]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始自动过剧情",
+		"pre_delay": 2000,
+		"post_delay": 4000,
+		"next": [
+			"点成2倍速",
+			"[JumpBack]选剧情选项",
+			"[JumpBack]自动过剧情点点"
+		],
+		"on_error": ["null"]
+	},
+	"自动过剧情_TM": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["剧情点击自动.png"],
+				"green_mask": true,
+				"threshold": 0.65,
+				"roi": [440, 1165, 95, 87]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [7, 7, -15, -15]
+			}
+		},
+		"focus": "开始自动过剧情",
+		"pre_delay": 2000,
+		"post_delay": 4000,
+		"next": [
+			"点成2倍速",
+			"[JumpBack]选剧情选项",
+			"[JumpBack]自动过剧情点点"
+		],
+		"on_error": ["null"]
+	},
+	"点成2倍速": {
+		"recognition": {
+			"type": "DirectHit"
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [571, 1198, 17, 23]
+			}
+		},
+		"repeat": 3,
+		"repeat_delay": 2000,
+		"timeout": 40000,
+		"next": [
+			"[JumpBack]选剧情祁煜",
+			"[JumpBack]选剧情选项",
+			"[JumpBack]跳过吹气",
+			"[JumpBack]剧情圈圈选项点一点",
+			"[JumpBack]自动过剧情点点",
+			"[JumpBack]live剧情等待",
+			"[JumpBack]为他唱生日歌",
+			"[JumpBack]结束唱歌",
+			"[JumpBack]加载页面等待_竖屏",
+			"[JumpBack]加载页面等待_横屏"
+		],
+		"on_error": ["null"]
+	},
+	"自动过剧情点点": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["剧情页面标志.png"],
+								"green_mask": true,
+								"threshold": 0.65,
+								"roi": [325, 1162, 159, 91]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [453, 1182, 69, 56]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [429, 1137, 126, 137]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [631, 917, 25, 29]
+			}
+		},
+		"repeat": 5,
+		"repeat_delay": 200,
+		"post_delay": 5000
+	},
+	"live剧情等待": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["自动", "自", "动"],
+				"replace": [
+					["白", "自"],
+					["百", "自"]
+				],
+				"roi": [543, 1182, 70, 56]
+			}
+		},
+		"post_delay": 5000
+	},
+	"跳过吹气": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["跳过", "跳过吹气", "跳"],
+				"roi": [38, 57, 647, 1095],
+				"threshold": 0.6
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		}
+	},
+	"为他唱生日歌": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["为他唱生日歌", "唱生日歌", "生日歌", "生日"],
+				"roi": [187, 1107, 363, 106]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [353, 1025, 15, 23]
+			}
+		},
+		"enabled": false,
+		"timeout": 6000,
+		"next": ["结束唱歌"],
+		"on_error": ["null"]
+	},
+	"结束唱歌": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["结束", "结束唱歌", "结束唱"],
+				"roi": [187, 1107, 363, 106]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [299, 1058, 50, 31]
+			}
+		},
+		"enabled": false,
+		"repeat": 5,
+		"repeat_delay": 300
+	},
+	"剧情圈圈选项点一点": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["剧情圈圈点一点.png"],
+				"roi": [57, 150, 621, 893]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		}
+	},
+	"选剧情祁煜": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "祁煜",
+								"roi": [185, 308, 360, 409]
+							}
+						}
+					}
+				],
+				"box_index": 1
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["选剧情点点1"]
+	},
+	"选剧情选项": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
+				"box_index": 1
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [348, 561, 42, 18]
+			}
+		},
+		"next": ["选剧情点点1"]
+	},
+	"选剧情点点1": {
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [342, 646, 47, 10]
+			}
+		},
+		"next": ["选剧情点点2"]
+	},
+	"选剧情点点2": {
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [322, 475, 73, 12]
+			}
+		},
+		"next": []
+	}
+}

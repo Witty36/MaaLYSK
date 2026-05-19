@@ -1,0 +1,45 @@
+{
+	"进入邮箱领取": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["点击邮箱", "[JumpBack]导航回主页面"]
+	},
+	"点击邮箱": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["mainmap/进入邮箱.png"],
+				"roi": [51, 105, 123, 118]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [7, 7, -12, -12]
+			}
+		},
+		"timeout": 8000,
+		"next": ["邮箱_全部领取"]
+	},
+	"邮箱_全部领取": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["全部领取", "领取"],
+				"roi": [493, 1102, 225, 174]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"repeat": 7,
+		"next": []
+	}
+}

@@ -1,0 +1,24 @@
+{
+	"进入限时活动小游戏": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["进入心隙拾意"]
+	},
+	"进入限时活动": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["进入热雾迷津"]
+	}
+}

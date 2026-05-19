@@ -1,0 +1,278 @@
+{
+	"进入陪我一起": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["陪我一起准备", "[JumpBack]点击互动", "[JumpBack]导航回主页面"]
+	},
+	"陪我一起准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "quality_time/切换人物.png",
+				"roi": [0, 83, 128, 142],
+				"green_mask": true
+			}
+		},
+		"next": ["[JumpBack]陪我一起_切换人物"]
+	},
+	"陪我一起_切换人物": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "quality_time/切换人物.png",
+				"roi": [0, 83, 128, 142],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [11, 11, -20, -22]
+			}
+		},
+		"max_hit": 5,
+		"timeout": 6000,
+		"next": ["确认在陪我一起切换人物页面"],
+		"on_error": ["陪我一起_切换人物"]
+	},
+	"确认在陪我一起切换人物页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["想要见到的他", "见到的他"]
+			}
+		},
+		"next": [
+			"确认已清空人物",
+			"[JumpBack]陪我一起_取消点沈星回",
+			"[JumpBack]陪我一起_取消点黎深",
+			"[JumpBack]陪我一起_取消点祁煜",
+			"[JumpBack]陪我一起_取消点秦彻",
+			"[JumpBack]陪我一起_取消点夏以昼"
+		]
+	},
+	"陪我一起_取消点沈星回": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"roi": [85, 129, 169, 253],
+				"upper": [122, 138, 193],
+				"lower": [52, 64, 129],
+				"count": 1000
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [225, 236, 48, 43]
+			}
+		}
+	},
+	"陪我一起_取消点黎深": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"roi": [328, 385, 91, 83],
+				"upper": [122, 138, 193],
+				"lower": [52, 64, 129],
+				"count": 1000
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [421, 450, 49, 43]
+			}
+		}
+	},
+	"陪我一起_取消点祁煜": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"roi": [144, 608, 85, 73],
+				"upper": [122, 138, 193],
+				"lower": [52, 64, 129],
+				"count": 700
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [221, 673, 49, 44]
+			}
+		}
+	},
+	"陪我一起_取消点秦彻": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"roi": [482, 797, 116, 76],
+				"upper": [122, 138, 193],
+				"lower": [52, 64, 129],
+				"count": 1000
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [455, 856, 49, 43]
+			}
+		}
+	},
+	"陪我一起_取消点夏以昼": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"roi": [277, 973, 67, 68],
+				"upper": [122, 138, 193],
+				"lower": [52, 64, 129],
+				"count": 800
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [224, 1041, 49, 44]
+			}
+		}
+	},
+	"确认已清空人物": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"roi": [437, 1143, 164, 33],
+				"upper": [183, 183, 183],
+				"lower": [163, 163, 163],
+				"count": 1000
+			}
+		},
+		"next": ["选择沈星回", "选择黎深", "选择祁煜", "选择秦彻", "选择夏以昼"]
+	},
+	"陪我一起_选择人物": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["沈星回.png"],
+				"roi": [196, 193, 99, 106]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"enabled": true,
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "进入xx陪我一起"
+		},
+		"next": ["陪我一起选择确定"],
+		"on_error": ["null"]
+	},
+	"陪我一起选择确定": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "确定",
+								"roi": [444, 1122, 140, 79]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"roi": [437, 1143, 164, 33],
+								"upper": [247, 227, 210],
+								"lower": [227, 207, 190],
+								"count": 1000
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 5000,
+		"timeout": 6000,
+		"next": ["[JumpBack]点击陪我一起"],
+		"on_error": [
+			"返回选陪我一起人物",
+			"[JumpBack]点击互动",
+			"[JumpBack]返回上一级页面"
+		]
+	},
+	"点击陪我一起": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["quality_time/点击陪我一起.png"],
+				"roi": [514, 1118, 151, 144],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [15, 10, -30, -20]
+			}
+		},
+		"repeat": 4,
+		"timeout": 8000,
+		"next": [
+			"[Anchor]进入陪我运动",
+			"[Anchor]进入陪我学习",
+			"[Anchor]进入陪我睡觉",
+			"[JumpBack]陪我一起选前点点"
+		],
+		"on_error": ["null"]
+	},
+	"陪我一起选前点点": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["quality_time/陪我一起选前点点.png"],
+				"roi": [600, 96, 120, 129]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [582, 1186, 16, 14]
+			}
+		},
+		"repeat": 3,
+		"inverse": true
+	},
+	"返回选陪我一起人物": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "mainmap/导航回主页面（主线绿码）.png",
+				"green_mask": true,
+				"threshold": 0.45,
+				"roi": [0, 0, 88, 132]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [3, 5, -6, -10]
+			}
+		},
+		"next": []
+	}
+}

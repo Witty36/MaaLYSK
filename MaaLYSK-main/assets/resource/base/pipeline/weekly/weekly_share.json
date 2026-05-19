@@ -1,0 +1,86 @@
+{
+	"进入周常分享": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"点击分享按钮",
+			"[JumpBack]点击牵绊",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"点击分享按钮": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/分享按钮.png"],
+				"roi": [638, 350, 68, 69],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 2000,
+		"timeout": 5000,
+		"next": ["[JumpBack]选择微信分享", "退出分享页面popop"]
+	},
+	"选择微信分享": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/微信分享.png"],
+				"roi": [404, 1190, 68, 69],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 3,
+		"post_delay": 1000,
+		"next": ["关闭微信"]
+	},
+	"关闭微信": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.tencent.mm"
+			}
+		},
+		"next": ["返回深空官服"]
+	},
+	"返回深空官服": {
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.cn"
+			}
+		},
+		"rate_limit": 500,
+		"next": [
+			"确认在分享页面",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]返回上一级页面"
+		]
+	},
+	"确认在分享页面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/微信分享.png"],
+				"roi": [404, 1190, 68, 69],
+				"green_mask": true
+			}
+		},
+		"next": ["stop"]
+	}
+}

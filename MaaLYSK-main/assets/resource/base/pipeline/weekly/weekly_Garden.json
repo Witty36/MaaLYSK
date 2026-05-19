@@ -1,0 +1,166 @@
+	{   
+    "周常_进入家园": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+        "next": [
+            "周常_家园_确认进入界面",
+			"[JumpBack]点击家园",
+            "[JumpBack]导航回主页面"
+        ]
+	},
+    	"周常_家园_确认进入界面": {      
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+                "template": ["feature/garden_家园任务.png"],
+				"roi": [1174,609,81,97]
+			}
+         },
+    "next": [
+        "周常_给他换装一次"
+            ]    
+	},
+    	"周常_给他换装一次": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["呼唤他"],
+                "roi": [166,81,129,29]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target":[96,94,47,46]
+            }
+        },
+    	"next": [
+        "周常_给他换装一次_确认界面"
+    ]
+},
+    "周常_给他换装一次_确认界面": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["悠闲"],
+                "roi": [75,217,134,50]
+            }
+        },
+         "next": [
+        "周常_给他换装一次_进入换装界面"
+    ]
+},
+    "周常_给他换装一次_进入换装界面": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["feature/garden_换装.png"],
+                "roi": [197,154,28,22]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target":true
+            }
+        },
+    	"next": [
+        "周常_给他换装一次_开始换装"
+    ]
+},
+    "周常_给他换装一次_开始换装": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["推荐给他"],
+                "roi": [1099,644,103,32]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target":[1109,76,127,138]
+            }
+         },
+         "next": [
+        "周常_给他换装一次_完成换装"
+        ]
+},
+    "周常_给他换装一次_完成换装": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["推荐给他"],
+                "roi": [1099,644,103,32]
+            }
+        },
+          "action": {
+            "type": "Click",
+            "param": {
+                "target":true
+            }
+        },
+        "next": [
+            "周常_和他聊天一次_准备",
+            "[JumpBack]退出花园弹窗popop",
+            "[JumpBack]返回上一级页面"
+            ]
+        },
+    "周常_和他聊天一次_准备": {
+        "recognition": {
+          "type": "OCR",
+            "param": {
+                "expected": ["呼唤他"],
+                "roi": [196,85,65,25]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target":true
+            }
+        },
+    	"next": [
+            "周常_点击男主一次_准备"
+    ]
+},
+    "周常_点击男主一次_准备": {
+        "recognition": {
+            "type": "DirectHit",
+            "param": {
+}
+},
+"action": {
+            "type": "Click",
+            "param": {
+                "target":[512,126,178,167]
+            }
+        },
+    	"next": [
+            "周常_点击男主一次_确认界面"
+    ]
+},
+    "周常_点击男主一次_确认界面": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["想聊聊"],
+                "roi": [163,56,519,284]
+}
+},
+"action": {
+            "type": "Click",
+            "param": {
+                "target":true
+            }
+        },
+    	"next": [
+        ]
+}
+}

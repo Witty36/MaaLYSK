@@ -1,0 +1,179 @@
+{
+	"task": [
+		{
+			"name": "📞自动接电话",
+			"entry": "进入自动接电话",
+			"default_check": false,
+			"option": ["电话类型选择"],
+			"description": "自动接语音和视频电话"
+		}
+	],
+	"option": {
+		"电话类型选择": {
+			"type": "select",
+			"cases": [
+				{
+					"name": "语音电话",
+					"pipeline_override": {
+						"进入自动接电话": {
+							"next": [
+								"确认在电话页面",
+								"[JumpBack]进入手机电话",
+								"[JumpBack]点击手机",
+								"[JumpBack]点击手机（绿码）",
+								"[JumpBack]导航回主页面"
+							]
+						},
+						"读祁煜电话": {
+							"next": [
+								"[JumpBack]选择第一条电话",
+								"[JumpBack]电话自动接听_OCR",
+								"[JumpBack]电话自动接听_TM",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						},
+						"读沈星回电话": {
+							"next": [
+								"[JumpBack]选择第一条电话",
+								"[JumpBack]电话自动接听_OCR",
+								"[JumpBack]电话自动接听_TM",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						},
+						"读黎深电话": {
+							"next": [
+								"[JumpBack]选择第一条电话",
+								"[JumpBack]电话自动接听_OCR",
+								"[JumpBack]电话自动接听_TM",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						},
+						"读秦彻电话": {
+							"next": [
+								"[JumpBack]选择第一条电话",
+								"[JumpBack]电话自动接听_OCR",
+								"[JumpBack]电话自动接听_TM",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						},
+						"读夏以昼电话": {
+							"next": [
+								"[JumpBack]选择第一条电话",
+								"[JumpBack]电话自动接听_OCR",
+								"[JumpBack]电话自动接听_TM",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						}
+					},
+					"option": ["接电话男主"]
+				},
+				{
+					"name": "视频电话",
+					"pipeline_override": {
+						"进入自动接电话": {
+							"next": [
+								"确认在视频页面",
+								"[JumpBack]进入手机电话",
+								"[JumpBack]点击手机",
+								"[JumpBack]点击手机（绿码）",
+								"[JumpBack]导航回主页面"
+							]
+						},
+						"读沈星回电话": {
+							"next": [
+								"[JumpBack]选择第一条视频",
+								"[JumpBack]视频倍速一下",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						},
+						"读黎深电话": {
+							"next": [
+								"[JumpBack]选择第一条视频",
+								"[JumpBack]视频倍速一下",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						},
+						"读祁煜电话": {
+							"next": [
+								"[JumpBack]选择第一条视频",
+								"[JumpBack]视频倍速一下",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						},
+						"读秦彻电话": {
+							"next": [
+								"[JumpBack]选择第一条视频",
+								"[JumpBack]视频倍速一下",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						},
+						"读夏以昼电话": {
+							"next": [
+								"[JumpBack]选择第一条视频",
+								"[JumpBack]视频倍速一下",
+								"[JumpBack]退出获得奖励popop",
+								"[JumpBack]退出牵绊度提升popop"
+							]
+						}
+					},
+					"option": ["接电话男主"]
+				}
+			]
+		},
+		"接电话男主": {
+			"type": "checkbox",
+			"default_case": ["沈星回", "黎深", "祁煜", "秦彻", "夏以昼"],
+			"cases": [
+				{
+					"name": "沈星回",
+					"pipeline_override": {
+						"读沈星回电话": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "黎深",
+					"pipeline_override": {
+						"读黎深电话": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "祁煜",
+					"pipeline_override": {
+						"读祁煜电话": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "秦彻",
+					"pipeline_override": {
+						"读秦彻电话": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "夏以昼",
+					"pipeline_override": {
+						"读夏以昼电话": {
+							"enabled": true
+						}
+					}
+				}
+			]
+		}
+	}
+}

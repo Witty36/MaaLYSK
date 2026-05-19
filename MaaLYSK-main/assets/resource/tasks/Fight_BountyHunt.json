@@ -1,0 +1,393 @@
+{
+	"task": [
+		{
+			"name": "⚔️零点追踪豆佬",
+			"entry": "进入零点追踪_豆佬",
+			"default_check": true,
+			"option": ["选择零点追踪关卡难度", "选择零点追踪次数"],
+			"description": "目前可以选择难度1~9，追击至体力耗尽/1次或10次。"
+		},
+		{
+			"name": "⚔️零点追踪哈特",
+			"entry": "进入零点追踪_哈特",
+			"default_check": true,
+			"option": ["选择零点追踪关卡难度", "选择零点追踪次数"],
+			"description": "目前可以选择难度1~9，追击至体力耗尽/追击1次或10次。"
+		},
+		{
+			"name": "⚔️零点追踪黑礼帽(红蓝)",
+			"entry": "进入零点追踪_黑礼帽",
+			"default_check": false,
+			"option": ["选择零点追踪关卡难度", "选择零点追踪次数"],
+			"description": "目前可以选择难度1~9，追击至体力耗尽/追击1次或10次。<br>追击红蓝结晶"
+		},
+		{
+			"name": "⚔️零点追踪莱蒙(黄绿)",
+			"entry": "进入零点追踪_莱蒙",
+			"default_check": false,
+			"option": ["选择零点追踪关卡难度", "选择零点追踪次数"],
+			"description": "目前可以选择难度1~9，追击至体力耗尽/追击1次或10次。<br>追击黄绿结晶"
+		},
+		{
+			"name": "⚔️零点追踪呼呼(粉紫)",
+			"entry": "进入零点追踪_呼呼",
+			"default_check": false,
+			"option": ["选择零点追踪关卡难度", "选择零点追踪次数"],
+			"description": "目前可以选择难度1~9，追击至体力耗尽/追击1次或10次。<br>追击粉紫结晶"
+		}
+	],
+	"option": {
+		"选择零点追踪次数": {
+			"type": "select",
+			"label": "选择追击次数",
+			"cases": [
+				{
+					"name": "追击1次",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"next": ["零点自动追击1次"]
+						}
+					}
+				},
+				{
+					"name": "追击10次",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"next": ["零点自动追击10次"]
+						}
+					}
+				},
+				{
+					"name": "追击至体力耗尽",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"next": ["零点自动追击体力耗尽"]
+						}
+					}
+				}
+			]
+		},
+		"选择零点追踪关卡难度": {
+			"type": "select",
+			"label": "选择关卡难度",
+			"description": "9为最高难度，选择前请确保已解锁扫荡",
+			"cases": [
+				{
+					"name": "关卡9",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["9"],
+													"roi": [408, 306, 60, 68]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡9.png"
+													],
+													"roi": [365, 283, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [427, 330, 28, 30]
+						}
+					}
+				},
+				{
+					"name": "关卡8",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["8"],
+													"roi": [522, 445, 47, 50]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡8.png"
+													],
+													"roi": [481, 418, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [542, 461, 22, 22]
+						}
+					}
+				},
+				{
+					"name": "关卡7",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["7"],
+													"roi": [443, 589, 47, 68]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡7.png"
+													],
+													"roi": [401, 563, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [467, 611, 17, 15]
+						}
+					}
+				},
+				{
+					"name": "关卡6",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["6"],
+													"roi": [312, 712, 35, 55]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡6.png"
+													],
+													"roi": [265, 673, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [336, 732, 15, 15]
+						}
+					}
+				},
+				{
+					"name": "关卡5",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["5"],
+													"roi": [153, 612, 42, 47]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡5.png"
+													],
+													"roi": [117, 575, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [172, 629, 19, 18]
+						}
+					}
+				},
+				{
+					"name": "关卡4",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["4"],
+													"roi": [290, 494, 40, 51]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡4.png"
+													],
+													"roi": [248, 466, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [308, 510, 16, 17]
+						}
+					}
+				},
+				{
+					"name": "关卡3",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["3"],
+													"roi": [121, 358, 46, 50]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡3.png"
+													],
+													"roi": [79, 323, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [144, 378, 18, 14]
+						}
+					}
+				},
+				{
+					"name": "关卡2",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["2"],
+													"roi": [269, 261, 46, 52]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡2.png"
+													],
+													"roi": [220, 231, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [292, 282, 15, 14]
+						}
+					}
+				},
+				{
+					"name": "关卡1",
+					"pipeline_override": {
+						"选择零点追踪关卡": {
+							"recognition": {
+								"type": "Or",
+								"param": {
+									"any_of": [
+										{
+											"recognition": {
+												"type": "OCR",
+												"param": {
+													"expected": ["1"],
+													"roi": [171, 167, 44, 53]
+												}
+											}
+										},
+										{
+											"recognition": {
+												"type": "TemplateMatch",
+												"param": {
+													"template": [
+														"fight/bounty_hunt/关卡1.png"
+													],
+													"roi": [133, 140, 129, 123]
+												}
+											}
+										}
+									]
+								}
+							},
+							"target": [192, 188, 16, 14]
+						}
+					}
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,185 @@
+{
+	"进入战斗点击追击": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["追击"],
+				"roi": [340, 1054, 326, 210]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "战斗准备开始",
+		"pre_delay": 1000,
+		"post_delay": 20000,
+		"timeout": 50000,
+		"next": [
+			"退出战斗_胜利",
+			"退出战斗_失败",
+			"[JumpBack]加载页面等待_横屏",
+			"[JumpBack]加载页面等待_竖屏",
+			"[JumpBack]战斗空白处跳过",
+			"[JumpBack]战斗页面等待"
+		]
+	},
+	"退出战斗_胜利": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["退出"],
+								"roi": [299, 530, 540, 181]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["胜利"],
+								"roi": [190, 72, 540, 284]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "战斗胜利，退出战斗",
+		"pre_delay": 1000,
+		"post_delay": 5000
+	},
+	"退出战斗_失败": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["退出"],
+								"roi": [299, 530, 540, 181]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["失败"],
+								"roi": [190, 72, 540, 284]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "战斗失败，停止战斗",
+		"pre_delay": 1000,
+		"post_delay": 5000
+	},
+	"战斗空白处跳过": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["空白"],
+				"replace": [["自", "白"]],
+				"roi": [384, 543, 518, 178]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [191, 608, 22, 27]
+			}
+		}
+	},
+	"战斗页面等待": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["自动"],
+				"roi": [1048, 0, 132, 97]
+			}
+		},
+		"post_delay": 5000
+	},
+	"进入下一关战斗": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["下一关"],
+				"roi": [652, 564, 398, 152]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		}
+	},
+	"切换到自动战斗": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动"],
+								"roi": [1048, 0, 132, 97]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"fight/pursue/不在自动状态1.png",
+									"fight/pursue/不在自动状态2.png"
+								],
+								"roi": [1084, 5, 147, 100],
+								"threshold": 0.85
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		}
+	},
+	"退出战斗追击页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["追击"],
+				"roi": [340, 1054, 326, 210]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [27, 63, 13, 16]
+			}
+		}
+	}
+}

@@ -1,0 +1,127 @@
+{
+	"选择沈星回": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["沈星回.png"],
+				"roi": [196, 193, 99, 106]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "选择沈星回"
+		},
+		"anchor": {
+			"进入陪我运动": "进入陪我运动_沈星回",
+			"进入陪我学习": "进入陪我学习_沈星回",
+			"进入陪我睡觉": "进入陪我睡觉_沈星回"
+		},
+		"next": ["陪我一起选择确定"],
+		"on_error": ["null"]
+	},
+	"选择黎深": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["黎深.png"],
+				"roi": [380, 411, 122, 114]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "选择黎深"
+		},
+		"anchor": {
+			"进入陪我运动": "进入陪我运动_黎深",
+			"进入陪我学习": "进入陪我学习_黎深",
+			"进入陪我睡觉": "进入陪我睡觉_黎深"
+		},
+		"next": [],
+		"on_error": ["null"]
+	},
+	"选择祁煜": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["祁煜.png"],
+				"roi": [186, 624, 118, 111]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "选择祁煜"
+		},
+		"anchor": {
+			"进入陪我运动": "进入陪我运动_祁煜",
+			"进入陪我学习": "进入陪我学习_祁煜",
+			"进入陪我睡觉": "进入陪我睡觉_祁煜"
+		},
+		"next": [],
+		"on_error": ["null"]
+	},
+	"选择秦彻": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["秦彻.png"],
+				"roi": [422, 819, 110, 111]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"anchor": {
+			"进入陪我运动": "进入陪我运动_秦彻",
+			"进入陪我学习": "进入陪我学习_秦彻",
+			"进入陪我睡觉": "进入陪我睡觉_秦彻"
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "选择秦彻"
+		},
+		"next": [],
+		"on_error": ["null"]
+	},
+	"选择夏以昼": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["夏以昼.png"],
+				"roi": [202, 1013, 94, 106]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"anchor": {
+			"进入陪我运动": "进入陪我运动_夏以昼",
+			"进入陪我学习": "进入陪我学习_夏以昼",
+			"进入陪我睡觉": "进入陪我睡觉_夏以昼"
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "选择夏以昼"
+		},
+		"next": [],
+		"on_error": ["null"]
+	}
+}

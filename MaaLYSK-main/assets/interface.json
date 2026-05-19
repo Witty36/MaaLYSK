@@ -1,0 +1,202 @@
+{
+	"interface_version": 2,
+	"name": "MaaLYSK",
+	"github": "https://github.com/Witty36/MaaLYSK",
+	"title": "MaaLYSK | 恋与深空日常/肝活小助手",
+	"version": "v0.4.0-beta1",
+	"icon": ".\\resource\\base\\image\\logo.ico",
+	"contact": "QQ群: 1065676561 <br>文档站：https://maalysk.top <br>Github：https://github.com/Witty36/MaaLYSK",
+	"mirrorchyan_rid": "MaaLYSK",
+	"mirrorchyan_multiplatform": true,
+	"controller": [
+		{
+			"name": "ADB模拟器",
+			"type": "Adb",
+			"display_short_side": 720
+		},
+		{
+			"name": "PlayCover",
+			"type": "PlayCover"
+		}
+	],
+	"resource": [
+		{
+			"name": "官服",
+			"path": ["./resource/base"],
+			"controller": ["ADB模拟器", "PlayCover"]
+		}
+	],
+
+	"import": [
+		"resource/tasks/preset/Daily.json",
+		"resource/tasks/preset/Weekly.json",
+		"resource/tasks/preset/Feature.json",
+		"resource/tasks/preset/Event.json",
+		"resource/tasks/StartUp.json",
+		"resource/tasks/Energy.json",
+		"resource/tasks/DailyShopping.json",
+		"resource/tasks/StarDetection.json",
+		"resource/tasks/DailyTask.json",
+		"resource/tasks/EnergyExhaust.json",
+		"resource/tasks/Fight_BountyHunt.json",
+		"resource/tasks/Fight_XinHe.json",
+		"resource/tasks/WeeklyShopping.json",
+		"resource/tasks/Photo.json",
+		"resource/tasks/Journal.json",
+		"resource/tasks/Promise.json",
+		"resource/tasks/WeeklyTask.json",
+		"resource/tasks/Playtime_CatCard.json",
+		"resource/tasks/Playtime_CatchToy.json",
+		"resource/tasks/Playtime_CatCardCollect.json",
+		"resource/tasks/Phone_Message.json",
+		"resource/tasks/Phone_Moments.json",
+		"resource/tasks/Phone_Telephone.json",
+		"resource/tasks/QualityTime.json",
+		"resource/tasks/FeatureTask.json",
+		"resource/tasks/EventTask.json",
+		"resource/tasks/CloseLYSK.json"
+	],
+	"task": [
+		{
+			"name": "=====任务分割线=====",
+			"entry": "stop"
+		}
+	],
+	"option": {},
+	"preset": [
+		{
+			"name": "任务列表",
+			"task": [
+				{
+					"name": "✈️恋与深空启动"
+				},
+				{
+					"name": "♻主页面切换账号"
+				},
+				{
+					"name": "🍰领日常体力"
+				},
+				{
+					"name": "📬领好友体力"
+				},
+				{
+					"name": "🛍️商城日常领取"
+				},
+				{
+					"name": "💰月卡领取"
+				},
+				{
+					"name": "🌌星间探测"
+				},
+				{
+					"name": "⚡️体力瓶消耗"
+				},
+				{
+					"name": "⚔️日常芯核狩猎"
+				},
+				{
+					"name": "⚔️零点追踪豆佬"
+				},
+				{
+					"name": "⚔️零点追踪哈特"
+				},
+				{
+					"name": "⚔️零点追踪黑礼帽(红蓝)"
+				},
+				{
+					"name": "⚔️零点追踪莱蒙(黄绿)"
+				},
+				{
+					"name": "⚔️零点追踪呼呼(粉紫)"
+				},
+				{
+					"name": "🍂日常思念升级一次"
+				},
+				{
+					"name": "💞主页面互动"
+				},
+				{
+					"name": "📅日常收尾"
+				},
+				{
+					"name": "🛒商城周常领取"
+				},
+				{
+					"name": "💎年卡领取"
+				},
+				{
+					"name": "📷周常拍大头贴"
+				},
+				{
+					"name": "📸周常拍写真"
+				},
+				{
+					"name": "📓周常记录手账"
+				},
+				{
+					"name": "💐周常密约领取"
+				},
+				{
+					"name": "🐱周常喵喵牌"
+				},
+				{
+					"name": "🎮周常娃娃机"
+				},
+				{
+					"name": "🗓️周常收尾"
+				},
+				{
+					"name": "🔗周常分享3次"
+				},
+				{
+					"name": "📲自动读短信"
+				},
+				{
+					"name": "📞自动接电话"
+				},
+				{
+					"name": "🌐自动回复朋友圈"
+				},
+				{
+					"name": "👥陪我一起"
+				},
+				{
+					"name": "🏅喵喵牌限时抽卡"
+				},
+				{
+					"name": "🃏喵喵牌抽卡"
+				},
+				{
+					"name": "🎁使用兑换码"
+				},
+				{
+					"name": "✉️邮箱领取"
+				},
+				{
+					"name": "📖自动读剧情"
+				},
+				{
+					"name": "💫免费福利签到"
+				},
+				{
+					"name": "🛍️限时活动商城领取"
+				},
+				{
+					"name": "🌟限时活动每日领取"
+				},
+				{
+					"name": "✨限时活动读剧情"
+				},
+				{
+					"name": "🌈限时活动小游戏"
+				},
+				{
+					"name": "🌳家园日常"
+				},
+				{
+					"name": "💤恋与深空关闭"
+				}
+			]
+		}
+	]
+}

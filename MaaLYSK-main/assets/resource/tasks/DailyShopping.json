@@ -1,0 +1,87 @@
+{
+	"task": [
+		{
+			"name": "🛍️商城日常领取",
+			"entry": "进入商城日常领取",
+			"default_check": true
+		},
+		{
+			"name": "💰月卡领取",
+			"entry": "进入月卡领取",
+			"default_check": false,
+			"option": ["是否领取鎏金礼"]
+		}
+	],
+	"option": {
+		"是否领取鎏金礼": {
+			"type": "switch",
+			"cases": [
+				{
+					"name": "No",
+					"pipeline_override": {
+						"月卡领取": {
+							"next": ["stop"]
+						}
+					}
+				},
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"月卡领取": {
+							"timeout": 5000,
+							"rate_limit": 400,
+							"next": [
+								"[JumpBack]鎏金礼·珍贵领取",
+								"[JumpBack]鎏金礼·璀璨领取",
+								"[JumpBack]退出获得奖励popop"
+							]
+						}
+					},
+					"option": ["领取鎏金礼·珍贵", "领取鎏金礼·璀璨"]
+				}
+			]
+		},
+		"领取鎏金礼·珍贵": {
+			"type": "switch",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"鎏金礼·珍贵领取": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"鎏金礼·珍贵领取": {
+							"enabled": false
+						}
+					}
+				}
+			]
+		},
+		"领取鎏金礼·璀璨": {
+			"type": "switch",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"鎏金礼·璀璨领取": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"鎏金礼·璀璨领取": {
+							"enabled": false
+						}
+					}
+				}
+			]
+		}
+	}
+}

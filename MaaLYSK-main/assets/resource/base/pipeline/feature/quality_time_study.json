@@ -1,0 +1,193 @@
+{
+	"进入陪我学习_沈星回": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["quality_time/陪我一起选前点点.png"],
+				"roi": [600, 96, 120, 129]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"anchor": {
+			"陪我流程选择": "进入陪我学习流程",
+			"陪我结束选择": "学习结束确认"
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"next": ["选择陪我学习"]
+	},
+	"进入陪我学习_黎深": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["quality_time/陪我一起选前点点.png"],
+				"roi": [600, 96, 120, 129]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"anchor": {
+			"陪我流程选择": "进入陪我学习流程",
+			"陪我结束选择": "学习结束确认"
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"next": ["选择陪我学习"]
+	},
+	"进入陪我学习_祁煜": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["quality_time/陪我一起选前点点.png"],
+				"roi": [600, 96, 120, 129]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"anchor": {
+			"陪我流程选择": "进入陪我学习流程",
+			"陪我结束选择": "学习结束确认"
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"next": ["选择陪我学习"]
+	},
+	"进入陪我学习_秦彻": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["quality_time/陪我一起选前点点.png"],
+				"roi": [600, 96, 120, 129]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"anchor": {
+			"陪我流程选择": "进入陪我学习流程",
+			"陪我结束选择": "学习结束确认"
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"next": ["选择陪我学习"]
+	},
+	"进入陪我学习_夏以昼": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["quality_time/陪我一起选前点点.png"],
+				"roi": [600, 96, 120, 129]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"anchor": {
+			"陪我流程选择": "进入陪我学习流程",
+			"陪我结束选择": "学习结束确认"
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"next": ["选择陪我学习"]
+	},
+	"选择陪我学习": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["陪我学习", "学习"],
+				"roi": [464, 834, 172, 137]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"focus": {
+			"Node.Action.Succeeded": "进入学习陪伴"
+		},
+		"next": [
+			"陪我学习时长选好确认",
+			"[JumpBack]选择陪我学习时长",
+			"[JumpBack]设定时间选前点点"
+		]
+	},
+	"选择陪我学习时长": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "5",
+				"roi": [123, 544, 89, 100]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
+	},
+	"陪我学习时长选好确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["分钟"],
+				"roi": [119, 607, 98, 68]
+			}
+		},
+		"focus": "选择5分钟",
+		"next": ["时间设定确定"]
+	},
+	"进入陪我学习流程": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["开始陪伴确认", "[JumpBack]点点进入陪我一起"]
+	},
+	"学习结束确认": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["取消"],
+								"roi": [187, 663, 140, 71]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["时间"],
+								"roi": [66, 407, 228, 100]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "学习陪伴结束"
+		},
+		"next": ["回到陪我一起页面", "[JumpBack]退出各类弹窗"]
+	}
+}

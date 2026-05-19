@@ -1,0 +1,325 @@
+{
+	"进入零点追踪_哈特": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"追踪哈特准备",
+			"[JumpBack]点击零点追踪",
+			"[JumpBack]点击作战",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"追踪哈特准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/bounty_hunt/哈特.png"],
+				"roi": [123, 310, 177, 255]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["选择零点追踪关卡"]
+	},
+	"进入零点追踪_豆佬": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"追踪豆佬准备",
+			"[JumpBack]点击零点追踪",
+			"[JumpBack]点击作战",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"追踪豆佬准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/bounty_hunt/豆佬.png"],
+				"roi": [394, 121, 237, 318]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["选择零点追踪关卡"]
+	},
+	"进入零点追踪_黑礼帽": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"追踪黑礼帽准备",
+			"[JumpBack]点击零点追踪",
+			"[JumpBack]点击作战",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"追踪黑礼帽准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/bounty_hunt/黑礼帽.png"],
+				"roi": [306, 502, 332, 344]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["选择零点追踪关卡"]
+	},
+	"进入零点追踪_莱蒙": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"追踪莱蒙准备",
+			"[JumpBack]点击零点追踪",
+			"[JumpBack]点击作战",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"追踪莱蒙准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/bounty_hunt/莱蒙.png"],
+				"roi": [44, 703, 284, 378]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["选择零点追踪关卡"]
+	},
+	"进入零点追踪_呼呼": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"追踪呼呼准备",
+			"[JumpBack]点击零点追踪",
+			"[JumpBack]点击作战",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"追踪呼呼准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/bounty_hunt/呼呼.png"],
+				"roi": [351, 833, 359, 345]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["选择零点追踪关卡"]
+	},
+	"选择零点追踪关卡": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["9"],
+								"roi": [408, 306, 60, 68]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["fight/bounty_hunt/关卡9.png"],
+								"roi": [365, 283, 129, 123]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [427, 330, 28, 30]
+			}
+		},
+		"timeout": 10000,
+		"next": ["零点自动追击体力耗尽"]
+	},
+	"零点自动追击1次": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/自动追击1次.png"],
+				"roi": [165, 919, 108, 98]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "追击1次"
+		},
+		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
+	},
+	"零点自动追击10次": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/自动追击10次.png"],
+				"roi": [326, 910, 76, 173]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "追击10次"
+		},
+		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
+	},
+	"零点自动追击体力耗尽": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["fight/自动追击10次.png"],
+								"roi": [326, 910, 76, 173]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["fight/自动追击1次.png"],
+								"roi": [165, 919, 108, 98]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "自动追击体力耗尽"
+		},
+		"next": [
+			"体力耗尽不再继续",
+			"[JumpBack]零点自动追击10次重复",
+			"[JumpBack]零点自动追击1次重复"
+		]
+	},
+	"零点自动追击10次重复": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/自动追击10次.png"],
+				"roi": [326, 910, 76, 173]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 500,
+		"next": []
+	},
+	"零点自动追击1次重复": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [179, 952, 30, 20]
+			}
+		},
+		"next": ["零点自动追击1次重复1"]
+	},
+	"零点自动追击1次重复1": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [179, 981, 30, 20]
+			}
+		},
+		"next": []
+	},
+	"体力耗尽不再继续": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["道具", "道", "具"],
+				"roi": [412, 407, 137, 48]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"repeat": 5,
+		"repeat_delay": 200,
+		"focus": "体力已耗尽",
+		"next": []
+	}
+}

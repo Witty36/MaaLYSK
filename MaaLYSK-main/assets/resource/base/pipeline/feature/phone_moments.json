@@ -1,0 +1,352 @@
+{
+	"进入自动回复朋友圈": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"确认在朋友圈页面",
+			"[JumpBack]进入手机朋友圈",
+			"[JumpBack]点出手机页面菜单",
+			"[JumpBack]点击手机",
+			"[JumpBack]点击手机（绿码）",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"确认在朋友圈页面": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["phone/朋友圈页面.png"],
+								"roi": [425, 32, 277, 202],
+								"threshold": 0.65
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"phone/朋友圈页面1.png",
+									"phone/朋友圈页面2.png"
+								],
+								"roi": [550, 384, 107, 654],
+								"threshold": 0.65
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"pre_delay": 500,
+		"next": ["选择朋友圈未回复"]
+	},
+	"回到页面最顶端": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/朋友圈页面.png"],
+				"roi": [425, 32, 277, 202],
+				"threshold": 0.65
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [155, 316],
+				"end": [158, 1025],
+				"duration": 800
+			}
+		},
+		"inverse": true,
+		"repeat": 10,
+		"repeat_delay": 500
+	},
+	"选择朋友圈未回复": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [436, 55, 116, 54],
+				"expected": [
+					"全部",
+					"全",
+					"部",
+					"祁煜",
+					"沈星回",
+					"星回",
+					"黎深",
+					"秦彻",
+					"秦",
+					"彻",
+					"夏以昼",
+					"以昼",
+					"未回复",
+					"未",
+					"回复",
+					"只看",
+					"自己",
+					"其他",
+					"其"
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 5,
+		"next": ["5个人朋友圈都读"]
+	},
+	"5个人朋友圈都读": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [416, 95, 184, 572],
+				"expected": ["未回复", "未", "回复"],
+				"order_by": "Expected"
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "开始读未回复朋友圈"
+		},
+		"timeout": 10000,
+		"next": [
+			"[JumpBack]选择朋友圈回复",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]退出牵绊度提升popop",
+			"[JumpBack]朋友圈向下滑"
+		],
+		"on_error": ["null"]
+	},
+	"读祁煜朋友圈": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [416, 95, 184, 572],
+				"expected": ["祁煜"],
+				"order_by": "Expected"
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "开始回复祁煜朋友圈"
+		},
+		"timeout": 5000,
+		"next": [
+			"[JumpBack]选择朋友圈回复",
+			"[JumpBack]朋友圈找一找",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]退出牵绊度提升popop"
+		],
+		"on_error": ["null"]
+	},
+	"读沈星回朋友圈": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [416, 95, 184, 572],
+				"expected": ["沈星回", "星回"],
+				"order_by": "Expected"
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "开始回复沈星回朋友圈"
+		},
+		"timeout": 5000,
+		"next": [
+			"[JumpBack]选择朋友圈回复",
+			"[JumpBack]朋友圈找一找",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]退出牵绊度提升popop"
+		],
+		"on_error": ["null"]
+	},
+	"读黎深朋友圈": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [416, 95, 184, 572],
+				"expected": ["黎深"],
+				"order_by": "Expected"
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "开始回复黎深朋友圈"
+		},
+		"timeout": 5000,
+		"next": [
+			"[JumpBack]选择朋友圈回复",
+			"[JumpBack]朋友圈找一找",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]退出牵绊度提升popop"
+		],
+		"on_error": ["null"]
+	},
+	"读秦彻朋友圈": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [416, 95, 184, 572],
+				"expected": ["秦彻"],
+				"order_by": "Expected"
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "开始回复秦彻朋友圈"
+		},
+		"timeout": 5000,
+		"next": [
+			"[JumpBack]选择朋友圈回复",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]退出牵绊度提升popop",
+			"[JumpBack]朋友圈向下滑"
+		],
+		"on_error": ["null"]
+	},
+	"读夏以昼朋友圈": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [416, 95, 184, 572],
+				"expected": ["夏以昼", "以昼"],
+				"order_by": "Expected"
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 1,
+		"focus": {
+			"Node.Action.Succeeded": "开始回复夏以昼朋友圈"
+		},
+		"timeout": 5000,
+		"next": [
+			"[JumpBack]选择朋友圈回复",
+			"[JumpBack]朋友圈找一找",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]退出牵绊度提升popop"
+		],
+		"on_error": ["null"]
+	},
+	"选择朋友圈回复": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/点击朋友圈回复.png"],
+				"roi": [452, 106, 126, 920],
+				"order_by": "Vertical"
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"pre_delay": 500,
+		"post_delay": 500,
+		"timeout": 5000,
+		"next": ["选择第一条朋友圈", "发送朋友圈"],
+		"on_error": ["null"]
+	},
+	"选择第一条朋友圈": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/短信发送键_未选中.png"],
+				"roi": [503, 745, 157, 175]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {"target": [334, 945, 28, 11]}
+		},
+		"pre_delay": 500,
+		"post_delay": 1000,
+		"timeout": 5000,
+		"next": ["发送朋友圈"],
+		"on_error": ["null"]
+	},
+	"发送朋友圈": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/短信发送键_选中.png"],
+				"roi": [539, 793, 83, 86]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {"target": [570, 840, 13, 10]}
+		},
+		"pre_delay": 500,
+		"post_delay": 2000,
+		"next": []
+	},
+	"朋友圈找一找": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/停止找一找.png"],
+				"roi": [482, 757, 93, 267]
+			}
+		},
+		"inverse": true,
+		"next": ["朋友圈向下滑"],
+		"on_error": ["null"]
+	},
+	"朋友圈向下滑": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/停止找一找.png"],
+				"roi": [482, 757, 93, 267]
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [135, 736],
+				"end": [143, 447],
+				"duration": 800,
+				"end_hold": 500
+			}
+		}
+	}
+}

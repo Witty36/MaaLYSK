@@ -1,0 +1,98 @@
+{
+	"进入领体力": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"点击补给",
+			"[JumpBack]点击日程",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"点击补给": {
+		"pre_delay": 1000,
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["energy/补给.png"],
+				"roi": [498, 1159, 179, 137]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 2000,
+		"timeout": 4000,
+		"focus": {
+			"Node.PipelineNode.Failed": "无可领取体力,请检查时间"
+		},
+		"next": [
+			"[JumpBack]体力领取1",
+			"[JumpBack]体力领取2",
+			"[JumpBack]退出获得奖励popop"
+		]
+	},
+	"体力领取1": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["energy/体力领取.png", "energy/免费补领.png"],
+				"roi": [432, 823, 162, 64]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "午间体力领取成功"
+		},
+		"post_delay": 500,
+		"next": ["体力领取_点击"],
+		"on_error": ["null"],
+		"timeout": 5000
+	},
+	"体力领取2": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["energy/体力领取.png", "energy/免费补领.png"],
+				"roi": [141, 1004, 160, 57]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "晚间体力领取成功"
+		},
+		"post_delay": 500,
+		"next": ["体力领取_点击"],
+		"on_error": ["null"],
+		"timeout": 5000
+	},
+	"体力领取_点击": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["energy/体力领取成功.png"],
+				"roi": [239, 474, 257, 281]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	}
+}

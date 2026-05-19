@@ -1,0 +1,200 @@
+{
+	"进入手账": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"点击手账",
+			"[JumpBack]点击约会",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"点击手账": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/手账.png"],
+				"roi": [71, 283, 280, 254]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "进入手账"
+		},
+		"post_delay": 400,
+		"next": ["选择手账库"]
+	},
+	"选择手账库": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "手账库",
+				"roi": [349, 13, 191, 134]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["选择第二本手账"]
+	},
+	"选择第二本手账": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "手账本",
+				"roi": [1, 1137, 185, 124]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [472, 310, 40, 42]
+			}
+		},
+		"next": ["编辑手账封面"]
+	},
+	"编辑手账封面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/编辑手账封面.png"],
+				"roi": [397, 897, 133, 132]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "进入编辑手账封面"
+		},
+		"post_delay": 1000,
+		"next": ["清除手账组件", "选择手账印章", "[JumpBack]向右滑找找印章"]
+	},
+	"清除手账组件": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/清除手账组件.png"],
+				"roi": [107, 1016, 128, 116]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"next": ["选择手账印章", "[JumpBack]向右滑找找印章"]
+	},
+	"选择手账印章": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/手账印章.png"],
+				"roi": [26, 1105, 623, 138]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "进入编辑手账封面"
+		},
+		"timeout": 8000,
+		"next": ["手账盖个印章"],
+		"on_error": ["选择手账印章", "[JumpBack]向右滑找找印章"]
+	},
+	"向右滑找找印章": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/清除手账组件.png"],
+				"roi": [109, 1008, 130, 132]
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [545, 1167],
+				"end": [314, 1167],
+				"duration": 500,
+				"end_hold": 300
+			}
+		},
+		"post_delay": 1000
+	},
+	"手账盖个印章": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/完成盖章.png"],
+				"roi": [620, 846, 100, 125]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [192, 332, 310, 332]
+			}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "给手账盖个章"
+		},
+		"repeat": 2,
+		"repeat_delay": 500,
+		"next": ["完成手账盖章"],
+		"on_error": ["选择手账印章", "[JumpBack]向右滑找找印章"]
+	},
+	"完成手账盖章": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/完成盖章.png"],
+				"roi": [620, 846, 100, 125]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["保存手账"]
+	},
+	"保存手账": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "保存",
+				"roi": [552, 3, 166, 145]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["确定保存手账"]
+	},
+	"确定保存手账": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "确定",
+				"roi": [368, 611, 206, 111]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		}
+	}
+}

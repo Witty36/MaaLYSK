@@ -1,0 +1,10 @@
+{
+	"task": [
+		{
+			"name": "💐周常密约领取",
+			"entry": "进入密约",
+			"default_check": false,
+			"description": "领取密约奖励，密约日程奖励和密约页面奖励都会领掉"
+		}
+	]
+}

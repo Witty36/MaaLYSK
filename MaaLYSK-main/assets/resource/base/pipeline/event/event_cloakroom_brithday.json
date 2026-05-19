@@ -1,0 +1,151 @@
+{
+	"进入衣帽间制作": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"max_hit": 1,
+		"next": [
+			"[JumpBack]跳过引导",
+			"夜雨流明菜单页面",
+			"[JumpBack]自动过剧情",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"夜雨流明菜单页面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/daily_get/夜雨流明菜单.png"],
+				"roi": [10, 1179, 701, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"repeat": 2,
+		"next": ["[JumpBack]跳过引导", "进入衣帽间"]
+	},
+	"进入衣帽间": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["衣帽间"],
+				"roi": [1, 773, 167, 89]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"focus": "进入衣帽间",
+		"next": ["已在衣帽间页面"]
+	},
+	"已在衣帽间页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["衣帽间"],
+				"roi": [241, 55, 208, 103]
+			}
+		},
+		"action": {
+			"type": "DoNothing"
+		},
+		"focus": "开始衣帽间剧情",
+		"timeout": 8000,
+		"next": ["[JumpBack]寻找可制作服装"],
+		"on_error": ["[JumpBack]向下找找服装"]
+	},
+	"向下找找服装": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["衣帽间"],
+				"roi": [241, 55, 208, 103]
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [168, 956, 6, 6],
+				"end": [159, 237, 11, 10],
+				"duration": 600
+			}
+		},
+		"focus": "向下找找服装",
+		"max_hit": 2,
+		"timeout": 8000,
+		"next": ["[JumpBack]寻找可制作服装"],
+		"on_error": ["null"]
+	},
+	"寻找可制作服装": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["可制作"],
+				"roi": [45, 139, 589, 875],
+				"order_by": "Vertical"
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"timeout": 5000,
+		"post_delay": 1500,
+		"next": ["点击制作服装"],
+		"on_error": ["寻找可制作服装"]
+	},
+	"点击制作服装": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["制作"],
+				"roi": [444, 1050, 189, 162]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"timeout": 5000,
+		"rate_limit": 200,
+		"next": ["退出点击空白继续1popop", "[JumpBack]服装剧情点点"],
+		"on_error": ["服装做完已在衣帽间"]
+	},
+	"服装做完已在衣帽间": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["衣帽间"],
+				"roi": [241, 55, 208, 103]
+			}
+		},
+		"next": []
+	},
+	"服装剧情点点": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "event/衣帽间剧情页.png",
+				"roi": [419, 133, 276, 152]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"pre_delay": 100,
+		"post_delay": 300
+	}
+}

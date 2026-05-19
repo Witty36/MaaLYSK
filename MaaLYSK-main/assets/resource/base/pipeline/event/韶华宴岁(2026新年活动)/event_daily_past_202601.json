@@ -1,0 +1,261 @@
+{
+	"进入限时活动_202601": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"[JumpBack]进入韶华宴岁",
+			"[JumpBack]进入吉财临门",
+			"[JumpBack]进入金叶盈福"
+		]
+	},
+	"进入韶华宴岁": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"max_hit": 1,
+		"next": [
+			"韶华宴岁菜单",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"韶华宴岁菜单": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/韶华宴岁(2026新年活动)/韶华宴岁菜单.png"],
+				"roi": [10, 1179, 701, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"repeat": 2,
+		"next": ["韶华宴岁限时领取"]
+	},
+	"韶华宴岁限时领取": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["经营任务", "任务"],
+				"roi": [596, 185, 118, 66]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 5000,
+		"post_delay": 2000,
+		"next": ["韶华活动一键领取"]
+	},
+	"韶华活动一键领取": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["一键领取", "键领取", "领取"],
+				"roi": [184, 969, 352, 177]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"repeat": 5,
+		"post_delay": 2000,
+		"focus": "韶华宴岁每日领取成功!",
+		"next": []
+	},
+	"进入吉财临门": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"max_hit": 1,
+		"next": [
+			"吉财临门菜单",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"吉财临门菜单": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/daily_get/吉财临门菜单.png"],
+				"roi": [10, 1179, 701, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"timeout": 10000,
+		"next": ["[JumpBack]吉财临门限时领取"]
+	},
+	"吉财临门限时领取": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"event/韶华宴岁(2026新年活动)/吉财临门/吉财临门领取.png"
+								],
+								"roi": [648, 137, 73, 1023],
+								"green_mask": true
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["可领取", "可领"],
+								"roi": [648, 137, 73, 1023]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 4000,
+		"post_delay": 2000,
+		"focus": "吉财临门领取一次!",
+		"next": ["吉财临门页面", "[JumpBack]退出点击空白继续popop"]
+	},
+	"吉财临门页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["吉财临门", "吉财", "临门"],
+				"roi": [487, 20, 230, 133]
+			}
+		}
+	},
+	"进入金叶盈福": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"max_hit": 1,
+		"next": [
+			"金叶盈福菜单",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"金叶盈福菜单": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["精彩活动", "精彩", "活动"],
+				"roi": [292, 1170, 421, 100]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 3000,
+		"next": ["确认在精彩活动页面"],
+		"on_error": ["金叶盈福菜单"]
+	},
+	"确认在精彩活动页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["精彩活动", "精彩", "活动"],
+				"roi": [471, 41, 231, 94]
+			}
+		},
+		"next": ["点击金叶盈福", "[JumpBack]精彩活动向下滑"]
+	},
+	"点击金叶盈福": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": [
+					"event/韶华宴岁(2026新年活动)/金叶盈福/金叶盈福.png"
+				],
+				"roi": [85, 157, 350, 986]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 6000,
+		"next": ["金叶盈福免费摇福"]
+	},
+	"金叶盈福免费摇福": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": [
+					"event/韶华宴岁(2026新年活动)/金叶盈福/金叶盈福摇福.png"
+				],
+				"roi": [227, 551, 270, 286]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["跳过摇一摇"]
+	},
+	"跳过摇一摇": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["跳过摇一摇", "摇一摇", "跳过"],
+				"roi": [551, 1085, 157, 69]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "金叶盈福每日领取成功!",
+		"next": []
+	}
+}

@@ -1,0 +1,98 @@
+{
+	"task": [
+		{
+			"name": "🏅喵喵牌限时抽卡",
+			"entry": "进入限时抽喵喵徽章",
+			"default_check": false,
+			"option": ["选择限时抽喵喵徽章男主"],
+			"description": "把所有的限时喵喵牌抽卡次数都用掉<br><span style=\"color:red\">deadline前记得检查有没有漏做</span>",
+			"pipeline_override": {
+				"选择沈星回": {
+					"focus": {
+						"Node.Action.Succeeded": "进入沈星回限时抽喵喵徽章"
+					},
+					"next": ["进入限时抽喵喵徽章页面"]
+				},
+				"选择黎深": {
+					"focus": {
+						"Node.Action.Succeeded": "进入黎深限时抽喵喵徽章"
+					},
+					"next": ["进入限时抽喵喵徽章页面"]
+				},
+				"选择祁煜": {
+					"focus": {
+						"Node.Action.Succeeded": "进入祁煜限时抽喵喵徽章"
+					},
+					"next": ["进入限时抽喵喵徽章页面"]
+				},
+				"选择秦彻": {
+					"focus": {
+						"Node.Action.Succeeded": "进入秦彻限时抽喵喵徽章"
+					},
+					"next": ["进入限时抽喵喵徽章页面"]
+				},
+				"选择夏以昼": {
+					"focus": {
+						"Node.Action.Succeeded": "进入沈星回限时抽喵喵徽章"
+					},
+					"next": ["进入限时抽喵喵徽章页面"]
+				}
+			}
+		},
+		{
+			"name": "🃏喵喵牌抽卡",
+			"entry": "进入喵喵牌抽卡",
+			"default_check": false,
+			"description": "在喵喵牌抽卡页面启动，自己找没有9/9的徽章并进行抽卡，限时喵喵牌期间无法使用<br><span style=\"color:red\">目前关闭中，请不要勾选</span>"
+		}
+	],
+	"option": {
+		"选择限时抽喵喵徽章男主": {
+			"type": "checkbox",
+			"label": "选择抽喵喵徽章男主",
+			"default_case": ["沈星回", "黎深", "祁煜", "秦彻", "夏以昼"],
+			"cases": [
+				{
+					"name": "祁煜",
+					"pipeline_override": {
+						"选择祁煜": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "沈星回",
+					"pipeline_override": {
+						"选择沈星回": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "黎深",
+					"pipeline_override": {
+						"选择黎深": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "秦彻",
+					"pipeline_override": {
+						"选择秦彻": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "夏以昼",
+					"pipeline_override": {
+						"选择夏以昼": {
+							"enabled": true
+						}
+					}
+				}
+			]
+		}
+	}
+}

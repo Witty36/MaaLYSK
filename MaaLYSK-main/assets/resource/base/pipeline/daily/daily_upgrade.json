@@ -1,0 +1,193 @@
+{
+	"进入日常思念升级": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"选择思念升级男主",
+			"点击第一张思念",
+			"[JumpBack]点击思念",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"选择思念升级男主": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["思念"],
+				"roi": [582, 46, 113, 69]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"enabled": false,
+		"next": [
+			"思念升级选沈星回",
+			"思念升级选黎深",
+			"思念升级选祁煜",
+			"思念升级选秦彻",
+			"思念升级选夏以昼"
+		]
+	},
+	"思念升级选沈星回": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["沈星回"],
+				"roi": [245, 126, 116, 50]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [5, 5, -10, -10]
+			}
+		},
+		"post_delay": 1000,
+		"next": ["点击第一张思念"]
+	},
+	"思念升级选黎深": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["黎深"],
+				"roi": [374, 127, 117, 51]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [5, 5, -10, -10]
+			}
+		},
+		"post_delay": 1000,
+		"next": ["点击第一张思念"]
+	},
+	"思念升级选祁煜": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["祁煜"],
+				"roi": [508, 130, 117, 51]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [5, 5, -10, -10]
+			}
+		},
+		"post_delay": 1000,
+		"next": ["点击第一张思念"]
+	},
+	"思念升级选秦彻": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["秦彻"],
+				"roi": [242, 175, 117, 51]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [5, 5, -10, -10]
+			}
+		},
+		"post_delay": 1000,
+		"next": ["点击第一张思念"]
+	},
+	"思念升级选夏以昼": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["夏以昼", "夏以", "以昼"],
+				"roi": [378, 177, 117, 51]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [5, 5, -10, -10]
+			}
+		},
+		"post_delay": 1000,
+		"next": ["点击第一张思念"]
+	},
+	"点击第一张思念": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["思念"],
+				"roi": [582, 46, 113, 69]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [149, 367, 28, 26]
+			}
+		},
+		"post_delay": 1000,
+		"post_wait_freezes": {
+			"target": [116, 1095, 109, 59],
+			"time": 1000
+		},
+		"next": ["点击思念升级", "[JumpBack]右滑寻找可升级思念"]
+	},
+	"点击思念升级": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["升级"],
+				"roi": [139, 1153, 72, 38]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 2000,
+		"next": ["点击消耗一个升级材料"]
+	},
+	"点击消耗一个升级材料": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/daily/思念升级材料选择.png"],
+				"roi": [99, 1132, 87, 89]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"右滑寻找可升级思念": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [677, 649, 14, 19]
+			}
+		},
+		"post_delay": 1000,
+		"post_wait_freezes": {
+			"target": [116, 1095, 109, 59],
+			"time": 500
+		},
+		"next": []
+	}
+}

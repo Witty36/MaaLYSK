@@ -1,0 +1,10 @@
+{
+	"task": [
+		{
+			"name": "💤恋与深空关闭",
+			"entry": "关闭游戏",
+			"controller": ["ADB模拟器"],
+			"default_check": false
+		}
+	]
+}

@@ -1,0 +1,501 @@
+{
+	"stop": {
+		"action": "StopTask"
+	},
+	"null": {},
+	"点击日程": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["mainmap/进入日程.png"],
+				"roi": [563, 559, 191, 186]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["日程页面确认"]
+	},
+	"日程页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["任务"],
+				"roi": [74, 1175, 125, 79]
+			}
+		},
+		"next": []
+	},
+	"点击活动": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["mainmap/进入活动.png"],
+				"roi": [647, 728, 40, 52],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 3500,
+		"next": []
+	},
+	"点击许愿": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [638, 835, 57, 50],
+				"expected": ["许愿"]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [654, 841, 22, 14]
+			}
+		},
+		"next": ["许愿页面确认"]
+	},
+	"许愿页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["星间探测", "星间", "探测"],
+				"roi": [626, 107, 71, 66]
+			}
+		},
+		"next": []
+	},
+	"点击商城": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [638, 909, 61, 74],
+				"expected": ["商城"]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["商城页面确认"]
+	},
+	"商城页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["特权"],
+				"roi": [124, 197, 59, 41]
+			}
+		},
+		"next": []
+	},
+	"点击作战": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [376, 1187, 53, 39],
+				"expected": ["作战"]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [395, 1178, 17, 15]
+			}
+		},
+		"next": ["作战页面确认"]
+	},
+	"作战页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["作战"],
+				"roi": [144, 94, 186, 134]
+			}
+		},
+		"next": []
+	},
+	"点击约会": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [256,1147,94,92],
+				"expected": ["约会"]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [302, 1190, 13, 16]
+			}
+		},
+		"next": ["约会页面确认"]
+	},
+	"约会页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [95, 100, 231, 184],
+				"expected": ["约会"]
+			}
+		},
+		"next": []
+	},
+	"点击思念": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [472, 1198, 56, 27],
+				"expected": ["思念"]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [504, 1186, 10, 8]
+			}
+		},
+		"next": ["思念页面确认"]
+	},
+	"思念页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [532, 25, 182, 109],
+				"expected": ["思念"]
+			}
+		},
+		"next": []
+	},
+	"点击牵绊": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [631, 1026, 69, 60],
+				"expected": ["牵绊"]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [662, 1038, 7, 6]
+			}
+		},
+		"next": ["牵绊页面确认"]
+	},
+	"牵绊页面确认": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/分享按钮.png"],
+				"roi": [638, 350, 68, 69],
+				"green_mask": true
+			}
+		},
+		"next": []
+	},
+	"点击互动": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["mainmap/进入互动.png", "mainmap/进入互动1.png"],
+				"roi": [11, 266, 166, 155],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [6, 5, -12, -10]
+			}
+		},
+		"next": ["互动页面确认"]
+	},
+	"互动页面确认": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["quality_time/点击陪我一起.png"],
+				"roi": [514, 1118, 151, 144],
+				"green_mask": true
+			}
+		},
+		"next": []
+	},
+	"点击零点追踪": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [137, 309, 153, 58],
+				"expected": ["零点追踪", "零点", "追踪"]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["零点追踪页面确认"]
+	},
+	"零点追踪页面确认": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/bounty_hunt/豆佬.png"],
+				"roi": [394, 121, 237, 318]
+			}
+		},
+		"next": []
+	},
+	"点击手机": {
+		"pre_delay": 1000,
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/手机入口.png", "phone/手机入口1.png"],
+				"roi": [30, 1026, 66, 84]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {"target": [53, 1060, 8, 17]}
+		},
+		"next": ["手机页面确认"]
+	},
+	"点击手机（绿码）": {
+		"pre_delay": 1000,
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/手机入口（绿码）.png"],
+				"roi": [30, 1026, 66, 84],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [53, 1060, 8, 17]
+			}
+		},
+		"next": ["手机页面确认"]
+	},
+	"手机页面确认": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/手机页面1.png", "phone/手机页面2.png"],
+				"roi": [531, 1056, 187, 219]
+			}
+		},
+		"next": []
+	},
+	"点出手机页面菜单": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/手机页面2.png"],
+				"roi": [531, 1056, 187, 219]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [8, 6, -12, -30]
+			}
+		},
+		"post_delay": 1000,
+		"next": []
+	},
+	"进入手机电话": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/手机电话.png"],
+				"roi": [547, 1007, 64, 75],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {"target": [569, 1039, 10, 13]}
+		},
+		"next": ["电话页面确认"]
+	},
+	"电话页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [144, 110, 186, 81],
+				"expected": ["语音"]
+			}
+		},
+		"next": []
+	},
+	"进入手机朋友圈": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/手机朋友圈.png"],
+				"roi": [447, 1069, 109, 89],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [500, 1111, 5, 5]
+			}
+		},
+		"next": ["朋友圈页面确认"]
+	},
+	"朋友圈页面确认": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["phone/朋友圈页面.png"],
+								"roi": [425, 32, 277, 202],
+								"threshold": 0.65
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"phone/朋友圈页面1.png",
+									"phone/朋友圈页面2.png"
+								],
+								"roi": [550, 384, 107, 654],
+								"threshold": 0.65
+							}
+						}
+					}
+				]
+			}
+		},
+		"next": []
+	},
+	"进入手机信息": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["phone/手机信息.png"],
+				"roi": [631, 962, 73, 77],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [653, 989, 24, 18]
+			}
+		},
+		"next": ["信息页面确认"]
+	},
+	"信息页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"roi": [546, 36, 129, 87],
+				"expected": ["信息"]
+			}
+		},
+		"next": []
+	},
+	"点击主线": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["开始", "始"],
+				"roi": [553, 1095, 155, 155]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["主线页面确认"]
+	},
+	"主线页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["世界深处", "深处"],
+				"roi": [0, 1168, 154, 109]
+			}
+		},
+		"focus": "已在主线页面",
+		"next": []
+},
+	 "点击家园": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["家园", "园"],
+				"roi": [156,1150,91,91]
+			}
+		},
+        		"action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 90000,
+        "next": ["家园页面确认"]
+    },
+    "家园页面确认": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["装修", "修"],
+                "roi": [1084,666,59,29]
+            }
+        },
+        "focus": "已在家园页面",
+        "next": []
+    },
+	
+    "家园_跳过照料动画": {
+        "recognition": {
+        "type": "OCR",
+        "param": {
+            "expected": "跳过",
+            "roi": [1145,26,98,27]
+        }
+         },
+        "action": {
+        "type": "Click",
+        "param": {}
+        },
+        "timeout": 3000,
+		"focus": "已跳过动画",
+        "next": ["家园_批量收获准备"],
+		"post_delay": 5000
+    },
+	"家园_跳过收获动画": {
+        "recognition": {
+        "type": "OCR",
+        "param": {
+            "expected": "跳过",
+            "roi": [1145,26,98,27]
+        }
+         },
+        "action": {
+        "type": "Click",
+        "param": {}
+        },
+        "timeout": 3000,
+		"focus": "已跳过动画",
+        "next": ["[JumpBack]导航回花园页面（花园）"],
+		"post_delay": 5000
+    }
+}

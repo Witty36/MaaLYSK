@@ -1,0 +1,454 @@
+{
+	"点击自动_三爪": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["自动", "自", "动"],
+				"roi": [473, 1203, 33, 18]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [482, 1206, 16, 11]
+			}
+		},
+		"post_delay": 2000,
+		"next": [
+			"抓娃娃选先后手_三爪",
+			"娃娃机结算退出继续",
+			"尝试让男主抓娃娃",
+			"他开始抓娃娃",
+			"[JumpBack]过剧情"
+		],
+		"on_error": ["null"]
+	},
+	"抓娃娃选先后手_三爪": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["让他抓娃娃_上", "让他抓娃娃_下"]
+	},
+	"让他抓娃娃_上": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["秦彻", "秦"],
+				"roi": [73, 749, 121, 47]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [346, 564, 16, 6]
+			}
+		},
+		"repeat": 2,
+		"repeat_delay": 500,
+		"post_delay": 1000,
+		"focus": {
+			"Node.Action.Succeeded": "抓娃娃选择上面选项"
+		},
+		"timeout": 30000,
+		"next": ["他开始抓娃娃", "尝试让男主抓娃娃"]
+	},
+	"让他抓娃娃_下": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": [
+					"沈星回",
+					"星回",
+					"沈",
+					"黎",
+					"黎深",
+					"祁煜",
+					"夏以昼",
+					"星",
+					"深",
+					"祁",
+					"以"
+				],
+				"roi": [73, 749, 121, 47]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [353, 643, 15, 6]
+			}
+		},
+		"repeat": 2,
+		"repeat_delay": 500,
+		"post_delay": 1000,
+		"focus": {
+			"Node.Action.Succeeded": "抓娃娃选择下面选项"
+		},
+		"timeout": 30000,
+		"next": ["他开始抓娃娃", "尝试让男主抓娃娃"]
+	},
+	"他开始抓娃娃": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"playtime/catchtoy/男主抓娃娃.png"
+								],
+								"roi": [79, 426, 162, 190],
+								"threshold": 0.6
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "他开始抓三爪娃娃"
+		},
+		"timeout": 30000,
+		"next": [
+			"娃娃机结算退出继续",
+			"[JumpBack]娃娃机对话_上_让他抓",
+			"[JumpBack]娃娃机对话_下_让他抓",
+			"[JumpBack]过剧情",
+			"[JumpBack]选取娃娃_三爪",
+			"[JumpBack]娃娃机鼓励点点_三爪",
+			"[JumpBack]抓娃娃页面等待_三爪"
+		],
+		"on_error": ["null"]
+	},
+	"选取娃娃_三爪": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["娃娃未集齐_三爪", "娃娃未获得_三爪", "娃娃已齐随便选_三爪"],
+		"on_error": ["null"]
+	},
+	"娃娃未集齐_三爪": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["未集齐", "未集"],
+				"roi": [111, 286, 162, 446]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "选择未集齐娃娃"
+		},
+		"next": []
+	},
+	"娃娃未获得_三爪": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["未获得", "获得"],
+				"roi": [111, 286, 162, 446]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "选择未获得娃娃"
+		},
+		"next": []
+	},
+	"娃娃已齐随便选_三爪": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
+				"box_index": 1
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "娃娃已齐,随便选以继续"
+		},
+		"next": []
+	},
+	"娃娃机鼓励点点_三爪": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["^[0-9]$", "^[1-3][0-9]$"],
+								"replace": [
+									["g", "9"],
+									["I", "1"],
+									["i", "1"],
+									["l", "1"],
+									["o", "0"],
+									["O", "0"],
+									["z", "2"],
+									["Z", "2"],
+									["S", "5"],
+									["s", "5"],
+									["B", "8"],
+									["b", "8"]
+								],
+								"roi": [261, 159, 198, 133]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"playtime/catchtoy/男主抓娃娃.png"
+								],
+								"roi": [79, 426, 162, 190],
+								"threshold": 0.6
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [388, 767, 239, 166]
+			}
+		},
+		"repeat": 10,
+		"repeat_delay": 100,
+		"next": []
+	},
+	"抓娃娃页面等待_三爪": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["playtime/catchtoy/男主抓娃娃.png"],
+				"roi": [79, 426, 162, 190],
+				"threshold": 0.6
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [388, 767, 239, 166]
+			}
+		},
+		"repeat": 10,
+		"repeat_delay": 100,
+		"post_delay": 10000,
+		"next": []
+	},
+	"尝试让男主抓娃娃": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["playtime/catchtoy/我在抓三爪.png"],
+				"roi": [122, 1027, 210, 253],
+				"threshold": 0.6
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": "尝试让男主抓娃娃",
+		"next": [
+			"娃娃机换人_到他了",
+			"娃娃机结算退出继续",
+			"[JumpBack]娃娃机对话_上_让他抓",
+			"[JumpBack]娃娃机对话_下_让他抓",
+			"[JumpBack]娃娃机换人切换_三爪",
+			"[JumpBack]娃娃机换人_被拒绝",
+			"[JumpBack]过剧情"
+		],
+		"on_error": ["娃娃机返回"]
+	},
+	"娃娃机换人切换_三爪": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["playtime/catchtoy/换人切换.png"],
+				"roi": [10, 138, 88, 99]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 5000,
+		"next": []
+	},
+	"娃娃机换人_被拒绝": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["他拒绝了", "拒绝", "他"],
+				"roi": [12, 141, 217, 90]
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [223, 1112, 10, 10],
+				"end": [205, 296, 15, 15],
+				"end_hold": 300,
+				"duration": 1500
+			}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "他拒绝了"
+		},
+		"repeat": 2,
+		"repeat_delay": 500,
+		"pre_delay": 1000,
+		"post_delay": 10000,
+		"next": ["三爪抓一下"]
+	},
+	"娃娃机换人_到他了": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["到他了", "到他"],
+				"roi": [12, 141, 217, 90]
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [223, 1112, 10, 10],
+				"end": [205, 296, 15, 15],
+				"end_hold": 300,
+				"duration": 1500
+			}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "成功让他开始抓娃娃"
+		},
+		"repeat": 2,
+		"repeat_delay": 500,
+		"pre_delay": 1000,
+		"post_delay": 10000,
+		"timeout": 40000,
+		"next": ["他开始抓娃娃", "[JumpBack]三爪抓一下"],
+		"on_error": ["null"]
+	},
+	"三爪抓一下": {
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [499, 1187, 7, 8]
+			}
+		},
+		"repeat": 2,
+		"next": []
+	}
+}

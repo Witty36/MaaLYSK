@@ -1,0 +1,83 @@
+{
+	"task": [
+		{
+			"name": "🛒商城周常领取",
+			"entry": "进入商城周常领取",
+			"default_check": false,
+			"option": ["心砂商店是否购买"],
+			"description": "领取每周礼包,快乐小铺的极空许愿券和辉曜磁石，可以选择是否购买心砂商店的许愿券和加速魔方"
+		},
+		{
+			"name": "💎年卡领取",
+			"entry": "进入年卡领取",
+			"default_check": false
+		}
+	],
+	"option": {
+		"心砂商店是否购买": {
+			"type": "switch",
+			"description": "消耗紫色心砂购买极空许愿券、消耗蓝色心砂购买加速魔方",
+			"cases": [
+				{
+					"name": "No",
+					"pipeline_override": {
+						"进入心砂商店": {
+							"enabled": false
+						}
+					}
+				},
+				{
+					"name": "Yes",
+					"option": ["购买极空许愿券", "购买加速魔方"],
+					"pipeline_override": {
+						"进入心砂商店": {
+							"enabled": true
+						}
+					}
+				}
+			]
+		},
+		"购买极空许愿券": {
+			"type": "switch",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"紫砂_极空许愿券": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"紫砂_极空许愿券": {
+							"enabled": false
+						}
+					}
+				}
+			]
+		},
+		"购买加速魔方": {
+			"type": "switch",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"蓝砂_加速魔方": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"蓝砂_加速魔方": {
+							"enabled": false
+						}
+					}
+				}
+			]
+		}
+	}
+}

@@ -1,0 +1,247 @@
+:root {
+    --vp-c-brand-1: #6A5ACD;
+    --vp-c-brand-2: #7B6FE6;
+    --vp-c-brand-3: #978CFF;
+    --vp-c-brand-soft: rgba(106, 90, 205, 0.14);
+}
+
+.dark {
+    --vp-c-brand-1: #B9B2FF;
+    --vp-c-brand-2: #D0CBFF;
+    --vp-c-brand-3: #E5E2FF;
+    --vp-c-brand-soft: rgba(185, 178, 255, 0.2);
+}
+
+/* --- Dropdown menus always on top --- */
+
+.VPNavBarMenu .items {
+    z-index: 999 !important;
+}
+
+.VPNavScreen {
+    z-index: 999 !important;
+}
+
+.VPNavBarExtra .menu {
+    right: 12px;
+    left: auto;
+    max-width: calc(100vw - 64px);
+}
+
+.VPSidebar {
+    z-index: 10;
+}
+
+.VPDocAside {
+    z-index: 10;
+}
+
+/* --- Version badge (shared) --- */
+
+.VPNavBarMenuLink.nav-version-link {
+    padding: 0;
+}
+
+.nav-version-link .vpi-chevron-right {
+    display: none;
+}
+
+.nav-version-mobile {
+    display: none;
+    text-decoration: none;
+}
+
+.nav-version-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 28px;
+    padding: 0 14px;
+    border: 1px solid rgba(139, 128, 210, 0.26);
+    border-radius: 999px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(250, 249, 255, 0.88)),
+        radial-gradient(circle at 16% 38%, rgba(255, 207, 116, 0.2), transparent 28%);
+    box-shadow:
+        0 0 0 1px rgba(151, 140, 255, 0.08) inset,
+        0 6px 18px rgba(151, 140, 255, 0.16);
+    color: #30313d;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.nav-version-spark {
+    color: #ffc75f;
+    font-size: 16px;
+    line-height: 1;
+    text-shadow: 0 0 8px rgba(255, 199, 95, 0.65);
+}
+
+.dark .nav-version-badge {
+    border-color: rgba(208, 203, 255, 0.32);
+    background:
+        linear-gradient(180deg, rgba(42, 42, 58, 0.95), rgba(32, 32, 46, 0.9)),
+        radial-gradient(circle at 16% 38%, rgba(255, 207, 116, 0.18), transparent 30%);
+    box-shadow:
+        0 0 0 1px rgba(185, 178, 255, 0.12) inset,
+        0 6px 18px rgba(185, 178, 255, 0.12);
+    color: #f0efff;
+}
+
+/* --- "联系我们" label before social links (desktop ≥1280px) --- */
+/*  ::before = VitePress native divider (untouched)                     */
+/*  ::after  = label text, placed between divider and icons via order   */
+
+.VPNavBarSocialLinks::after {
+    content: '联系我们';
+    display: inline-flex;
+    align-items: center;
+    margin-right: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--vp-c-text-1);
+}
+
+.VPNavBarSocialLinks .VPSocialLink {
+    order: 1;
+}
+
+/* --- "..." overflow: social links centered with label (tablet 768-1280px) --- */
+
+.VPNavBarExtra .VPSocialLinks {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.VPNavBarExtra .VPSocialLinks::before {
+    content: '联系我们';
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--vp-c-text-2);
+    margin: 0 0 6px 0 !important;
+    padding: 0 !important;
+}
+
+/* --- Contact group (mobile nav screen only) --- */
+
+.nav-contact-group {
+    display: none;
+}
+
+.nav-contact-divider {
+    display: none;
+}
+
+.nav-contact-label {
+    display: none;
+}
+
+.nav-contact-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    color: var(--vp-c-text-2);
+    transition: color 0.5s;
+}
+
+.nav-contact-icon:hover {
+    color: var(--vp-c-text-1);
+    transition: color 0.25s;
+}
+
+.nav-contact-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
+
+/* ==================== Mobile (≤767px) — DON'T TOUCH ==================== */
+
+@media (max-width: 767px) {
+    .VPNavBar .content-body {
+        position: relative !important;
+    }
+
+    .VPNavBarMenu .nav-version-link {
+        display: none;
+    }
+
+    .nav-version-mobile {
+        display: inline-flex;
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+    }
+
+    .VPNavBar .nav-contact-group {
+        display: none;
+    }
+
+    .VPNavScreen .VPSocialLinks {
+        display: none;
+    }
+}
+
+/* Mobile nav screen: contact at bottom, centered — DON'T TOUCH */
+.VPNavScreen .nav-contact-group {
+    display: block;
+    text-align: center;
+    padding: 12px 24px;
+    border-top: 1px solid var(--vp-c-divider);
+}
+
+.VPNavScreen .nav-contact-divider {
+    display: none;
+}
+
+.VPNavScreen .nav-contact-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--vp-c-text-1);
+    margin-bottom: 12px;
+    text-align: center;
+}
+
+.VPNavScreen .nav-contact-icon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    color: var(--vp-c-text-2);
+    transition: color 0.5s;
+}
+
+.VPNavScreen .nav-contact-icon:hover {
+    color: var(--vp-c-text-1);
+    transition: color 0.25s;
+}
+
+.VPNavScreen .nav-contact-icon svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+}
+
+.VPNavScreenMenuLink:has(.nav-version-badge) {
+    display: none;
+}
+
+/* ==================== Tablet & Desktop (≥768px) ==================== */
+
+@media (min-width: 768px) {
+    .nav-version-mobile {
+        display: none;
+    }
+}

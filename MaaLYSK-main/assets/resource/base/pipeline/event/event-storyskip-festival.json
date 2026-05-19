@@ -1,0 +1,590 @@
+{
+	"进入节日活动读剧情": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"进入活动剧情页",
+			"[JumpBack]自动过剧情",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"进入活动剧情页": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/daily_get/热雾迷津菜单.png"],
+				"roi": [10, 1179, 701, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"repeat": 3,
+		"next": [
+			"[JumpBack]节日活动剧情切换人物",
+			"[JumpBack]节日活动剧情切换人物准备"
+		]
+	},
+	"节日活动剧情切换人物": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/活动剧情切换人物.png"],
+				"roi": [4, 324, 83, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 6,
+		"post_delay": 3000,
+		"next": [
+			"活动剧情_选择祁煜",
+			"活动剧情_选择沈星回",
+			"活动剧情_选择黎深",
+			"活动剧情_选择秦彻",
+			"活动剧情_选择夏以昼"
+		]
+	},
+	"活动剧情_选择沈星回": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["沈星回", "沈", "星", "回"],
+				"roi": [177, 319, 154, 76]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [0, -70, 0, 0]
+			}
+		},
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"enabled": true,
+		"max_hit": 1,
+		"timeout": 10000,
+		"focus": "沈星回活动剧情",
+		"next": ["选择剧情菜单", "[JumpBack]自动过剧情"],
+		"on_error": ["null"]
+	},
+	"活动剧情_选择黎深": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["黎深", "黎"],
+				"roi": [375, 530, 144, 77]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [0, -70, 0, 0]
+			}
+		},
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"enabled": true,
+		"max_hit": 1,
+		"timeout": 10000,
+		"focus": "黎深活动剧情",
+		"next": ["选择剧情菜单", "[JumpBack]自动过剧情"],
+		"on_error": ["null"]
+	},
+	"活动剧情_选择祁煜": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["祁煜", "祁"],
+				"roi": [172, 752, 144, 76]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [0, -70, 0, 0]
+			}
+		},
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"enabled": true,
+		"max_hit": 1,
+		"timeout": 10000,
+		"focus": "祁煜活动剧情",
+		"next": ["选择剧情菜单", "[JumpBack]自动过剧情"],
+		"on_error": ["null"]
+	},
+	"活动剧情_选择秦彻": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["秦彻", "秦"],
+				"roi": [409, 936, 145, 77]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [0, -70, 0, 0]
+			}
+		},
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"enabled": true,
+		"max_hit": 1,
+		"timeout": 10000,
+		"focus": "秦彻活动剧情",
+		"next": ["选择剧情菜单", "[JumpBack]自动过剧情"],
+		"on_error": ["null"]
+	},
+	"活动剧情_选择夏以昼": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["夏以昼", "夏"],
+				"roi": [166, 1115, 173, 83]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [0, -70, 0, 0]
+			}
+		},
+		"pre_delay": 1000,
+		"post_delay": 3000,
+		"enabled": true,
+		"max_hit": 1,
+		"timeout": 10000,
+		"focus": "夏以昼活动剧情",
+		"next": ["选择剧情菜单", "[JumpBack]自动过剧情"],
+		"on_error": ["null"]
+	},
+	"选择剧情菜单": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/热雾迷津(202605温泉卡)/温澜秘响剧情.png"],
+				"roi": [18, 921, 185, 139]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"pre_delay": 4000,
+		"post_delay": 1500,
+		"timeout": 10000,
+		"next": ["有剩余剧情体力", "没有剩余剧情体力"],
+		"on_error": ["null"]
+	},
+	"有剩余剧情体力": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^[0-9]$", "^[1-9][0-9]$"], //暂时改成任意识别，10容易识别成0
+				"roi": [651, 41, 67, 58]
+			}
+		},
+		"timeout": 8000,
+		"next": [
+			"[JumpBack]找找未读剧情0",
+			"[JumpBack]找找未读剧情1",
+			"[JumpBack]找找未读剧情2",
+			"[JumpBack]找找未读剧情3",
+			"[JumpBack]找找未读剧情4",
+			"[JumpBack]找找未读剧情5",
+			"温澜秘响剧情结束"
+		],
+		"on_error": ["null"]
+	},
+	"没有剩余剧情体力": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["0"],
+				"replace": [
+					["o", "0"],
+					["O", "0"]
+				],
+				"roi": [670, 56, 50, 32]
+			}
+		},
+		"timeout": 8000,
+		"next": ["stop"]
+	},
+	"找找未读剧情0": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情标志1.png"],
+								"roi": [273, 322, 105, 113]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["体验中", "验中"],
+								"roi": [273, 322, 105, 113]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始过序章",
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["找找未读剧情1"]
+	},
+
+	"找找未读剧情1": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情标志1.png"],
+								"roi": [429, 459, 106, 114]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["体验中", "验中"],
+								"roi": [429, 459, 106, 114]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始过第1章",
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["找找未读剧情1"]
+	},
+	"找找未读剧情2": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情标志1.png"],
+								"roi": [250, 579, 106, 114]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["体验中", "验中"],
+								"roi": [250, 579, 106, 114]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始过第2章",
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["找找未读剧情2"]
+	},
+	"找找未读剧情3": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情标志1.png"],
+								"roi": [456, 717, 106, 114]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["体验中", "验中"],
+								"roi": [456, 717, 106, 114]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始过第3章",
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["找找未读剧情3"]
+	},
+	"找找未读剧情4": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情标志1.png"],
+								"roi": [221, 839, 106, 114]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["体验中", "验中"],
+								"roi": [221, 839, 106, 114]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始过第4章",
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["找找未读剧情4"]
+	},
+	"找找未读剧情5": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情标志1.png"],
+								"roi": [403, 994, 106, 114]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["体验中", "验中"],
+								"roi": [403, 994, 106, 114]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始过第5章",
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["null"]
+	},
+	"找找未读剧情6": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情标志1.png"],
+								"roi": [273, 322, 105, 113]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["体验中", "验中"],
+								"roi": [273, 322, 105, 113]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始过第6章",
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["找找未读剧情6"]
+	},
+	"找找未读剧情7": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["event/剧情标志1.png"],
+								"roi": [273, 322, 105, 113]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["体验中", "验中"],
+								"roi": [273, 322, 105, 113]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始过第7章",
+		"post_delay": 2000,
+		"next": ["自动过剧情"],
+		"on_error": ["找找未读剧情7"]
+	},
+	"温澜秘响剧情结束": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["已体验", "已体"],
+				"roi": [376, 1011, 178, 105]
+			}
+		},
+		"focus": "温澜秘响剧情过完，切换下一位",
+		"post_delay": 2000,
+		"next": [
+			"回到热雾迷津主页面",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]退出点击空白继续popop"
+		]
+	},
+	"节日活动剧情切换人物准备": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["温澜秘响", "温澜", "秘响"],
+				"roi": [13, 99, 252, 118]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"回到热雾迷津主页面",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]自动过剧情",
+			"[JumpBack]退出点击空白继续popop"
+		]
+	},
+	"回到热雾迷津主页面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/活动剧情切换人物.png"],
+				"roi": [4, 324, 83, 79]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		}
+	},
+	"过剧情结束标志-热雾迷津": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["温澜秘响", "温澜", "秘响"],
+								"roi": [13, 99, 252, 118]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"event/热雾迷津(202605温泉卡)/温澜秘响剧情.png"
+								],
+								"roi": [18, 921, 185, 139],
+								"threshold": 0.5
+							}
+						}
+					}
+				]
+			}
+		},
+		"post_delay": 2000
+	}
+}

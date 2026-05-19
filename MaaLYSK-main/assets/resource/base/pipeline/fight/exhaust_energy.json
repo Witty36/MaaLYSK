@@ -1,0 +1,408 @@
+{
+	"进入消耗体力瓶": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"消耗体力瓶准备",
+			"[JumpBack]点击作战",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"消耗体力瓶准备": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["fight/点击体力页面.png"],
+								"roi": [677, 39, 43, 63]
+							}
+						}
+					},
+					{
+						"sub_name": "体力确认",
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": "fight/确认是使用体力.png",
+								"roi": [552, 33, 128, 76]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["确认在体力瓶页面"]
+	},
+	"确认在体力瓶页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["道具", "道", "具"],
+				"roi": [412, 407, 137, 48]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": [
+			"[JumpBack]识别金体力瓶",
+			"[JumpBack]识别深紫体力瓶",
+			"[JumpBack]识别浅紫体力瓶",
+			"结束使用体力瓶"
+		]
+	},
+	"识别金体力瓶": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"sub_name": "金体力瓶",
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": "fight/金体力瓶.png",
+								"roi": [105, 460, 420, 194]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"upper": [246, 230, 233],
+								"lower": [241, 150, 146],
+								"roi": "金体力瓶",
+								"roi_offset": [-37, 63, 75, -7],
+								"count": 700
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"focus": {
+			"Node.Action.Succeeded": "使用金体力瓶1个"
+		},
+		"max_hit": 1,
+		"post_delay": 2000
+	},
+	"识别深紫体力瓶": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"sub_name": "深紫体力瓶",
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": "fight/深紫体力瓶.png",
+								"roi": [105, 460, 420, 194]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"upper": [246, 230, 233],
+								"lower": [241, 150, 146],
+								"roi": "深紫体力瓶",
+								"roi_offset": [-37, 63, 75, -7],
+								"count": 700
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"focus": {
+			"Node.Action.Succeeded": "使用深紫体力瓶1个"
+		},
+		"max_hit": 1,
+		"post_delay": 2000
+	},
+	"识别浅紫体力瓶": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"sub_name": "浅紫体力瓶",
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": "fight/浅紫体力瓶.png",
+								"roi": [108, 480, 506, 144]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"upper": [246, 230, 233],
+								"lower": [241, 150, 146],
+								"roi": "浅紫体力瓶",
+								"roi_offset": [-37, 63, 75, -7],
+								"count": 700
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"focus": {
+			"Node.Action.Succeeded": "使用浅紫体力瓶1个"
+		},
+		"max_hit": 1,
+		"post_delay": 2000
+	},
+	"识别金体力瓶_长按": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"sub_name": "金体力瓶",
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": "fight/金体力瓶.png",
+								"roi": [105, 460, 420, 194]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"upper": [246, 230, 233],
+								"lower": [241, 150, 146],
+								"roi": "金体力瓶",
+								"roi_offset": [-37, 63, 75, -7],
+								"count": 700
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "LongPress",
+			"param": {
+				"duration": 5000
+			}
+		},
+		"max_hit": 1,
+		"post_delay": 2000
+	},
+	"识别深紫体力瓶_长按": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"sub_name": "深紫体力瓶",
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": "fight/深紫体力瓶.png",
+								"roi": [105, 460, 420, 194]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"upper": [246, 230, 233],
+								"lower": [241, 150, 146],
+								"roi": "深紫体力瓶",
+								"roi_offset": [-37, 63, 75, -7],
+								"count": 700
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "LongPress",
+			"param": {
+				"duration": 5000
+			}
+		},
+		"max_hit": 1,
+		"post_delay": 2000
+	},
+	"识别浅紫体力瓶_长按": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"sub_name": "浅紫体力瓶",
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": "fight/浅紫体力瓶.png",
+								"roi": [108, 480, 506, 144]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"upper": [246, 230, 233],
+								"lower": [241, 150, 146],
+								"roi": "浅紫体力瓶",
+								"roi_offset": [-37, 63, 75, -7],
+								"count": 700
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "LongPress",
+			"param": {
+				"duration": 5000
+			}
+		},
+		"max_hit": 1,
+		"post_delay": 2000
+	},
+	"识别金体力瓶_无限时": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "fight/金体力瓶.png",
+				"roi": [105, 460, 420, 194]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"focus": {
+			"Node.Action.Succeeded": "使用金体力瓶1个"
+		},
+		"max_hit": 1,
+		"post_delay": 2000,
+		"next": ["确定使用体力瓶"]
+	},
+	"识别深紫体力瓶_无限时": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "fight/深紫体力瓶.png",
+				"roi": [105, 460, 420, 194]
+			}
+		},
+
+		"action": {
+			"type": "Click"
+		},
+		"focus": {
+			"Node.Action.Succeeded": "使用深紫体力瓶1个"
+		},
+		"max_hit": 1,
+		"post_delay": 2000,
+		"next": ["确定使用体力瓶"]
+	},
+	"识别浅紫体力瓶_无限时": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "fight/浅紫体力瓶.png",
+				"roi": [108, 480, 506, 144]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"focus": {
+			"Node.Action.Succeeded": "使用浅紫体力瓶1个"
+		},
+		"max_hit": 1,
+		"post_delay": 2000,
+		"next": ["确定使用体力瓶"]
+	},
+	"向右滑找找体力瓶": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["道具", "道", "具"],
+				"roi": [412, 407, 137, 48]
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [431, 544],
+				"end": [286, 544],
+				"duration": 500
+			}
+		},
+		"max_hit": 5
+	},
+	"确定使用体力瓶": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["确定"],
+				"roi": [401, 693, 140, 91]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"结束使用体力瓶": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["确定"],
+				"roi": [401, 693, 140, 91]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["stop"]
+	}
+}

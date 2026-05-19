@@ -1,0 +1,892 @@
+{
+	"退出点击（上限）popop": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"max_hit": 5,
+		"next": []
+	},
+	"退出点击popop": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": ["返回等待"]
+	},
+	"退出点击(无等待)popop": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出点击1popop": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [112, 1140, 3, 3]
+			}
+		},
+		"next": ["返回等待"]
+	},
+	"退出兑换码页面popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "兑换",
+				"replace": [["兌换", "兑换"]],
+				"roi": [255, 599, 196, 92]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [112, 1140, 3, 3]
+			}
+		},
+		"next": ["返回等待"]
+	},
+	"退出剧情回顾popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["popop/剧情回顾popop.png"],
+				"roi": [648, 94, 44, 47]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "退出剧情回顾",
+		"next": ["返回等待"]
+	},
+	"退出获得奖励popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["获得奖励", "奖励", "获得"],
+				"roi": [273, 376, 190, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出牵绊度提升popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["牵绊度提升", "牵绊度", "提升"],
+				"roi": [72, 329, 261, 249]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出娃娃机结算popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["playtime/catchtoy/娃娃机结算页面.png"],
+				"roi": [36, 177, 677, 477]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [229, 1062, 24, 11]
+			}
+		},
+		"next": []
+	},
+	"退出喵喵牌结算popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["playtime/catcard/喵喵牌结算页面.png"],
+				"roi": [36, 177, 677, 477]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [229, 1062, 24, 11]
+			}
+		},
+		"next": []
+	},
+	"退出快乐出游结算popop": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["退出"],
+								"roi": [132, 1011, 222, 95]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["playtime/快乐出游结算退出.png"],
+								"roi": [138, 1028, 206, 79]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"退出新娃娃获得popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["恭喜获得"],
+				"roi": [6, 6, 350, 229]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出点击空白继续popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": [
+					"点击空白区域继续",
+					"点击空白处继续",
+					"点击空白处关闭",
+					"空白区域",
+					"空白",
+					"继续",
+					"空白处",
+					"关闭"
+				],
+				"replace": [
+					["自", "白"],
+					["百", "白"]
+				],
+				"roi": [234, 975, 246, 304]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"timeout": 3000,
+		"next": ["退出点击空白继续1popop"],
+		"on_error": ["null"]
+	},
+	"退出点击空白继续下popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": [
+					"点击空白区域继续",
+					"点击空白处继续",
+					"点击空白处关闭",
+					"空白区域",
+					"空白",
+					"继续",
+					"空白处",
+					"关闭"
+				],
+				"replace": [
+					["自", "白"],
+					["百", "白"]
+				],
+				"roi": [242, 1166, 240, 114]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"timeout": 3000,
+		"next": ["退出点击空白继续下1popop"],
+		"on_error": ["null"]
+	},
+	"退出点击空白继续下1popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": [
+					"点击空白区域继续",
+					"点击空白处继续",
+					"点击空白处关闭",
+					"空白区域",
+					"空白",
+					"继续",
+					"空白处",
+					"关闭"
+				],
+				"replace": [
+					["自", "白"],
+					["百", "白"]
+				],
+				"roi": [242, 1166, 240, 114]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [112, 1140, 3, 3]
+			}
+		},
+		"timeout": 3000,
+		"next": []
+	},
+	"退出点击空白继续1popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": [
+					"点击空白区域继续",
+					"点击空白处关闭",
+					"空白区域",
+					"空白",
+					"继续",
+					"空白处",
+					"关闭"
+				],
+				"replace": [
+					["自", "白"],
+					["百", "白"]
+				],
+				"roi": [234, 975, 246, 304]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [112, 1140, 3, 3]
+			}
+		},
+		"next": []
+	},
+	"退出分享页面popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["popop/分享页面popop.png"],
+				"roi": [577, 70, 82, 73],
+				"green_mask": true
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [614, 98, 11, 12]
+			}
+		},
+		"next": []
+	},
+	"退出追击完成popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["追击完成", "追击", "完成"],
+				"roi": [205, 598, 303, 437]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出零点追踪追击popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/自动追击1次.png"],
+				"roi": [165, 919, 108, 98]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出道具使用popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["道具", "道", "具"],
+				"roi": [412, 407, 137, 48]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出升级成功popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["升级成功", "升级", "成功"],
+				"roi": [227, 294, 259, 174]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出突破成功popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["突破成功", "突破", "成功"],
+				"roi": [227, 294, 259, 174]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出品阶提升popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["品阶提升", "品阶", "提升"],
+				"roi": [227, 294, 259, 174]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
+	"退出睡觉陪伴popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["我醒了", "悄悄离开"],
+				"roi": [100, 829, 381, 279]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["返回等待"]
+	},
+	"退出手账编辑popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["popop/直接退出手账编辑.png"],
+				"roi": [425, 613, 193, 127]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [2, 5, -4, -10]
+			}
+		},
+		"next": []
+	},
+	"退出手账保存popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/完成盖章.png"],
+				"roi": [620, 846, 100, 125]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"退出手账保存1popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["task/weekly/完成盖章.png"],
+				"roi": [620, 1153, 100, 126]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"网络连接失败popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["网络"],
+				"roi": [138, 516, 50, 29]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [456, 667, 42, 20]
+			}
+		},
+		"focus": "网络连接失败,尝试点击关闭弹窗",
+		"next": []
+	},
+	"断线重连popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["popop/再次重连.png"],
+				"roi": [379, 628, 193, 68]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "断线重连失败,尝试再次重连"
+	},
+	"账号在别处登录popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["账号已在别处登录", "账号已在别处"],
+				"roi": [175, 497, 371, 100]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [353, 661, 17, 8]
+			}
+		},
+		"next": ["点击账号登录", "[JumpBack]切换账号公告确认"]
+	},
+	"确定返回陪我一起popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["确定"],
+								"roi": [402, 635, 156, 67]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"陪伴不足",
+									"不计入陪伴",
+									"当前陪伴不足5分钟，本次陪伴将不计入陪伴日历中"
+								],
+								"roi": [121, 476, 498, 159]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"确定返回快乐出游popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["确定"],
+								"roi": [402, 635, 156, 67]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"终止本次游玩",
+									"退出将终止本次游玩，确定要退出吗？"
+								],
+								"roi": [149, 512, 417, 125]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"确定返回手账保存popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["确定"],
+								"roi": [402, 635, 156, 67]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"本周剩余保存次数",
+									"本周剩余保存",
+									"本周剩余保存次数：([1-9]|[1-4][0-9]|50)/50，确认保存吗？"
+								],
+								"roi": [135, 488, 448, 109]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"确定返回剧情popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["确定"],
+								"roi": [402, 635, 156, 67]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"是否退出",
+									"是否要退出",
+									"退出当前关卡",
+									"当前关卡",
+									"本章故事",
+									"当前小节",
+									"关卡",
+									"故事",
+									"剧情"
+								],
+								"roi": [149, 512, 417, 125]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"确认返回教学引导popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["确定", "确认"],
+								"roi": [402, 635, 156, 67]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"教学引导",
+									"将为您跳过同类型全部已观看过的教学引导，是否确认跳过？",
+									"确认跳过"
+								],
+								"roi": [100, 491, 495, 124]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"取消返回消耗钻石popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["取消"],
+								"roi": [101, 580, 270, 261]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["task/daily/补签耗钻.png"],
+								"roi": [149, 512, 417, 125]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [20, 14, -41, -27]
+			}
+		},
+		"next": ["返回等待"]
+	},
+	"取消返回陪我一起popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["取消"],
+								"roi": [101, 580, 270, 261]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"继续返回与.{2,4}的.{2,4}陪伴",
+									"与.{2,4}的.{2,4}陪伴"
+								],
+								"roi": [149, 512, 417, 125]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [20, 14, -41, -27]
+			}
+		},
+		"next": ["返回等待"]
+	},
+	"取消返回时间设定popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["取消"],
+								"roi": [187, 663, 140, 71]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["时间"],
+								"roi": [66, 407, 228, 100]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["返回等待"]
+	},
+	"取消返回快乐出游popop": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["取消"],
+								"roi": [101, 580, 270, 261]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"快乐出游有一局",
+									"游玩尚未结束",
+									"快乐出游有一局喵喵牌游玩尚未结束，是否继续？"
+								],
+								"replace": [
+									["决乐出游", "快乐出游"],
+									["游玩", "游玩尚未结束"]
+								],
+								"roi": [149, 512, 417, 125]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [20, 14, -41, -27]
+			}
+		},
+		"next": ["返回等待"]
+	},
+	"退出花园弹窗popop": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_otto记录.png"],
+				"green_mask": true,
+				"threshold": 0.3,
+				"roi": [1098,59,38,24]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {"target": [923, 277, 21, 19]}
+		},
+		"next": ["返回等待"]
+	}
+}

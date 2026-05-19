@@ -1,0 +1,127 @@
+{
+	"进入喵喵牌抽卡": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"timeout": 5000,
+		"next": [
+			"[JumpBack]喵喵牌抽卡寻找_第一排",
+			"[JumpBack]喵喵牌抽卡寻找_第二排",
+			"[JumpBack]退出牵绊度提升popop"
+		]
+	},
+	"喵喵牌抽卡寻找_第一排": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^[0-8]/9$"],
+				"roi": [122, 391, 536, 52]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {"target_offset": [16, -86, 9, 27]}
+		},
+		"next": ["开始喵喵牌抽卡"]
+	},
+	"喵喵牌抽卡寻找_第二排": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^[0-8]/9$"],
+				"roi": [119, 655, 536, 56]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {"target_offset": [16, -86, 9, 27]}
+		},
+		"next": ["开始喵喵牌抽卡"]
+	},
+	"开始喵喵牌抽卡": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["购买"],
+				"roi": [463, 1159, 75, 36]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["喵喵牌抽卡确定"]
+	},
+	"喵喵牌抽卡确定": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["确定"],
+				"roi": [432, 608, 95, 148]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 10000,
+		"next": ["是否集齐9个徽章", "[JumpBack]喵喵牌再抽一次_Check"]
+	},
+	"是否集齐9个徽章": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["9"],
+				"replace": ["g", "9"],
+				"roi": [525, 943, 62, 80]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["收下徽章"]
+	},
+	"收下徽章": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["收下"],
+				"roi": [165, 1040, 147, 88]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"喵喵牌再抽一次_Check": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["再抽一次"],
+				"roi": [442, 1070, 103, 29]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 4000,
+		"next": ["是否集齐9个徽章", "喵喵牌再抽一次_Action"]
+	},
+	"喵喵牌再抽一次_Action": {
+		"action": {
+			"type": "Click",
+			"param": {"target": "喵喵牌再抽一次_Check"}
+		},
+		"max_hit": 30,
+		"next": []
+	}
+}
