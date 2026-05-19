@@ -875,17 +875,13 @@
 	},
 	"退出花园弹窗popop": {
 		"recognition": {
-			"type": "TemplateMatch",
+			"type": "DirectHit",
 			"param": {
-				"template": ["feature/garden_otto记录.png"],
-				"green_mask": true,
-				"threshold": 0.3,
-				"roi": [1098,59,38,24]
 			}
 		},
 		"action": {
 			"type": "Click",
-			"param": {"target": [923, 277, 21, 19]}
+			"param": {"target":[626,93,15,12]}
 		},
 		"next": ["返回等待"]
 	}
