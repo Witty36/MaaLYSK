@@ -237,10 +237,7 @@
             "recognition": {
                 "type": "ColorMatch",
                 "param": {
-                    "lower": [
-                        124,
-                        152,
-                        106
+                    "lower": [124,152,106
                     ],
                     "upper": [
                         124,
@@ -268,7 +265,12 @@
             },
             "next": [
                 "家园_收获成花卉"
-            ]
+            ],
+            "on_error": [
+                "家园_补充种植准备",
+                "[JumpBack]导航回花园页面（花园）"
+            ],
+            "timeout": 5000
         },
         "家园_收获成花卉": {
             "recognition": {
@@ -291,7 +293,7 @@
                 "[JumpBack]家园_跳过收获动画"
             ],
             "on_error": [
-                "家园_日常照料花朵_确认界面"
+               "[JumpBack]导航回花园页面（花园）"
             ],
             "timeout": 5000
         },
