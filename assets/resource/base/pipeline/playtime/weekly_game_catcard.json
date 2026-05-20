@@ -182,7 +182,7 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["playtime/catcard/喵喵牌返回.png"],
-				"roi": [0, 0, 88, 132]
+				"roi": [23,45,31,47]
 			}
 		},
 		"action": {

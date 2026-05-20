@@ -6,14 +6,13 @@
 			"controller": ["ADB模拟器"],
 			"default_check": true,
 			"option": ["请选择游戏版本", "使用指定账号登录"],
-			"description": "目前官服可以成功启动，其他渠道的需要反馈区服<br>不支持PlayCover，仅支持ADB模拟器<br>使用指定账号登录时,必须保证<span style=\"color:red\">分辨率为900x1600-手机</span>，"
+			"description": "目前官服可以成功启动，其他渠道的需要反馈区服<br>不支持PlayCover，仅支持ADB模拟器"
 		},
 		{
 			"name": "♻主页面切换账号",
 			"entry": "进入主页面切换账号",
 			"default_check": false,
-			"option": ["游戏版本", "账号前3位"],
-			"description": "使用指定账号登录时,必须保证<span style=\"color:red\">分辨率为900x1600-手机</span>，"
+			"option": ["游戏版本", "账号前3位"]
 		}
 	],
 	"option": {

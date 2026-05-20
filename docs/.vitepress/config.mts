@@ -1,4 +1,3 @@
-import path from "path";
 import { defineConfig } from "vitepress";
 
 // 功能：站点基础信息、公共主题配置、搜索与社交链接。
@@ -8,32 +7,9 @@ import { rewriteDocPath } from "./config/rewrites";
 // 功能：多语言入口、导航与侧边栏配置。
 import { locales } from "./config/locales";
 
-const noticeDir = path.resolve(process.cwd(), "docs", "zh_cn", "notice");
-
 export default defineConfig({
     ...siteConfig,
     themeConfig: sharedThemeConfig,
     rewrites: rewriteDocPath,
     locales,
-    vite: {
-        plugins: [
-            {
-                name: "notice-reload",
-                configureServer(server) {
-                    const pattern = path.join(noticeDir, "*.md");
-                    server.watcher.add(pattern);
-                    server.watcher.on("add", (file) => {
-                        if (file.endsWith(".md")) {
-                            server.ws.send({ type: "full-reload" });
-                        }
-                    });
-                    server.watcher.on("unlink", (file) => {
-                        if (file.endsWith(".md")) {
-                            server.ws.send({ type: "full-reload" });
-                        }
-                    });
-                },
-            },
-        ],
-    },
 });

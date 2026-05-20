@@ -13,6 +13,13 @@
 			"default_check": true
 		},
 		{
+			"name": "🌳家园日常",
+			"entry": "进入家园",
+			"default_check": false,
+			"option": ["是否需要补种"],
+			"description": "批量收成花卉/批量照料，如果有需要补种的花坛会自动补种1-3次(确保包里有足够种子)，完成后会停在家园界面，不帮忙拉小曲儿，有需求可以提，有bug可以硬着头皮先用后面再修。"
+		},
+		{
 			"name": "📅日常收尾",
 			"entry": "进入日常收尾",
 			"default_check": true,
@@ -106,6 +113,28 @@
 							"enable": false
 						}
 					}
+				}
+			]
+	},
+		 
+		"是否需要补种": {
+			"type": "switch",
+			"cases": [
+				{
+				"name": "Yes",
+					"pipeline_override": {
+						"家园_补充种植准备": {
+							"enable": true
+						}
+					}
+				},
+				{
+					"name": "No",
+					"pipeline_override": {
+						"家园_补充种植准备": {
+							"enable": false
+						}
+					}	
 				}
 			]
 		}

@@ -27,7 +27,28 @@
 		"recognition": {
 			"type": "And",
 			"param": {
-				"all_of": ["对话紫框_颜色识别", "对话紫框_任意文字"],
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
 				"box_index": 0
 			}
 		},

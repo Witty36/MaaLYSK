@@ -116,6 +116,10 @@
 				{
 					"name": "🔗周常分享3次",
 					"enabled": true
+				},
+				{
+					"name": "🌳家园周常",
+					"enabled": true
 				}
 			]
 		}

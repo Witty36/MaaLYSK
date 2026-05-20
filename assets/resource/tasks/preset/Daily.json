@@ -115,6 +115,10 @@
 				{
 					"name": "🌟限时活动每日领取",
 					"enabled": false
+				},
+				{
+					"name": "🌳家园日常",
+					"enabled": true
 				}
 			]
 		}

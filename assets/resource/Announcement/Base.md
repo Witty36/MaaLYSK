@@ -31,3 +31,4 @@ MaaLYSK 是基于 **图像识别** 的恋与深空日常 / 肝活小助手。
 📢 使用手册、常见问题等相关链接，尽在 MaaLYSK 文档站
 
 👉 [https://MaaLYSK.top](https://MaaLYSK.top)
+

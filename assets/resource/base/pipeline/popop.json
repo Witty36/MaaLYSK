@@ -532,7 +532,6 @@
 				"target": [353, 661, 17, 8]
 			}
 		},
-		"enabled": false,
 		"next": ["点击账号登录", "[JumpBack]切换账号公告确认"]
 	},
 	"确定返回陪我一起popop": {
@@ -871,6 +870,18 @@
 			"param": {
 				"target_offset": [20, 14, -41, -27]
 			}
+		},
+		"next": ["返回等待"]
+	},
+	"退出花园弹窗popop": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {"target":[626,93,15,12]}
 		},
 		"next": ["返回等待"]
 	}

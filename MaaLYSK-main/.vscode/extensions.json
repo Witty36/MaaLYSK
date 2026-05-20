@@ -1,8 +1,0 @@
-{
-	"recommendations": [
-		"ms-python.black-formatter",
-		"esbenp.prettier-vscode",
-		"nekosu.maa-support",
-		"davidanson.vscode-markdownlint"
-	]
-}

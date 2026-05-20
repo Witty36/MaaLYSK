@@ -27,7 +27,28 @@
 		"recognition": {
 			"type": "And",
 			"param": {
-				"all_of": ["对话紫框_颜色识别", "对话紫框_任意文字"],
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
 				"box_index": 0
 			}
 		},
@@ -112,7 +133,17 @@
 							}
 						}
 					},
-					"对话紫框_颜色识别"
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					}
 				]
 			}
 		},
@@ -139,7 +170,28 @@
 		"recognition": {
 			"type": "And",
 			"param": {
-				"all_of": ["对话紫框_颜色识别", "对话紫框_任意文字"],
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
 				"box_index": 0
 			}
 		},
@@ -188,8 +240,29 @@
 		"recognition": {
 			"type": "And",
 			"param": {
-				"all_of": ["对话紫框_任意文字", "对话紫框_颜色识别"],
-				"box_index": 0
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
+				"box_index": 1
 			}
 		},
 		"action": {
@@ -250,8 +323,8 @@
 				"target": [388, 767, 239, 166]
 			}
 		},
-		"repeat": 20,
-		"repeat_delay": 50,
+		"repeat": 10,
+		"repeat_delay": 100,
 		"next": []
 	},
 	"抓娃娃页面等待_三爪": {

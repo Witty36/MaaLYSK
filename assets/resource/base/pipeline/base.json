@@ -123,7 +123,7 @@
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"roi": [257, 1172, 94, 98],
+				"roi": [256,1147,94,92],
 				"expected": ["约会"]
 			}
 		},
@@ -436,5 +436,66 @@
 		},
 		"focus": "已在主线页面",
 		"next": []
-	}
+},
+	 "点击家园": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["家园", "园"],
+				"roi": [156,1150,91,91]
+			}
+		},
+        		"action": {
+            "type": "Click",
+            "param": {}
+        },
+        "post_delay": 90000,
+        "next": ["家园页面确认"]
+    },
+    "家园页面确认": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["装修", "修"],
+                "roi": [1084,666,59,29]
+            }
+        },
+        "focus": "已在家园页面",
+        "next": []
+    },
+	
+    "家园_跳过照料动画": {
+        "recognition": {
+        "type": "OCR",
+        "param": {
+            "expected": "跳过",
+            "roi": [1145,26,98,27]
+        }
+         },
+        "action": {
+        "type": "Click",
+        "param": {}
+        },
+        "timeout": 3000,
+		"focus": "已跳过动画",
+        "next": ["家园_批量收获准备"],
+		"post_delay": 5000
+    },
+	"家园_跳过收获动画": {
+        "recognition": {
+        "type": "OCR",
+        "param": {
+            "expected": "跳过",
+            "roi": [1145,26,98,27]
+        }
+         },
+        "action": {
+        "type": "Click",
+        "param": {}
+        },
+        "timeout": 3000,
+		"focus": "已跳过动画",
+        "next": ["[JumpBack]导航回花园页面（花园）"],
+		"post_delay": 5000
+    }
 }

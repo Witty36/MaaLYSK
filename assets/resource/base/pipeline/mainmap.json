@@ -91,7 +91,10 @@
 			"导航回主页面（主线）",
 			"导航回主页面（商城）",
 			"导航回主页面（芯核分解）",
+			"导航回主页面(花园)",
+			"退出花园弹窗popop",
 			"退出点击popop"
+			
 		]
 	},
 	"退出各类弹窗": {
@@ -130,7 +133,8 @@
 			"确定返回手账保存popop",
 			"确认返回教学引导popop",
 			"确定返回剧情popop",
-			"退出点击popop"
+			"退出点击popop",
+			"退出花园弹窗popop"
 		]
 	},
 	"退出各类弹窗(无快乐出游退出)": {
@@ -158,6 +162,7 @@
 			"退出手账保存1popop",
 			"网络连接失败popop",
 			"断线重连popop",
+			"账号在别处登录popop",
 			"取消返回陪我一起popop",
 			"取消返回快乐出游popop",
 			"取消返回时间设定popop",
@@ -413,5 +418,61 @@
 	},
 	"返回等待": {
 		"post_delay": 2000
+	},
+	
+	"导航回花园页面（花园）": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "feature/garden_导航回花园页面（花园）.png",
+				"green_mask": true,
+				"threshold": 0.3,
+				"roi": [57,17,35,36]
+			}
+		},
+		"pre_delay": 500,
+		"action": {
+			"type": "Click",
+			"param": {
+			}
+		},
+		"next": ["stop"]
+	},
+	"导航回主页面(花园)": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "feature/garden_导航回花园页面（花园）.png",
+				"green_mask": true,
+				"threshold": 0.3,
+				"roi": [62,21,26,33]
+			}
+		},
+		"pre_delay": 500,
+		"action": {
+			"type": "Click",
+			"param": {
+			}
+		},
+		"next": ["花园二次退出确认"]
+},
+	"花园二次退出确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["确认"],
+				"green_mask": true,
+				"threshold": 0.3,
+				"roi": [375,217,528,286]
+				}
+		},
+		"pre_delay": 500,
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["返回等待"]
 	}
 }

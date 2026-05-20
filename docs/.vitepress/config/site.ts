@@ -1,37 +1,31 @@
 import { latestReleaseMeta } from "./version";
-import { getNoticeDates } from "./sidebar";
 import { qqGroupLink, githubRepoLink, qqIconSvg } from "./constants";
 
 export const siteConfig = {
     base: "/",
     title: "MaaLYSK",
     description: "MaaLYSK Documentation",
-    lastUpdated: true,
     head: [
-        ["link", { rel: "icon", href: "/logo.ico" }] as [string, Record<string, string>],
+        ["link", { rel: "icon", href: "/logo.ico" }],
         [
             "link",
             {
                 rel: "stylesheet",
                 href: "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css",
             },
-        ] as [string, Record<string, string>],
+        ],
     ],
 };
 
 export const sharedThemeConfig = {
     logo: "/logo.ico",
     latestReleaseMeta,
-    noticeDates: getNoticeDates(),
     socialLinks: [
         { icon: { svg: qqIconSvg }, link: qqGroupLink, ariaLabel: 'QQ群' },
         { icon: 'github', link: githubRepoLink },
     ],
-    editLink: {
-        pattern: 'https://github.com/Witty36/MaaLYSK/edit/main/docs/:path',
-    },
     search: {
-        provider: "local" as const,
+        provider: "local",
         options: {
             locales: {
                 zh_cn: {
@@ -59,12 +53,6 @@ export const sharedThemeConfig = {
                         },
                         modal: {
                             noResultsText: "No results for",
-                            resetButtonTitle: "Clear query",
-                            footer: {
-                                selectText: "Select",
-                                navigateText: "Switch",
-                                closeText: "Close",
-                            },
                         },
                     },
                 },

@@ -252,32 +252,22 @@
 			"param": {}
 		}
 	},
-	"对话紫框_颜色识别": {
-		"recognition": {
-			"type": "ColorMatch",
-			"param": {
-				"lower": [94, 89, 117],
-				"upper": [114, 109, 137],
-				"roi": [242, 610, 274, 68],
-				"count": 750
-			}
-		}
-	},
-	"对话紫框_任意文字": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": "[\u4e00-\u9fa5]",
-				"roi": [242, 610, 274, 68]
-			}
-		}
-	},
 	"选剧情祁煜": {
 		"recognition": {
 			"type": "And",
 			"param": {
 				"all_of": [
-					"对话紫框_颜色识别",
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
 					{
 						"recognition": {
 							"type": "OCR",
@@ -285,8 +275,7 @@
 								"expected": "祁煜",
 								"roi": [185, 308, 360, 409]
 							}
-						},
-						"sub_name": "对话紫框_选择祁煜"
+						}
 					}
 				],
 				"box_index": 1
@@ -302,7 +291,28 @@
 		"recognition": {
 			"type": "And",
 			"param": {
-				"all_of": ["对话紫框_颜色识别", "对话紫框_任意文字"],
+				"all_of": [
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [94, 89, 117],
+								"upper": [114, 109, 137],
+								"roi": [242, 610, 274, 68],
+								"count": 750
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": "[\u4e00-\u9fa5]",
+								"roi": [242, 610, 274, 68]
+							}
+						}
+					}
+				],
 				"box_index": 1
 			}
 		},
