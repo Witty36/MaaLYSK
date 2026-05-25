@@ -1,0 +1,229 @@
+    {
+        "交育_进入家园": {
+            "recognition": {
+                "type": "DirectHit",
+                "param": {}
+            },
+            "action": {
+                "type": "DoNothing",
+                "param": {}
+            },
+            "next": [
+                "交育_确认进入界面",
+                "[JumpBack]点击家园",
+                "[JumpBack]导航回主页面"
+            ]
+        },
+        "交育_确认进入界面": {
+            "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_家园任务.png"
+                    ],
+                    "roi": [
+                        1174,
+                        609,
+                        81,
+                        97
+                    ]
+                }
+            },
+            "next": [
+                "交育_点击OTTO记录"
+            ]
+        },
+        "交育_点击OTTO记录": {
+            "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_otto记录.png"
+                    ],
+                    "roi": [
+                        1090,
+                        43,
+                        45,
+                        48
+                    ]
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {} 
+            },
+            "next": [
+                "交育_点击OTTO记录_确认界面"
+            ]
+        },
+        "交育_点击OTTO记录_确认界面": {
+            "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_otto记录界面.png"
+                    ],
+                    "roi": [
+                        950,
+                        44,
+                        165,
+                        58
+                    ]
+                }
+            },
+            "next": [
+                "交育_点击花卉交育去看看"
+            ]
+        },
+        "交育_点击花卉交育去看看": {
+            "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": "去看看",
+                    "roi": [1158,162,73,29]
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {}
+            },
+            "timeout": 3000,
+            "on_error": [
+                "[JumpBack]导航回花园页面（花园）",
+                "[JumpBack]点击家园",
+                "[JumpBack]导航回主页面"
+            ],
+            "next": [
+                "交育_点击花卉交育去看看_确认界面"
+            ],
+            "post_delay": 10000
+        },
+        "交育_点击花卉交育去看看_确认界面": {
+            "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_交育图标.png"
+                    ],
+                    "index": 1,
+                    "roi": 
+                        [196,117,865,590]
+                    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {"target":true}
+            },
+            "next": [
+                "交育_确认当前气泡是否为交育气泡"
+            ]
+        },
+        "交育_确认当前气泡是否为交育气泡":{
+            "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": "交育",
+                    "roi": 
+                        [196,117,865,590]
+                }
+            },
+            "action": {
+                "type": "DoNothing",
+                "param": {}
+            },
+            "next": [
+               "交育_进入交育界面"
+            ],
+            "timeout": 3000,
+            "on_error": ["交育_退出气泡"]
+        
+    },
+        "交育_退出气泡":{
+            "recognition": {
+                "type": "DirectHit",
+                "param": {
+                    "roi": 
+                        [189,517,58,52]
+                }
+            },
+        "action": {
+                "type": "Swipe",
+                "param": {}
+            },
+            "next": [
+                "交育_二次点击"
+            ]
+        },
+    "交育_二次点击":{
+        "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_交育图标.png"
+                    ],
+                    "index": -1,
+                    "roi": 
+                        [196,117,865,590]
+                    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {"target":true}
+            },
+            "next": [
+                "交育_确认当前气泡是否为交育气泡"
+            ]
+        },
+    "交育_进入交育界面":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": "交育",
+                    "roi": 
+                        [196,117,865,590]
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "next": [
+               "交育_交育界面确认"
+            ]
+    },
+    "交育_Or算法判断1":{
+        "recognition": "OCR",
+        "expected": "消耗同品种花卉可获得该品种花种和花材",
+        "roi": [437,85,414,41]
+    },
+    "交育_Or算法判断2":{
+        "recognition": "OCR",
+        "expected": "交育中",
+        "roi": [437,85,414,41]
+    },
+    "交育_交育界面确认":{
+        "recognition": {
+            "type": "Or",
+            "param":{
+                "any_of": [
+                "交育_Or算法判断1",  // 引用节点的识别参数
+                "交育_Or算法判断2"    // 引用节点的识别参数
+                    ]
+                }
+        },
+        "next": [
+               "交育_开始交育第一步"
+            ],
+            "timeout": 3000,
+            "on_error": [
+                "交育_点击花卉交育去看看_确认界面",
+                "[JumpBack]导航回花园页面（花园）"]
+    },
+    "交育_开始交育第一步":{
+    
+    }
+}
