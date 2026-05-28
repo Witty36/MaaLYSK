@@ -34,7 +34,6 @@
 		"repeat": 2,
 		"next": ["进入对局"]
 	},
-
 	"进入对局": {
 		"recognition": {
 			"type": "Or",

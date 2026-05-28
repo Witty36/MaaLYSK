@@ -16,10 +16,29 @@
 	},
 	"确认在主线页面": {
 		"recognition": {
-			"type": "OCR",
+			"type": "Or",
 			"param": {
-				"expected": ["世界深处", "深处"],
-				"roi": [0, 1168, 154, 109]
+				"any_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["世界深处", "深处"],
+								"roi": [0, 1168, 154, 109]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["mainmap/主线页面.png"],
+								"roi": [611, 99, 109, 121],
+								"threshold": 0.85
+							}
+						}
+					}
+				]
 			}
 		},
 		"timeout": 3000,
@@ -41,7 +60,10 @@
 			"[JumpBack]进入主线第15章剧情",
 			"[JumpBack]进入主线第16章剧情",
 			"[JumpBack]进入战斗点击追击",
-			"[JumpBack]自动过剧情"
+			"[JumpBack]自动过剧情",
+			"[JumpBack]退出剧情回顾popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]退出点击空白继续popop"
 		]
 	},
 	"确定下载资源更新": {

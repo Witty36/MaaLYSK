@@ -4,8 +4,6 @@ import {useData} from "vitepress";
 import BackToTop from "./components/BackToTop.vue";
 import NavContactGroup from "./components/NavContactGroup.vue";
 import "./custom.css";
-import Mermaid from "./components/Mermaid.vue";
-import Flowchart from './components/Flowchart.vue'
 
 export default {
     extends: DefaultTheme,
@@ -29,7 +27,6 @@ export default {
     },
 
     enhanceApp({ app }: { app: any }) {
-        app.component('Mermaid', Mermaid);
-        app.component('Flowchart', Flowchart);
+        app.component('SmartDownloadChannels', SmartDownloadChannels);
     },
 };

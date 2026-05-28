@@ -1,0 +1,54 @@
+{
+	"进入软绒奇境": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"max_hit": 1,
+		"next": [
+			"软绒奇境菜单",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"软绒奇境菜单": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/软绒奇境(202605肝活)/软绒奇境菜单.png"],
+				"roi": [10, 1179, 701, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"repeat": 2,
+		"next": ["进入纷乱清点"]
+	},
+	"进入纷乱清点": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["纷乱清点", "纷乱", "清点"],
+				"roi": [121, 314, 249, 130]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"pre_delay": 100,
+		"post_delay": 1000,
+		"rate_limit": 100,
+		"next": []
+	}
+}

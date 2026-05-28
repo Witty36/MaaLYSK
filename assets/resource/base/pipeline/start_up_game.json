@@ -1,12 +1,22 @@
 {
 	"启动游戏版本": {
-		"next": ["切换账号启动", "恋与深空官服"]
+		"next": [
+			"切换账号启动",
+			"恋与深空官服",
+			"恋与深空b服",
+			"恋与深空米服",
+			"恋与深空oppo服",
+			"恋与深空vivo服",
+			"恋与深空华为服",
+			"恋与深空繁中服",
+			"恋与深空国际服"
+		]
 	},
 	"启动再等等": {
 		"post_delay": 5000
 	},
 	"恋与深空官服": {
-		"enabled": true,
+		"enabled": false,
 		"next": [
 			"是否主页面",
 			"[JumpBack]sub_关闭公告",
@@ -20,6 +30,111 @@
 		],
 		"focus": "启动恋与深空官服"
 	},
+	"恋与深空b服": {
+		"enabled": false,
+		"next": [
+			"是否主页面",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]sub_点击账号登录",
+			"[JumpBack]网络连接失败popop",
+			"[JumpBack]断线重连popop",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空b服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动恋与深空b服"
+	},
+	"恋与深空米服": {
+		"enabled": false,
+		"next": [
+			"是否主页面",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]sub_点击账号登录",
+			"[JumpBack]网络连接失败popop",
+			"[JumpBack]断线重连popop",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空米服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动恋与深空mi服"
+	},
+	"恋与深空oppo服": {
+		"enabled": false,
+		"next": [
+			"是否主页面",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]sub_点击账号登录",
+			"[JumpBack]网络连接失败popop",
+			"[JumpBack]断线重连popop",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空oppo服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动恋与深空oppo服"
+	},
+	"恋与深空vivo服": {
+		"enabled": false,
+		"next": [
+			"是否主页面",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]sub_点击账号登录",
+			"[JumpBack]网络连接失败popop",
+			"[JumpBack]断线重连popop",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空vivo服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动恋与深空vivo服"
+	},
+	"恋与深空华为服": {
+		"enabled": false,
+		"next": [
+			"是否主页面",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]sub_点击账号登录",
+			"[JumpBack]网络连接失败popop",
+			"[JumpBack]断线重连popop",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空华为服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动恋与深空huawei服"
+	},
+	"恋与深空繁中服": {
+		"enabled": false,
+		"next": [
+			"是否主页面",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]sub_点击账号登录",
+			"[JumpBack]网络连接失败popop",
+			"[JumpBack]断线重连popop",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空繁中服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动恋与深空tw服"
+	},
+	"恋与深空国际服": {
+		"enabled": false,
+		"next": [
+			"是否主页面",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]sub_点击账号登录",
+			"[JumpBack]网络连接失败popop",
+			"[JumpBack]断线重连popop",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空国际服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动恋与深空en服"
+	},
 	"是否主页面": {
 		"recognition": {
 			"type": "TemplateMatch",
@@ -31,7 +146,16 @@
 		"next": ["stop"]
 	},
 	"关闭游戏": {
-		"next": ["[JumpBack]sub_关闭深空官服"],
+		"next": [
+			"[JumpBack]sub_关闭深空官服",
+			"[JumpBack]sub_关闭深空b服",
+			"[JumpBack]sub_关闭深空米服",
+			"[JumpBack]sub_关闭深空oppo服",
+			"[JumpBack]sub_关闭深空vivo服",
+			"[JumpBack]sub_关闭深空华为服",
+			"[JumpBack]sub_关闭深空繁中服",
+			"[JumpBack]sub_关闭深空国际服"
+		],
 		"focus": "关闭恋与深空官服"
 	},
 	"sub_关闭深空官服": {
@@ -43,12 +167,152 @@
 		},
 		"next": ["stop"]
 	},
+	"sub_关闭深空国际服": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.papegames.lysk.en"
+			}
+		},
+		"next": ["stop"]
+	},
+	"sub_关闭深空繁中服": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.papegames.lysk.tw"
+			}
+		},
+		"next": ["stop"]
+	},
+	"sub_关闭深空b服": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.bilibili"
+			}
+		},
+		"next": ["stop"]
+	},
+	"sub_关闭深空米服": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.mi"
+			}
+		},
+		"next": ["stop"]
+	},
+	"sub_关闭深空oppo服": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.nearme.gamecenter"
+			}
+		},
+		"next": ["stop"]
+	},
+	"sub_关闭深空vivo服": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.vivo"
+			}
+		},
+		"next": ["stop"]
+	},
+	"sub_关闭深空华为服": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.huawei"
+			}
+		},
+		"next": ["stop"]
+	},
 	"sub_启动深空官服": {
-		"enabled": true,
+		"enabled": false,
 		"action": {
 			"type": "StartApp",
 			"param": {
 				"package": "com.papegames.lysk.cn"
+			}
+		},
+		"max_hit": 5,
+		"next": ["启动再等等"]
+	},
+	"sub_启动深空国际服": {
+		"enabled": false,
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.en"
+			}
+		},
+		"max_hit": 5,
+		"next": ["启动再等等"]
+	},
+	"sub_启动深空繁中服": {
+		"enabled": false,
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.tw"
+			}
+		},
+		"max_hit": 5,
+		"next": ["启动再等等"]
+	},
+	"sub_启动深空b服": {
+		"enabled": false,
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.bilibili"
+			}
+		},
+		"max_hit": 5,
+		"next": ["启动再等等"]
+	},
+	"sub_启动深空米服": {
+		"enabled": false,
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.mi"
+			}
+		},
+		"max_hit": 5,
+		"next": ["启动再等等"]
+	},
+	"sub_启动深空oppo服": {
+		"enabled": false,
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.nearme.gamecenter"
+			}
+		},
+		"max_hit": 5,
+		"next": ["启动再等等"]
+	},
+	"sub_启动深空华为服": {
+		"enabled": false,
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.huawei"
+			}
+		},
+		"max_hit": 5,
+		"next": ["启动再等等"]
+	},
+	"sub_启动深空vivo服": {
+		"enabled": false,
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.cn.vivo"
 			}
 		},
 		"max_hit": 5,

@@ -44,6 +44,36 @@
 								"roi": [429, 1137, 126, 137]
 							}
 						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自", "动"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [536, 1184, 70, 57]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自", "动"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [510, 1137, 127, 138]
+							}
+						}
 					}
 				]
 			}
@@ -57,6 +87,7 @@
 		"post_delay": 4000,
 		"next": [
 			"点成2倍速",
+			"动画继续过",
 			"[JumpBack]选剧情选项",
 			"[JumpBack]自动过剧情点点"
 		],
@@ -64,12 +95,38 @@
 	},
 	"自动过剧情_TM": {
 		"recognition": {
-			"type": "TemplateMatch",
+			"type": "Or",
 			"param": {
-				"template": ["剧情点击自动.png"],
-				"green_mask": true,
-				"threshold": 0.65,
-				"roi": [440, 1165, 95, 87]
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"剧情点击自动.png",
+									"剧情点击自动2.png"
+								],
+								"green_mask": true,
+								"threshold": 0.65,
+								"roi": [440, 1165, 95, 87]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"剧情点击自动.png",
+									"剧情点击自动2.png"
+								],
+								"green_mask": true,
+								"threshold": 0.65,
+								"roi": [525, 1165, 96, 88]
+							}
+						}
+					}
+				]
 			}
 		},
 		"action": {
@@ -83,6 +140,7 @@
 		"post_delay": 4000,
 		"next": [
 			"点成2倍速",
+			"动画继续过",
 			"[JumpBack]选剧情选项",
 			"[JumpBack]自动过剧情点点"
 		],
@@ -90,7 +148,127 @@
 	},
 	"点成2倍速": {
 		"recognition": {
-			"type": "DirectHit"
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["剧情页面标志.png"],
+								"green_mask": true,
+								"threshold": 0.65,
+								"roi": [325, 1162, 159, 91]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [453, 1182, 69, 56]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [429, 1137, 126, 137]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [571, 1198, 17, 23]
+			}
+		},
+		"repeat": 3,
+		"repeat_delay": 2000,
+		"timeout": 40000,
+		"next": [
+			"[JumpBack]选剧情祁煜",
+			"[JumpBack]选剧情选项",
+			"[JumpBack]跳过吹气",
+			"[JumpBack]剧情圈圈选项点一点",
+			"[JumpBack]自动过剧情点点",
+			"[JumpBack]live剧情等待",
+			"[JumpBack]为他唱生日歌",
+			"[JumpBack]结束唱歌",
+			"[JumpBack]加载页面等待_竖屏",
+			"[JumpBack]加载页面等待_横屏"
+		],
+		"on_error": ["null"]
+	},
+	"动画继续过": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"剧情点击自动.png",
+									"剧情点击自动2.png"
+								],
+								"green_mask": true,
+								"threshold": 0.65,
+								"roi": [525, 1165, 96, 88]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自", "动"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [536, 1184, 70, 57]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["自动", "自", "动"],
+								"replace": [
+									["白", "自"],
+									["百", "自"],
+									["国", "自"],
+									["國", "自"]
+								],
+								"roi": [510, 1137, 127, 138]
+							}
+						}
+					}
+				]
+			}
 		},
 		"action": {
 			"type": "Click",

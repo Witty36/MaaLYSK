@@ -123,7 +123,7 @@
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"roi": [256,1147,94,92],
+				"roi": [256, 1147, 94, 92],
 				"expected": ["约会"]
 			}
 		},
@@ -428,74 +428,93 @@
 	},
 	"主线页面确认": {
 		"recognition": {
-			"type": "OCR",
+			"type": "Or",
 			"param": {
-				"expected": ["世界深处", "深处"],
-				"roi": [0, 1168, 154, 109]
+				"any_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["世界深处", "深处"],
+								"roi": [0, 1168, 154, 109]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["mainmap/主线页面.png"],
+								"roi": [611, 99, 109, 121],
+								"threshold": 0.85
+							}
+						}
+					}
+				]
 			}
 		},
 		"focus": "已在主线页面",
 		"next": []
-},
-	 "点击家园": {
+	},
+	"点击家园": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
 				"expected": ["家园", "园"],
-				"roi": [156,1150,91,91]
+				"roi": [156, 1150, 91, 91]
 			}
 		},
-        		"action": {
-            "type": "Click",
-            "param": {}
-        },
-        "post_delay": 90000,
-        "next": ["家园页面确认"]
-    },
-    "家园页面确认": {
-        "recognition": {
-            "type": "OCR",
-            "param": {
-                "expected": ["装修", "修"],
-                "roi": [1084,666,59,29]
-            }
-        },
-        "focus": "已在家园页面",
-        "next": []
-    },
-	
-    "家园_跳过照料动画": {
-        "recognition": {
-        "type": "OCR",
-        "param": {
-            "expected": "跳过",
-            "roi": [1145,26,98,27]
-        }
-         },
-        "action": {
-        "type": "Click",
-        "param": {}
-        },
-        "timeout": 3000,
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 90000,
+		"next": ["家园页面确认"]
+	},
+	"家园页面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["装修", "修"],
+				"roi": [1084, 666, 59, 29]
+			}
+		},
+		"focus": "已在家园页面",
+		"next": []
+	},
+
+	"家园_跳过照料动画": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "跳过",
+				"roi": [1145, 26, 98, 27]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 3000,
 		"focus": "已跳过动画",
-        "next": ["家园_批量收获准备"],
+		"next": ["家园_批量收获准备"],
 		"post_delay": 5000
-    },
+	},
 	"家园_跳过收获动画": {
-        "recognition": {
-        "type": "OCR",
-        "param": {
-            "expected": "跳过",
-            "roi": [1145,26,98,27]
-        }
-         },
-        "action": {
-        "type": "Click",
-        "param": {}
-        },
-        "timeout": 3000,
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "跳过",
+				"roi": [1145, 26, 98, 27]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 3000,
 		"focus": "已跳过动画",
-        "next": ["[JumpBack]导航回花园页面（花园）"],
+		"next": ["[JumpBack]导航回花园页面（花园）"],
 		"post_delay": 5000
-    }
+	}
 }
