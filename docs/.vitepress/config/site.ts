@@ -11,7 +11,7 @@ export const siteConfig = {
             "link",
             {
                 rel: "stylesheet",
-                href: "https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css",
+                href: "https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css",
             },
         ],
     ],

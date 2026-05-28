@@ -43,6 +43,10 @@ const releaseFiles = {
   },
 } as const
 
+function resolveFilename(template: string) {
+  return template.replace('vx.x.x', latestVersion.value || 'vx.x.x')
+}
+
 const downloadChannels: DownloadChannel[] = [
   {
     label: 'Mirror酱',
@@ -69,6 +73,13 @@ const { theme } = useData()
 const latestVersion = computed(() => {
   const meta: any = theme.value.latestReleaseMeta
   return meta?.version ?? ''
+})
+
+const releaseDate = computed(() => {
+  const meta: any = theme.value.latestReleaseMeta
+  const raw = meta?.published_at
+  if (!raw) return ''
+  return raw.slice(0, 10)
 })
 
 const versionTypeLabel = computed(() => {
@@ -181,14 +192,14 @@ const recommendation = computed<DownloadRecommendation>(() => {
       return {
         button: `推荐下载 Windows ${getArchDisplayName(arch)} 版`,
         hint: '进入任一渠道后，优先选择以下完整安装包：',
-        filename: files[arch],
+        filename: resolveFilename(files[arch]),
         tone: 'brand',
       }
     }
     return {
       button: '推荐下载 Windows x86_64 版',
       hint: '未能识别 CPU 架构，推荐优先尝试 x86_64 版本；若无法运行，请选择 aarch64 版本。',
-      filename: releaseFiles.windows.x64,
+      filename: resolveFilename(releaseFiles.windows.x64),
       tone: 'warning',
     }
   }
@@ -199,7 +210,7 @@ const recommendation = computed<DownloadRecommendation>(() => {
       return {
         button: '推荐下载 macOS Intel 版',
         hint: '进入任一渠道后，优先选择以下完整安装包：',
-        filename: releaseFiles.macos.x64,
+        filename: resolveFilename(releaseFiles.macos.x64),
         tone: 'brand',
       }
     }
@@ -207,14 +218,14 @@ const recommendation = computed<DownloadRecommendation>(() => {
       return {
         button: '推荐下载 macOS Apple Silicon 版',
         hint: '进入任一渠道后，优先选择以下完整安装包：',
-        filename: releaseFiles.macos.arm64,
+        filename: resolveFilename(releaseFiles.macos.arm64),
         tone: 'brand',
       }
     }
     return {
       button: '推荐下载 macOS Apple Silicon 版',
       hint: '未能识别 CPU 架构，M 芯片用户请选择 aarch64 版本，Intel 用户请选择 x86_64 版本。',
-      filename: releaseFiles.macos.arm64,
+      filename: resolveFilename(releaseFiles.macos.arm64),
       tone: 'warning',
     }
   }
@@ -226,14 +237,14 @@ const recommendation = computed<DownloadRecommendation>(() => {
       return {
         button: `推荐下载 Linux ${getArchDisplayName(arch)} 版`,
         hint: '进入任一渠道后，优先选择以下完整安装包（暂未完整测试）：',
-        filename: files[arch],
+        filename: resolveFilename(files[arch]),
         tone: 'brand',
       }
     }
     return {
       button: '推荐下载 Linux x86_64 版',
       hint: '未能识别 CPU 架构，推荐优先尝试 x86_64 版本（暂未完整测试）。',
-      filename: releaseFiles.linux.x64,
+      filename: resolveFilename(releaseFiles.linux.x64),
       tone: 'warning',
     }
   }
@@ -399,11 +410,14 @@ onMounted(() => {
       </p>
       <p v-if="recommendation.filename" class="smart-download__filename">
         <code>{{ recommendation.filename }}</code>
+        <span class="smart-download__version-label" :class="versionTypeLabel === '公测版' ? 'is-beta' : 'is-stable'">{{ versionTypeLabel }}</span>
       </p>
-      <p v-if="latestVersion" class="smart-download__version">
+      <p v-if="recommendation.filename && releaseDate" class="smart-download__release-date">最新发布于 {{ releaseDate }}</p>
+      <p v-else-if="latestVersion" class="smart-download__version">
         最新版本
         <span class="smart-download__version-tag">{{ latestVersion }}</span>
         <span class="smart-download__version-label" :class="versionTypeLabel === '公测版' ? 'is-beta' : 'is-stable'">{{ versionTypeLabel }}</span>
+        <span v-if="releaseDate" class="smart-download__release-date--inline">{{ releaseDate }}</span>
       </p>
       <p class="smart-download__mirror">
         <span>已有 Mirror酱 CDK？</span>
@@ -521,13 +535,16 @@ onMounted(() => {
 }
 
 .smart-download__filename {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   margin: -2px 0 0;
 }
 
 .smart-download__filename code {
   display: inline-block;
   max-width: 100%;
-  padding: 10px 14px;
+  padding: 8px 12px;
   border-radius: 10px;
   border: 1px solid var(--vp-c-brand-soft);
   background: color-mix(in srgb, var(--vp-c-brand-soft) 85%, transparent);
@@ -538,13 +555,24 @@ onMounted(() => {
   word-break: break-all;
 }
 
+.smart-download__release-date {
+  margin: -2px 0 0;
+  font-size: 0.78rem;
+  color: rgba(150, 148, 165, 0.75);
+}
+
+.smart-download__release-date--inline {
+  font-size: 0.68rem;
+  color: rgba(148, 142, 175, 0.35);
+}
+
 .smart-download__version {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
   gap: 4px;
   margin: -2px 0 0;
-  color: var(--vp-c-text-3);
+  color: rgba(140, 138, 160, 0.95);
   font-size: 0.78rem;
 }
 
@@ -555,14 +583,14 @@ onMounted(() => {
   font-size: 0.75rem;
   font-weight: 500;
   color: var(--vp-c-text-2);
-  background: var(--vp-c-bg-soft);
+  background: rgba(155, 132, 237, 0.04);
 }
 
 .smart-download__version-label {
   display: inline-block;
-  padding: 1px 6px;
+  padding: 2px 10px;
   border-radius: 999px;
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 500;
 }
 
@@ -574,6 +602,11 @@ onMounted(() => {
 .smart-download__version-label.is-beta {
   color: #f59e0b;
   background: rgba(245, 158, 11, 0.12);
+}
+
+.smart-download__version-date {
+  color: rgba(155, 148, 185, 0.45);
+  font-size: 0.65rem;
 }
 
 .smart-download__mirror {

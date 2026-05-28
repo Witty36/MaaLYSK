@@ -13,19 +13,25 @@ hero:
   actions:
     - theme: brand
       text: 快速开始
-      link: /zh_cn/manual/1.1.html
+      link: "#quick-start-popup"
     - theme: alt
       text: 开发指南
       link: /zh_cn/develop/0.0.html
 
 features:
-  - icon: <i class="ri-robot-2-line"></i>
-    title: 自动化助手
-    details: 基于图像识别与状态判断，自动完成日常任务与重复操作。
-  - icon: <i class="ri-tools-line"></i>
-    title: MaaFrameWork 架构
-    details: 高可扩展、模块化设计，方便维护与二次开发。
-  - icon: <i class="ri-space-ship-line"></i>
-    title: 解放双手
-    details: 稳定运行，减少人工干预，节省你宝贵的时间。
+  - icon: <i class="ri-alarm-warning-line"></i>
+    title: 关于 MaaLYSK
+    details: MaaLYSK的基本介绍、重要声明。
+    link: /zh_cn/announcement/1.1.html
+    linkText: 了解更多
+  - icon: <i class="ri-question-answer-line"></i>
+    title: 常见问题
+    details: 遇到问题？查看常见问题解答。
+    link: /zh_cn/manual/2.2.html
+    linkText: 了解更多
+  - icon: <i class="ri-lightbulb-flash-line"></i>
+    title: 反馈 / 许愿方式
+    details: bug反馈？有新功能想法？来这里告诉我们。
+    link: /zh_cn/announcement/1.2.html
+    linkText: 了解更多
 ---

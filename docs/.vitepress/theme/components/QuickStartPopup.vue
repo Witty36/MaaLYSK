@@ -1,32 +1,11 @@
 <script lang="ts" setup>
-import { ref, computed, onMounted } from 'vue'
-import { useData, useRouter } from 'vitepress'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vitepress'
 
-const { theme } = useData()
 const router = useRouter()
 
 const visible = ref(false)
-const step = ref<'choice' | 'beginner'>('choice')
-
-const version = computed(() => {
-  const meta: any = theme.value.latestReleaseMeta
-  return meta?.version ?? 'v0.0.1'
-})
-
-const versionLabel = computed(() => {
-  const v = version.value.toLowerCase()
-  if (v.includes('-beta') || v.includes('-alpha') || v.includes('-rc') || v.includes('-pre')) {
-    return '公测版'
-  }
-  return '正式版'
-})
-
-const releaseDate = computed(() => {
-  const meta: any = theme.value.latestReleaseMeta
-  const raw = meta?.published_at
-  if (!raw) return ''
-  return raw.slice(0, 10)
-})
+const step = ref<'choice' | 'download'>('choice')
 
 function show() {
   step.value = 'choice'
@@ -37,9 +16,9 @@ function dismiss() {
   visible.value = false
 }
 
-function goNotBeginner() {
+function goUpdate() {
   visible.value = false
-  router.go('/zh_cn/manual/1.1#下载方式')
+  router.go('/zh_cn/manual/1.4')
 }
 
 function goSimple() {
@@ -55,7 +34,7 @@ function goDetailed() {
 onMounted(() => {
   const handler = (e: Event) => {
     const target = e.target as Element
-    const el = target.closest('a[href="#version-popup"]')
+    const el = target.closest('a[href="#quick-start-popup"]')
     if (!el) return
     e.preventDefault()
     e.stopImmediatePropagation()
@@ -78,40 +57,36 @@ onMounted(() => {
 
         <template v-if="step === 'choice'">
           <div class="vp-body">
-            <div class="vp-version-row">
-              <span class="vp-version-tag">{{ version }}</span>
-              <span class="vp-version-label" :class="versionLabel === '公测版' ? 'is-beta' : 'is-stable'">{{ versionLabel }}</span>
-            </div>
-            <p class="vp-subtitle">欢迎使用 MaaLYSK，请选择你的使用方式</p>
+            <p class="vp-title">快速开始</p>
+            <p class="vp-subtitle">请选择你需要进行的操作</p>
             <div class="vp-actions">
-              <button class="vp-btn vp-btn-primary" @click="dismiss(); goNotBeginner()">
+              <button class="vp-btn vp-btn-primary" @click="step = 'download'">
                 <span class="vp-btn-icon">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
                 </span>
                 <span class="vp-btn-text">
-                  <span class="vp-btn-title">我不是新手</span>
-                  <span class="vp-btn-desc">直接跳转下载</span>
+                  <span class="vp-btn-title">我要下载</span>
+                  <span class="vp-btn-desc">首次安装 MaaLYSK</span>
                 </span>
               </button>
-              <button class="vp-btn vp-btn-outline" @click="step = 'beginner'">
+              <button class="vp-btn vp-btn-outline" @click="goUpdate()">
                 <span class="vp-btn-icon">
-                  <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><g transform="translate(20,0) scale(0.85,1)"><text x="0" y="26" text-anchor="middle" font-size="16" font-weight="700" fill="currentColor" font-family="inherit">NEW</text></g></svg>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>
                 </span>
                 <span class="vp-btn-text">
-                  <span class="vp-btn-title">我是新手</span>
-                  <span class="vp-btn-desc">查看新手教程指引</span>
+                  <span class="vp-btn-title">我要更新</span>
+                  <span class="vp-btn-desc">已安装，升级到最新版</span>
                 </span>
               </button>
             </div>
-            <p v-if="releaseDate" class="vp-release-date">最新版发布于 {{ releaseDate }}</p>
           </div>
         </template>
 
-        <template v-if="step === 'beginner'">
+        <template v-if="step === 'download'">
           <div class="vp-body">
-            <p class="vp-subtitle">请选择适合你的教程</p>
+            <p class="vp-subtitle">请选择适合你的下载教程</p>
             <div class="vp-actions">
-              <button class="vp-btn vp-btn-primary" @click="dismiss(); goSimple()">
+              <button class="vp-btn vp-btn-primary" @click="goSimple()">
                 <span class="vp-btn-icon">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 5 14 11 14 10 22 20 9 13 9 14 2"/></svg>
                 </span>
@@ -120,7 +95,7 @@ onMounted(() => {
                   <span class="vp-btn-desc">阅读快速开始文档</span>
                 </span>
               </button>
-              <button class="vp-btn vp-btn-outline" @click="dismiss(); goDetailed()">
+              <button class="vp-btn vp-btn-outline" @click="goDetailed()">
                 <span class="vp-btn-icon">
                   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="2" width="18" height="20" rx="2"/><rect x="6" y="5" width="12" height="8" rx="1" fill="currentColor" fill-opacity="0.12"/><line x1="6" y1="17" x2="18" y2="17"/><line x1="6" y1="20" x2="12" y2="20"/></svg>
                 </span>
@@ -188,47 +163,11 @@ onMounted(() => {
   text-align: center;
 }
 
-.vp-version-row {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
-.vp-version-tag {
-  display: inline-block;
-  padding: 4px 16px;
-  border-radius: 999px;
-  font-size: 14px;
+.vp-title {
+  margin: 0 0 8px;
+  font-size: 20px;
   font-weight: 700;
-  color: var(--vp-c-brand-1);
-  background: var(--vp-c-brand-soft);
-}
-
-.vp-version-label {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-}
-
-.vp-version-label.is-stable {
-  color: #10b981;
-  background: rgba(16, 185, 129, 0.12);
-}
-
-.vp-version-label.is-beta {
-  color: #f59e0b;
-  background: rgba(245, 158, 11, 0.12);
-}
-
-.vp-release-date {
-  margin: 12px 0 0;
-  font-size: 13px;
-  color: var(--vp-c-text-2);
-  opacity: 0.7;
+  color: var(--vp-c-text-1);
 }
 
 .vp-subtitle {
@@ -258,9 +197,9 @@ onMounted(() => {
 }
 
 .vp-btn-primary {
-  background: #a48df2;
+  background: #ad96f4;
   color: #fff;
-  border-color: #a48df2;
+  border-color: #ad96f4;
 }
 
 .vp-btn-primary:hover {

@@ -48,7 +48,603 @@
 		},
 		"pre_delay": 100,
 		"post_delay": 1000,
-		"rate_limit": 100,
+		"next": ["已在纷乱清点页面"],
+		"on_error": ["进入纷乱清点"]
+	},
+	"已在纷乱清点页面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/软绒奇境(202605肝活)/已在纷乱清点页面.png"],
+				"roi": [87, 4, 149, 150]
+			}
+		},
+		"post_delay": 5000,
+		"next": [
+			"进行快速分拣",
+			"纷乱清点_再来一局",
+			"[JumpBack]纷乱清点_棕熊1",
+			"[JumpBack]纷乱清点_蓝豚1",
+			"[JumpBack]纷乱清点_绿刺1",
+			"[JumpBack]纷乱清点_羊驼1",
+			"[JumpBack]纷乱清点_紫茄1",
+			"[JumpBack]纷乱清点_粉猪1",
+			"[JumpBack]纷乱清点_红萝1"
+		]
+	},
+	"进行快速分拣": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["快速分拣", "分拣"],
+								"roi": [84, 1128, 133, 68]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [250, 204, 141],
+								"upper": [255, 218, 168],
+								"count": 500,
+								"roi": [98, 1190, 107, 26]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"pre_delay": 1500,
+		"repeat": 2,
+		"next": [
+			"进行快速分拣2",
+			"纷乱清点_再来一局",
+			"[JumpBack]纷乱清点_棕熊1",
+			"[JumpBack]纷乱清点_蓝豚1",
+			"[JumpBack]纷乱清点_绿刺1",
+			"[JumpBack]纷乱清点_羊驼1",
+			"[JumpBack]纷乱清点_紫茄1",
+			"[JumpBack]纷乱清点_粉猪1",
+			"[JumpBack]纷乱清点_红萝1"
+		]
+	},
+	"进行快速分拣2": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["快速分拣", "分拣"],
+								"roi": [84, 1128, 133, 68]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "ColorMatch",
+							"param": {
+								"lower": [250, 204, 141],
+								"upper": [255, 218, 168],
+								"count": 500,
+								"roi": [98, 1190, 107, 26]
+							}
+						}
+					}
+				],
+				"box_index": 0
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"pre_delay": 1500,
+		"repeat": 2,
+		"next": [
+			"纷乱清点_再来一局",
+			"[JumpBack]纷乱清点玩偶已满",
+			"[JumpBack]纷乱清点_棕熊1",
+			"[JumpBack]纷乱清点_蓝豚1",
+			"[JumpBack]纷乱清点_绿刺1",
+			"[JumpBack]纷乱清点_羊驼1",
+			"[JumpBack]纷乱清点_紫茄1",
+			"[JumpBack]纷乱清点_粉猪1",
+			"[JumpBack]纷乱清点_红萝1"
+		]
+	},
+	"纷乱清点玩偶已满退出": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/软绒奇境(202605肝活)/纷乱清点玩偶已满.png"],
+				"roi": [529, 366, 162, 197]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [32, 66, 11, 8]
+			}
+		},
+		"inverse": true,
+		"next": ["纷乱清点_立即结束游戏", "纷乱清点_再来一局"]
+	},
+	"纷乱清点_立即结束游戏": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["立即结束", "结束"],
+				"roi": [139, 691, 151, 97]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [207, 667, 17, 16]
+			}
+		},
+		"next": ["纷乱清点_再来一局"]
+	},
+	"纷乱清点_再来一局": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["再来一局", "再来", "一局"],
+				"roi": [349, 960, 228, 161]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["已在纷乱清点页面"]
+	},
+	"纷乱清点玩偶已满": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/软绒奇境(202605肝活)/纷乱清点玩偶已满.png"],
+				"roi": [529, 366, 162, 197]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [588, 459, 10, 8]
+			}
+		},
+		"inverse": true,
+		"next": ["清理两格玩偶"]
+	},
+	"清理两格玩偶": {
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [514, 464, 4, 3]
+			}
+		},
+		"timeout": 3000,
+		"next": ["补齐一组玩偶"],
+		"on_error": ["null"]
+	},
+	"补齐一组玩偶": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["补齐"],
+				"roi": [312, 1137, 69, 57]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": []
+	},
+	"纷乱清点_棕熊1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [225, 153, 76],
+				"upper": [230, 164, 85],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_棕熊2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_棕熊2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [225, 153, 76],
+				"upper": [230, 164, 85],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_棕熊3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_棕熊3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [225, 153, 76],
+				"upper": [230, 164, 85],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
+	},
+	"纷乱清点_蓝豚1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [174, 183, 194],
+				"upper": [179, 186, 195],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_蓝豚2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_蓝豚2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [174, 183, 194],
+				"upper": [179, 186, 195],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_蓝豚3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_蓝豚3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [174, 183, 194],
+				"upper": [179, 186, 195],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
+	},
+	"纷乱清点_粉猪1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [244, 196, 165],
+				"upper": [247, 201, 172],
+				"count": 100,
+				"connected": true,
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_粉猪2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_粉猪2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [244, 196, 165],
+				"upper": [247, 201, 172],
+				"count": 100,
+				"connected": true,
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_粉猪3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_粉猪3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [244, 196, 165],
+				"upper": [247, 201, 172],
+				"count": 100,
+				"connected": true,
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
+	},
+	"纷乱清点_羊驼1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [213, 181, 142],
+				"upper": [229, 198, 159],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_羊驼2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_羊驼2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [213, 181, 142],
+				"upper": [229, 198, 159],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_羊驼3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_羊驼3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [213, 181, 142],
+				"upper": [229, 198, 159],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
+	},
+	"纷乱清点_绿刺1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [210, 204, 114],
+				"upper": [220, 213, 125],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_绿刺2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_绿刺2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [210, 204, 114],
+				"upper": [220, 213, 125],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_绿刺3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_绿刺3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [210, 204, 114],
+				"upper": [220, 213, 125],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
+	},
+	"纷乱清点_紫茄1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [198, 130, 163],
+				"upper": [206, 140, 173],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_紫茄2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_紫茄2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [198, 130, 163],
+				"upper": [206, 140, 173],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_紫茄3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_紫茄3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [198, 130, 163],
+				"upper": [206, 140, 173],
+				"count": 100,
+				"connected": true,
+				"roi": [114, 577, 487, 531]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
+	},
+	"纷乱清点_红萝1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [171, 52, 86],
+				"upper": [217, 88, 125],
+				"count": 100,
+				"connected": true,
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_红萝2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_红萝2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [171, 52, 86],
+				"upper": [217, 88, 125],
+				"count": 100,
+				"connected": true,
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 400,
+		"timeout": 2000,
+		"rate_limit": 500,
+		"next": ["纷乱清点_再来一局", "纷乱清点_红萝3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_红萝3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [171, 52, 86],
+				"upper": [217, 88, 125],
+				"count": 100,
+				"connected": true,
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
 		"next": []
 	}
 }
