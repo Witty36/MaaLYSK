@@ -8,7 +8,7 @@
 			"type": "DoNothing",
 			"param": {}
 		},
-		"next": ["进入心隙拾意"]
+		"next": ["进入软绒奇境"]
 	},
 	"进入限时活动": {
 		"recognition": {

@@ -13,18 +13,18 @@
 			"default_check": true
 		},
 		{
-			"name": "🌳家园日常",
-			"entry": "进入家园",
-			"default_check": false,
-			"option": ["是否需要补种"],
-			"description": "批量收成花卉/批量照料，如果有需要补种的花坛会自动补种1-3次(确保包里有足够种子)，完成后会停在家园界面，不帮忙拉小曲儿，有需求可以提，有bug可以硬着头皮先用后面再修。"
-		},
-		{
 			"name": "📅日常收尾",
 			"entry": "进入日常收尾",
 			"default_check": true,
 			"option": ["是否尝试进行鎏金卡补签"],
 			"description": "签到奖励领取,日常任务领取<br><span style=\"color:red\">任务完成后,请自行检查是否领取完毕</span>"
+		},
+		{
+			"name": "🪴家园日常",
+			"entry": "进入家园",
+			"default_check": false,
+			"option": ["是否需要补种"],
+			"description": "批量收成花卉/批量照料，如果有需要补种的花坛会自动补种1-3次(确保包里有足够种子)，完成后会停在家园界面，不帮忙拉小曲儿，有需求可以提，有bug可以硬着头皮先用后面再修。"
 		}
 	],
 	"option": {
@@ -115,13 +115,13 @@
 					}
 				}
 			]
-	},
-		 
+		},
+
 		"是否需要补种": {
 			"type": "switch",
 			"cases": [
 				{
-				"name": "Yes",
+					"name": "Yes",
 					"pipeline_override": {
 						"家园_补充种植准备": {
 							"enable": true
@@ -134,7 +134,7 @@
 						"家园_补充种植准备": {
 							"enable": false
 						}
-					}	
+					}
 				}
 			]
 		}

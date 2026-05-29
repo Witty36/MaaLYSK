@@ -110,7 +110,7 @@
 }
 
 .dark {
-    --vp-c-brand-1: #9b84ed;
+    --vp-c-brand-1: #b49ef5;
     --vp-c-brand-2: #c2a4fb;
     --vp-c-brand-3: #d2befd;
     --vp-c-brand-soft: rgba(155, 132, 237, 0.16);
@@ -129,21 +129,21 @@
 }
 
 .dark .custom-block.tip code {
-    color: #D0DCC4;
-    background: rgba(208, 220, 196, 0.14);
+    color: #d4bcfc;
+    background: rgba(205, 185, 248, 0.14);
 }
 
 .dark .custom-block.note code {
-    color: #b6aaf2;
-    background: rgba(160, 150, 220, 0.14);
+    color: #d0c4ff;
+    background: rgba(200, 192, 252, 0.14);
 }
 
 .dark .custom-block.tip a {
-    color: #D0DCC4;
+    color: #d4bcfc;
 }
 
 .dark .custom-block.note a {
-    color: #aca0ee;
+    color: #c4b8fc;
 }
 
 .dark .custom-block.important a {

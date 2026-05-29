@@ -3,7 +3,7 @@
 	"name": "MaaLYSK",
 	"github": "https://github.com/Witty36/MaaLYSK",
 	"title": "MaaLYSK | 恋与深空日常/肝活小助手",
-	"version": "v0.4.0-beta1",
+	"version": "v0.4.2-beta1",
 	"icon": ".\\resource\\base\\image\\logo.ico",
 	"contact": "QQ群: 1065676561 <br>文档站：https://maalysk.top <br>Github：https://github.com/Witty36/MaaLYSK",
 	"mirrorchyan_rid": "MaaLYSK",
@@ -119,6 +119,9 @@
 					"name": "📅日常收尾"
 				},
 				{
+					"name": "🪴家园日常"
+				},
+				{
 					"name": "🛒商城周常领取"
 				},
 				{
@@ -147,6 +150,9 @@
 				},
 				{
 					"name": "🔗周常分享3次"
+				},
+				{
+					"name": "🌳家园周常"
 				},
 				{
 					"name": "📲自动读短信"
@@ -189,12 +195,6 @@
 				},
 				{
 					"name": "🌈限时活动小游戏"
-				},
-				{
-					"name": "🌳家园日常"
-				},
-				{
-					"name": "🌳家园周常"
 				},
 				{
 					"name": "💤恋与深空关闭"

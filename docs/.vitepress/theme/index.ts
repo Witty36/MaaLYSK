@@ -9,6 +9,7 @@ import AnnouncementPopup from "./components/AnnouncementPopup.vue";
 import VersionPopup from "./components/VersionPopup.vue";
 import QuickStartPopup from "./components/QuickStartPopup.vue";
 import SmartDownloadChannels from "./components/SmartDownloadChannels.vue";
+import MirrorLinkEnhancer from "./components/MirrorLinkEnhancer.vue";
 import "./custom.css";
 
 export default {
@@ -17,7 +18,7 @@ export default {
     Layout() {
         const { theme } = useData();
         return h(DefaultTheme.Layout, null, {
-            "layout-top": () => [h(SocialTitles), h(AnnouncementPopup), h(VersionPopup), h(QuickStartPopup)],
+            "layout-top": () => [h(SocialTitles), h(AnnouncementPopup), h(VersionPopup), h(QuickStartPopup), h(MirrorLinkEnhancer)],
             "nav-bar-content-before": () => {
                 const meta = theme.value.latestReleaseMeta;
                 return meta ? h('a', {

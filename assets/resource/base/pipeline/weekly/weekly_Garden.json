@@ -1,487 +1,301 @@
-    {
-        "进入家园周常": {
-            "recognition": {
-                "type": "DirectHit",
-                "param": {}
-            },
-            "action": {
-                "type": "DoNothing",
-                "param": {}
-            },
-            "next": [
-                "周常_家园_确认进入界面",
-                "[JumpBack]点击家园",
-                "[JumpBack]导航回主页面"
-            ]
-        },
-        "周常_家园_确认进入界面": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_家园任务.png"
-                    ],
-                    "roi": [
-                        1174,
-                        609,
-                        81,
-                        97
-                    ]
-                }
-            },
-            "next": [
-                "周常_给他换装一次"
-            ]
-        },
-        "周常_给他换装一次": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "呼唤他"
-                    ],
-                    "roi": [
-                        166,
-                        81,
-                        129,
-                        29
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": [
-                        96,
-                        94,
-                        47,
-                        46
-                    ]
-                }
-            },
-            "next": [
-                "周常_给他换装一次_确认界面"
-            ]
-        },
-        "周常_给他换装一次_确认界面": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "悠闲"
-                    ],
-                    "roi": [
-                        75,
-                        217,
-                        134,
-                        50
-                    ]
-                }
-            },
-            "next": [
-                "周常_给他换装一次_进入换装界面"
-            ]
-        },
-        "周常_给他换装一次_进入换装界面": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_换装.png"
-                    ],
-                    "roi": [
-                        197,
-                        154,
-                        28,
-                        22
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_给他换装一次_开始换装"
-            ]
-        },
-        "周常_给他换装一次_开始换装": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "推荐给他"
-                    ],
-                    "roi": [
-                        1099,
-                        644,
-                        103,
-                        32
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": [
-                        1108,
-                        82,
-                        123,
-                        124
-                    ]
-                }
-            },
-            "next": [
-                "周常_给他换装一次_完成换装"
-            ]
-        },
-        "周常_给他换装一次_完成换装": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "推荐给他"
-                    ],
-                    "roi": [
-                        1099,
-                        644,
-                        103,
-                        32
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_在家园中拍照一次",
-                "[JumpBack]返回上一级页面"
-            ]
-        },
-        "周常_在家园中拍照一次": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "拍照"
-                    ],
-                    "roi": [
-                        984,
-                        623,
-                        57,
-                        73
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_进入拍照界面"
-            ]
-        },
-        "周常_进入拍照界面": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "我来拍照"
-                    ],
-                    "roi": [
-                        964,
-                        564,
-                        109,
-                        38
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_拍照界面确认"
-            ]
-        },
-        "周常_拍照界面确认": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "相册"
-                    ],
-                    "roi": [
-                        1191,
-                        25,
-                        54,
-                        62
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": [
-                        1179,
-                        321,
-                        74,
-                        68
-                    ]
-                }
-            },
-            "timeout": 3000,
-            "next": [
-                "周常_进入商城购买商城周常礼包"
-            ],
-            "on_error": [
-                "[JumpBack]返回上一级页面"
-            ],
-            "post_delay": 5000
-        },
-        "周常_进入商城购买商城周常礼包": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_otto本体.png"
-                    ],
-                    "roi": [
-                        1149,
-                        30,
-                        79,
-                        62
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_进入商店"
-            ]
-        },
-        "周常_进入商店": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "商店"
-                    ],
-                    "roi": [
-                        1007,
-                        267,
-                        165,
-                        142
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_商店界面确认"
-            ]
-        },
-        "周常_商店界面确认": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "每周家园礼包"
-                    ],
-                    "roi": [
-                        232,
-                        120,
-                        1011,
-                        502
-                    ]
-                }
-            },
-            "action": {
-                "type": "DoNothing",
-                "param": {}
-            },
-            "next": [
-                "周常_购买周常礼包",
-                "周常_周常礼包售罄"
-            ]
-        },
-        "周常_购买周常礼包": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "免费"
-                    ],
-                    "roi": [
-                        660,
-                        140,
-                        406,
-                        439
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_购买周常礼包_完成购买"
-            ],
-            "on_error": [
-                "[JumpBack]返回上一级页面"
-            ]
-        },
-        "周常_周常礼包售罄": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "售罄"
-                    ],
-                    "roi": [
-                        769,
-                        511,
-                        56,
-                        30
-                    ]
-                }
-            },
-            "action": {
-                "type": "DoNothing",
-                "param": {}
-            },
-            "focus": "每周礼包售罄",
-            "next": [
-                "[JumpBack]返回上一级页面"
-            ]
-        },
-        "周常_购买周常礼包_完成购买": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "免费"
-                    ],
-                    "roi": [
-                        660,
-                        140,
-                        406,
-                        439
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_领取周常奖励准备",
-                "[JumpBack]返回上一级页面",
-                "[JumpBack]退出花园弹窗popop"
-            ]
-        },
-        "周常_领取周常奖励准备": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "任务"
-                    ],
-                    "roi": [
-                        1189,
-                        621,
-                        57,
-                        79
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "timeout": 3000,
-            "next": [
-                "周常_领取周常奖励"
-            ],
-            "on_error": [
-                "返回等待",
-                "[JumpBack]返回上一级页面"
-            ],
-            "focus": "没有可领取奖励"
-        },
-        "周常_领取周常奖励": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "一键领取"
-                    ],
-                    "roi": [
-                        935,
-                        498,
-                        178,
-                        63
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "周常_二次确认领取周常奖励",
-                "[JumpBack]返回上一级页面"
-            ]
-        },
-        "周常_二次确认领取周常奖励": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": [
-                        "一键领取"
-                    ],
-                    "roi": [
-                        935,
-                        498,
-                        178,
-                        63
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "返回等待"
-            ]
-        }
- 
-    }
+{
+	"进入家园周常": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"周常_家园_确认进入界面",
+			"[JumpBack]点击家园",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"周常_家园_确认进入界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_家园任务.png"],
+				"roi": [1174, 609, 81, 97]
+			}
+		},
+		"next": ["周常_给他换装一次"]
+	},
+	"周常_给他换装一次": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["呼唤他"],
+				"roi": [166, 81, 129, 29]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [96, 94, 47, 46]
+			}
+		},
+		"next": ["周常_给他换装一次_确认界面"]
+	},
+	"周常_给他换装一次_确认界面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["悠闲"],
+				"roi": [75, 217, 134, 50]
+			}
+		},
+		"next": ["周常_给他换装一次_进入换装界面"]
+	},
+	"周常_给他换装一次_进入换装界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_换装.png"],
+				"roi": [197, 154, 28, 22]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["周常_给他换装一次_开始换装"]
+	},
+	"周常_给他换装一次_开始换装": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["推荐给他"],
+				"roi": [1099, 644, 103, 32]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [1108, 82, 123, 124]
+			}
+		},
+		"next": ["周常_给他换装一次_完成换装"]
+	},
+	"周常_给他换装一次_完成换装": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["推荐给他"],
+				"roi": [1099, 644, 103, 32]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["周常_在家园中拍照一次", "[JumpBack]返回上一级页面"]
+	},
+	"周常_在家园中拍照一次": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["拍照"],
+				"roi": [984, 623, 57, 73]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["周常_进入拍照界面"]
+	},
+	"周常_进入拍照界面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["我来拍照"],
+				"roi": [964, 564, 109, 38]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["周常_拍照界面确认"]
+	},
+	"周常_拍照界面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["相册"],
+				"roi": [1191, 25, 54, 62]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [1179, 321, 74, 68]
+			}
+		},
+		"timeout": 3000,
+		"next": ["周常_进入商城购买商城周常礼包"],
+		"on_error": ["[JumpBack]返回上一级页面"],
+		"post_delay": 5000
+	},
+	"周常_进入商城购买商城周常礼包": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_otto本体.png"],
+				"roi": [1149, 30, 79, 62]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["周常_进入商店"]
+	},
+	"周常_进入商店": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["商店"],
+				"roi": [1007, 267, 165, 142]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["周常_商店界面确认"]
+	},
+	"周常_商店界面确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["每周家园礼包"],
+				"roi": [232, 120, 1011, 502]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["周常_购买周常礼包", "周常_周常礼包售罄"]
+	},
+	"周常_购买周常礼包": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["免费"],
+				"roi": [660, 140, 406, 439]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["周常_购买周常礼包_完成购买"],
+		"on_error": ["[JumpBack]返回上一级页面"]
+	},
+	"周常_周常礼包售罄": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["售罄"],
+				"roi": [769, 511, 56, 30]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": "每周礼包售罄",
+		"next": ["[JumpBack]返回上一级页面"]
+	},
+	"周常_购买周常礼包_完成购买": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["免费"],
+				"roi": [660, 140, 406, 439]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": [
+			"周常_领取周常奖励准备",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]退出花园弹窗popop"
+		]
+	},
+	"周常_领取周常奖励准备": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["任务"],
+				"roi": [1189, 621, 57, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 3000,
+		"next": ["周常_领取周常奖励"],
+		"on_error": ["返回等待", "[JumpBack]返回上一级页面"],
+		"focus": "没有可领取奖励"
+	},
+	"周常_领取周常奖励": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["一键领取"],
+				"roi": [935, 498, 178, 63]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["周常_二次确认领取周常奖励", "[JumpBack]返回上一级页面"]
+	},
+	"周常_二次确认领取周常奖励": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["一键领取"],
+				"roi": [935, 498, 178, 63]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["返回等待"]
+	}
+}

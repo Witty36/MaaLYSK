@@ -66,10 +66,30 @@
 	},
 	"进入签到_十日与你": {
 		"recognition": {
-			"type": "TemplateMatch",
+			"type": "Or",
 			"param": {
-				"template": ["event/signin/十日与你_祁煜驭夜灯阑.png"],
-				"roi": [85, 157, 350, 986]
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"event/signin/十日与你_黎深花问逢时.png"
+								],
+								"roi": [85, 157, 350, 986]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["十日", "与你", "细琢辰光"],
+								"roi": [85, 157, 350, 986]
+							}
+						}
+					}
+				]
 			}
 		},
 		"action": {

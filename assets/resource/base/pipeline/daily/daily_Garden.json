@@ -1,407 +1,244 @@
-    {
-        "进入家园": {
-            "recognition": {
-                "type": "DirectHit",
-                "param": {}
-            },
-            "action": {
-                "type": "DoNothing",
-                "param": {}
-            },
-            "next": [
-                "家园_确认进入界面",
-                "[JumpBack]点击家园",
-                "[JumpBack]导航回主页面"
-            ]
-        },
-        "家园_确认进入界面": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_家园任务.png"
-                    ],
-                    "roi": [
-                        1174,
-                        609,
-                        81,
-                        97
-                    ]
-                }
-            },
-            "next": [
-                "家园_点击OTTO记录"
-            ]
-        },
-        "家园_点击OTTO记录": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_otto记录.png"
-                    ],
-                    "roi": [
-                        1090,
-                        43,
-                        45,
-                        48
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {} 
-            },
-            "next": [
-                "家园_点击OTTO记录_确认界面"
-            ]
-        },
-        "家园_点击OTTO记录_确认界面": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_otto记录界面.png"
-                    ],
-                    "roi": [
-                        950,
-                        44,
-                        165,
-                        58
-                    ]
-                }
-            },
-            "next": [
-                "家园_点击花卉照料去看看"
-            ]
-        },
-        "家园_点击花卉照料去看看": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": "去看看",
-                    "roi": [
-                        1161,
-                        119,
-                        62,
-                        21
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {}
-            },
-            "timeout": 3000,
-            "on_error": [
-                "[JumpBack]导航回花园页面（花园）",
-                "[JumpBack]点击家园",
-                "[JumpBack]导航回主页面"
-            ],
-            "next": [
-                "家园_点击花卉照料去看看_确认界面"
-            ]
-        },
-        "家园_点击花卉照料去看看_确认界面": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_花朵照料标记.png"
-                    ],
-                    "roi": [
-                        98,
-                        303,
-                        1241,
-                        407
-                    ]
-                }
-            },
-            "next": [
-                "家园_日常照料花朵"
-            ]
-        },
-        "家园_日常照料花朵": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_花朵照料标记.png"
-                    ],
-                    "roi": [
-                        98,
-                        303,
-                        1241,
-                        407
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {}
-            },
-            "next": [
-                "家园_日常照料花朵_确认界面"
-            ]
-        },
-        "家园_日常照料花朵_确认界面": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": "feature/garden_家园演奏标志.png",
-                    "roi": [
-                        880,
-                        306,
-                        100,
-                        88
-                    ]
-                }
-            },
-            "next": [
-                "家园_批量照料准备"
-            ],
-            "on_error": [
-                "家园_补充种植准备",
-                "家园_批量收获准备",
-                "[JumpBack]导航回花园页面（花园）"
-            ],
-            "timeout": 5000
-        },
-        "家园_批量照料准备": {
-            "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                    "lower": [
-                        124,
-                        152,
-                        106
-                    ],
-                    "upper": [
-                        124,
-                        152,
-                        106
-                    ],
-                    "roi": [
-                        779,
-                        625,
-                        146,
-                        59
-                    ]
-                }
-            },
-            "action": {
-                "type": "DoNothing"
-            },
-            "next": [
-                "家园_开始批量照料"
-            ]
-        },
-        "家园_开始批量照料": {
-            "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                    "lower": [
-                        124,
-                        152,
-                        106
-                    ],
-                    "upper": [
-                        124,
-                        152,
-                        106
-                    ],
-                    "roi": [
-                        779,
-                        625,
-                        146,
-                        59
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": [
-                        811,
-                        655,
-                        81,
-                        26
-                    ]
-                }
-            },
-            "next": [
-                "[JumpBack]家园_跳过照料动画"
-            ]
-        },
-        "家园_批量收获准备": {
-            "recognition": {
-                "type": "ColorMatch",
-                "param": {
-                    "lower": [124,152,106
-                    ],
-                    "upper": [
-                        124,
-                        152,
-                        106
-                    ],
-                    "roi": [
-                        924,
-                        630,
-                        136,
-                        54
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": [
-                        947,
-                        657,
-                        85,
-                        24
-                    ]
-                }
-            },
-            "next": [
-                "家园_收获成花卉"
-            ],
-            "on_error": [
-                "家园_补充种植准备",
-                "[JumpBack]导航回花园页面（花园）"
-            ],
-            "timeout": 5000
-        },
-        "家园_收获成花卉": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": "收获花卉",
-                    "roi": [
-                        912,
-                        592,
-                        213,
-                        97
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {}
-            },
-            "next": [
-                "[JumpBack]家园_跳过收获动画"
-            ],
-            "on_error": [
-               "[JumpBack]导航回花园页面（花园）"
-            ],
-            "timeout": 5000
-        },
-        "家园_补充种植准备": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_空花坛.png"
-                    ],
-                    "roi": [
-                        1121,
-                        70,
-                        127,
-                        608
-                    ]
-                }
-            },
-            "action": {
-                "type": "DoNothing",
-                "param": {}
-            },
-            "next": [
-                "家园_寻找补充种植花坛"
-            ],
-            "on_error": [
-                "家园_下滑寻找补充种植花坛准备"
-            ],
-            "timeout": 5000,
-            "max_hit": 3
-        },
-        "家园_寻找补充种植花坛": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": "立式花坛",
-                    "roi": [
-                        1121,
-                        70,
-                        127,
-                        608
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "家园_开始种植"
-            ]
-        },
-        "家园_下滑寻找补充种植花坛准备": {
-            "recognition": {
-                "type": "TemplateMatch",
-                "param": {
-                    "template": [
-                        "feature/garden_空花坛.png"
-                    ],
-                    "roi": [
-                        1121,
-                        70,
-                        127,
-                        608
-                    ]
-                }
-            },
-            "action": {
-                "type": "Swipe",
-                "param": {
-                    "begin": [
-                        1180,
-                        300
-                    ],
-                    "end": [
-                        1180,
-                        100
-                    ],
-                    "duration": 500
-                }
-            },
-            "next": [
-                "家园_寻找补充种植花坛"
-            ]
-        },
-        "家园_开始种植": {
-            "recognition": {
-                "type": "OCR",
-                "param": {
-                    "expected": "种植",
-                    "roi": [
-                        449,
-                        186,
-                        149,
-                        54
-                    ]
-                }
-            },
-            "action": {
-                "type": "Click",
-                "param": {
-                    "target": true
-                }
-            },
-            "next": [
-                "家园_日常照料花朵_确认界面"
-            ]
-        }
-    }
+{
+	"进入家园": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"家园_确认进入界面",
+			"[JumpBack]点击家园",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"家园_确认进入界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_家园任务.png"],
+				"roi": [1174, 609, 81, 97]
+			}
+		},
+		"next": ["家园_点击OTTO记录"]
+	},
+	"家园_点击OTTO记录": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_otto记录.png"],
+				"roi": [1090, 43, 45, 48]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["家园_点击OTTO记录_确认界面"]
+	},
+	"家园_点击OTTO记录_确认界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_otto记录界面.png"],
+				"roi": [950, 44, 165, 58]
+			}
+		},
+		"next": ["家园_点击花卉照料去看看"]
+	},
+	"家园_点击花卉照料去看看": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "去看看",
+				"roi": [1161, 119, 62, 21]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 3000,
+		"on_error": [
+			"[JumpBack]导航回花园页面（花园）",
+			"[JumpBack]点击家园",
+			"[JumpBack]导航回主页面"
+		],
+		"next": ["家园_点击花卉照料去看看_确认界面"]
+	},
+	"家园_点击花卉照料去看看_确认界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_花朵照料标记.png"],
+				"roi": [98, 303, 1241, 407]
+			}
+		},
+		"next": ["家园_日常照料花朵"]
+	},
+	"家园_日常照料花朵": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_花朵照料标记.png"],
+				"roi": [98, 303, 1241, 407]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["家园_日常照料花朵_确认界面"]
+	},
+	"家园_日常照料花朵_确认界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "feature/garden_家园演奏标志.png",
+				"roi": [880, 306, 100, 88]
+			}
+		},
+		"next": ["家园_批量照料准备"],
+		"on_error": [
+			"家园_补充种植准备",
+			"家园_批量收获准备",
+			"[JumpBack]导航回花园页面（花园）"
+		],
+		"timeout": 5000
+	},
+	"家园_批量照料准备": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [124, 152, 106],
+				"upper": [124, 152, 106],
+				"roi": [779, 625, 146, 59]
+			}
+		},
+		"action": {
+			"type": "DoNothing"
+		},
+		"next": ["家园_开始批量照料"]
+	},
+	"家园_开始批量照料": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [124, 152, 106],
+				"upper": [124, 152, 106],
+				"roi": [779, 625, 146, 59]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [811, 655, 81, 26]
+			}
+		},
+		"next": ["[JumpBack]家园_跳过照料动画"]
+	},
+	"家园_批量收获准备": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [124, 152, 106],
+				"upper": [124, 152, 106],
+				"roi": [924, 630, 136, 54]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [947, 657, 85, 24]
+			}
+		},
+		"next": ["家园_收获成花卉"],
+		"on_error": ["家园_补充种植准备", "[JumpBack]导航回花园页面（花园）"],
+		"timeout": 5000
+	},
+	"家园_收获成花卉": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "收获花卉",
+				"roi": [912, 592, 213, 97]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["[JumpBack]家园_跳过收获动画"],
+		"on_error": ["[JumpBack]导航回花园页面（花园）"],
+		"timeout": 5000
+	},
+	"家园_补充种植准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_空花坛.png"],
+				"roi": [1121, 70, 127, 608]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["家园_寻找补充种植花坛"],
+		"on_error": ["家园_下滑寻找补充种植花坛准备"],
+		"timeout": 5000,
+		"max_hit": 3
+	},
+	"家园_寻找补充种植花坛": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "立式花坛",
+				"roi": [1121, 70, 127, 608]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["家园_开始种植"]
+	},
+	"家园_下滑寻找补充种植花坛准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_空花坛.png"],
+				"roi": [1121, 70, 127, 608]
+			}
+		},
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [1180, 300],
+				"end": [1180, 100],
+				"duration": 500
+			}
+		},
+		"next": ["家园_寻找补充种植花坛"]
+	},
+	"家园_开始种植": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "种植",
+				"roi": [449, 186, 149, 54]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["家园_日常照料花朵_确认界面"]
+	}
+}
