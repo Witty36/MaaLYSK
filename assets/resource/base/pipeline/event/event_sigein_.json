@@ -74,7 +74,7 @@
 							"type": "TemplateMatch",
 							"param": {
 								"template": [
-									"event/signin/十日与你_黎深花问逢时.png"
+									"event/signin/十日与你_沈星回细琢辰光.png"
 								],
 								"roi": [85, 157, 350, 986]
 							}
@@ -84,8 +84,8 @@
 						"recognition": {
 							"type": "OCR",
 							"param": {
-								"expected": ["十日", "与你", "细琢辰光"],
-								"roi": [85, 157, 350, 986]
+								"expected": ["十日", "细琢辰光", "累计签到"],
+								"roi": [56, 151, 628, 954]
 							}
 						}
 					}

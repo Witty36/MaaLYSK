@@ -61,7 +61,7 @@ export function buildMirrorProjectUrl(opts: {
 } = {}): string {
   const params = new URLSearchParams({
     rid: opts.rid ?? 'MaaLYSK',
-    source: opts.source ?? 'maalysk-docs',
+    source: opts.source ?? 'MaaLYSK_doc',
   })
   if (opts.channel) params.set('channel', opts.channel)
   if (opts.os) params.set('os', opts.os)

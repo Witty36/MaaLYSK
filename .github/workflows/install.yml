@@ -312,6 +312,6 @@ jobs:
         shell: bash
         run: |
           # 异步触发 Alist 分发，不等待结果
-          gh workflow run alist-distribute.yml --repo ${{ github.repository }} -f tag=${{ needs.meta.outputs.tag }} -f from_install=true
+          gh workflow run alist-distribute.yml --repo ${{ github.repository }} -f tag=${{ needs.meta.outputs.tag }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

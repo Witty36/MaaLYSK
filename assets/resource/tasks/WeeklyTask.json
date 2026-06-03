@@ -9,6 +9,7 @@
 		{
 			"name": "🔗周常分享3次",
 			"entry": "进入周常分享",
+			"controller": ["ADB模拟器", "PlayCover"],
 			"default_check": false,
 			"description": "周常分享<br><span style=\"color:orange\">分享需要在模拟器搜索下个微信才能用（下好就行不用登录）</span><br><span style=\"color:red\">可能会有问题，自行尝试能不能使用</span>"
 		},

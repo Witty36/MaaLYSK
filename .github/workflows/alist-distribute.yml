@@ -1,35 +1,23 @@
 name: Alist Distribution
 
 on:
-  # 手动触发：支持输入 tag
   workflow_dispatch:
     inputs:
       tag:
-        description: "The release tag to distribute"
+        description: "版本号（填写后直接分发该版本，忽略下方模式选择）"
         required: false
         default: ""
         type: string
       version_mode:
-        description: "选择分发模式"
+        description: "选择分发模式（仅在上方 tag 为空时生效）"
         required: false
-        default: ""
+        default: "latest"
         type: choice
         options:
           - "latest"
           - "latest-beta"
           - "latest-stable"
           - "manual"
-      manual_tag:
-        description: "当选择 manual 时，输入具体的 release tag（例如 v1.0.0）"
-        required: false
-        default: ""
-        type: string
-  # 自动触发：有新 release 发布时install.yml触发
-      from_install:
-        description: "Triggered from install workflow"
-        required: false
-        default: "false"
-        type: string
 
 jobs:
   get-version:
@@ -44,27 +32,20 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          # 优先使用手动输入的 tag
-          MANUAL_TAG="${{ github.event.inputs.tag }}"
+          TAG_INPUT="${{ github.event.inputs.tag }}"
           VERSION_MODE="${{ github.event.inputs.version_mode }}"
-          MANUAL_TAG_INPUT="${{ github.event.inputs.manual_tag }}"
-          FROM_INSTALL="${{ github.event.inputs.from_install }}"
 
-          # 原有逻辑：如果有 tag 参数，走原来的流程
-          if [ -n "$MANUAL_TAG" ]; then
-            TAG="$MANUAL_TAG"
-            
-            # 判断是否来自 install workflow
-            if [ "$FROM_INSTALL" = "true" ]; then
-              # 来自 install 触发 - 需要批准
+          if [ -n "$TAG_INPUT" ]; then
+            # 填了 tag 就直接用（install.yml 传入 或 手动填写）
+            TAG="$TAG_INPUT"
+            if [ -z "$VERSION_MODE" ]; then
               SOURCE="install-workflow"
               NEED_APPROVAL="true"
               echo "✅ 来自 install workflow 的版本: $TAG"
             else
-              # 手动触发模式 - 不需要批准
-              SOURCE="manual"
+              SOURCE="manual-tag"
               NEED_APPROVAL="false"
-              echo "✅ 使用手动输入的版本: $TAG"
+              echo "✅ 手动指定版本: $TAG"
             fi
           elif [ -n "$VERSION_MODE" ]; then
             # 新逻辑：使用下拉列表模式
@@ -104,11 +85,11 @@ jobs:
                 ;;
               "manual")
                 # 手动输入 tag（允许 alpha）
-                if [ -z "$MANUAL_TAG_INPUT" ]; then
-                  echo "❌ 选择了 manual 模式但未输入 tag"
+                if [ -z "$TAG_INPUT" ]; then
+                  echo "❌ 选择了 manual 模式但未在 tag 字段填写版本号"
                   exit 1
                 fi
-                TAG="$MANUAL_TAG_INPUT"
+                TAG="$TAG_INPUT"
                 SOURCE="manual-input"
                 NEED_APPROVAL="false"
                 echo "✅ 手动输入版本（允许 alpha）: $TAG"

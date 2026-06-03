@@ -1,16 +1,22 @@
 MaaLYSK更新日志
 
-# 🎉 **MaaLYSK v0.4.2-beta.1**(公测版)
+# 🎉 **MaaLYSK v0.4.2-beta.2**(公测版)
 
 ❗MaaLYSK本体 是免费哒，请勿有偿购买代下、安装等服务 ❗
 
-## 🐾当前游戏内活动版本🐾软绒奇境🐾
+## 🐾当前游戏内活动版本🐾十日与你_沈星回细琢辰光🐾双影交叠时复刻🐾
 
 - ## 重要通知
 
   ❗❗本次更新由于**更新了UI页面**，原先的配置可能有所更新(如**定时配置**、**启动路径**等），请在运行前**检查选项与配置**！
 
-  如果内置更新出现问题（如exe文件消失、UI报错等）请手动前往[[Mirror酱](https://mirrorchyan.com/zh/projects?source=MaaLYSKnotice&rid=MaaLYSK)]或[[Github](https://github.com/Witty36/MaaLYSK/releases)]下载最新版本，而不是重新下载旧版本后继续内置更新。
+  如果内置更新出现问题（如exe文件消失、UI报错等）请手动前往[[Mirror酱]](https://mirrorchyan.com/zh/projects?source=MaaLYSKnotice&rid=MaaLYSK)或[[Github]](https://github.com/Witty36/MaaLYSK/releases)下载最新版本，而不是重新下载旧版本后继续内置更新。
+
+### 📕 公测版v0.4.2-beta2更新内容
+
+### 💫免费福利签到
+
+更新版本—十日与你_沈星回细琢辰光
 
 ### 📕 公测版v0.4.2-beta1更新内容
 
@@ -41,8 +47,8 @@ MaaLYSK更新日志
 
 关闭黎深十日与你
 
-## ⚙️ GUI更新
+## ⚙️ GUI版本
 
-更新UI版本至v2.12.1，回退框架至5.10.0
+UI版本v2.12.1，框架5.10.0
 
 [已有 Mirror酱 CDK? 前往Mirror酱高速下载](https://mirrorchyan.com/zh/projects?source=maaydoc&rid=MaaLYSK)

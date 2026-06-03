@@ -50,7 +50,7 @@ const downloadChannels = computed<DownloadChannel[]>(() => {
   const params = new URLSearchParams({
     rid: 'MaaLYSK',
     channel: isBeta ? 'beta' : 'stable',
-    source: 'maalysk-docs-download',
+    source: 'MaaLYSK_docDownload',
   })
 
   const osMap: Record<string, string> = {

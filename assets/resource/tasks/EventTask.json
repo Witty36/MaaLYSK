@@ -5,7 +5,7 @@
 			//"entry": "stop",
 			"entry": "进入福利签到",
 			"default_check": false,
-			"description": "<span style=\"color:orange\">当前签到：目前关闭中</span><br>初步适配了进入活动读剧情，如果有其它活动,也可以选择提前进入一次页面过下剧情"
+			"description": "<span style=\"color:orange\">当前签到：十日与你_沈星回细琢辰光</span><br>初步适配了进入活动读剧情，如果有其它活动,也可以选择提前进入一次页面过下剧情"
 		},
 		{
 			"name": "🛍️限时活动商城领取",

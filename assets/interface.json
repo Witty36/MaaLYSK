@@ -17,13 +17,26 @@
 		{
 			"name": "PlayCover",
 			"type": "PlayCover"
+		},
+		{
+			"name": "PC",
+			"label": "云·恋与深空PC",
+			"type": "Win32",
+			"win32": {
+				"class_regex": "Qt\\d+QWindowOwnDCIcon",
+				"window_regex": "(云·恋与深空|云·戀與深空|DeepSpace|ドラマティック).*",
+				"screencap": "PrintWindow",
+				"mouse": "SendMessageWithCursorPos",
+				"keyboard": "SendMessageWithCursorPos"
+			},
+			"permission_required": true
 		}
 	],
 	"resource": [
 		{
-			"name": "官服",
+			"name": "简体中文",
 			"path": ["./resource/base"],
-			"controller": ["ADB模拟器", "PlayCover"]
+			"controller": ["ADB模拟器", "PlayCover", "PC"]
 		}
 	],
 

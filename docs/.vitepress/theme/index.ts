@@ -10,6 +10,7 @@ import VersionPopup from "./components/VersionPopup.vue";
 import QuickStartPopup from "./components/QuickStartPopup.vue";
 import SmartDownloadChannels from "./components/SmartDownloadChannels.vue";
 import MirrorLinkEnhancer from "./components/MirrorLinkEnhancer.vue";
+import Flowchart from "./components/Flowchart.vue";
 import "./custom.css";
 
 export default {
@@ -36,5 +37,6 @@ export default {
 
     enhanceApp({ app }: { app: any }) {
         app.component('SmartDownloadChannels', SmartDownloadChannels);
+        app.component('Flowchart', Flowchart);
     },
 };

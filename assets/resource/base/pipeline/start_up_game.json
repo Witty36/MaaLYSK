@@ -135,6 +135,21 @@
 		],
 		"focus": "启动恋与深空en服"
 	},
+	"恋与深空云服": {
+		"enabled": false,
+		"next": [
+			"是否主页面",
+			"[JumpBack]sub_关闭公告",
+			"[JumpBack]sub_点击账号登录",
+			"[JumpBack]网络连接失败popop",
+			"[JumpBack]断线重连popop",
+			"[JumpBack]sub_进入游戏",
+			"[JumpBack]sub_启动深空云服",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]启动再等等"
+		],
+		"focus": "启动恋与深空en服"
+	},
 	"是否主页面": {
 		"recognition": {
 			"type": "TemplateMatch",
@@ -230,6 +245,15 @@
 		},
 		"next": ["stop"]
 	},
+	"sub_关闭深空云服": {
+		"action": {
+			"type": "StopApp",
+			"param": {
+				"package": "com.papegames.lysk.cloud.cn"
+			}
+		},
+		"next": ["stop"]
+	},
 	"sub_启动深空官服": {
 		"enabled": false,
 		"action": {
@@ -313,6 +337,17 @@
 			"type": "StartApp",
 			"param": {
 				"package": "com.papegames.lysk.cn.vivo"
+			}
+		},
+		"max_hit": 5,
+		"next": ["启动再等等"]
+	},
+	"sub_启动深空云服": {
+		"enabled": false,
+		"action": {
+			"type": "StartApp",
+			"param": {
+				"package": "com.papegames.lysk.cloud.cn"
 			}
 		},
 		"max_hit": 5,
