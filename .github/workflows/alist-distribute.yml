@@ -1,6 +1,8 @@
 name: Alist Distribution
 
 on:
+  repository_dispatch:
+    types: [alist-distribute]
   workflow_dispatch:
     inputs:
       tag:
@@ -34,19 +36,20 @@ jobs:
         run: |
           TAG_INPUT="${{ github.event.inputs.tag }}"
           VERSION_MODE="${{ github.event.inputs.version_mode }}"
+          EVENT_NAME="${{ github.event_name }}"
 
-          if [ -n "$TAG_INPUT" ]; then
-            # 填了 tag 就直接用（install.yml 传入 或 手动填写）
+          if [ "$EVENT_NAME" = "repository_dispatch" ]; then
+            # 来自 install workflow 的触发，需要审批
+            TAG="${{ github.event.client_payload.tag }}"
+            SOURCE="install-workflow"
+            NEED_APPROVAL="true"
+            echo "✅ 来自 install workflow 的版本: $TAG"
+          elif [ -n "$TAG_INPUT" ]; then
+            # 手动填写了 tag
             TAG="$TAG_INPUT"
-            if [ -z "$VERSION_MODE" ]; then
-              SOURCE="install-workflow"
-              NEED_APPROVAL="true"
-              echo "✅ 来自 install workflow 的版本: $TAG"
-            else
-              SOURCE="manual-tag"
-              NEED_APPROVAL="false"
-              echo "✅ 手动指定版本: $TAG"
-            fi
+            SOURCE="manual-tag"
+            NEED_APPROVAL="false"
+            echo "✅ 手动指定版本: $TAG"
           elif [ -n "$VERSION_MODE" ]; then
             # 新逻辑：使用下拉列表模式
             case "$VERSION_MODE" in

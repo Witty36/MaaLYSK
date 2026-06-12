@@ -51,6 +51,7 @@
 - [功能介绍](http://maalysk.top/zh_cn/manual/1.2) - 详细的功能说明和使用技巧
 - [图文教程](http://maalysk.top/zh_cn/manual/1.3) - 专为小白编写的手把手教程
 - [更新说明](http://maalysk.top/zh_cn/manual/1.4) - MaaLYSK更新方法的教程
+- [进阶教程](http://maalysk.top/zh_cn/manual/1.5) - 让MaaLYSK更好用
 - [Mirror酱使用说明](http://maalysk.top/zh_cn/manual/2.1) - 关于第三方平台付费更新的说明
 - [常见问题(建设中)](http://maalysk.top/zh_cn/manual/2.2) - 遇到问题先看这里
 
@@ -59,6 +60,7 @@
 - [零基础开发指南](http://maalysk.top/zh_cn/develop/0.0) - 环境配置与开发流程
 - [项目结构](http://maalysk.top/zh_cn/develop/0.1) - 项目结构说明
 - [开发工具介绍](http://maalysk.top/zh_cn/develop/0.2) - 关于MaaLYSK开发调试的小工具说明
+- [代码编写指南](http://maalysk.top/zh_cn/develop/0.3) - MaaLYSK结构介绍、基础语法的编写说明
 - [开发规范(建设中)](http://maalysk.top/zh_cn/develop/1.1) - 代码规范说明
 - [文档编写规范](http://maalysk.top/zh_cn/develop/2.1) - 关于Markdown文档编写的规范和说明
 

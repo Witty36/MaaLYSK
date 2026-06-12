@@ -9,10 +9,17 @@
 		},
 		{
 			"name": "🛍️限时活动商城领取",
+<<<<<<< HEAD
 			//	"entry": "stop",
 			"entry": "进入活动商城领取",
 			"default_check": false,
 			"description": "<span style=\"color:orange\">当前版本：热雾迷津</span><br>请尽量确保代币足够再使用，不然会卡住"
+=======
+			//"entry": "stop",
+			"entry": "进入活动商城领取",
+			"default_check": false,
+			"description": "<span style=\"color:orange\">当前版本：夏以昼2026生日</span><br>请尽量确保代币足够再使用，不然会卡住"
+>>>>>>> 036c5f7e2b48d24e6b60f5537d56be1e2ed41616
 		},
 		{
 			"name": "🌟限时活动每日领取",
@@ -20,13 +27,22 @@
 			"entry": "进入限时活动",
 			"default_check": false,
 			//"option": ["韶华宴岁领取", "吉财临门领取", "金叶盈福领取"],
+<<<<<<< HEAD
 			"description": "<span style=\"color:orange\">当前版本：热雾迷津</span><br>限时活动领取每日任务奖励，初步适配了进入活动读剧情，如果有问题就提前进入一次页面过下剧情"
+=======
+			"description": "<span style=\"color:orange\">当前版本：夏以昼2026生日</span><br>限时活动领取每日任务奖励，初步适配了进入活动读剧情，如果有问题就提前进入一次页面过下剧情"
+>>>>>>> 036c5f7e2b48d24e6b60f5537d56be1e2ed41616
 		},
 		{
 			"name": "✨限时活动读剧情",
 			//"entry": "stop",
+<<<<<<< HEAD
 			"entry": "进入节日活动读剧情",
 			"option": ["选择读的热雾迷津剧情"],
+=======
+			"entry": "进入生日剧情",
+			"option": ["选择读的生日剧情"],
+>>>>>>> 036c5f7e2b48d24e6b60f5537d56be1e2ed41616
 			"default_check": false,
 			"description": "<span style=\"color:orange\">当前版本：热雾迷津</span><br><span style=\"color:red\">尽量在剧情全解锁后再使用，如有未解锁剧情，不会自动结束，最好单独进行！</span><br>限时活动读剧情，初步适配了进入活动读剧情，如果有问题就提前进入一次剧情页面过下剧情。<br><span style=\"color:red\">撩动氤氲划动雾气如果划不上，手动划一下即可。</span>",
 			"pipeline_override": {
@@ -41,10 +57,29 @@
 						"[JumpBack]live剧情等待",
 						"[JumpBack]为他唱生日歌",
 						"[JumpBack]结束唱歌",
+						"[JumpBack]选择第一条短信",
+						"[JumpBack]发送短信",
+						"[JumpBack]点击输入信息",
+						"[JumpBack]退出获得奖励popop",
+						"[JumpBack]退出牵绊度提升popop",
 						"[JumpBack]加载页面等待_竖屏",
 						"[JumpBack]加载页面等待_横屏",
-						"过剧情结束标志-热雾迷津"
+						"过剧情结束标志-生日剧情"
 					]
+				},
+				"为他唱生日歌": {
+					"enabled": true
+				},
+				"结束唱歌": {
+					"enabled": true
+				},
+				"发送短信": {
+					"timeout": 3000,
+					"next": [
+						"导航回上级页面（绿码白）",
+						"导航回上级页面（绿码黑）"
+					],
+					"on_error": ["null"]
 				}
 			}
 		},

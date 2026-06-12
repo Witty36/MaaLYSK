@@ -11,7 +11,7 @@
 		"max_hit": 1,
 		"next": [
 			"[JumpBack]跳过引导",
-			"夜雨流明菜单页面",
+			"生日衣帽间菜单页面",
 			"[JumpBack]自动过剧情",
 			"[JumpBack]退出点击空白继续popop",
 			"[JumpBack]退出获得奖励popop",
@@ -20,11 +20,11 @@
 			"[JumpBack]导航回主页面"
 		]
 	},
-	"夜雨流明菜单页面": {
+	"生日衣帽间菜单页面": {
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["event/daily_get/夜雨流明菜单.png"],
+				"template": ["event/daily_get/澄云向昼菜单.png"],
 				"roi": [10, 1179, 701, 79]
 			}
 		},
@@ -98,7 +98,10 @@
 			}
 		},
 		"action": {
-			"type": "Click"
+			"type": "Click",
+			"param": {
+				"target_offset": [0, 60, 0, 0]
+			}
 		},
 		"timeout": 5000,
 		"post_delay": 1500,

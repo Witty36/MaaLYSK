@@ -312,6 +312,9 @@ jobs:
         shell: bash
         run: |
           # 异步触发 Alist 分发，不等待结果
-          gh workflow run alist-distribute.yml --repo ${{ github.repository }} -f tag=${{ needs.meta.outputs.tag }}
+          gh api repos/${{ github.repository }}/dispatches \
+            -X POST \
+            -f event_type=alist-distribute \
+            -f "client_payload[tag]=${{ needs.meta.outputs.tag }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

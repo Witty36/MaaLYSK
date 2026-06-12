@@ -25,6 +25,13 @@
 			"default_check": false,
 			"option": ["是否需要补种"],
 			"description": "批量收成花卉/批量照料，如果有需要补种的花坛会自动补种1-3次(确保包里有足够种子)，完成后会停在家园界面，不帮忙拉小曲儿，有需求可以提，有bug可以硬着头皮先用后面再修。"
+		},
+		{
+			"name": "💐家园交育",
+			"entry": "交育_确认进入界面",
+			"default_check":false,
+			"option": ["选择要交育的花朵"],
+			"description": "帮你选择交育花朵，不包异色"
 		}
 	],
 	"option": {
@@ -115,8 +122,8 @@
 					}
 				}
 			]
-		},
-
+	},
+		 
 		"是否需要补种": {
 			"type": "switch",
 			"cases": [
@@ -137,6 +144,109 @@
 					}
 				}
 			]
-		}
+		},
+		"选择要交育的花朵":{
+			"type": "select",
+			"cases": [
+				{
+					"name": "百合",
+					"pipeline_override": {
+						"百合_选择流程":{
+							"enable":true
+						}
+						}
+					},
+
+					{
+					"name": "洋牡丹",
+					"pipeline_override": {
+						"洋牡丹_选择流程":{
+							"enable":true
+						}
+						}
+					},
+
+					{
+					"name": "绣球花",
+					"pipeline_override": {
+						"绣球花_选择流程":{
+							"enable":true
+						}
+						}
+					},
+
+					{
+					"name": "鸢尾花",
+					"pipeline_override": {
+						"鸢尾花_选择流程":{
+							"enable":true
+						}
+						}
+					},
+
+				{
+					"name": "虞美人",
+					"pipeline_override": {
+						"虞美人_选择流程":{
+							"enable":true
+						}
+					}
+				},
+
+				{
+					"name": "玫瑰",
+					"pipeline_override": {
+						"玫瑰_选择流程":{
+							"enable":true
+						}
+					}
+				},
+
+				{
+					"name": "雏菊",
+					"pipeline_override": {
+						"雏菊_选择流程":{
+							"enable":true
+						}
+					}
+				},
+
+				{
+					"name": "落新妇",
+					"pipeline_override": {
+						"落新妇_选择流程":{
+							"enable":true
+						}
+					}
+				},
+
+				{
+					"name": "手球花",
+					"pipeline_override": {
+						"手球花_选择流程":{
+							"enable":true
+						}
+					}
+				},
+
+				{
+					"name": "福禄考",
+					"pipeline_override": {
+						"福禄考_选择流程":{
+							"enable":true
+						}
+					}
+				},
+				
+				{
+					"name": "大飞燕",
+					"pipeline_override": {
+						"大飞燕_选择流程":{
+							"enable":true
+						}
+					}
+				},
+			]
 	}
+}
 }

@@ -25,7 +25,7 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["event/daily_get/夜雨流明菜单.png"],
+				"template": ["event/daily_get/澄云向昼菜单.png"],
 				"roi": [10, 1179, 701, 79]
 			}
 		},
@@ -78,7 +78,7 @@
 						"recognition": {
 							"type": "TemplateMatch",
 							"param": {
-								"template": ["event/剧情未解锁.png"],
+								"template": ["event/生日剧情未解锁.png"],
 								"roi": [135, 1062, 105, 106],
 								"threshold": 0.6
 							}
@@ -120,7 +120,7 @@
 						"recognition": {
 							"type": "TemplateMatch",
 							"param": {
-								"template": ["event/剧情未解锁.png"],
+								"template": ["event/生日剧情未解锁.png"],
 								"roi": [212, 1041, 106, 107],
 								"threshold": 0.6
 							}
@@ -159,7 +159,7 @@
 						"recognition": {
 							"type": "TemplateMatch",
 							"param": {
-								"template": ["event/剧情未解锁.png"],
+								"template": ["event/生日剧情未解锁.png"],
 								"roi": [296, 1050, 106, 106],
 								"threshold": 0.6
 							}
@@ -234,6 +234,15 @@
 		"repeat": 2,
 		"next": ["准备好送出娃娃"],
 		"on_error": ["null"]
+	},
+	"过剧情结束标志-生日剧情": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["织愿计划", "织愿", "计划"],
+				"roi": [0, 249, 121, 65]
+			}
+		}
 	},
 	"生日剧情读完结束": {
 		"recognition": {

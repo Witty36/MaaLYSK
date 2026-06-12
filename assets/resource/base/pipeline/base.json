@@ -15,7 +15,8 @@
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["日程页面确认"]
+		"next": ["日程页面确认"],
+		"on_error": ["null"]
 	},
 	"日程页面确认": {
 		"recognition": {
@@ -57,7 +58,8 @@
 				"target": [654, 841, 22, 14]
 			}
 		},
-		"next": ["许愿页面确认"]
+		"next": ["许愿页面确认"],
+		"on_error": ["null"]
 	},
 	"许愿页面确认": {
 		"recognition": {
@@ -81,7 +83,8 @@
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["商城页面确认"]
+		"next": ["商城页面确认"],
+		"on_error": ["null"]
 	},
 	"商城页面确认": {
 		"recognition": {
@@ -107,7 +110,8 @@
 				"target": [395, 1178, 17, 15]
 			}
 		},
-		"next": ["作战页面确认"]
+		"next": ["作战页面确认"],
+		"on_error": ["null"]
 	},
 	"作战页面确认": {
 		"recognition": {
@@ -133,7 +137,8 @@
 				"target": [302, 1190, 13, 16]
 			}
 		},
-		"next": ["约会页面确认"]
+		"next": ["约会页面确认"],
+		"on_error": ["null"]
 	},
 	"约会页面确认": {
 		"recognition": {
@@ -159,7 +164,8 @@
 				"target": [504, 1186, 10, 8]
 			}
 		},
-		"next": ["思念页面确认"]
+		"next": ["思念页面确认"],
+		"on_error": ["null"]
 	},
 	"思念页面确认": {
 		"recognition": {
@@ -185,7 +191,8 @@
 				"target": [662, 1038, 7, 6]
 			}
 		},
-		"next": ["牵绊页面确认"]
+		"next": ["牵绊页面确认"],
+		"on_error": ["null"]
 	},
 	"牵绊页面确认": {
 		"recognition": {
@@ -213,7 +220,8 @@
 				"target_offset": [6, 5, -12, -10]
 			}
 		},
-		"next": ["互动页面确认"]
+		"next": ["互动页面确认"],
+		"on_error": ["null"]
 	},
 	"互动页面确认": {
 		"recognition": {
@@ -238,7 +246,8 @@
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["零点追踪页面确认"]
+		"next": ["零点追踪页面确认"],
+		"on_error": ["null"]
 	},
 	"零点追踪页面确认": {
 		"recognition": {
@@ -263,7 +272,8 @@
 			"type": "Click",
 			"param": {"target": [53, 1060, 8, 17]}
 		},
-		"next": ["手机页面确认"]
+		"next": ["手机页面确认"],
+		"on_error": ["null"]
 	},
 	"点击手机（绿码）": {
 		"pre_delay": 1000,
@@ -281,7 +291,8 @@
 				"target": [53, 1060, 8, 17]
 			}
 		},
-		"next": ["手机页面确认"]
+		"next": ["手机页面确认"],
+		"on_error": ["null"]
 	},
 	"手机页面确认": {
 		"recognition": {
@@ -323,7 +334,8 @@
 			"type": "Click",
 			"param": {"target": [569, 1039, 10, 13]}
 		},
-		"next": ["电话页面确认"]
+		"next": ["电话页面确认"],
+		"on_error": ["null"]
 	},
 	"电话页面确认": {
 		"recognition": {
@@ -350,7 +362,8 @@
 				"target": [500, 1111, 5, 5]
 			}
 		},
-		"next": ["朋友圈页面确认"]
+		"next": ["朋友圈页面确认"],
+		"on_error": ["null"]
 	},
 	"朋友圈页面确认": {
 		"recognition": {
@@ -400,7 +413,8 @@
 				"target": [653, 989, 24, 18]
 			}
 		},
-		"next": ["信息页面确认"]
+		"next": ["信息页面确认"],
+		"on_error": ["null"]
 	},
 	"信息页面确认": {
 		"recognition": {
@@ -424,7 +438,8 @@
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["主线页面确认"]
+		"next": ["主线页面确认"],
+		"on_error": ["null"]
 	},
 	"主线页面确认": {
 		"recognition": {
@@ -469,7 +484,8 @@
 			"param": {}
 		},
 		"post_delay": 90000,
-		"next": ["家园页面确认"]
+		"next": ["家园页面确认"],
+		"on_error": ["null"]
 	},
 	"家园页面确认": {
 		"recognition": {

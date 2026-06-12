@@ -1,5 +1,5 @@
 {
-    "resource": "官服",
+    "resource": "简体中文",
     "controller": "ADB模拟器",
     "adb": {
         "adb_path": "D:/Program Files/Netease/MuMu/nx_main/adb.exe",
@@ -18,11 +18,9 @@
     },
     "task": [
         {
-            "name": "🌳家园日常",
-            "option": {
-                "是否需要补种": "No"
-            },
-            "__key": "50ec7b43-eaf6-4bd9-b806-08ed81696981"
+            "name": "💐家园交育",
+            "option": {},
+            "__key": "8cc3b366-6dc8-4dc2-8668-5f071ddd1555"
         }
     ]
 }

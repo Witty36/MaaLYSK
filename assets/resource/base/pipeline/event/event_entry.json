@@ -19,6 +19,6 @@
 			"type": "DoNothing",
 			"param": {}
 		},
-		"next": ["进入热雾迷津"]
+		"next": ["进入澄云向昼"]
 	}
 }

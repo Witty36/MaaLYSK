@@ -413,6 +413,22 @@
 		},
 		"next": []
 	},
+	"退出商城购买popop": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["购买"],
+				"roi": [238, 684, 242, 310]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"next": []
+	},
 	"退出品阶提升popop": {
 		"recognition": {
 			"type": "OCR",
