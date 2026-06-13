@@ -117,6 +117,10 @@
 					"enabled": true
 				},
 				{
+					"name": "💐家园交育",
+					"enabled": false
+				},
+				{
 					"name": "🌟限时活动每日领取",
 					"enabled": false
 				}

@@ -13,7 +13,6 @@ import MirrorLinkEnhancer from "./components/MirrorLinkEnhancer.vue";
 import Flowchart from "./components/Flowchart.vue";
 import "./custom.css";
 
-
 export default {
     extends: DefaultTheme,
 
@@ -25,12 +24,13 @@ export default {
                 const meta = theme.value.latestReleaseMeta;
                 return meta ? h('a', {
                     class: 'nav-version-mobile',
-                    href: '#version-popup',
+                    href: meta.link,
+                    target: '_blank',
+                    rel: 'noopener',
                     innerHTML: `<span class="nav-version-badge"><span class="nav-version-spark">✦</span><span>${meta.version}</span></span>`
                 }) : null;
             },
             "nav-screen-content-after": () => h(NavContactGroup),
-            "doc-before": () => h(ReadingTime),
             "doc-bottom": () => h(BackToTop),
         });
     },

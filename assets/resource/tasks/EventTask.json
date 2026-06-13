@@ -28,7 +28,7 @@
 			"entry": "进入生日剧情",
 			"option": ["选择读的生日剧情"],
 			"default_check": false,
-			"description": "<span style=\"color:orange\">当前版本：目前关闭中</span><br><span style=\"color:red\">尽量在剧情全解锁后再使用，如有未解锁剧情，不会自动结束，最好单独进行！</span><br>限时活动读剧情，初步适配了进入活动读剧情，如果有问题就提前进入一次剧情页面过下剧情。<br><span style=\"color:red\">撩动氤氲划动雾气如果划不上，手动划一下即可。</span>",
+			"description": "<span style=\"color:orange\">当前版本：热雾迷津</span><br><span style=\"color:red\">尽量在剧情全解锁后再使用，如有未解锁剧情，不会自动结束，最好单独进行！</span><br>限时活动读剧情，初步适配了进入活动读剧情，如果有问题就提前进入一次剧情页面过下剧情。<br><span style=\"color:red\">撩动氤氲划动雾气如果划不上，手动划一下即可。</span>",
 			"pipeline_override": {
 				"点成2倍速": {
 					"timeout": 300000,

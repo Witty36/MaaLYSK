@@ -1,0 +1,35 @@
+{
+    "resource": "简体中文",
+    "controller": "ADB模拟器",
+    "adb": {
+        "adb_path": "D:/Program Files/Netease/MuMu/nx_main/adb.exe",
+        "address": "127.0.0.1:16384",
+        "screencap": "64",
+        "input": "18446744073709551607",
+        "config": {
+            "extras": {
+                "mumu": {
+                    "enable": true,
+                    "index": 0,
+                    "path": "D:/Program Files/Netease/MuMu"
+                }
+            }
+        }
+    },
+    "task": [
+        {
+            "name": "🪴家园日常",
+            "option": {
+                "是否需要补种": "No"
+            },
+            "__key": "21f6db1e-cf9f-4cc6-b629-f5a8e74de05e"
+        },
+        {
+            "name": "💐花朵交育",
+            "option": {
+                "选择要交育的花朵": "虞美人"
+            },
+            "__key": "7b8f1e93-d848-4b42-9bc9-32beb92245ce"
+        }
+    ]
+}

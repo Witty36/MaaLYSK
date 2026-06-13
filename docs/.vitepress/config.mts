@@ -1,4 +1,3 @@
-import path from "path";
 import { defineConfig } from "vitepress";
 
 // 功能：站点基础信息、公共主题配置、搜索与社交链接。
@@ -20,8 +19,6 @@ export default defineConfig({
     rewrites: rewriteDocPath,
     locales,
     markdown: {
-        theme: {
-            light: lightTheme as any,
             dark: darkTheme as any,
         },
     },
