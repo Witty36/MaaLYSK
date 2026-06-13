@@ -45,26 +45,7 @@
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["心隙拾意_第一关", "[JumpBack]心隙拾意划到最顶端"]
-	},
-	"心隙拾意划到最顶端": {
-		"recognition": {
-			"type": "TemplateMatch",
-			"param": {
-				"template": "event/热雾迷津(202605温泉卡)/心隙拾意/心隙拾意页面.png",
-				"roi": [465, 16, 234, 157]
-			}
-		},
-		"action": {
-			"type": "Swipe",
-			"param": {
-				"begin": [562, 216, 14, 18],
-				"end": [565, 690, 15, 18],
-				"end_hold": 500,
-				"duration": 800
-			}
-		},
-		"max_hit": 5
+		"next": ["心隙拾意_第一关"]
 	},
 	"心隙拾意_第一关": {
 		"recognition": {

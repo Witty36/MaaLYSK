@@ -12,7 +12,7 @@
 
 从 GitHub 拉取更新包，自动更新 GUI 及资源。由于Github为外链，国内地区可能无法直接连接或限速严重，导致更新失败
 
-##### ✨ 使用 Mirror 酱 [🔗 获取 Mirror 酱 CDKey](https://mirrorchyan.com?rid=MaaLYSK&source=MaaLYSKUI)
+##### ✨ 使用 Mirror 酱 [🔗 获取 Mirror 酱 CDKey](https://mirrorchyan.com?rid=MaaLYSK&source=MFAA)
 
 - MaaLYSK【设置】-【更新设置】- 【资源下载源】选择 【Mirror 酱】并填写购买的 CDKey
 

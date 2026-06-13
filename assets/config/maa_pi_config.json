@@ -1,0 +1,26 @@
+{
+    "resource": "简体中文",
+    "controller": "ADB模拟器",
+    "adb": {
+        "adb_path": "D:/Program Files/Netease/MuMu/nx_main/adb.exe",
+        "address": "127.0.0.1:16384",
+        "screencap": "64",
+        "input": "18446744073709551607",
+        "config": {
+            "extras": {
+                "mumu": {
+                    "enable": true,
+                    "index": 0,
+                    "path": "D:/Program Files/Netease/MuMu"
+                }
+            }
+        }
+    },
+    "task": [
+        {
+            "name": "💐家园交育",
+            "option": {},
+            "__key": "8cc3b366-6dc8-4dc2-8668-5f071ddd1555"
+        }
+    ]
+}

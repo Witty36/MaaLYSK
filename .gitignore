@@ -1,5 +1,4 @@
 # docs
-docs/_sf/
 docs/node_modules
 docs/.vuepress/.temp
 docs/.vitepress/dist
@@ -457,15 +456,6 @@ tools/ImageCropper/**/*.png
 
 # config
 debug
-
-# MacOS
-.DS_Store
-
-# Assets config (local only)
-assets/config/
-
-# Codex
-.codex
 
 #Claude
 .claude
