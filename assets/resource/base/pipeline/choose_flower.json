@@ -1,0 +1,1136 @@
+{	
+    "百合_选择流程":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["百合"],
+                    "roi":[166,466,91,27]  
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "百合_有花判断流程","百合_没花判断流程"
+            ]
+    },
+    "百合_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[166,466,91,27],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "百合_没花判断流程":{
+            "recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^[0-1]$"],
+				"roi": [166,466,91,27]
+			}
+		},
+		"timeout": 3000,
+        "focus": {
+			"Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+		},
+		"next": ["stop"]
+        },
+
+    "洋牡丹_选择流程":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["洋牡丹"],
+                    "roi":[268,466,91,27]  
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "洋牡丹_有花判断流程","洋牡丹_没花判断流程"
+            ]
+    },
+    "洋牡丹_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[268,466,91,27],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "洋牡丹_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi": [268,466,91,27]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+
+    "绣球花_选择流程":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["绣球花"],
+                    "roi":[383,466,91,27]  
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "绣球花_有花判断流程","绣球花_没花判断流程"
+            ]
+    },
+    "绣球花_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[383,466,91,27],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "绣球花_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi":[383,466,91,27]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+
+    "鸢尾花_选择流程":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["鸢尾花"],
+                    "roi":[502,467,91,27] 
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "鸢尾花_有花判断流程","鸢尾花_没花判断流程"
+            ]
+    },
+    "鸢尾花_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[502,467,91,27],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["stop"]
+        },  
+        "鸢尾花_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi": [502,467,91,27]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+
+           "虞美人_选择流程":{
+    "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["虞美人"],
+                    "roi":[616,465,91,27],   
+                    "threshold": 0.8
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "虞美人_有花判断流程","虞美人_没花判断流程"
+            ]
+        },
+         "虞美人_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[616,465,91,27],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "虞美人_没花判断流程":{
+            "recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^[0-1]$"],
+				"roi": [616,465,91,27]
+			}
+		},
+		"timeout": 3000,
+        "focus": {
+			"Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+		},
+		"next": ["stop"]
+        },
+
+    "玫瑰_选择流程":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["玫瑰"],
+                    "roi":[723,466,91,27]  
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "玫瑰_有花判断流程","玫瑰_没花判断流程"
+            ]
+    },
+    "玫瑰_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[723,466,91,27],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "玫瑰_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi": [723,466,91,27]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+
+    "雏菊_选择流程":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["雏菊"],
+                    "roi":[818,464,91,27]  
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "雏菊_有花判断流程","雏菊_没花判断流程"
+            ]
+    },
+    "雏菊_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[818,464,91,27],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "雏菊_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi": [818,464,91,27]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+    "落新妇_选择流程":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["落新妇"],
+                    "roi":[927,465,91,27] 
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "落新妇_有花判断流程","落新妇_没花判断流程"
+            ]
+    },
+    "落新妇_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[927,465,91,27],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "落新妇_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi": [927,465,91,27]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+        "手球花_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 220
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "手球花_选择流程2"
+            ]
+    },
+        "手球花_选择流程2":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["手球花"],
+                    "roi":[197,467,101,24]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "手球花_有花判断流程","手球花_没花判断流程"
+            ]
+    },
+    "手球花_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[197,467,101,24],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "手球花_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi": [197,467,101,24]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+ "福禄考_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 220
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "福禄考_选择流程2"
+            ]
+    },
+        "福禄考_选择流程2":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["福禄考"],
+                    "roi":[315,467,101,24]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "福禄考_有花判断流程","福禄考_没花判断流程"
+            ]
+    },
+    "福禄考_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[315,467,101,24],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "福禄考_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi": [315,467,101,24]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+         "大飞燕_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 220
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "大飞燕_选择流程2"
+            ]
+    },
+        "大飞燕_选择流程2":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["大飞燕"],
+                    "roi":[428,467,101,24]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "大飞燕_有花判断流程","大飞燕_没花判断流程"
+            ]
+    },
+    "大飞燕_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[428,467,101,24],       
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "大飞燕_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi": [428,467,101,24]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+         "郁金香_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 230
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "郁金香_选择流程2"
+            ]
+    },
+        "郁金香_选择流程2":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["郁金香"],
+                    "roi":[545,466,101,24]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "郁金香_有花判断流程","郁金香_没花判断流程"
+            ]
+    },
+    "郁金香_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[545,466,101,24],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "郁金香_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi":[545,466,101,24]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+        "新娘花_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 230
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "新娘花_选择流程2"
+            ]
+    },
+        "新娘花_选择流程2":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["新娘花"],
+                    "roi":[660,467,101,24]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "新娘花_有花判断流程","新娘花_没花判断流程"
+            ]
+    },
+    "新娘花_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[660,467,101,24],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "新娘花_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi":[660,467,101,24]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+        "马蹄莲_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 230
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "马蹄莲_选择流程2"
+            ]
+    },
+        "马蹄莲_选择流程2":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["马蹄莲"],
+                    "roi":[774,466,101,24]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "马蹄莲_有花判断流程","马蹄莲_没花判断流程"
+            ]
+    },
+    "马蹄莲_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[774,466,101,24],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "马蹄莲_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi":[774,466,101,24]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+        "芍药_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 230
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "芍药_选择流程2"
+            ]
+    },
+        "芍药_选择流程2":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["芍药"],
+                    "roi":[881,468,101,24]
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "芍药_有花判断流程","芍药_没花判断流程"
+            ]
+    },
+    "芍药_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[881,468,101,24],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "芍药_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi":[881,468,101,24]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+        "翠珠_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 230
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "翠珠_选择流程2"
+            ]
+    },
+        "翠珠_选择流程2":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 200
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "翠珠_选择流程3"
+            ]
+    },
+
+        "翠珠_选择流程3":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["翠珠"],
+                    "roi":[171,462,88,34]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "翠珠_有花判断流程","翠珠_没花判断流程"
+            ]
+    },
+    "翠珠_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[171,462,88,34],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "翠珠_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi":[171,462,88,34]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+        "皇后菊_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 230
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "皇后菊_选择流程2"
+            ]
+    },
+        "皇后菊_选择流程2":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 200
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "皇后菊_选择流程3"
+            ]
+    },
+
+        "皇后菊_选择流程3":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["皇后菊"],
+                    "roi":[276,463,88,34]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "皇后菊_有花判断流程","皇后菊_没花判断流程"
+            ]
+    },
+    "皇后菊_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[276,463,88,34],         
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "皇后菊_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi":[276,463,88,34]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        },
+
+        "波斯菊_选择流程":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 230
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "波斯菊_选择流程2"
+            ]
+    },
+        "波斯菊_选择流程2":{
+        "recognition": {
+                "type": "DirectHit"
+            },
+            "action": {
+                "type": "Swipe",
+                "param": {
+                    "begin": [1047,478,3,3],
+                    "end": [120,478,3,3],
+                    "duration": 800,
+                    "end_hold": 200
+                    
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "波斯菊_选择流程3"
+            ]
+    },
+
+        "波斯菊_选择流程3":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": ["波斯菊"],
+                    "roi":[391,460,88,34]
+    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+            "next": [
+                "波斯菊_有花判断流程","波斯菊_没花判断流程"
+            ]
+    },
+    "波斯菊_有花判断流程":
+         {
+            "recognition": {
+            "type": "OCR",
+                "param": {
+                    "expected": ["[2-9]"],
+                    "roi":[391,460,88,34],        
+                    "threshold": 0.8
+                }
+            },
+            "timeout": 3000,
+            "next": ["[JumpBack]通用_交育流程1(点击第一支花，优先选择蓝色)"],
+            "on_error": ["[JumpBack]通用_交育流程1(点击第一支花，选择紫色)"]
+        },  
+        "波斯菊_没花判断流程":{
+            "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^[0-1]$"],
+                "roi":[391,460,88,34]
+            }
+        },
+        "timeout": 3000,
+        "focus": {
+            "Node.Recognition.Succeeded": "花卉不足以用于交育，准备结束整个流程"
+        },
+        "next": ["stop"]
+        }
+}
