@@ -211,7 +211,8 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["fight/自动追击10次.png"],
-				"roi": [326, 910, 76, 173]
+				"roi": [326, 910, 76, 173],
+				"threshold": [0.6]
 			}
 		},
 		"action": {
@@ -221,7 +222,24 @@
 		"focus": {
 			"Node.Action.Succeeded": "追击10次"
 		},
-		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
+		"next": ["零点连续追击确认", "[JumpBack]退出点击（上限）popop", "stop"]
+	},
+	"零点连续追击确认": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["连续追击次数", "追击次数", "连续追击"],
+				"roi": [250, 400, 240, 190]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [320, 650, 90, 45]
+			}
+		},
+		"post_delay": 3000,
+		"next": []
 	},
 	"零点自动追击体力耗尽": {
 		"recognition": {
@@ -233,7 +251,8 @@
 							"type": "TemplateMatch",
 							"param": {
 								"template": ["fight/自动追击10次.png"],
-								"roi": [326, 910, 76, 173]
+								"roi": [326, 910, 76, 173],
+								"threshold": [0.6]
 							}
 						}
 					},
@@ -257,6 +276,7 @@
 			"Node.Action.Succeeded": "自动追击体力耗尽"
 		},
 		"next": [
+			"零点连续追击确认",
 			"体力耗尽不再继续",
 			"[JumpBack]零点自动追击10次重复",
 			"[JumpBack]零点自动追击1次重复"
@@ -267,7 +287,8 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["fight/自动追击10次.png"],
-				"roi": [326, 910, 76, 173]
+				"roi": [326, 910, 76, 173],
+				"threshold": [0.6]
 			}
 		},
 		"action": {
@@ -275,7 +296,7 @@
 			"param": {}
 		},
 		"post_delay": 500,
-		"next": []
+		"next": ["零点连续追击确认"]
 	},
 	"零点自动追击1次重复": {
 		"recognition": {
