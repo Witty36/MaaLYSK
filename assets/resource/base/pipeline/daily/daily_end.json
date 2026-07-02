@@ -164,6 +164,22 @@
 		"timeout": 5000,
 		"next": ["日常签到准备"]
 	},
+	"进入每日签到任务": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"日常签到准备",
+			"[JumpBack]点击日程",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
 	"日常签到准备": {
 		"recognition": {
 			"type": "OCR",
