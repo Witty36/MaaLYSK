@@ -189,6 +189,7 @@
 		"timeout": 10000,
 		"next": ["零点自动追击体力耗尽"]
 	},
+
 	"零点自动追击1次": {
 		"recognition": {
 			"type": "TemplateMatch",
@@ -206,34 +207,50 @@
 		},
 		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
 	},
+
+
 	"零点自动追击10次": {
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["fight/自动追击10次.png"],
-				"roi": [326, 910, 76, 173]
+				"template": ["fight/自动追击1次.png"],
+				"roi": [290,919,113,89]
 			}
 		},
 		"action": {
 			"type": "Click",
 			"param": {}
+		},		
+		"next": ["零点自动追击10次1"]
+	},
+	"零点自动追击10次1":{
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [284,652,146,34]
+			}
 		},
 		"focus": {
 			"Node.Action.Succeeded": "追击10次"
 		},
 		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
 	},
-	"零点自动追击体力耗尽": {
+
+	"零点自动追击体力耗尽": {		
 		"recognition": {
-			"type": "Or",
+			"type": "And",
 			"param": {
-				"any_of": [
+				"all_of": [
 					{
 						"recognition": {
 							"type": "TemplateMatch",
 							"param": {
-								"template": ["fight/自动追击10次.png"],
-								"roi": [326, 910, 76, 173]
+								"template": "fight/确认是使用体力.png",
+								"roi": [552, 33, 128, 76]
 							}
 						}
 					},
@@ -241,83 +258,121 @@
 						"recognition": {
 							"type": "TemplateMatch",
 							"param": {
-								"template": ["fight/自动追击1次.png"],
-								"roi": [165, 919, 108, 98]
+								"template": "fight/自动追击1次.png",
+								"roi": [173, 917, 80, 127]
 							}
 						}
 					}
 				]
 			}
-		},
+		},					
 		"action": {
-			"type": "Click",
-			"param": {}
+			"type": "DoNothing"
 		},
 		"focus": {
-			"Node.Action.Succeeded": "自动追击体力耗尽"
+			"Node.Action.Succeeded": "自动追击至体力耗尽"
 		},
 		"next": [
 			"体力耗尽不再继续",
-			"[JumpBack]零点自动追击10次重复",
-			"[JumpBack]零点自动追击1次重复"
+			"[JumpBack]零点连续追击全部体力",
+			"[JumpBack]自动追击一次重复"			
 		]
 	},
-	"零点自动追击10次重复": {
-		"recognition": {
-			"type": "TemplateMatch",
-			"param": {
-				"template": ["fight/自动追击10次.png"],
-				"roi": [326, 910, 76, 173]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		},
-		"post_delay": 500,
-		"next": []
-	},
-	"零点自动追击1次重复": {
-		"recognition": {
-			"type": "DirectHit",
-			"param": {}
-		},
-		"action": {
-			"type": "Click",
-			"param": {
-				"target": [179, 952, 30, 20]
-			}
-		},
-		"next": ["零点自动追击1次重复1"]
-	},
-	"零点自动追击1次重复1": {
-		"recognition": {
-			"type": "DirectHit",
-			"param": {}
-		},
-		"action": {
-			"type": "Click",
-			"param": {
-				"target": [179, 981, 30, 20]
-			}
-		},
-		"next": []
-	},
-	"体力耗尽不再继续": {
+	"零点连续追击全部体力": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["道具", "道", "具"],
-				"roi": [412, 407, 137, 48]
+				"expected": ["(1[6-9]|[2-9]\\d|\\d{3}|\\d{4})/1[27]0"],
+				"roi": "零点自动追击体力耗尽",
+				"roi_offset": [10, -30, 100, 60]
+			}
+		},
+		"action": {},
+		"next": ["点击连续追击按钮"]
+	},
+	"点击连续追击按钮":{
+		"recognition":{
+			"type":"TemplateMatch",
+			"param":{
+				"template": ["fight/自动追击1次.png"],
+				"roi": [262, 885, 148, 397]
+			}
+		},
+		"action":{
+			"type":"Click"			
+		},
+		"next":[
+			"芯核上限不再继续",
+			"选择最大次数->"
+		]
+	},
+	"选择最大次数->":{
+		"recognition":{},
+		"action":{
+			"type":"Click",
+			"param":{
+				"target": [583, 578, 18, 21]
+			}
+		},
+		"next":["执行追击"]
+	},
+	"执行追击":{
+		"recognition":{},
+		"action":{
+			"type":"Click",
+			"param":{
+				"target": [277, 651, 160, 37]
+			}
+		},
+		"next":["追击完成回退"]
+	},
+
+	"自动追击一次重复": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["fight/自动追击1次.png"],
+				"roi": [92, 902, 173, 367]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": ["追击完成回退"]
+	},
+
+	"追击完成回退": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["完成","完","成"],
+				"roi": [247, 670, 210, 263]
 			}
 		},
 		"action": {
 			"type": "Click",
 			"param": {
-				"target": [19, 936, 12, 13]
+				"target": [15, 940, 65, 112]
 			}
 		},
-		"repeat": 5,
+		"next": []
+	},
+
+	"体力耗尽不再继续": {
+		"recognition": {
+		"type": "OCR",
+		"param": {
+			"expected": ["^[0-7]/1[2-7]0$"],
+			"roi": [471, 36, 245, 68]
+		}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [25, 53, 26, 35]
+			}
+		},
+		"repeat": 4,
 		"repeat_delay": 200,
 		"focus": "体力已耗尽",
 		"next": []
