@@ -250,6 +250,9 @@
 			"type": "Click",
 			"param": {}
 		},
+		"focus": {
+			"Node.Action.Succeeded": "开始追击至体力耗尽"
+		},
 		"post_delay": 200,
 		"next": [
 			"体力耗尽不再继续",
@@ -285,21 +288,27 @@
 			"type": "Click",
 			"param": {}
 		},
-		"post_delay": 500,
+		"focus": {
+			"Node.Action.Succeeded": "追击10次"
+		},
+		"post_delay": 3000,
 		"next": ["零点自动追击10次重复1"]
 	},
 	"零点自动追击10次重复1": {
 		"recognition": {
-			"type": "DirectHit",
-			"param": {}
+			"type": "OCR",
+			"param": {
+				"expected": ["完成","完","成"],
+				"roi": [119,340,471,556]
+			}
 		},
 		"action": {
 			"type": "Click",
 			"param": {
-				"target": [10, 10, 30, 20]
+				"target": [38,72,87,74]
 			}
 		},
-		"next": []
+		"next": ["零点自动追击体力耗尽"]
 	},
 	"零点自动追击1次重复": {
 		"recognition": {
