@@ -179,7 +179,7 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["fight/自动追击10次.png"],
+				"template": ["fight/自动追击1次.png"],
 				"roi": [310, 1135, 65, 109]
 			}
 		},
@@ -190,45 +190,9 @@
 		"focus": {
 			"Node.Action.Succeeded": "追击10次"
 		},
-		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
+		"next": ["芯核自动追击10次 2"]
 	},
-	"芯核自动追击耗尽": {
-		"recognition": {
-			"type": "TemplateMatch",
-			"param": {
-				"template": ["fight/自动追击10次.png"],
-				"roi": [310, 1135, 65, 109]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		},
-		"focus": {
-			"Node.Action.Succeeded": "自动追击体力耗尽"
-		},
-		"next": [
-			"体力耗尽不再继续",
-			"芯核上限不再继续",
-			"[JumpBack]芯核自动追击10次重复",
-			"[JumpBack]芯核自动追击1次重复"
-		]
-	},
-	"芯核自动追击10次重复": {
-		"recognition": {
-			"type": "TemplateMatch",
-			"param": {
-				"template": ["fight/自动追击10次.png"],
-				"roi": [310, 1135, 65, 109]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		},
-		"next": []
-	},
-	"芯核自动追击1次重复": {
+	"芯核自动追击10次 2":{
 		"recognition": {
 			"type": "DirectHit",
 			"param": {}
@@ -236,10 +200,64 @@
 		"action": {
 			"type": "Click",
 			"param": {
-				"target": [159, 1183, 33, 12]
+				"target": [283, 650, 155, 41]
 			}
 		},
-		"next": []
+		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
+	},
+
+	"芯核自动追击耗尽": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": "fight/确认是使用体力.png",
+								"roi": [552, 33, 128, 76]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["fight/自动追击1次.png"],
+								"roi": [168, 1144, 80, 127]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "自动追击至体力耗尽"
+		},
+		"next": [
+			"芯核体力耗尽不再继续",	
+			"[JumpBack]芯核连续追击全部体力",
+			"[JumpBack]自动追击一次重复"
+		]
+	},
+	"芯核连续追击全部体力": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["([4-9]\\d|\\d{3})/1[27]0"],
+				"roi": "芯核自动追击耗尽",
+				"roi_offset": [10, -30, 100, 50]
+			}
+		},
+		"action": {
+			"type": "DoNothing"			
+		},
+		"next": ["点击连续追击按钮"]
 	},
 	"芯核上限不再继续": {
 		"recognition": {
@@ -250,9 +268,38 @@
 			}
 		},
 		"action": {
-			"type": "DoNothing",
-			"param": {}
+			"type": "Click",
+			"param": {
+				"target": [25, 53, 26, 35]
+			}
 		},
+		"focus": "芯核上限无法追击",
+		"next": ["芯核结束任务"]
+	},
+	"芯核结束任务": {
+    	"recognition": {},
+    	"action": { 
+			"type": "StopTask" 
+		},
+    	"next": []
+	},
+	"芯核体力耗尽不再继续": {
+		"recognition": {
+		"type": "OCR",
+		"param": {
+			"expected": ["^(\\d|1\\d)/1[27]0$"],
+			"roi": [471, 36, 245, 68]
+		}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [25, 53, 26, 35]
+			}
+		},
+		"repeat": 4,
+		"repeat_delay": 200,
+		"focus": "体力已耗尽",
 		"next": []
 	}
 }
