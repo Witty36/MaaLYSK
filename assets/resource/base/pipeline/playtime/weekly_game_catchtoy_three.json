@@ -147,14 +147,19 @@
 			"type": "DoNothing",
 			"param": {}
 		},
-		"next": ["娃娃未集齐_三爪", "娃娃未获得_三爪", "娃娃已齐随便选_三爪"],
+		"next": [
+			"娃娃未集齐_三爪",
+			"娃娃未获得_三爪",
+			"娃娃未收集_三爪",
+			"娃娃已齐随便选_三爪"
+		],
 		"on_error": ["null"]
 	},
 	"娃娃未集齐_三爪": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["未集齐", "未集"],
+				"expected": ["未集齐", "未集", "集齐"],
 				"roi": [111, 286, 162, 446]
 			}
 		},
@@ -164,6 +169,23 @@
 		},
 		"focus": {
 			"Node.Recognition.Succeeded": "选择未集齐娃娃"
+		},
+		"next": []
+	},
+	"娃娃未收集_三爪": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["未收集", "收集"],
+				"roi": [111, 286, 162, 446]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "选择未收集娃娃"
 		},
 		"next": []
 	},
