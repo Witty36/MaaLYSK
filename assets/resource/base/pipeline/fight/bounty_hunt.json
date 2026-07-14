@@ -208,25 +208,10 @@
 	},
 	"零点自动追击10次": {
 		"recognition": {
-			"type": "OCR",
+			"type": "TemplateMatch",
 			"param": {
-				"expected": ["连续追击"],
-				"roi": [284, 949, 85, 23]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		},
-		"post_delay": 200,
-		"next": ["[JumpBack]零点自动追击10次确认", "stop"]
-	},
-	"零点自动追击10次确认": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["追击"],
-				"roi": [251,640,214,63]
+				"template": ["fight/自动追击10次.png"],
+				"roi": [326, 910, 76, 173]
 			}
 		},
 		"action": {
@@ -237,13 +222,31 @@
 			"Node.Action.Succeeded": "追击10次"
 		},
 		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
-	},	
+	},
 	"零点自动追击体力耗尽": {
 		"recognition": {
-			"type": "OCR",
+			"type": "Or",
 			"param": {
-				"expected": ["连续追击"],
-				"roi": [284, 949, 85, 23]
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["fight/自动追击10次.png"],
+								"roi": [326, 910, 76, 173]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["fight/自动追击1次.png"],
+								"roi": [165, 919, 108, 98]
+							}
+						}
+					}
+				]
 			}
 		},
 		"action": {
@@ -251,63 +254,28 @@
 			"param": {}
 		},
 		"focus": {
-			"Node.Action.Succeeded": "开始追击至体力耗尽"
+			"Node.Action.Succeeded": "自动追击体力耗尽"
 		},
-		"post_delay": 1000,
 		"next": [
 			"体力耗尽不再继续",
-			"零点自动追击10次重复确认",
-			"零点自动追击10次重复进入"
+			"[JumpBack]零点自动追击10次重复",
+			"[JumpBack]零点自动追击1次重复"
 		]
 	},
-	"零点自动追击10次重复进入": {
+	"零点自动追击10次重复": {
 		"recognition": {
-			"type": "OCR",
+			"type": "TemplateMatch",
 			"param": {
-				"expected": ["连续追击"],
-				"roi": [284, 949, 85, 23]
+				"template": ["fight/自动追击10次.png"],
+				"roi": [326, 910, 76, 173]
 			}
 		},
 		"action": {
 			"type": "Click",
 			"param": {}
 		},
-		"post_delay": 200,
-		"next": ["体力耗尽不再继续","零点自动追击10次重复确认"]
-	},
-	"零点自动追击10次重复确认": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["追击","追","击"],
-				"roi": [251,640,214,63]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		},
-		"focus": {
-			"Node.Action.Succeeded": "追击10次"
-		},
-		"post_delay": 5000,
-		"next": ["零点自动追击10次重复1"]
-	},
-	"零点自动追击10次重复1": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["完成","完","成"],
-				"roi": [119,340,471,556]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {
-				"target": [38,72,87,74]
-			}
-		},
-		"next": ["零点自动追击体力耗尽"]
+		"post_delay": 500,
+		"next": []
 	},
 	"零点自动追击1次重复": {
 		"recognition": {
@@ -340,7 +308,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": ["道具", "道", "具"],
-				"roi": [434,411,82,49]
+				"roi": [412, 407, 137, 48]
 			}
 		},
 		"action": {

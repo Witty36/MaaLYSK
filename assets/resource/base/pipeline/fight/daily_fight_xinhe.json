@@ -177,25 +177,10 @@
 	},
 	"芯核自动追击10次": {
 		"recognition": {
-			"type": "OCR",
+			"type": "TemplateMatch",
 			"param": {
-				"expected": ["连续追击"],
-				"roi": [265,1171,77,30]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		},
-		"post_delay": 200,
-		"next": ["芯核自动追击10次确认", "stop"]
-	},
-	"芯核自动追击10次确认": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["追击"],
-				"roi": [251,640,214,63]
+				"template": ["fight/自动追击10次.png"],
+				"roi": [310, 1135, 65, 109]
 			}
 		},
 		"action": {
@@ -206,13 +191,13 @@
 			"Node.Action.Succeeded": "追击10次"
 		},
 		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
-	},	
+	},
 	"芯核自动追击耗尽": {
 		"recognition": {
-			"type": "OCR",
+			"type": "TemplateMatch",
 			"param": {
-				"expected": ["连续追击"],
-				"roi": [265,1171,77,30]
+				"template": ["fight/自动追击10次.png"],
+				"roi": [310, 1135, 65, 109]
 			}
 		},
 		"action": {
@@ -222,62 +207,26 @@
 		"focus": {
 			"Node.Action.Succeeded": "自动追击体力耗尽"
 		},
-		"post_delay": 1000,
 		"next": [
 			"体力耗尽不再继续",
 			"芯核上限不再继续",
-			"芯核自动追击10次重复确认",
-			"芯核自动追击10次重复进入",
-			"芯核自动追击1次重复"
+			"[JumpBack]芯核自动追击10次重复",
+			"[JumpBack]芯核自动追击1次重复"
 		]
 	},
-	"芯核自动追击10次重复确认": {
+	"芯核自动追击10次重复": {
 		"recognition": {
-			"type": "OCR",
+			"type": "TemplateMatch",
 			"param": {
-				"expected": ["追击"],
-				"roi": [251,640,214,63]
+				"template": ["fight/自动追击10次.png"],
+				"roi": [310, 1135, 65, 109]
 			}
 		},
 		"action": {
 			"type": "Click",
 			"param": {}
 		},
-		"post_delay": 5000,
-		"next": ["芯核自动追击10次重复1"]
-	},
-	"芯核自动追击10次重复进入": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["连续追击"],
-				"roi": [265,1171,77,30]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		},
-		"post_delay": 5000,
-		"next": ["体力耗尽不再继续","芯核上限不再继续","芯核自动追击10次重复1"]
-	},
-	"芯核自动追击10次重复1": {
-		"recognition": {
-			"type": "OCR",
-			"param": {"expected": ["完成","成","完"],"roi": [
-				0,
-				0,
-				0,
-				0
-			]}
-		},
-		"action": {
-			"type": "Click",
-			"param": {
-				"target": [10, 10, 30, 20]
-			}
-		},
-		"next": ["芯核自动追击耗尽"]
+		"next": []
 	},
 	"芯核自动追击1次重复": {
 		"recognition": {
