@@ -415,10 +415,28 @@
 	},
 	"退出商城购买popop": {
 		"recognition": {
-			"type": "OCR",
+			"type": "Or",
 			"param": {
-				"expected": ["购买"],
-				"roi": [238, 684, 242, 310]
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["shopping/商店购买.png"],
+								"roi": [238, 684, 242, 310]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["购买"],
+								"roi": [238, 684, 242, 310]
+							}
+						}
+					}
+				]
 			}
 		},
 		"action": {
