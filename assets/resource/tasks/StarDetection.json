@@ -1,79 +1,122 @@
 {
-	"task": [
-		{
-			"name": "🌌星间探测",
-			"entry": "进入星间探测",
-			"default_check": true,
-			"option": ["是否使用加速魔方", "选择探测星系"],
-			"description": "目前仅支持自动探测一次银砂星系/辉曜星系,快速探测暂不支持"
-		}
-	],
-	"option": {
-		"是否使用加速魔方": {
-			"type": "switch",
-			"cases": [
-				{
-					"name": "No",
-					"pipeline_override": {
-						"是否探测中": {
-							"next": ["stop"]
-						}
-					}
-				},
-				{
-					"name": "Yes",
-					"pipeline_override": {
-						"是否探测中": {
-							"next": ["结束探测"]
-						}
-					}
-				}
-			]
-		},
-		"选择探测星系": {
-			"type": "select",
-			"cases": [
-				{
-					"name": "银砂星系",
-					"pipeline_override": {
-						"星间探测准备": {
-							"next": [
-								"是否探测中",
-								"收取探测信号",
-								"银砂星系_开始探测",
-								"[JumpBack]前往银砂星系"
-							]
-						},
-						"收取探测信号": {
-							"next": [
-								"银砂星系_开始探测",
-								"[JumpBack]前往银砂星系",
-								"[JumpBack]星间探测点击"
-							]
-						}
-					}
-				},
-				{
-					"name": "辉曜星系",
-					"pipeline_override": {
-						"星间探测准备": {
-							"next": [
-								"是否探测中",
-								"收取探测信号",
-								"辉曜星系_开始探测",
-								"[JumpBack]前往辉曜星系"
-							]
-						},
-						"收取探测信号": {
-							"next": [
-								"辉曜星系_开始探测",
-								"[JumpBack]前往辉曜星系",
-								"[JumpBack]星间探测点击"
-							]
-						}
-					}
-				}
-			]
-		}
-	}
+    "task": [
+        {
+            "name": "🌌星间探测",
+            "entry": "进入星间探测",
+            "default_check": true,
+            "option": [
+                "是否使用加速魔方",
+                "选择探测星系"
+            ],
+            "description": "支持银砂星系/辉曜星系探测；选择使用加速魔方时，会尝试点击快速探测、确认消耗魔方并收取奖励。"
+        }
+    ],
+    "option": {
+        "是否使用加速魔方": {
+            "type": "switch",
+            "cases": [
+                {
+                    "name": "No",
+                    "pipeline_override": {
+                        "是否探测中": {
+                            "next": [
+                                "stop"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "Yes",
+                    "pipeline_override": {
+                        "是否探测中": {
+                            "recognition": {
+                                "type": "OCR",
+                                "param": {
+                                    "expected": [
+                                        "信号探测中",
+                                        "返回时间",
+                                        "探测中"
+                                    ],
+                                    "roi": [
+                                        160,
+                                        470,
+                                        400,
+                                        230
+                                    ]
+                                }
+                            },
+                            "action": {
+                                "type": "Click",
+                                "param": {
+                                    "target": [
+                                        475,
+                                        1000,
+                                        70,
+                                        80
+                                    ]
+                                }
+                            },
+                            "focus": {
+                                "Node.Action.Succeeded": "点击右侧加速魔方"
+                            },
+                            "pre_delay": 200,
+                            "post_delay": 1200,
+                            "next": [
+                                "确认消耗加速魔方并收取"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "选择探测星系": {
+            "type": "select",
+            "cases": [
+                {
+                    "name": "银砂星系",
+                    "pipeline_override": {
+                        "星间探测准备": {
+                            "next": [
+                                "是否探测中",
+                                "收取探测信号",
+                                "银砂星系_快速探测",
+                                "银砂星系_开始探测",
+                                "[JumpBack]前往银砂星系"
+                            ]
+                        },
+                        "收取探测信号": {
+                            "next": [
+                                "银砂星系_快速探测",
+                                "银砂星系_开始探测",
+                                "[JumpBack]前往银砂星系",
+                                "[JumpBack]星间探测点击"
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "辉曜星系",
+                    "pipeline_override": {
+                        "星间探测准备": {
+                            "next": [
+                                "是否探测中",
+                                "收取探测信号",
+                                "辉曜星系_快速探测",
+                                "辉曜星系_开始探测",
+                                "[JumpBack]前往辉曜星系"
+                            ]
+                        },
+                        "收取探测信号": {
+                            "next": [
+                                "辉曜星系_快速探测",
+                                "辉曜星系_开始探测",
+                                "[JumpBack]前往辉曜星系",
+                                "[JumpBack]星间探测点击"
+                            ]
+                        }
+                    }
+                }
+            ]
+        }
+    }
 }

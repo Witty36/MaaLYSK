@@ -20,6 +20,13 @@
 			"description": "签到奖励领取,日常任务领取<br><span style=\"color:red\">任务完成后,请自行检查是否领取完毕</span>"
 		},
 		{
+			"name": "📅每日签到",
+			"entry": "进入每日签到任务",
+			"default_check": true,
+			"option": ["是否尝试进行鎏金卡补签"],
+			"description": "只进入签到页领取每日签到和月签到礼包，不处理日常任务奖励。"
+		},
+		{
 			"name": "🪴家园日常",
 			"entry": "进入家园",
 			"default_check": false,
