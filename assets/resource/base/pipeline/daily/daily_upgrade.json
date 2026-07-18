@@ -168,7 +168,9 @@
 		},
 		"action": {
 			"type": "Click",
-			"param": {}
+			"param": {
+				"target_offset": [20, 0, -20, -20]
+			}
 		},
 		"next": []
 	},
