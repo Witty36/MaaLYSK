@@ -10,7 +10,7 @@
 		},
 		"next": [
 			"点击精彩活动",
-			"进入签到_十日与你",
+			"进入签到_心动挚礼",
 			"[JumpBack]点击活动",
 			"[JumpBack]自动过剧情",
 			"[JumpBack]返回上一级页面",
@@ -22,14 +22,14 @@
 			"type": "OCR",
 			"param": {
 				"expected": ["精彩活动", "精彩", "精", "彩"],
-				"roi": [21, 1187, 680, 48]
+				"roi": [21, 1187, 680, 100]
 			}
 		},
 		"action": {
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["进入签到_十日与你", "[JumpBack]精彩活动向下滑"]
+		"next": ["进入签到_心动挚礼", "[JumpBack]精彩活动向下滑"]
 	},
 	"进入签到_灯宵映礼": {
 		"recognition": {
@@ -102,7 +102,7 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["event/signin/心动挚礼_祁煜共潮生.png"],
+				"template": ["event/signin/心动挚礼_黎深夕晖凝刻.png"],
 				"roi": [85, 157, 350, 986]
 			}
 		},
