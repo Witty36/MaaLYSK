@@ -17,10 +17,6 @@
 					"enabled": false
 				},
 				{
-					"name": "🛒商城周常领取",
-					"enabled": true
-				},
-				{
 					"name": "💎年卡领取",
 					"enabled": false
 				},
@@ -50,6 +46,10 @@
 					"option": {
 						"娃娃机模式选择": "过剧情抓二爪娃娃"
 					}
+				},
+				{
+					"name": "🛒商城周常领取",
+					"enabled": true
 				},
 				{
 					"name": "⚡️体力瓶消耗",
