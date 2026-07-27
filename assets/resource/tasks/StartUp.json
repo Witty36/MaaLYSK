@@ -31,6 +31,34 @@
 							"enabled": true
 						}
 					}
+				},
+				{
+					"name": "恋与深空国际服",
+					"pipeline_override": {
+						"恋与深空国际服": {
+							"enabled": true
+						},
+						"sub_启动深空国际服": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "恋与深空日服",
+					"pipeline_override": {
+						"恋与深空国际服": {
+							"enabled": true
+						},
+						"sub_启动深空国际服": {
+							"enabled": true,
+							"action": {
+								"type": "StartApp",
+								"param": {
+									"package": "com.papegames.lysk.jp"
+								}
+							}
+						}
+					}
 				}
 			]
 		},
@@ -68,6 +96,34 @@
 						},
 						"sub_启动深空官服": {
 							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "恋与深空国际服",
+					"pipeline_override": {
+						"恋与深空国际服": {
+							"enabled": true
+						},
+						"sub_启动深空国际服": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "恋与深空日服",
+					"pipeline_override": {
+						"恋与深空国际服": {
+							"enabled": true
+						},
+						"sub_启动深空国际服": {
+							"enabled": true,
+							"action": {
+								"type": "StartApp",
+								"param": {
+									"package": "com.papegames.lysk.jp"
+								}
+							}
 						}
 					}
 				}
