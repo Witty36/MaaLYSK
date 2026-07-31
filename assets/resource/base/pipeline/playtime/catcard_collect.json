@@ -8,13 +8,63 @@
 			"type": "DoNothing",
 			"param": {}
 		},
+		"next": [
+			"喵喵牌喵呜柜台页面",
+			"[JumpBack]喵喵牌进入喵呜柜台",
+			"[JumpBack]返回上一级页面"
+		]
+	},
+	"喵喵牌进入喵呜柜台": {
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["playtime/catcard/喵呜柜台.png"],
+								"roi": [438, 33, 247, 219]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["柜台", "柜", "台"],
+								"roi": [481, 96, 191, 82]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
 		"post_delay": 2000,
+		"next": [],
+		"on_error": ["null"]
+	},
+	"喵喵牌喵呜柜台页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["柜台", "柜", "台"],
+				"roi": [85, 117, 189, 127]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
 		"timeout": 5000,
 		"next": [
 			"开始时是否有喵喵币",
-			"[JumpBack]喵喵牌抽卡寻找_第一排",
-			"[JumpBack]喵喵牌抽卡寻找_第二排",
-			"[JumpBack]喵喵牌抽卡寻找_第三排",
+			"[JumpBack]喵喵牌抽卡寻找_固定常驻位",
+			"[JumpBack]喵喵牌抽卡寻找_限时抽卡位",
 			"[JumpBack]退出牵绊度提升popop"
 		]
 	},
@@ -23,8 +73,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": ["^0/30$"],
-				"roi": [669, 61, 44, 19],
-				"only_rec": true
+				"roi": [586, 55, 134, 31]
 			}
 		},
 		"action": {
@@ -34,7 +83,7 @@
 		"focus": "喵喵币已耗尽",
 		"next": []
 	},
-	"喵喵牌抽卡寻找_第一排": {
+	"喵喵牌抽卡寻找_固定常驻位": {
 		"recognition": "Or",
 		"any_of": [
 			{
@@ -42,7 +91,7 @@
 					"type": "OCR",
 					"param": {
 						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [141, 403, 32, 24]
+						"roi": [505, 405, 35, 20]
 					}
 				}
 			},
@@ -51,7 +100,7 @@
 					"type": "OCR",
 					"param": {
 						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [325, 405, 31, 22]
+						"roi": [322, 405, 35, 20]
 					}
 				}
 			},
@@ -60,7 +109,52 @@
 					"type": "OCR",
 					"param": {
 						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [506, 405, 34, 22]
+						"roi": [138, 673, 35, 20]
+					}
+				}
+			},
+			{
+				"recognition": {
+					"type": "OCR",
+					"param": {
+						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
+						"roi": [322, 673, 35, 20]
+					}
+				}
+			},
+			{
+				"recognition": {
+					"type": "OCR",
+					"param": {
+						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
+						"roi": [505, 673, 35, 20]
+					}
+				}
+			},
+			{
+				"recognition": {
+					"type": "OCR",
+					"param": {
+						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
+						"roi": [138, 944, 35, 20]
+					}
+				}
+			},
+			{
+				"recognition": {
+					"type": "OCR",
+					"param": {
+						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
+						"roi": [322, 944, 35, 20]
+					}
+				}
+			},
+			{
+				"recognition": {
+					"type": "OCR",
+					"param": {
+						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
+						"roi": [505, 944, 35, 20]
 					}
 				}
 			}
@@ -71,54 +165,50 @@
 		},
 		"next": ["开始喵喵牌抽卡"]
 	},
-	"喵喵牌抽卡寻找_第二排": {
-		"recognition": "Or",
-		"any_of": [
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [141, 669, 32, 24]
-					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [325, 669, 31, 22]
-					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [506, 669, 34, 22]
-					}
-				}
-			}
-		],
-		"action": {
-			"type": "Click",
-			"param": {"target_offset": [16, -86, 9, 27]}
-		},
-		"next": ["开始喵喵牌抽卡"]
-	},
-	"喵喵牌抽卡寻找_第三排": {
+	"喵喵牌抽卡寻找_限时抽卡位": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
 				"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-				"roi": [141, 943, 30, 22]
+				"roi": [138, 405, 35, 20]
 			}
 		},
 		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["[JumpBack]喵喵牌抽卡寻找_限时抽卡排除"]
+	},
+	"喵喵牌抽卡寻找_限时抽卡排除": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["限时", "限", "时"],
+				"roi": [93, 284, 34, 19]
+			}
+		},
+		"inverse": true,
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["喵喵牌抽卡寻找_限时抽卡二次排除"]
+	},
+	"喵喵牌抽卡寻找_限时抽卡二次排除": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["限时", "限", "时"],
+				"roi": [93, 284, 34, 19]
+			}
+		},
+		"inverse": true,
+		"action": {
 			"type": "Click",
-			"param": {"target_offset": [16, -86, 9, 27]}
+			"param": {
+				"target": "喵喵牌抽卡寻找_限时抽卡位",
+				"target_offset": [16, -86, 9, 27]
+			}
 		},
 		"next": ["开始喵喵牌抽卡"]
 	},
@@ -160,9 +250,9 @@
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["9"],
+				"expected": ["9/"],
 				"replace": ["g", "9"],
-				"roi": [525, 943, 62, 80]
+				"roi": [525, 960, 82, 49]
 			}
 		},
 		"action": {
@@ -176,7 +266,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": ["^0/30$"],
-				"roi": [669, 61, 44, 19]
+				"roi": [586, 55, 134, 31]
 			}
 		},
 		"action": {

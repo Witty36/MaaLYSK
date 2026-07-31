@@ -8,6 +8,7 @@
 			"type": "DoNothing",
 			"param": {}
 		},
+		"post_delay": 1000,
 		"next": [
 			"喵喵牌_点击快乐出游",
 			"[JumpBack]点击约会",
@@ -30,7 +31,7 @@
 		"focus": {
 			"Node.Action.Succeeded": "进入快乐出游"
 		},
-		"post_delay": 400,
+		"post_wait_freezes": 500,
 		"next": [
 			"[JumpBack]选择沈星回",
 			"[JumpBack]选择黎深",
@@ -140,6 +141,20 @@
 		},
 		"action": {"type": "Click", "param": {}},
 		"next": ["喵喵牌游戏中页面"]
+	},
+	"检查喵呜币是否上限": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^2[89]/30$", "^30/30$", "^[1-9]/30$"],
+				"roi": [487, 172, 177, 35]
+			}
+		},
+		"action": "DoNothing",
+		"focus": {
+			"Node.Recognition.Succeeded": "开始消耗喵呜币抽取徽章"
+		},
+		"next": ["进入喵喵牌抽卡"]
 	},
 	"检查喵喵牌次数": {
 		"recognition": {

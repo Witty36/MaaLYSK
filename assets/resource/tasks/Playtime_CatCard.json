@@ -4,7 +4,7 @@
 			"name": "🐱周常喵喵牌",
 			"entry": "进入喵喵牌",
 			"default_check": false,
-			"option": ["囤积达上限是否继续", "喵喵牌游玩男主"],
+			"option": ["自动消耗喵呜币抽取徽章", "喵喵牌游玩男主"],
 			"description": "可选囤积达上限是否继续,如果不继续的话记得检查2400巧克力有没有达到",
 			"pipeline_override": {
 				"选择沈星回": {
@@ -41,6 +41,30 @@
 		}
 	],
 	"option": {
+		"自动消耗喵呜币抽取徽章": {
+			"type": "switch",
+			"description": "即将获得超过30枚喵呜币时，自动消耗全部喵呜币抽取徽章",
+			"cases": [
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"进入喵喵牌页面": {
+							"next": [
+								"[JumpBack]检查喵呜币是否上限",
+								"检查喵喵牌次数",
+								"[JumpBack]喵喵牌出发",
+								"[JumpBack]喵喵牌再来一局",
+								"[JumpBack]返回上一级页面"
+							]
+						}
+					}
+				},
+				{
+					"name": "No",
+					"option": ["囤积达上限是否继续"]
+				}
+			]
+		},
 		"囤积达上限是否继续": {
 			"type": "switch",
 			"cases": [
