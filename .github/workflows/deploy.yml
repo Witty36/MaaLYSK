@@ -6,7 +6,7 @@ on:
   # 在针对 `main` 分支的推送上运行。如果你
   # 使用 `master` 分支作为默认分支，请将其更改为 `master`
   push:
-    branches: [master]
+    branches: [main]
 
   # 监听 release 发布（包括在网页上创建 tag 并发布 release）
   release:
@@ -48,6 +48,8 @@ jobs:
       - name: Install dependencies
         run: npm ci # 或 pnpm install / yarn install / bun install
       - name: Build with VitePress
+        env:
+          EMOJI_SAVE_TOKEN: ${{ secrets.EMOJI_SAVE_TOKEN }}
         run: |
           npm run docs:build # 或 pnpm docs:build / yarn docs:build / bun run docs:build
           touch docs/.vitepress/dist/.nojekyll

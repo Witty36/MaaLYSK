@@ -1,6 +1,6 @@
 MaaLYSK更新日志
 
-# 🎉 **MaaLYSK v0.4.3**(正式版)
+# 🎉 **MaaLYSK v0.4.4-beta1**(公测版)
 
 ❗MaaLYSK本体 是免费哒，请勿有偿购买代下、安装等服务 ❗
 
@@ -11,6 +11,20 @@ MaaLYSK更新日志
   ❗❗本次更新由于**更新了UI页面**，原先的配置可能有所更新（如**定时配置**、**启动路径**等），请在运行前**检查选项与配置**！
 
   如果内置更新出现问题（如exe文件消失、UI报错等）请手动前往[【Mirror酱】](https://mirrorchyan.com/zh/projects?source=MaaLYSKnotice&rid=MaaLYSK)或[【Github】](https://github.com/Witty36/MaaLYSK/releases)下载最新版本，而不是重新下载旧版本后继续内置更新。
+
+### 📕 公测版v0.4.4-beta1更新内容
+
+### 🃏喵喵牌抽卡
+
+修复喵喵牌抽卡意外终止问题
+
+### 🍂日常思念升级一次
+
+缩小经验瓶范围避免点到详情
+
+### 💫免费福利签到
+
+更新心动挚礼五星签到-黎深-夕晖凝刻
 
 ### 📕 正式版v0.4.3更新内容
 
@@ -38,18 +52,22 @@ MaaLYSK更新日志
 
 修复喵喵徽章无法抽第三排的问题，优化喵喵牌抽卡逻辑
 
-### 📕 公测版v0.4.3-beta1更新内容
-
-### 🛍️限时活动商城领取
-
-更新版本—夏以昼2026生日--云端商店
-
-### 🌟限时活动每日领取
-
-更新版本—夏以昼2026生日--澄云向昼
-
 ## ⚙️ GUI版本
 
-UI版本v2.12.1，框架5.10.0
+更新UI版本v2.13.0-beta.2，框架5.12.2、OCR模型更新v6版本
+
+UI更新
+
+feat：全局配置（多开）功能
+
+chore：优化任务列表的右键触发范围
+
+fix：多实例窗口同时运行时，在总控台界面只有一个实例的画面会动的bug、任务值未初始化导致校验失败的bug
+
+MaaFW更新
+
+feat：支持mumuv6
+
+fix：修复batch OCR某些情况下的识别问题
 
 [已有 Mirror酱 CDK? 前往Mirror酱高速下载](https://mirrorchyan.com/zh/projects?source=MaaLYSKUI&rid=MaaLYSK)

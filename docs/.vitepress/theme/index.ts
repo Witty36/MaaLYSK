@@ -11,6 +11,7 @@ import QuickStartPopup from "./components/QuickStartPopup.vue";
 import SmartDownloadChannels from "./components/SmartDownloadChannels.vue";
 import MirrorLinkEnhancer from "./components/MirrorLinkEnhancer.vue";
 import Flowchart from "./components/Flowchart.vue";
+import EmojiTable from "./components/EmojiTable.vue";
 import "./custom.css";
 
 
@@ -38,5 +39,6 @@ export default {
     enhanceApp({ app }: { app: any }) {
         app.component('SmartDownloadChannels', SmartDownloadChannels);
         app.component('Flowchart', Flowchart);
+        app.component('EmojiTable', EmojiTable);
     },
 };
