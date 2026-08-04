@@ -96,7 +96,40 @@
 				"target": true
 			}
 		},
-		"next": ["周常_在家园中拍照一次", "[JumpBack]返回上一级页面"]
+		"next": ["返回家园主界面1"]
+	},
+
+	"返回家园主界面1": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {
+				"roi": [63,20,22,33]
+			 }
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [63,20,22,33]
+		}
+		},
+		"next": ["确认当前界面"]
+	},
+
+	"确认当前界面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["悠闲"],
+				"roi": [135,226,42,29]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [654,72,5,6]
+			}
+		},
+		"next": ["周常_在家园中拍照一次"]
 	},
 	"周常_在家园中拍照一次": {
 		"recognition": {
@@ -118,8 +151,8 @@
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["我来拍照"],
-				"roi": [964, 564, 109, 38]
+				"expected": ["OTTO拍照"],
+				"roi": [965,507,109,38]
 			}
 		},
 		"action": {
@@ -145,9 +178,23 @@
 			}
 		},
 		"timeout": 3000,
-		"next": ["周常_进入商城购买商城周常礼包"],
-		"on_error": ["[JumpBack]返回上一级页面"],
-		"post_delay": 5000
+		"post_delay": 2000,
+		"next": ["返回家园主界面2"]
+	},
+		"返回家园主界面2": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {
+				"roi": [63,20,22,33]
+			 }
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [63,20,22,33]
+		}
+		},
+		"next": ["周常_进入商城购买商城周常礼包"]
 	},
 	"周常_进入商城购买商城周常礼包": {
 		"recognition": {
@@ -193,14 +240,32 @@
 			"type": "DoNothing",
 			"param": {}
 		},
-		"next": ["周常_购买周常礼包", "周常_周常礼包售罄"]
+		"pre_delay": 2000,
+		"next": [ "周常_周常礼包售罄","周常_购买周常礼包准备"]
+	},
+	"周常_购买周常礼包准备": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["免费"],
+				"roi": [842,219,141,36]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [889,230,46,18]
+			}
+		},
+		"pre_delay": 2000,
+		"next": ["周常_购买周常礼包"]
 	},
 	"周常_购买周常礼包": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
 				"expected": ["免费"],
-				"roi": [660, 140, 406, 439]
+				"roi": [813,493,104,33]
 			}
 		},
 		"action": {
@@ -209,15 +274,31 @@
 				"target": true
 			}
 		},
+		"pre_delay": 2000,
 		"next": ["周常_购买周常礼包_完成购买"],
-		"on_error": ["[JumpBack]返回上一级页面"]
+		"on_error": ["离开商店"]
+	},
+	"离开商店":{
+		"recognition": {
+			"type": "DirectHit",
+			"param": {
+				"roi": [63,20,22,33]
+			 }
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [63,20,22,33]
+		}
+		},
+		"next": []
 	},
 	"周常_周常礼包售罄": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["售罄"],
-				"roi": [769, 511, 56, 30]
+				"expected": ["0/1"],
+				"roi": [906,529,25,17]
 			}
 		},
 		"action": {
@@ -225,14 +306,14 @@
 			"param": {}
 		},
 		"focus": "每周礼包售罄",
-		"next": ["[JumpBack]返回上一级页面"]
+		"next": ["离开商店"]
 	},
 	"周常_购买周常礼包_完成购买": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["免费"],
-				"roi": [660, 140, 406, 439]
+				"expected": ["获得奖励"],
+				"roi": [556,117,169,39]
 			}
 		},
 		"action": {
@@ -241,18 +322,18 @@
 				"target": true
 			}
 		},
+		"pre_delay": 2000,
 		"next": [
-			"周常_领取周常奖励准备",
-			"[JumpBack]返回上一级页面",
-			"[JumpBack]退出花园弹窗popop"
+			"周常_领取周常奖励准备"
 		]
 	},
+	
 	"周常_领取周常奖励准备": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
 				"expected": ["任务"],
-				"roi": [1189, 621, 57, 79]
+				"roi": [1185,625,58,80]
 			}
 		},
 		"action": {
@@ -262,8 +343,9 @@
 			}
 		},
 		"timeout": 3000,
+		"pre_delay": 2000,
 		"next": ["周常_领取周常奖励"],
-		"on_error": ["返回等待", "[JumpBack]返回上一级页面"],
+		"on_error": ["[JumpBack]返回上一级页面"],
 		"focus": "没有可领取奖励"
 	},
 	"周常_领取周常奖励": {
@@ -271,7 +353,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": ["一键领取"],
-				"roi": [935, 498, 178, 63]
+				"roi": [978,520,99,24]
 			}
 		},
 		"action": {
@@ -280,6 +362,7 @@
 				"target": true
 			}
 		},
+		"pre_delay": 2000,
 		"next": ["周常_二次确认领取周常奖励", "[JumpBack]返回上一级页面"]
 	},
 	"周常_二次确认领取周常奖励": {
@@ -287,7 +370,7 @@
 			"type": "OCR",
 			"param": {
 				"expected": ["一键领取"],
-				"roi": [935, 498, 178, 63]
+				"roi": [978,520,99,24]
 			}
 		},
 		"action": {

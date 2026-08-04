@@ -917,6 +917,6 @@
 			"type": "Click",
 			"param": {"target": [626, 93, 15, 12]}
 		},
-		"next": ["返回等待"]
+		"next": ["stop"]
 	}
 }

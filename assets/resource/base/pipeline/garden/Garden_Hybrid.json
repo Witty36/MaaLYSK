@@ -1,0 +1,519 @@
+{"交育_确认进入界面": {
+            "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_家园任务.png"
+                    ],
+                    "roi": [
+                        1174,
+                        609,
+                        81,
+                        97
+                    ]
+                }
+            },
+            "timeout": 6000,
+            "next": [
+                "交育_点击OTTO记录"
+            ],
+            "on_error": [ "[JumpBack]导航回花园页面（花园）"]
+        },
+        "交育_点击OTTO记录": {
+            "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_otto记录.png"
+                    ],
+                    "roi": [
+                        1090,
+                        43,
+                        45,
+                        48
+                    ]
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {"target": true} 
+            },
+            "next": [
+                "交育_点击OTTO记录_确认界面"
+            ]
+        },
+        "交育_点击OTTO记录_确认界面": {
+            "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_otto记录界面.png"
+                    ],
+                    "roi": [
+                        950,
+                        44,
+                        165,
+                        58
+                    ]
+                }
+            },
+            "next": [
+                "交育_点击花卉交育去看看"
+            ]
+        },
+        "交育_点击花卉交育去看看": {
+            "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": "去看看",
+                    "roi": [1158,162,73,29]
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {"target": true}
+            },
+            "timeout": 3000,
+            "on_error": [
+                "[JumpBack]导航回花园页面（花园）",
+                "[JumpBack]点击家园",
+                "[JumpBack]导航回主页面"
+            ],
+            "next": [
+                "交育_点击花卉交育去看看_确认界面"
+            ],
+            "post_delay": 10000
+        },
+        "交育_点击花卉交育去看看_确认界面": {
+            "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_交育图标.png"
+                    ],
+                    
+                    "roi": 
+                        [196,117,865,590]
+                    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {"target":true}
+            },
+            "timeout": 3000,
+            "next": [
+                "交育_确认当前气泡是否为交育气泡"
+            ],
+            "on_error": ["交育_退出气泡"]
+        },
+        "交育_确认当前气泡是否为交育气泡":{
+            "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": "交育",
+                    "roi": 
+                        [25,12,1239,677]
+                }
+            },
+            "action": {
+                "type": "DoNothing",
+                "param": {}
+            },
+            
+            "next": [
+               "交育_进入交育界面"
+            ]
+            
+        
+    },
+        "交育_退出气泡":{
+            "recognition": {
+                "type": "DirectHit",
+                "param": {
+                    "roi": 
+                        [189,517,58,52]
+                }
+            },
+        "action": {
+                "type": "Swipe",
+                "param": {}
+            },
+            "next": [
+                "交育_二次点击"
+            ]
+        },
+    "交育_二次点击":{
+        "recognition": {
+                "type": "TemplateMatch",
+                "param": {
+                    "template": [
+                        "feature/garden_交育图标.png"
+                    ],
+                    "index": -1,
+                    "roi": 
+                        [196,117,865,590]
+                    
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {"target":true}
+            },
+            "next": [
+                "交育_确认当前气泡是否为交育气泡"
+            ]
+        },
+    "交育_进入交育界面":{
+        "recognition": {
+                "type": "OCR",
+                "param": {
+                    "expected": "交育",
+                    "roi": 
+                        [25,12,1239,677]
+                }
+            },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "next": [
+               "交育_交育界面确认"
+            ]
+    },
+    "交育_交育界面确认":{
+        "recognition": {
+            "type": "OCR",
+            "param":{
+                "expected": [
+                  "交育完成","交育中","消耗同品种花卉可获得该品种花种和花材"
+                ],
+                   "roi": [385,64,498,213]
+                }
+        },
+        "focus": "当前在交育界面",
+            "timeout": 3000,
+            "next": [
+                "交育_当前在交育中",
+                "交育_当前已交育完成",
+                "交育_当前无交育"
+            ],
+            "on_error": [
+                "交育_点击花卉交育去看看_确认界面",
+                "[JumpBack]导航回花园页面（花园）"]
+    },
+    "交育_当前在交育中":{
+        "recognition": {
+            "type": "OCR",
+            "param":{
+                "expected": 
+                [
+                  "交育中"
+                ],
+                   "roi": [385,64,498,213]
+            }
+                },
+                "focus": {
+			    "Node.Recognition.Succeeded": {
+				"content": "当前交育中,即将停止，不再进行后续交育操作",
+				"display": "log"
+                }
+			},
+                "next":["stop"]
+    },
+    "交育_当前已交育完成":{
+        "recognition": {
+            "type": "OCR",
+            "param":{
+                "expected": 
+                [
+                  "交育完成"
+                ],
+                   "roi": [491,77,310,219]
+            }
+                },
+            "focus": {
+			    "Node.Recognition.Succeeded": {
+				"content": "交育完成，即将开始交育完成领取奖励至交育流程",
+				"display": "log"
+			}
+        },
+                "next":["交育_领取交育完成产物"]
+    },
+    "交育_领取交育完成产物":{
+            "recognition": {
+            "type": "OCR",
+            "param":{
+                "expected": 
+                [
+                  "领取"
+                ],
+                   "roi": [600,583,81,24]
+            }
+                },
+            "action": {
+                "type": "Click",
+                "param": {
+                    "target":true
+                }
+            },
+            "timeout": 3000,
+                "next":[
+                    "交育_跳过确认界面"
+                ]
+    },
+    "交育_跳过确认界面":{
+         "action": {
+                "type": "Click",
+                "param": {
+                    "target":[177,215,8,10]
+                }
+            },
+            "next": ["交育_点击左侧交育气泡"]
+    },
+
+    "交育_当前无交育":{
+         "recognition": {
+            "type": "OCR",
+            "param":{
+                "expected": 
+                [
+                  "消耗同品种花卉可获得该品种花种和花材"
+                ],
+                   "roi": [346,29,591,334]
+            }
+                },
+                "focus": {
+			"Node.Recognition.Succeeded": {
+				"content": "当前无交育，即将开始交育流程",
+				"display": "log"
+            }
+			},
+                "next":["交育_点击左侧交育气泡"]
+        },
+     "交育_点击左侧交育气泡":{
+    "recognition": {
+            "type": "OCR",
+            "param":{
+                "expected": [
+                  "交育完成","交育中","消耗同品种花卉可获得该品种花种和花材","稀有度"
+                ],
+                   "roi":[46,44,1171,467]
+                }
+        },
+        "action": {
+                "type": "Click",
+                "param": {
+                    "target":[335,170,47,49]
+                }
+        },
+        "next": ["交育_准备进入交育流程"]
+    },
+        "交育_准备进入交育流程":{
+        "recognition": {
+            "type": "OCR",
+            "param":{
+                "expected": [
+                  "交育完成","交育中","消耗同品种花卉可获得该品种花种和花材","稀有度"
+                ],
+                   "roi": [46,44,1171,467]
+                }
+        },
+        "focus": {
+			"Node.Recognition.Succeeded": "当前已处在交育界面"
+		}
+    },
+            "通用_交育流程1(点击第一支花，优先选择蓝色)":{
+			"recognition": {
+            "type": "ColorMatch",
+			"param": {
+                "lower":[[127, 155, 218]],
+                "upper": [[129, 156, 219]],
+				"roi": [60,608,851,30]
+			}
+		},
+        "action": {
+                "type": "Click",
+                "param": {
+                    "target": true,
+                    "target_offset": [2, -90, 0, 0]    //要改
+                }
+                },
+            "post_delay": 2000,
+            "timeout": 3000,
+            "next": ["通用_交育流程2(点击第二支花，目标点为第一支蓝花左边的花)"],
+            "on_error": ["通用_交育流程1(点击第一支花，选择紫色)"]
+        },
+        "通用_交育流程1(点击第一支花，选择紫色)":{
+        "recognition": {
+			"type": "ColorMatch",
+			"param": {
+                "lower":[[162, 140, 202]],
+                "upper": [[169, 145, 213]],
+				"roi": [60,608,851,30],
+                "index": -1
+			}
+		},
+        "action": {
+                "type": "Click",
+                "param": {
+                    "target": true,
+                    "target_offset": [2, -90, 0, 0]    //要改
+                }
+                },
+            "post_delay": 2000,
+            "timeout": 3000,
+            "next": ["通用_交育流程2(点击第二支花，目标点为第一支紫花左边的花)"],
+            "on_error": ["通用_交育流程1(点击第一支花，选择金色)"]
+        },
+        "通用_交育流程1(点击第一支花，选择金色)":{
+        "recognition": {
+			"type": "ColorMatch",
+			"param": {
+                "lower":[[243, 204, 140]],
+                "upper": [[244, 205, 141]],
+				"roi": [60,608,851,30]//当前拥有花卉范围
+			}
+		},
+        "action": {
+                "type": "Click",
+                "param": {
+                    "target": true,
+                    "target_offset":[2, -90, 0, 0]   //要改
+                }
+                },
+            "post_delay": 2000,
+            "timeout": 3000,
+            "next": ["通用_交育流程2(点击第二支花，目标点为第一支金花旁边的花)"]
+    },
+        "通用_交育流程2(点击第二支花，目标点为第一支蓝花左边的花)":{
+            "recognition": {
+            "type": "ColorMatch",
+			"param": {
+                "lower":[[127, 155, 218]],
+                "upper": [[129, 156, 219]],
+				"roi": [60,608,851,30]
+			}
+		},
+            "action":
+             {
+            "type": "Click",
+            "param":{
+                "target": true,
+                "target_offset": [-100,-91,0,0]}
+        },
+        "timeout": 3000,
+        "next": ["通用_可开始交育判断"],
+        "on_error": ["通用_交育流程1(点击第一支花，优先选择蓝色)"]
+    },
+    "通用_交育流程2(点击第二支花，目标点为第一支紫花左边的花)":{
+            "recognition": {
+            "type": "ColorMatch",
+			"param": {
+                "lower":[[162, 140, 202]],
+                "upper": [[169, 145, 213]],
+				"roi": [60,608,851,30],
+                "index": -1
+			}
+		},
+            "action":
+             {
+            "type": "Click",
+            "param":{
+                "target": true,
+                "target_offset": [-100,-91,0,0]}
+        },
+        "timeout": 3000,
+        "next": ["通用_可开始交育判断"],
+        "on_error": ["通用_交育流程1(点击第一支花，选择紫色)"]
+    },
+    "通用_交育流程2(点击第二支花，目标点为第一支金花旁边的花)":{
+        "recognition": {
+			"type": "ColorMatch",
+			"param": {
+                "lower":[[243, 204, 140]],
+                "upper": [[244, 205, 141]],
+				"roi": [60,608,851,30]//当前拥有花卉范围
+			}
+		},
+            "action":
+             {
+            "type": "Click",
+            "param":{
+                "target": true,
+                "target_offset": [-100,-91,0,0]}
+        },
+        "timeout": 3000,
+        "next": ["通用_可开始交育判断"],
+        "on_error": ["stop"]
+    },
+    "通用_可开始交育判断":{
+        "recognition": {
+            "type": "TemplateMatch",
+			"param": {
+                "template": ["feature/garden_开始交育标亮起.png"],
+                "roi": [1027,639,188,46],
+                "threshold": 0.8
+			}
+		},
+        "focus": {
+            "Node.Recognition.Succeeded": "已选择好两支花，准备开始交育"
+        },
+        "timeout": 3000,
+        "next": ["通用_开始交育"],
+        "on_error": ["stop"]
+    },
+    "通用_开始交育":{
+        "recognition": {
+            "type": "TemplateMatch",
+			"param": {
+                "template": ["feature/garden_开始交育标亮起.png"],
+                "roi": [1027,639,188,46]
+			}
+		},
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 3000,
+        "next": ["通用_交育结束判断"],
+        "on_error": ["stop"]
+    },
+    "通用_交育结束判断":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["交育中"],
+                "roi": [539,77,212,211]
+            }
+        },
+        "focus": {
+            "Node.Recognition.Succeeded": "交育已完成，准备结束流程"
+        },
+        "timeout": 3000,
+        "next": ["返回花园主页面"]
+    },
+    "返回花园主页面": {
+        "recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "mainmap/导航回主页面（绿码白）.png",
+				"green_mask": true,
+				"threshold": 0.45,
+				"roi": [0, 0, 88, 132]
+			}
+		},
+		"pre_delay": 500,
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [3, 5, -6, -10]
+			}
+		},
+		"next": ["stop"]
+	}
+}

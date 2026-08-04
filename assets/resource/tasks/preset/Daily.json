@@ -114,7 +114,11 @@
 				},
 				{
 					"name": "🪴家园日常",
-					"enabled": true
+					"enabled": false
+				},
+				{
+					"name": "🏕️家园-生态委派",
+					"enabled": false
 				},
 				{
 					"name": "🌟限时活动每日领取",

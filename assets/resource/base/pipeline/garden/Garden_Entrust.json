@@ -1,0 +1,362 @@
+
+{
+    "进入生态委派": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"委派_确认进入界面",
+			"[JumpBack]点击家园",
+			"[JumpBack]导航回主页面"
+		]
+	},
+    "委派_确认进入界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_家园任务.png"],
+				"roi": [1174, 609, 81, 97]
+			}
+		},
+		"next": ["委派_进入OTTO"]
+	},
+
+   	"委派_进入OTTO": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_otto本体.png"],
+				"roi": [1158,30,79,62]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["委托_委托状态确认"]
+	},
+
+    "委托_委托状态确认": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["未派遣","^(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"],
+                "roi": [871,543,68,23]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "timeout": 3000,
+        "next": [
+                "委托_当前在委托中",
+                "委托_当前已委托完成",
+                "委托_当前无委托"
+        ],
+        "on_error": [
+                "[JumpBack]导航回花园页面（花园）"]
+    },
+
+    "委托_当前无委托":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["未派遣"],
+                "roi": [871,543,68,23]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [875,595,33,23]
+            }
+        },
+        "next": ["委托_委托界面确认"]
+    },
+    "委托_委托界面确认":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["生态委派"],
+                "roi": [586,138,112,35]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+            }
+        },
+        "next": ["委托_2小时_选择流程",
+                "委托_4小时_选择流程", 
+                "委托_8小时_选择流程",
+                "委托_16小时_选择流程",
+                "委托_20小时_选择流程"]
+    },
+        
+    "委托_当前在委托中":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["^(?:[01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$"],
+                "roi": [859,546,81,21]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {}
+        },
+        "timeout": 3000,
+        "next": [
+                "[JumpBack]退出花园弹窗popop"
+        ]
+    },
+
+    "委托_当前已委托完成":{
+      "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["派遣结束"],
+                "roi": [859,546,81,21]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [877,571,40,42]
+            }
+        },
+        "timeout": 3000,
+        "next": [
+                "委托_领取委托奖励"
+        ]
+    },
+    "委托_领取委托奖励":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["领取奖励"],
+                "roi": [733,514,156,45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": [
+               "委托_关闭奖励页面"
+        ]
+    },
+    "委托_关闭奖励页面":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["获得奖励"],
+                "roi": [562,115,166,40]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [325,336,4,6]
+            }
+        },
+        "next": [
+               "委托_委托界面确认"
+        ]
+    },
+        "委托_2小时_选择流程":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["2小时"],
+                "roi": [598,418,49,27]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [598,418,49,27]
+            }
+        },
+         "timeout": 3000,
+        "next": [
+                "委托_当前体力是否足够委托_确认界面"
+            ],
+            "on_error": ["关闭委托界面"]
+    },
+    
+     "委托_4小时_选择流程":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["4小时"],
+                "roi": [697,420,54,27]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [697,420,54,27]
+            }
+        },
+        "timeout": 3000,
+        "next": [
+                "委托_当前体力是否足够委托_确认界面"
+            ],
+            "on_error": ["关闭委托界面"]
+    },
+
+    "委托_8小时_选择流程":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["8小时"],
+                "roi": [794,422,56,24]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [794,422,56,24]
+            }
+        },
+         "timeout": 3000,
+        "next": [
+                "委托_当前体力是否足够委托_确认界面"
+            ],
+            "on_error": ["关闭委托界面"]
+    },
+
+    "委托_16小时_选择流程":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["16小时"],
+                "roi": [894,422,56,24]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [894,422,56,24]
+            }
+        },
+        "timeout": 3000,
+        "next": [
+                "委托_当前体力是否足够委托_确认界面"
+            ],
+            "on_error": ["关闭委托界面"]
+    },
+
+    "委托_20小时_选择流程":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["20小时"],
+                "roi": [987,412,68,45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [994,422,56,24]
+            }
+        },
+        "timeout": 3000,
+        "next": [
+                "委托_当前体力是否足够委托_确认界面"
+            ],
+            "on_error": ["关闭委托界面"]
+    },
+    "委托_当前体力是否足够委托_确认界面":{
+        "recognition": {
+            "type": "ColorMatch",
+            "param": {
+                "upper": [155, 132, 128],
+                "lower": [116, 88, 87],
+                "roi":[761,511,51,43]
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {
+            }
+        },
+        "timeout": 3000,
+        "next": [
+                "委托_开始派遣委托"
+            ],
+            "on_error": ["关闭委托界面"]
+    },
+    "委托_开始派遣委托":{
+    "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["派遣"],
+                "roi": [817,510,64,42]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 3000,
+        "next": [
+                "委托_二次确认"
+            ],
+            "on_error": ["关闭委托界面"]
+    },
+    "委托_二次确认":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": ["确定"],
+                "roi": [700,421,126,52]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 3000,
+        "next": [
+                "关闭委托界面"
+            ]
+    },
+    "关闭委托界面":{
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [640,644,10,4]
+            }
+        },
+        "next": [
+                "委托_返回主页面"
+        ]
+    },
+    "委托_返回主页面":{
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": [640,644,10,4]
+            }
+        },
+        "next": [
+                "stop"
+        ]
+    }
+}
