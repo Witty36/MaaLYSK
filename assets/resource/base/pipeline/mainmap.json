@@ -437,7 +437,7 @@
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["stop"]
+		"next": ["返回等待"]
 	},
 	"导航回主页面(花园)": {
 		"recognition": {

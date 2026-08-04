@@ -1,0 +1,708 @@
+{
+	"进入家园": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": [
+			"家园_确认进入界面",
+			"[JumpBack]点击家园",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"家园_确认进入界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_家园任务.png"],
+				"roi": [1174, 609, 81, 97]
+			}
+		},
+		"next": ["家园_点击OTTO记录"]
+	},
+	"家园_点击OTTO记录": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_otto记录.png"],
+				"roi": [1090, 43, 45, 48]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["家园_点击OTTO记录_确认界面"]
+	},
+	"家园_点击OTTO记录_确认界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_otto记录界面.png"],
+				"roi": [950, 44, 165, 58]
+			}
+		},
+		"next": ["家园_点击花卉照料去看看"]
+	},
+	"家园_点击花卉照料去看看": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "去看看",
+				"roi": [1161, 119, 62, 21]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"timeout": 3000,
+		"on_error": [
+			"[JumpBack]导航回花园页面（花园）",
+			"[JumpBack]点击家园",
+			"[JumpBack]导航回主页面"
+		],
+		"next": ["家园_点击花卉照料去看看_确认界面"]
+	},
+	"家园_点击花卉照料去看看_确认界面": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_花朵照料标记.png"],
+				"roi": [98, 303, 1241, 407]
+			}
+		},
+		"next": ["家园_日常照料花朵"]
+	},
+	"家园_日常照料花朵": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_花朵照料标记.png"],
+				"roi": [98, 303, 1241, 407]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		
+		"next": ["家园_日常照料花朵_确认界面"]
+	},
+	"家园_日常照料花朵_确认界面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "铲除",
+				"roi": [991,528,40,25]
+			}
+		},
+		"next": ["家园_批量照料准备"],
+		"on_error": [
+			"家园_批量收获准备",
+			"家园_补充种植准备",
+			"家园_准备进入批量种植流程",
+			"[JumpBack]导航回花园页面（花园）"
+		],
+		"timeout": 5000
+	},
+	"家园_批量照料准备": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [124, 152, 106],
+				"upper": [124, 152, 106],
+				"roi": [779, 625, 146, 59]
+			}
+		},
+		"action": {
+			"type": "DoNothing"
+		},
+		"next": ["家园_开始批量照料"]
+	},
+	"家园_开始批量照料": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [124, 152, 106],
+				"upper": [124, 152, 106],
+				"roi": [779, 625, 146, 59]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [811, 655, 81, 26]
+			}
+		},
+		"next": ["[JumpBack]家园_跳过照料动画"]
+	},
+	"家园_批量收获准备": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [124, 152, 106],
+				"upper": [124, 152, 106],
+				"roi": [924, 630, 136, 54]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [947, 657, 85, 24]
+			}
+		},
+		"next": ["家园_收获成花卉","家园_收获成调料"],
+		"on_error": ["家园_补充种植准备", "[JumpBack]导航回花园页面（花园）"],
+		"timeout": 5000
+	},
+	"家园_收获成花卉": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["收获花卉","交育"],
+				"roi": [900,532,190,52]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["家园_补充种植准备","[JumpBack]家园_跳过收获动画"],
+		"on_error": ["[JumpBack]导航回花园页面（花园）"],
+		"timeout": 5000
+	},
+
+	"家园_收获成调料":{
+	"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["收获调料","烹饪"],
+				"roi": [898,592,190,52]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["家园_补充种植准备","[JumpBack]家园_跳过收获动画"],
+		"on_error": ["[JumpBack]导航回花园页面（花园）"],
+		"timeout": 5000
+	},
+	"家园_补充种植准备": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "批量种植",
+				"roi": [668,653,91,32]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["家园_进入批量种植环节"],
+		"timeout": 5000
+	},
+	"家园_进入批量种植环节": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "批量种植",
+				"roi": [668,653,91,32]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {
+				
+			}
+		},
+		"next": [
+			"家园_准备进入批量种植流程"
+		]
+	},
+	"家园_准备进入批量种植流程":{
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "批量种植",
+				"roi": [668,653,91,32]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["花艺_选择流程1",
+				"调料_选择流程1"
+		]
+	},
+	"花艺_选择流程1":{
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "花艺",
+				"roi": [58,121,35,19]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 3000,
+		"next": ["花艺_选择流程2"
+		]
+	},
+	"花艺_选择流程2":{
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "花种",
+				"roi": [130,93,49,51]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 3000,
+		"next": ["花艺_主循环"
+		]
+	},
+	
+	"花艺_主循环": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_空花坛.png"],
+				"roi": [411, 86, 715, 598],
+				"threshold": 0.85
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {
+			}
+		},
+		"timeout": 5000,
+		"next": ["花艺_点击花坛"],
+		"on_error": [
+			"花艺_全部完成"
+			]
+	},
+	"花艺_点击花坛":{
+	"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_空花坛.png"],
+				"roi": [411, 86, 715, 598],
+				"threshold": 0.85
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+			}
+		},
+		"timeout": 3000,
+		"next": ["种子_检查_槽位1"],
+		"on_error": ["种子_槽位识别错误_跳转"]
+	},
+	"种子_槽位识别错误_跳转":{
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 3000,
+		"next": [
+			"种子_检查_槽位2",
+			"种子_检查_槽位3",
+			"种子_检查_槽位4",
+			"种子_检查_槽位5",
+			"种子_滑动_下一页"],
+			"on_error": ["花艺_全部完成"]
+	},
+	"种子_检查_槽位1": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "[1-9]\\d*",
+				"roi": [306, 149, 20, 18]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 5000,
+		"next": ["种子_检查_槽位2"],
+		"on_error": ["种子_槽位识别错误_跳转"]
+		
+	},
+	"种子_检查_槽位2": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "[1-9]\\d*",
+				"roi": [306, 267, 19, 18]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 5000,
+		"next": ["种子_检查_槽位3"],
+		"on_error": ["种子_槽位识别错误_跳转"]
+	},
+	"种子_检查_槽位3": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "[1-9]\\d*",
+				"roi": [306, 387, 19, 18]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 5000,
+		"next": ["种子_检查_槽位4"],
+		"on_error": ["种子_槽位识别错误_跳转"]
+	},
+	"种子_检查_槽位4": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "[1-9]\\d*",
+				"roi": [307, 504, 19, 18]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 5000,
+		"next": ["种子_检查_槽位5"],
+		"on_error": ["种子_槽位识别错误_跳转"]
+	},
+	"种子_检查_槽位5": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "[1-9]\\d*",
+				"roi": [307, 624, 19, 18]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"timeout": 5000,
+		"next": ["花艺_检查当前状态"]
+	},
+	"花艺_检查当前状态":{
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["feature/garden_可种植.png"],
+				"roi": [1042,617,200,67],
+				"threshold": 0.85
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {
+			}
+		},
+		"timeout": 5000,
+		"next": [
+			"花艺_全部完成"
+			]
+	},
+	"种子_滑动_下一页": {
+		"action": {
+			"type": "Swipe",
+			"param": {
+				"begin": [331,638,5,7],
+				"end": [331,200,5,7],
+				"duration": 610,
+				"end_hold":135
+			}
+		},
+		"post_delay": 300,
+		"next": ["种子_滑动_检测变化"]
+	},
+	"种子_滑动_检测变化": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "[1-9]\\d*",
+				"roi": [306, 149, 20, 18]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["花艺_主循环"],
+		"timeout": 5000
+	},
+	"花艺_全部完成": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": "种植",
+				"roi": [1052,627,179,45]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": true
+			}
+		},
+		"next": ["[JumpBack]家园_跳过收获动画"]
+	},
+	    "调料_选择流程1":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "调料",
+                "roi":[48,173,49,61]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 3000,
+        "next": ["调料_选择流程2"
+        ]
+    },
+    "调料_选择流程2":{
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "调料种子",
+                "roi": [114,94,82,54]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 3000,
+        "next": ["调料_主循环"
+        ]
+    },
+    
+    "调料_主循环": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["feature/garden_空花坛.png"],
+                "roi": [411, 86, 715, 598],
+                "threshold": 0.85
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {
+            }
+        },
+        "timeout": 5000,
+        "next": ["调料_点击花坛"],
+        "on_error": [
+            "调料_全部完成"
+            ]
+    },
+    "调料_点击花坛":{
+    "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["feature/garden_空花坛.png"],
+                "roi": [411, 86, 715, 598],
+                "threshold": 0.85
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+            }
+        },
+        "timeout": 3000,
+        "next": ["调料种子_检查_槽位1"],
+        "on_error": ["调料种子_槽位识别错误_跳转"]
+    },
+    "调料种子_槽位识别错误_跳转":{
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 3000,
+        "next": [
+            "调料种子_检查_槽位2",
+            "调料种子_检查_槽位3",
+            "调料种子_检查_槽位4",
+            "调料种子_检查_槽位5"],
+            "on_error": ["调料_全部完成"]
+    },
+    "调料种子_检查_槽位1": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "[1-9]\\d*",
+                "roi": [306, 149, 20, 18]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 5000,
+        "next": ["调料种子_检查_槽位2"],
+        "on_error": ["调料种子_槽位识别错误_跳转"]
+        
+    },
+    "调料种子_检查_槽位2": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "[1-9]\\d*",
+                "roi": [306, 267, 19, 18]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 5000,
+        "next": ["调料种子_检查_槽位3"],
+        "on_error": ["种子_槽位识别错误_跳转"]
+    },
+    "调料种子_检查_槽位3": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "[1-9]\\d*",
+                "roi": [306, 387, 19, 18]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 5000,
+        "next": ["调料种子_检查_槽位4"],
+        "on_error": ["调料种子_槽位识别错误_跳转"]
+    },
+    "调料种子_检查_槽位4": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "[1-9]\\d*",
+                "roi": [307, 504, 19, 18]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 5000,
+        "next": ["调料种子_检查_槽位5"],
+        "on_error": ["调料种子_槽位识别错误_跳转"]
+    },
+    "调料种子_检查_槽位5": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "[1-9]\\d*",
+                "roi": [307, 624, 19, 18]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "timeout": 5000,
+        "next": ["调料_检查当前状态"]
+    },
+    "调料_检查当前状态":{
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["feature/garden_可种植.png"],
+                "roi": [1042,617,200,67],
+                "threshold": 0.85
+            }
+        },
+        "action": {
+            "type": "DoNothing",
+            "param": {
+            }
+        },
+        "timeout": 5000,
+        "next": [
+            "调料_全部完成"
+            ]},
+    "调料_全部完成": {
+        "recognition": {
+            "type": "OCR",
+            "param": {
+                "expected": "种植",
+                "roi": [1052,627,179,45]
+            }
+        },
+        "action": {
+            "type": "Click",
+            "param": {
+                "target": true
+            }
+        },
+        "next": ["[JumpBack]家园_跳过收获动画"]
+    },
+
+
+
+}

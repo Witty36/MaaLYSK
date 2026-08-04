@@ -119,7 +119,8 @@
 				},
 				{
 					"name": "🌳家园周常",
-					"enabled": true
+					"enabled": false,
+					"option": {}
 				}
 			]
 		}
