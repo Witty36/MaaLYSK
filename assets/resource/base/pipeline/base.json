@@ -270,7 +270,9 @@
 		},
 		"action": {
 			"type": "Click",
-			"param": {"target": [53, 1060, 8, 17]}
+			"param": {
+				"target": [53, 1060, 8, 17]
+			}
 		},
 		"next": ["手机页面确认"],
 		"on_error": ["null"]
@@ -332,7 +334,9 @@
 		},
 		"action": {
 			"type": "Click",
-			"param": {"target": [569, 1039, 10, 13]}
+			"param": {
+				"target": [569, 1039, 10, 13]
+			}
 		},
 		"next": ["电话页面确认"],
 		"on_error": ["null"]
@@ -498,7 +502,6 @@
 		"focus": "已在家园页面",
 		"next": []
 	},
-
 	"家园_跳过照料动画": {
 		"recognition": {
 			"type": "OCR",

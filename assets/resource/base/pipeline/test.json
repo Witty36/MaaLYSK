@@ -36,7 +36,6 @@
 			"type": "DoNothing",
 			"param": {}
 		},
-
 		"next": [
 			"撩动氤氲结束",
 			"[JumpBack]划动挥散雾气",

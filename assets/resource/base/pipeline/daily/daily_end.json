@@ -105,7 +105,6 @@
 		"post_delay": 500,
 		"next": []
 	},
-
 	"日程活跃度100": {
 		"recognition": {
 			"type": "TemplateMatch",

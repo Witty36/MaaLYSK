@@ -39,7 +39,6 @@
 			"controller": ["ADB模拟器", "PlayCover", "PC"]
 		}
 	],
-
 	"import": [
 		"resource/tasks/preset/Daily.json",
 		"resource/tasks/preset/Weekly.json",
@@ -166,6 +165,9 @@
 				},
 				{
 					"name": "🌳家园周常"
+				},
+				{
+					"name": "💐花朵交育"
 				},
 				{
 					"name": "📲自动读短信"

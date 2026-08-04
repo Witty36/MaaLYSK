@@ -107,8 +107,8 @@ commit_parsers = [
     { message = "(?i)^revert", group = "<!-- 10 -->◀️ 撤销" },
 ]
 
-# 忽略这些提交
-ignore_tags = "rc"
+# 默认不忽略任何 tag；正式版/测试版的 tag 过滤范围由 install.yml 根据版本类型动态传入 --ignore-tags
+ignore_tags = ""
 
 # 排序规则
 sort_commits = "oldest"

@@ -1,32 +1,32 @@
 {
-    "进入主页面互动": {
-        "recognition": {
-            "type": "DirectHit",
-            "param": {}
-        },
-        "action": {
-            "type": "DoNothing",
-            "param": {}
-        },
-        "next": ["主页面互动准备", "[JumpBack]导航回主页面"]
-    },
-    "主页面互动准备": {
-        "recognition": {
-            "type": "TemplateMatch",
-            "param": {
-                "template": ["mainmap/主页面识别.png"],
-                "roi": [20, 56, 49, 35]
-            }
-        },
-        "action": {
-            "type": "Click",
-            "param": {
-                "target": [320, 588, 19, 22]
-            }
-        },
-        "repeat": 10,
-        "repeat_delay": 1000,
-        "post_delay": 5000,
-        "next": ["stop"]
-    }
+	"进入主页面互动": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["主页面互动准备", "[JumpBack]导航回主页面"]
+	},
+	"主页面互动准备": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["mainmap/主页面识别.png"],
+				"roi": [20, 56, 49, 35]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [320, 588, 19, 22]
+			}
+		},
+		"repeat": 10,
+		"repeat_delay": 1000,
+		"post_delay": 5000,
+		"next": ["stop"]
+	}
 }

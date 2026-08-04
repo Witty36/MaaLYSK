@@ -57,7 +57,7 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["task/weekly/写真进入.png"],
-				"roi": [165, 777, 487, 387]
+				"roi": [55, 187, 607, 951]
 			}
 		},
 		"action": {

@@ -139,7 +139,9 @@
 			"type": "DoNothing",
 			"param": {}
 		},
-		"next": ["芯核自动追击耗尽"]
+		"timeout": 10000,
+		"next": ["芯核自动追击耗尽"],
+		"on_error": ["芯核自动追击1次_兜底"]
 	},
 	"芯核向左滑动": {
 		"recognition": {
@@ -179,8 +181,8 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["fight/自动追击10次.png"],
-				"roi": [310, 1135, 65, 109]
+				"template": ["fight/自动连续追击.png"],
+				"roi": [244, 1142, 142, 101]
 			}
 		},
 		"action": {
@@ -190,14 +192,16 @@
 		"focus": {
 			"Node.Action.Succeeded": "追击10次"
 		},
-		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
+		"timeout": 8000,
+		"next": ["战斗确定追击"],
+		"on_error": ["芯核自动追击10次", "芯核自动追击1次", "体力耗尽不再继续"]
 	},
 	"芯核自动追击耗尽": {
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["fight/自动追击10次.png"],
-				"roi": [310, 1135, 65, 109]
+				"template": ["fight/自动连续追击.png"],
+				"roi": [244, 1142, 142, 101]
 			}
 		},
 		"action": {
@@ -207,52 +211,24 @@
 		"focus": {
 			"Node.Action.Succeeded": "自动追击体力耗尽"
 		},
-		"next": [
-			"体力耗尽不再继续",
-			"芯核上限不再继续",
-			"[JumpBack]芯核自动追击10次重复",
-			"[JumpBack]芯核自动追击1次重复"
-		]
+		"timeout": 8000,
+		"next": ["体力耗尽不再继续", "自动追击最大次数"]
 	},
-	"芯核自动追击10次重复": {
+	"芯核自动追击1次_兜底": {
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["fight/自动追击10次.png"],
-				"roi": [310, 1135, 65, 109]
+				"template": ["fight/自动追击1次.png"],
+				"roi": [145, 1141, 109, 99]
 			}
 		},
 		"action": {
 			"type": "Click",
 			"param": {}
 		},
-		"next": []
-	},
-	"芯核自动追击1次重复": {
-		"recognition": {
-			"type": "DirectHit",
-			"param": {}
+		"focus": {
+			"Node.Action.Succeeded": "无法连续追击，进行追击一次"
 		},
-		"action": {
-			"type": "Click",
-			"param": {
-				"target": [159, 1183, 33, 12]
-			}
-		},
-		"next": []
-	},
-	"芯核上限不再继续": {
-		"recognition": {
-			"type": "TemplateMatch",
-			"param": {
-				"template": ["fight/xinhe/芯核_前往清理.png"],
-				"roi": [403, 652, 155, 50]
-			}
-		},
-		"action": {
-			"type": "DoNothing",
-			"param": {}
-		},
-		"next": []
+		"next": ["[JumpBack]退出点击（上限）popop", "stop"]
 	}
 }

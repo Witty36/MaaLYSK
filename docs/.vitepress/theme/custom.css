@@ -325,6 +325,16 @@ a[href="#version-popup"] .vpi-chevron-right {
     fill: currentColor;
 }
 
+/* ==================== 小标题锚点样式（仅代码配置 section 下的 h4 隐藏） ==================== */
+
+.vp-doc:has(h3#代码配置) h4 {
+    height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
 /* ==================== Mobile (≤767px) — DON'T TOUCH ==================== */
 
 @media (max-width: 767px) {

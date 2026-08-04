@@ -1,6 +1,7 @@
 {
 	"recommendations": [
-		"ms-python.black-formatter",
+		"charliermarsh.ruff",
+		"windsland52.maa-log-analyzer",
 		"esbenp.prettier-vscode",
 		"nekosu.maa-support",
 		"davidanson.vscode-markdownlint"

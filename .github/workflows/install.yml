@@ -64,7 +64,16 @@ jobs:
           fi
 
           # 获取上一个 tag 用于 changelog
-          previous_tag=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "v0.0.0")
+          if [[ "$is_prerelease" == "true" ]]; then
+            # 测试版：直接和上一版（紧邻的 tag）比较
+            previous_tag=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "v0.0.0")
+          else
+            # 正式版：跳过所有测试版 tag，和上一个正式版比较
+            previous_tag=$(git tag --merged HEAD^ --sort=-version:refname | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | head -1)
+            if [[ -z "$previous_tag" ]]; then
+              previous_tag="v0.0.0"
+            fi
+          fi
 
           echo tag=$tag | tee -a $GITHUB_OUTPUT
           echo is_release=$is_release | tee -a $GITHUB_OUTPUT
@@ -97,7 +106,7 @@ jobs:
           repository: MaaXYZ/MaaFramework
           fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
           #latest: true
-          tag: "v5.10.0"
+          tag: "v5.12.2"
           out-file-path: "deps"
           extract: true
 
@@ -109,7 +118,7 @@ jobs:
           repository: SweetSmellFox/MFAAvalonia
           fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
           #latest: true
-          tag: "v2.12.1"
+          tag: "v2.13.0-beta.2"
           out-file-path: "MFA"
           extract: true
 
@@ -229,6 +238,7 @@ jobs:
 
   changelog:
     name: Generate changelog
+    needs: meta
     runs-on: ubuntu-latest
     outputs:
       release_body: ${{ steps.git-cliff.outputs.content }}
@@ -238,12 +248,23 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Determine git-cliff ignore pattern
+        id: cliff_ignore
+        run: |
+          if [[ "${{ needs.meta.outputs.is_prerelease }}" == "true" ]]; then
+            # 测试版：不忽略任何 tag，直接和上一版比较
+            echo "ignore=^$" >> $GITHUB_OUTPUT
+          else
+            # 正式版：忽略所有测试版 tag，和上一个正式版比较
+            echo "ignore=(alpha|beta|rc|dev|ci)" >> $GITHUB_OUTPUT
+          fi
+
       - name: Generate a changelog
         uses: orhun/git-cliff-action@v4
         id: git-cliff
         with:
           config: .github/cliff.toml
-          args: -vv --latest --strip header
+          args: -vv --latest --strip header --ignore-tags='${{ steps.cliff_ignore.outputs.ignore }}'
         env:
           OUTPUT: CHANGES.md
           GITHUB_REPO: ${{ github.repository }}

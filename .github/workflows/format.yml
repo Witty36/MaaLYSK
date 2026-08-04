@@ -1,0 +1,71 @@
+name: format
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+  schedule:
+    - cron: "0 22 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  format:
+    if: github.event.repository.fork == false && github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout (PR)
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          allow-unsafe-pr-checkout: true
+
+      - name: Checkout (schedule / manual)
+        if: github.event_name != 'pull_request_target'
+        uses: actions/checkout@v4
+
+      - name: Checkout base tools (trusted)
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.base_ref }}
+          path: __base__
+
+      - name: Use trusted tools
+        if: github.event_name == 'pull_request_target'
+        run: |
+          rm -rf tools
+          cp -r __base__/tools .
+
+      - name: Cleanup base checkout
+        if: github.event_name == 'pull_request_target'
+        run: rm -rf __base__
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm ci --ignore-scripts
+
+      - name: Run formatter
+        run: npm run format
+
+      - name: Commit format changes
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "No formatting changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "style: auto format code [skip changelog]" -m "Triggered by ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [[ "${{ github.event_name }}" == "pull_request_target" ]]; then
+            git push origin HEAD:${{ github.head_ref }}
+          else
+            git push
+          fi

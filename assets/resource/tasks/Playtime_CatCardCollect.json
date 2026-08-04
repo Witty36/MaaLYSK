@@ -43,7 +43,7 @@
 			"name": "🃏喵喵牌抽卡",
 			"entry": "进入喵喵牌抽卡",
 			"default_check": false,
-			"description": "在喵喵牌抽卡页面启动，自己找没有9/9的徽章并进行抽卡，限时喵喵牌期间无法使用<br><span style=\"color:red\">目前关闭中，请不要勾选</span>"
+			"description": "在喵喵牌抽卡页面启动，自己找没有9/9的徽章并进行抽卡。<br><span style=\"color:red\">限时喵喵牌期间无法使用</span>"
 		}
 	],
 	"option": {

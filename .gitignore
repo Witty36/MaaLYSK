@@ -468,4 +468,5 @@ assets/config/
 .codex
 
 #Claude
-.claude
+.claude/*
+!.claude/skills/

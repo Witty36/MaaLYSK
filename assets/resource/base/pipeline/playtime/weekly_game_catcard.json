@@ -158,7 +158,6 @@
 		},
 		"next": ["喵喵牌切换人物", "[JumpBack]返回上一级页面"]
 	},
-
 	"喵喵牌游戏中页面": {
 		"recognition": {
 			"type": "TemplateMatch",
