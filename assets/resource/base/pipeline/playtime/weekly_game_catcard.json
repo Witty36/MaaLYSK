@@ -139,22 +139,75 @@
 				"roi": [449, 678, 63, 30]
 			}
 		},
-		"action": {"type": "Click", "param": {}},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
 		"next": ["喵喵牌游戏中页面"]
 	},
 	"检查喵呜币是否上限": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["^2[89]/30$", "^30/30$", "^[1-9]/30$"],
-				"roi": [487, 172, 177, 35]
+				"expected": ["^2[89]/30$", "^30/30$"],
+				"roi": [602, 172, 70, 40]
 			}
 		},
-		"action": "DoNothing",
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
 		"focus": {
 			"Node.Recognition.Succeeded": "开始消耗喵呜币抽取徽章"
 		},
 		"next": ["进入喵喵牌抽卡"]
+	},
+	"检查喵呜币是否用完": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^[1-9]/30$", "^1\\d/30$", "^2\\d/30$", "^30/30$"],
+				"roi": [602, 172, 70, 40]
+			}
+		},
+		"action": "DoNothing",
+		"focus": {
+			"Node.Recognition.Succeeded": "开始消耗全部喵呜币抽取徽章"
+		},
+		"next": ["进入喵喵牌抽卡"]
+	},
+	"检查活动喵呜币是否用完": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["^[1-9]$", "^\\d{2}$"],
+								"roi": [521, 174, 43, 34]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["playtime/catcard/catcoin_event"],
+								"roi": [489, 174, 40, 33],
+								"threshold": 0.5
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": "DoNothing",
+		"focus": {
+			"Node.Recognition.Succeeded": "开始消耗全部限时喵呜币抽取徽章"
+		},
+		"next": ["限时喵喵牌进入喵呜柜台"]
 	},
 	"检查喵喵牌次数": {
 		"recognition": {

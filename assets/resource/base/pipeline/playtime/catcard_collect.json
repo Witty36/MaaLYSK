@@ -62,103 +62,125 @@
 		},
 		"timeout": 5000,
 		"next": [
-			"开始时是否有喵喵币",
+			"是否有喵呜币",
 			"[JumpBack]喵喵牌抽卡寻找_固定常驻位",
 			"[JumpBack]喵喵牌抽卡寻找_限时抽卡位",
+			"[JumpBack]喵喵牌抽卡寻找_已集齐徽章",
 			"[JumpBack]退出牵绊度提升popop"
 		]
 	},
-	"开始时是否有喵喵币": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["^0/30$"],
-				"roi": [586, 55, 134, 31]
-			}
-		},
-		"action": {
-			"type": "DoNothing",
-			"param": {}
-		},
-		"focus": "喵喵币已耗尽",
-		"next": []
-	},
 	"喵喵牌抽卡寻找_固定常驻位": {
-		"recognition": "Or",
-		"any_of": [
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [505, 405, 35, 20]
+		"recognition": {
+			"type": "Or",
+			"param": {
+				"any_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"^[0-8]/9$",
+									"^[0-8]19$",
+									"^[0-8]79$"
+								],
+								"roi": [505, 405, 35, 20]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"^[0-8]/9$",
+									"^[0-8]19$",
+									"^[0-8]79$"
+								],
+								"roi": [322, 405, 35, 20]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"^[0-8]/9$",
+									"^[0-8]19$",
+									"^[0-8]79$"
+								],
+								"roi": [138, 673, 35, 20]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"^[0-8]/9$",
+									"^[0-8]19$",
+									"^[0-8]79$"
+								],
+								"roi": [322, 673, 35, 20]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"^[0-8]/9$",
+									"^[0-8]19$",
+									"^[0-8]79$"
+								],
+								"roi": [505, 673, 35, 20]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"^[0-8]/9$",
+									"^[0-8]19$",
+									"^[0-8]79$"
+								],
+								"roi": [138, 944, 35, 20]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"^[0-8]/9$",
+									"^[0-8]19$",
+									"^[0-8]79$"
+								],
+								"roi": [322, 944, 35, 20]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": [
+									"^[0-8]/9$",
+									"^[0-8]19$",
+									"^[0-8]79$"
+								],
+								"roi": [505, 944, 35, 20]
+							}
+						}
 					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [322, 405, 35, 20]
-					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [138, 673, 35, 20]
-					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [322, 673, 35, 20]
-					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [505, 673, 35, 20]
-					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [138, 944, 35, 20]
-					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [322, 944, 35, 20]
-					}
-				}
-			},
-			{
-				"recognition": {
-					"type": "OCR",
-					"param": {
-						"expected": ["^[0-8]/9$", "^[0-8]19$", "^[0-8]79$"],
-						"roi": [505, 944, 35, 20]
-					}
-				}
+				]
 			}
-		],
+		},
 		"action": {
 			"type": "Click",
 			"param": {"target_offset": [16, -86, 9, 27]}
@@ -181,25 +203,30 @@
 	},
 	"喵喵牌抽卡寻找_限时抽卡排除": {
 		"recognition": {
-			"type": "OCR",
+			"type": "Or",
 			"param": {
-				"expected": ["限时", "限", "时"],
-				"roi": [93, 284, 34, 19]
-			}
-		},
-		"inverse": true,
-		"action": {
-			"type": "DoNothing",
-			"param": {}
-		},
-		"next": ["喵喵牌抽卡寻找_限时抽卡二次排除"]
-	},
-	"喵喵牌抽卡寻找_限时抽卡二次排除": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["限时", "限", "时"],
-				"roi": [93, 284, 34, 19]
+				"any_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["限时", "限", "时"],
+								"roi": [93, 284, 34, 19]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"playtime/catcard/喵呜徽章限时图标.png"
+								],
+								"roi": [69, 246, 87, 122]
+							}
+						}
+					}
+				]
 			}
 		},
 		"inverse": true,
@@ -208,6 +235,25 @@
 			"param": {
 				"target": "喵喵牌抽卡寻找_限时抽卡位",
 				"target_offset": [16, -86, 9, 27]
+			}
+		},
+		"next": ["开始喵喵牌抽卡"]
+	},
+	"喵喵牌抽卡寻找_已集齐徽章": {
+		"recognition": {
+			"type": "TemplateMatch",
+			//description: 全部集齐后保底随机抽已集齐徽章，抽完一盒会重新随机一款抽
+			"param": {
+				"template": ["playtime/catcard/喵呜徽章集齐.png"],
+				"roi": [89, 296, 473, 706],
+				"threshold": [0.8],
+				"order_by": "Random"
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target_offset": [53, -57, -57, -12]
 			}
 		},
 		"next": ["开始喵喵牌抽卡"]
@@ -238,11 +284,13 @@
 			"type": "Click",
 			"param": {}
 		},
+		"post_delay": 2000,
 		"timeout": 10000,
 		"next": [
 			"是否集齐9个徽章",
-			"是否有喵喵币",
-			"[JumpBack]喵喵牌再抽一次_Check"
+			"是否有喵呜币",
+			"是否抽完整盒",
+			"[JumpBack]喵喵牌再抽一次"
 		],
 		"on_error": ["null"]
 	},
@@ -261,7 +309,7 @@
 		},
 		"next": ["收下徽章"]
 	},
-	"是否有喵喵币": {
+	"是否有喵呜币": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
@@ -273,7 +321,26 @@
 			"type": "DoNothing",
 			"param": {}
 		},
-		"focus": "喵喵币已耗尽",
+		"focus": {
+			"Node.Recognition.Succeeded": "喵呜币已耗尽"
+		},
+		"next": ["收下徽章", "返回上一级页面"]
+	},
+	"是否抽完整盒": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["补货", "补", "货"],
+				"roi": [235, 139, 142, 88]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "已抽完整盒徽章"
+		},
 		"next": ["收下徽章"]
 	},
 	"收下徽章": {
@@ -290,7 +357,7 @@
 		},
 		"next": []
 	},
-	"喵喵牌再抽一次_Check": {
+	"喵喵牌再抽一次": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
@@ -303,14 +370,6 @@
 			"param": {}
 		},
 		"timeout": 4000,
-		"next": ["是否集齐9个徽章", "是否有喵喵币", "喵喵牌再抽一次_Action"]
-	},
-	"喵喵牌再抽一次_Action": {
-		"action": {
-			"type": "Click",
-			"param": {"target": "喵喵牌再抽一次_Check"}
-		},
-		"max_hit": 30,
 		"next": []
 	}
 }
