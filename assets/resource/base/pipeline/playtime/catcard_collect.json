@@ -199,7 +199,7 @@
 			"type": "DoNothing",
 			"param": {}
 		},
-		"next": ["[JumpBack]喵喵牌抽卡寻找_限时抽卡排除"]
+		"next": ["喵喵牌抽卡寻找_限时抽卡排除", "喵喵牌抽卡寻找_已集齐徽章"]
 	},
 	"喵喵牌抽卡寻找_限时抽卡排除": {
 		"recognition": {
@@ -234,7 +234,7 @@
 			"type": "Click",
 			"param": {
 				"target": "喵喵牌抽卡寻找_限时抽卡位",
-				"target_offset": [16, -86, 9, 27]
+				"target_offset": [75, 73, -26, -23]
 			}
 		},
 		"next": ["开始喵喵牌抽卡"]
@@ -242,7 +242,6 @@
 	"喵喵牌抽卡寻找_已集齐徽章": {
 		"recognition": {
 			"type": "TemplateMatch",
-			//description: 全部集齐后保底随机抽已集齐徽章，抽完一盒会重新随机一款抽
 			"param": {
 				"template": ["playtime/catcard/喵呜徽章集齐.png"],
 				"roi": [89, 296, 473, 706],
@@ -256,7 +255,23 @@
 				"target_offset": [53, -57, -57, -12]
 			}
 		},
-		"next": ["开始喵喵牌抽卡"]
+		"repeat": 4,
+		"repeat_delay": 100,
+		"next": ["喵喵牌抽卡寻找_已集齐徽章_活动卡位排除", "开始喵喵牌抽卡"]
+	},
+	"喵喵牌抽卡寻找_已集齐徽章_活动卡位排除": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["用.{2,}喵"],
+				"roi": [335, 1210, 338, 46]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": []
 	},
 	"开始喵喵牌抽卡": {
 		"recognition": {
@@ -287,6 +302,7 @@
 		"post_delay": 2000,
 		"timeout": 10000,
 		"next": [
+			"[JumpBack]退出牵绊度提升popop",
 			"是否集齐9个徽章",
 			"是否有喵呜币",
 			"是否抽完整盒",
