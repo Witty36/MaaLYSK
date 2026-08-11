@@ -470,3 +470,5 @@ assets/config/
 #Claude
 .claude/*
 !.claude/skills/
+
+.agents/*
