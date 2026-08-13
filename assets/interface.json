@@ -39,6 +39,10 @@
 			"controller": ["ADB模拟器", "PlayCover", "PC"]
 		}
 	],
+	"agent": {
+		"child_exec": "python",
+		"child_args": ["-u", "../agent/main.py"]
+	},
 	"import": [
 		"resource/tasks/preset/Daily.json",
 		"resource/tasks/preset/Weekly.json",

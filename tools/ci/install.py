@@ -123,6 +123,10 @@ def install_chores():
         working_dir / "LICENSE",
         install_path,
     )
+    shutil.copy2(
+        working_dir / "requirements.txt",
+        install_path,
+    )
 
 
 def install_agent():
@@ -131,6 +135,21 @@ def install_agent():
         install_path / "agent",
         dirs_exist_ok=True,
     )
+
+    with open(install_path / "interface.json", "r", encoding="utf-8") as f:
+        interface = jsonc.load(f)
+
+    if os_name == "win":
+        interface["agent"]["child_exec"] = "{PROJECT_DIR}/python/python.exe"
+    elif os_name == "macos":
+        interface["agent"]["child_exec"] = "{PROJECT_DIR}/python/bin/python3"
+    elif os_name == "linux":
+        interface["agent"]["child_exec"] = "python3"
+
+    interface["agent"]["child_args"] = ["-u", "{PROJECT_DIR}/agent/main.py"]
+
+    with open(install_path / "interface.json", "w", encoding="utf-8") as f:
+        jsonc.dump(interface, f, ensure_ascii=False, indent=4)
 
 
 if __name__ == "__main__":

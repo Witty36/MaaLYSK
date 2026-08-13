@@ -1,0 +1,2 @@
+maafw==5.12.2
+loguru

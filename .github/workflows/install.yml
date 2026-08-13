@@ -205,6 +205,11 @@ jobs:
             echo "✅ Successfully renamed to $TARGET_NAME"
           fi
 
+      - name: Setup embedded Python
+        if: matrix.os != 'linux'
+        shell: bash
+        run: python tools/ci/setup_embed_python.py ${{ matrix.os }} ${{ matrix.arch }}
+
       - name: Install
         shell: bash
         run: |

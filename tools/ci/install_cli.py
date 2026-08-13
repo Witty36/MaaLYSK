@@ -105,6 +105,7 @@ def install_resource():
 def install_chores():
     shutil.copy2(working_dir / "README.md", install_path)
     shutil.copy2(working_dir / "LICENSE", install_path)
+    shutil.copy2(working_dir / "requirements.txt", install_path)
 
 
 def install_agent():
@@ -118,15 +119,13 @@ def install_agent():
         interface = jsonc.load(f)
 
     if os_name == "win":
-        interface["agent"] = {
-            "child_exec": "python",
-            "child_args": ["-u", "./agent/main.py"],
-        }
-    elif os_name in ("macos", "linux"):
-        interface["agent"] = {
-            "child_exec": "python3",
-            "child_args": ["-u", "./agent/main.py"],
-        }
+        interface["agent"]["child_exec"] = "{PROJECT_DIR}/python/python.exe"
+    elif os_name == "macos":
+        interface["agent"]["child_exec"] = "{PROJECT_DIR}/python/bin/python3"
+    elif os_name == "linux":
+        interface["agent"]["child_exec"] = "python3"
+
+    interface["agent"]["child_args"] = ["-u", "{PROJECT_DIR}/agent/main.py"]
 
     with open(install_path / "interface.json", "w", encoding="utf-8") as f:
         jsonc.dump(interface, f, ensure_ascii=False, indent=4)
