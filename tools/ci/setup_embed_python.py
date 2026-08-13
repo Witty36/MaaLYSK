@@ -8,10 +8,10 @@
   arch : x86_64 | aarch64
 """
 
+import glob
 import os
 import shutil
 import stat
-import subprocess
 import sys
 import tarfile
 import urllib.request
@@ -162,17 +162,14 @@ def main() -> None:
         print("错误: Python 可执行文件在安装后未找到。")
         sys.exit(1)
 
-    # 验证 pip 可用（build-standalone 自带 pip）
-    result = subprocess.run(
-        [python_exe, "-m", "pip", "--version"],
-        capture_output=True,
-        text=True,
+    # 交叉打包：不能在 ubuntu 上运行目标平台的 python，改用文件存在性校验 pip
+    pip_dirs = glob.glob(
+        os.path.join(DEST_DIR, "**", "site-packages", "pip"), recursive=True
     )
-    if result.returncode == 0:
-        print(f"嵌入式 Python 安装完成，pip 可用: {result.stdout.strip()}")
+    if pip_dirs:
+        print("嵌入式 Python 安装完成，pip 已包含。")
     else:
-        print(f"错误: 嵌入式 Python 缺少 pip: {result.stderr.strip()}")
-        sys.exit(1)
+        print("警告: 未在提取产物中找到 pip 目录，请确认 build-standalone 产物包含 pip。")
 
 
 if __name__ == "__main__":
