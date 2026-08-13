@@ -110,99 +110,103 @@ def save_version(version: str) -> None:
         logger.warning(f"保存版本文件失败: {e}")
 
 
-def load_requirements_from_file() -> list[str]:
-    """从 requirements.txt 读取依赖列表（必须存在）。"""
-    main_py_path = get_main_py_path()
-    requirements_path = main_py_path.parent.parent / "requirements.txt"
-
-    if not requirements_path.exists():
-        raise FileNotFoundError(f"无法找到 requirements.txt 文件: {requirements_path}")
-
-    packages: list[str] = []
-    with open(requirements_path, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            # 跳过空行和注释
-            if not line or line.startswith("#"):
-                continue
-            packages.append(line)
-
-    if not packages:
-        raise ValueError("requirements.txt 文件中没有找到任何依赖包")
-
-    return packages
+PIP_MIRRORS = [
+    "https://mirrors.ustc.edu.cn/pypi/simple",
+    "https://pypi.tuna.tsinghua.edu.cn/simple",
+    "https://mirrors.cloud.tencent.com/pypi/simple/",
+    "https://pypi.org/simple",
+]
 
 
-def install_package_with_fallback(package_spec: str) -> bool:
-    """
-    尝试使用多个源安装包，按顺序回退
-    1. 阿里源
-    2. 清华源
-    3. PyPI 官方源
-    """
-    sources = [
-        ("阿里源", "https://mirrors.aliyun.com/pypi/simple/"),
-        ("清华源", "https://pypi.tuna.tsinghua.edu.cn/simple"),
-        ("PyPI官方源", "https://pypi.org/simple"),
-    ]
-
-    for source_name, source_url in sources:
+def get_available_mirror(mirrors: list[str]) -> str | None:
+    """逐个探测镜像源，返回第一个可用的。"""
+    for mirror in mirrors:
         try:
-            logger.info(f"尝试使用 {source_name} 安装 {package_spec}...")
-            result = subprocess.run(
+            subprocess.run(
                 [
                     sys.executable,
                     "-m",
                     "pip",
-                    "install",
-                    "--upgrade",
+                    "list",
+                    "--local",
+                    "--format=json",
                     "-i",
-                    source_url,
-                    package_spec,
+                    mirror,
                 ],
-                capture_output=True,
-                text=True,
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=10,
                 check=True,
             )
-            logger.info(f"✓ {package_spec} 安装成功 (使用 {source_name})")
-            if result.stdout:
-                logger.debug(f"pip 输出: {result.stdout}")
-                print(f"info: {result.stdout}")
-            return True
-        except subprocess.CalledProcessError as e:
-            logger.warning(
-                f"使用 {source_name} 安装 {package_spec} 失败，尝试下一个源..."
-            )
-            print(
-                f"error: 使用 {source_name} 安装 {package_spec} 失败，尝试下一个源..."
-            )
-            if e.stderr:
-                logger.debug(f"  错误输出: {e.stderr}")
-                print(f"error: {e.stderr}")
-            if e.stdout:
-                logger.debug(f"  标准输出: {e.stdout}")
-                print(f"info: {e.stdout}")
+            logger.info(f"当前镜像源可用: {mirror}")
+            return mirror
+        except subprocess.TimeoutExpired:
+            logger.warning(f"镜像源连接超时: {mirror}")
+        except subprocess.CalledProcessError:
+            logger.warning(f"镜像源返回错误: {mirror}")
+        except Exception as e:
+            logger.warning(f"检查镜像源 {mirror} 时发生未知错误: {e}")
 
-    logger.error(f"✗ {package_spec} 安装失败（所有源都尝试失败）")
+    logger.error("所有镜像源都不可用")
+    return None
+
+
+def _run_pip_command(cmd_args: list[str], operation_name: str) -> bool:
+    """执行 pip 命令；成功只记一行，失败打印完整错误。"""
+    logger.info(f"开始 {operation_name}...")
+    try:
+        process = subprocess.Popen(
+            cmd_args,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+        )
+        stdout, stderr = process.communicate()
+    except Exception as e:
+        logger.error(f"{operation_name} 时发生未知异常: {e}")
+        return False
+
+    if process.returncode == 0:
+        logger.info(f"{operation_name} 完成")
+        return True
+
+    logger.error(f"{operation_name} 时出错。返回码: {process.returncode}")
+    if stdout and stdout.strip():
+        print(f"info: {stdout.strip()}")
+    if stderr and stderr.strip():
+        print(f"error: {stderr.strip()}")
     return False
 
 
-def check_and_install_dependencies() -> bool:
-    """检查并安装必要的依赖库。"""
-    print("info: 开始安装依赖")
-    required_packages = load_requirements_from_file()
-    if not required_packages:
-        raise ValueError("requirements.txt 中没有找到任何依赖包")
+def install_requirements(mirrors: list[str]) -> bool:
+    """一次性安装 requirements.txt 中所有依赖。"""
+    main_py_path = get_main_py_path()
+    requirements_path = main_py_path.parent.parent / "requirements.txt"
 
-    all_installed = True
+    if not requirements_path.exists():
+        logger.error(f"requirements.txt 文件不存在于 {requirements_path.resolve()}")
+        return False
 
-    for package_spec in required_packages:
-        logger.info(f"正在安装 {package_spec}...")
-        print(f"info: 正在安装 {package_spec}...")
-        if not install_package_with_fallback(package_spec):
-            all_installed = False
+    mirror = get_available_mirror(mirrors)
+    if not mirror:
+        logger.error("没有可用的镜像源，安装依赖失败")
+        return False
 
-    return all_installed
+    cmd = [
+        sys.executable,
+        "-m",
+        "pip",
+        "install",
+        "-U",
+        "-r",
+        str(requirements_path),
+        "--no-warn-script-location",
+        "-i",
+        mirror,
+    ]
+    return _run_pip_command(cmd, f"从 {requirements_path.name} 安装依赖")
 
 
 def deploy() -> bool:
@@ -232,7 +236,7 @@ def deploy() -> bool:
             logger.info("首次运行，开始依赖检查...")
 
         # 检查并安装依赖
-        success = check_and_install_dependencies()
+        success = install_requirements(PIP_MIRRORS)
 
         if success:
             save_version(current_version)
