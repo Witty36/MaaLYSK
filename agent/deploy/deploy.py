@@ -111,16 +111,16 @@ def save_version(version: str) -> None:
 
 
 PIP_MIRRORS = [
-    "https://mirrors.ustc.edu.cn/pypi/simple",
-    "https://pypi.tuna.tsinghua.edu.cn/simple",
-    "https://mirrors.cloud.tencent.com/pypi/simple/",
-    "https://pypi.org/simple",
+    ("中科大源", "https://mirrors.ustc.edu.cn/pypi/simple"),
+    ("清华源", "https://pypi.tuna.tsinghua.edu.cn/simple"),
+    ("腾讯源", "https://mirrors.cloud.tencent.com/pypi/simple/"),
+    ("PyPI官方源", "https://pypi.org/simple"),
 ]
 
 
-def get_available_mirror(mirrors: list[str]) -> str | None:
-    """逐个探测镜像源，返回第一个可用的。"""
-    for mirror in mirrors:
+def get_available_mirror(mirrors: list[tuple[str, str]]) -> tuple[str, str] | None:
+    """逐个探测镜像源，返回第一个可用的 (名称, url)。"""
+    for name, url in mirrors:
         try:
             subprocess.run(
                 [
@@ -131,21 +131,22 @@ def get_available_mirror(mirrors: list[str]) -> str | None:
                     "--local",
                     "--format=json",
                     "-i",
-                    mirror,
+                    url,
                 ],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 timeout=10,
                 check=True,
             )
-            logger.info(f"当前镜像源可用: {mirror}")
-            return mirror
+            logger.info(f"当前镜像源可用: {name} ({url})")
+            print(f"info: 当前镜像源可用: {name} ({url})")
+            return name, url
         except subprocess.TimeoutExpired:
-            logger.warning(f"镜像源连接超时: {mirror}")
+            logger.warning(f"镜像源连接超时: {name}")
         except subprocess.CalledProcessError:
-            logger.warning(f"镜像源返回错误: {mirror}")
+            logger.warning(f"镜像源返回错误: {name}")
         except Exception as e:
-            logger.warning(f"检查镜像源 {mirror} 时发生未知错误: {e}")
+            logger.warning(f"检查镜像源 {name} 时发生未知错误: {e}")
 
     logger.error("所有镜像源都不可用")
     return None
@@ -194,6 +195,9 @@ def install_requirements(mirrors: list[str]) -> bool:
         logger.error("没有可用的镜像源，安装依赖失败")
         return False
 
+    mirror_name, mirror_url = mirror
+    print(f"info: 正在从 {mirror_name} 安装依赖...")
+
     cmd = [
         sys.executable,
         "-m",
@@ -204,9 +208,9 @@ def install_requirements(mirrors: list[str]) -> bool:
         str(requirements_path),
         "--no-warn-script-location",
         "-i",
-        mirror,
+        mirror_url,
     ]
-    return _run_pip_command(cmd, f"从 {requirements_path.name} 安装依赖")
+    return _run_pip_command(cmd, f"从 {requirements_path.name} 安装依赖...")
 
 
 def deploy() -> bool:
@@ -223,6 +227,7 @@ def deploy() -> bool:
 
         # 读取已保存的版本
         saved_version = get_saved_version()
+        print(f"info: 当前资源版本: {current_version}, 上次运行版本: {saved_version or '未知'}")
 
         if saved_version == current_version:
             logger.info(f"版本一致 (v{saved_version})，跳过依赖检查")
@@ -241,8 +246,10 @@ def deploy() -> bool:
         if success:
             save_version(current_version)
             logger.info(f"✓ 依赖检查完成，版本已更新为: {current_version}")
+            print("info: 依赖安装完成")
         else:
             logger.error("✗ 依赖安装失败，请手动安装后重试")
+            print("error: 依赖安装失败，请手动安装后重试")
 
         logger.info("=" * 50)
         return success
