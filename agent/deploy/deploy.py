@@ -178,8 +178,10 @@ def install_package_with_fallback(package_spec: str) -> bool:
             )
             if e.stderr:
                 logger.debug(f"  错误输出: {e.stderr}")
+                print(f"error: {e.stderr}")
             if e.stdout:
                 logger.debug(f"  标准输出: {e.stdout}")
+                print(f"info: {e.stdout}")
 
     logger.error(f"✗ {package_spec} 安装失败（所有源都尝试失败）")
     return False

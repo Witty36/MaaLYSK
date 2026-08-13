@@ -119,13 +119,13 @@ def install_agent():
         interface = jsonc.load(f)
 
     if os_name == "win":
-        interface["agent"]["child_exec"] = "{PROJECT_DIR}/python/python.exe"
+        interface["agent"]["child_exec"] = "./python/python.exe"
     elif os_name == "macos":
-        interface["agent"]["child_exec"] = "{PROJECT_DIR}/python/bin/python3"
+        interface["agent"]["child_exec"] = "./python/bin/python3"
     elif os_name == "linux":
         interface["agent"]["child_exec"] = "python3"
 
-    interface["agent"]["child_args"] = ["-u", "{PROJECT_DIR}/agent/main.py"]
+    interface["agent"]["child_args"] = ["-u", "./agent/main.py"]
 
     with open(install_path / "interface.json", "w", encoding="utf-8") as f:
         jsonc.dump(interface, f, ensure_ascii=False, indent=4)
