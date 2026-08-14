@@ -128,6 +128,15 @@ def _resolve_level(level: Any) -> int:
     return getattr(logging, str(level).upper(), logging.INFO)
 
 
+def _is_android_runtime() -> bool:
+    """Return whether the Agent is running inside MFA's Android P4A service."""
+    return bool(
+        sys.platform == "android"
+        or os.environ.get("ANDROID_ARGUMENT")
+        or os.environ.get("MAA_LIBRARY_DIR")
+    )
+
+
 def _setup_loguru_logger(log_dir: str = "debug/custom", console_level: str = "INFO"):
     os.makedirs(log_dir, exist_ok=True)
     _loguru_logger.remove()
@@ -147,7 +156,9 @@ def _setup_loguru_logger(log_dir: str = "debug/custom", console_level: str = "IN
         level="DEBUG",
         format="{time:YYYY-MM-DD HH:mm:ss.SSS} | {level: <8} | {name}:{function}:{line} | {message}",
         encoding="utf-8",
-        enqueue=True,
+        # python-for-android 的 CPython 未编译 _multiprocessing，enqueue=True 会触发
+        # `No module named '_multiprocessing'`，Android 上改用同步写入。
+        enqueue=not _is_android_runtime(),
         backtrace=True,
         diagnose=True,
         filter=_enrich_record,
