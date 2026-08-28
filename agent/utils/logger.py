@@ -1,6 +1,7 @@
 import html
 import logging
 import os
+import platform
 import sys
 from logging.handlers import TimedRotatingFileHandler
 from typing import Any
@@ -36,6 +37,8 @@ HTML_LEVEL_COLORS = {
     "ERROR": "crimson",
     "CRITICAL": "firebrick",
 }
+
+_IS_ANDROID = platform.system().lower() == "android"
 
 
 def _client_name_key() -> str:
@@ -147,7 +150,9 @@ def _setup_loguru_logger(log_dir: str = "debug/custom", console_level: str = "IN
         level="DEBUG",
         format="{time:YYYY-MM-DD HH:mm:ss.SSS} | {level: <8} | {name}:{function}:{line} | {message}",
         encoding="utf-8",
-        enqueue=True,
+        # python-for-android's CPython lacks the _multiprocessing extension,
+        # which loguru only needs when enqueue=True.
+        enqueue=not _IS_ANDROID,
         backtrace=True,
         diagnose=True,
         filter=_enrich_record,
