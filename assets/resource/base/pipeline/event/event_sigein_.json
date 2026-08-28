@@ -10,7 +10,7 @@
 		},
 		"next": [
 			"点击精彩活动",
-			"进入签到_心动挚礼",
+			"进入签到_十日与你",
 			"[JumpBack]点击活动",
 			"[JumpBack]自动过剧情",
 			"[JumpBack]返回上一级页面",
@@ -29,7 +29,7 @@
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["进入签到_心动挚礼", "[JumpBack]精彩活动向下滑"]
+		"next": ["进入签到_十日与你", "[JumpBack]精彩活动向下滑"]
 	},
 	"进入签到_灯宵映礼": {
 		"recognition": {
@@ -74,9 +74,9 @@
 							"type": "TemplateMatch",
 							"param": {
 								"template": [
-									"event/signin/十日与你_沈星回细琢辰光.png"
+									"event/signin/十日与你_夏以昼跃跃纸端.png"
 								],
-								"roi": [85, 157, 350, 986]
+								"roi": [113,151,212,968]
 							}
 						}
 					},
@@ -84,8 +84,8 @@
 						"recognition": {
 							"type": "OCR",
 							"param": {
-								"expected": ["十日", "细琢辰光", "累计签到"],
-								"roi": [56, 151, 628, 954]
+								"expected": ["十天", "跃跃纸端", "累计签到"],
+								"roi": [348,190,269,873]
 							}
 						}
 					}
