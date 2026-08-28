@@ -20,6 +20,10 @@ env:
   P4A_REF: v2026.05.09
   P4A_NDK_VERSION: 28.2.13676358
   AVALONIA_VERSION: 11.3.13
+  # MaaLYSK's main flow is portrait 720x1280; current-screen capture follows
+  # the real display so horizontal modules can still be automated.
+  MFA_ANDROID_VIRTUAL_WIDTH: "720"
+  MFA_ANDROID_VIRTUAL_HEIGHT: "1280"
 
 concurrency:
   group: android-${{ github.ref }}
@@ -64,6 +68,16 @@ jobs:
       - name: Install workflow parser dependencies
         shell: bash
         run: python -m pip install --upgrade pip packaging
+
+      # MaaLYSK portrait-first display settings. This patches only the ephemeral
+      # mfa-source checkout and never changes the MFAAvalonia repository itself.
+      - name: Configure MFAAvalonia Android display for MaaLYSK
+        shell: bash
+        env:
+          MFA_SOURCE_ROOT: mfa-source
+          MFA_ANDROID_VIRTUAL_WIDTH: ${{ env.MFA_ANDROID_VIRTUAL_WIDTH }}
+          MFA_ANDROID_VIRTUAL_HEIGHT: ${{ env.MFA_ANDROID_VIRTUAL_HEIGHT }}
+        run: python3 resource-source/tools/ci/configure_android_mfa.py
 
       # MaaLYSK keeps OCR models out of git and regenerates them from the
       # MaaCommonAssets submodule before assembling the APK payload.
@@ -322,6 +336,12 @@ jobs:
             echo "[ERR] Avalonia 11.3.12 remains in MFA projects"
             exit 1
           fi
+          grep -F "var virtualWidth = useVirtualDisplay ? ${{ env.MFA_ANDROID_VIRTUAL_WIDTH }} : displayInfo.Width;" \
+            mfa-source/MFAAvalonia.Android/AndroidNativeControllerProvider.cs
+          grep -F "var virtualHeight = useVirtualDisplay ? ${{ env.MFA_ANDROID_VIRTUAL_HEIGHT }} : displayInfo.Height;" \
+            mfa-source/MFAAvalonia.Android/AndroidNativeControllerProvider.cs
+          grep -F 'private const double PreviewAspectRatio = 9.0 / 16.0;' \
+            mfa-source/MFAAvalonia/Views/Mobile/MobileTaskQueueView.axaml.cs
 
       - name: Resolve APK metadata
         id: metadata
