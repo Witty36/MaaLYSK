@@ -20,7 +20,7 @@
 			"entry": "进入限时活动",
 			"default_check": false,
 			//"option": ["韶华宴岁领取", "吉财临门领取", "金叶盈福领取"],
-			"description": "<span style=\"color:orange\">当前版本：祁煜2026破阵子日卡</span><br>限时活动领取每日任务奖励，初步适配了进入活动读剧情，如果有问题就提前进入一次页面过下剧情"
+			"description": "<span style=\"color:orange\">当前版本：黎深2026生日</span><br>限时活动领取每日任务奖励，初步适配了进入活动读剧情，如果有问题就提前进入一次页面过下剧情"
 		},
 		{
 			"name": "✨限时活动读剧情",
