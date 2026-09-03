@@ -88,7 +88,7 @@
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["获得奖励", "奖励", "获得"],
+				"expected": ["获得奖励", "获得"],
 				"roi": [273, 376, 190, 79]
 			}
 		},
@@ -369,7 +369,7 @@
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["道具", "道", "具"],
+				"expected": ["道具"],
 				"roi": [412, 407, 137, 48]
 			}
 		},
