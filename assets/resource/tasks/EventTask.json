@@ -74,6 +74,47 @@
 			"default_check": false,
 			//	"option": ["刷到xx分停止", "叮咚奇跃参数自定义"],
 			"description": "<span style=\"color:orange\">当前版本：软绒奇境-纷乱清点</span>1、由于个别电脑卡顿可能会提前结束任务，重新开始就好<br>2、请单独运行此任务，否则后续任务可能无法进行<br>3、最好先手打一遍关卡解锁第一关，尽量只在第一关挂。后面关卡可能会有识别问题并卡住"
+		},
+		{
+			"name": "🌈限时活动分线小游戏",
+			//"entry": "stop",
+			"entry": "进入共留花期",
+			"default_check": false,
+			//	"option": ["刷到xx分停止", "叮咚奇跃参数自定义"],
+			"option": ["选择男主技能"],
+			"description": "<span style=\"color:orange\">当前版本：共留花期，需过完引导并手动完成关卡一后使用</span>1、由于个别电脑卡顿可能会提前结束任务，重新开始就好<br>2、请单独运行此任务，否则后续任务可能无法进行",
+			"pipeline_override": {
+				"选择沈星回": {
+					"focus": {
+						"Node.Action.Succeeded": "进入沈星回无限采拾"
+					},
+					"next": ["已在无限采拾页面"]
+				},
+				"选择黎深": {
+					"focus": {
+						"Node.Action.Succeeded": "进入黎深无限采拾"
+					},
+					"next": ["已在无限采拾页面"]
+				},
+				"选择祁煜": {
+					"focus": {
+						"Node.Action.Succeeded": "进入祁煜无限采拾"
+					},
+					"next": ["已在无限采拾页面"]
+				},
+				"选择秦彻": {
+					"focus": {
+						"Node.Action.Succeeded": "进入秦彻无限采拾"
+					},
+					"next": ["已在无限采拾页面"]
+				},
+				"选择夏以昼": {
+					"focus": {
+						"Node.Action.Succeeded": "进入夏以昼无限采拾"
+					},
+					"next": ["已在无限采拾页面"]
+				}
+			}
 		}
 	],
 	"option": {
@@ -327,6 +368,51 @@
 					"pipeline_override": {
 						"进入限时活动小游戏": {
 							"next": ["进入邀约花笺"]
+						}
+					}
+				}
+			]
+		},
+		"选择男主技能": {
+			"type": "select",
+			"cases": [
+				{
+					"name": "沈星回",
+					"pipeline_override": {
+						"选择沈星回": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "黎深",
+					"pipeline_override": {
+						"选择黎深": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "祁煜",
+					"pipeline_override": {
+						"选择祁煜": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "秦彻",
+					"pipeline_override": {
+						"选择秦彻": {
+							"enabled": true
+						}
+					}
+				},
+				{
+					"name": "夏以昼",
+					"pipeline_override": {
+						"选择夏以昼": {
+							"enabled": true
 						}
 					}
 				}
