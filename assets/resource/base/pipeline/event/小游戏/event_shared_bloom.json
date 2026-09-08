@@ -1,0 +1,137 @@
+{
+	"进入共留花期": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"max_hit": 1,
+		"next": [
+			"共留花期菜单",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"共留花期菜单": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["共留花期"],
+				"roi": [10, 1179, 701, 79]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"post_delay": 1000,
+		"repeat": 2,
+		"next": ["[JumpBack]当前进度判定","进入无限采拾"]
+	},
+	"当前进度判定": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/进度上限.png"],
+				"roi": [64,1108,63,67]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": "当前道具已达上限",
+		"post_delay": 1000,
+		"next": ["stop"]
+	},
+	"进入无限采拾": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/共留花期/无限采拾入口.png"],
+				"roi": [394,710,319,322]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"pre_delay": 100,
+		"post_delay": 1000,
+		"focus": "准备开始无限采拾",
+		"next": [
+			"[JumpBack]选择沈星回",
+			"[JumpBack]选择黎深",
+			"[JumpBack]选择祁煜",
+			"[JumpBack]选择秦彻",
+			"[JumpBack]选择夏以昼"
+		],
+		"on_error": ["进入共留花期"]
+	},
+	"已在无限采拾页面": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["积分"],
+				"roi": [7,246,53,37]
+			}
+		},
+		"post_delay": 2000,
+		"next": [
+			"[JumpBack]进行道具释放"
+		],
+		"on_error": ["无限采拾结算退出"]
+	},
+	"进行道具释放": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["积分"],
+				"roi": [7,246,53,37]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target":[324,668,61,77]
+			}
+		},
+		"repeat": 10,
+		"next": []
+	},
+	"无限采拾结算退出": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["积分"],
+				"roi": [186,476,82,48]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {
+			}
+		},
+		"next": ["无限采拾_立即结束游戏"]
+	},
+	"无限采拾_立即结束游戏": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["确定"],
+				"roi": [180,1054,69,33]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["共留花期菜单"]
+	}
+}
