@@ -73,39 +73,7 @@
 			"entry": "进入限时活动小游戏",
 			"default_check": false,
 			"option": ["选择男主技能"],
-			"description": "<span style=\"color:orange\">当前版本：共留花期，需过完引导并手动完成关卡一后使用</span>1、由于个别电脑卡顿可能会提前结束任务，重新开始就好<br>2、请单独运行此任务，否则后续任务可能无法进行",
-			"pipeline_override": {
-				"选择沈星回": {
-					"focus": {
-						"Node.Action.Succeeded": "进入沈星回无限采拾"
-					},
-					"next": ["已在无限采拾页面"]
-				},
-				"选择黎深": {
-					"focus": {
-						"Node.Action.Succeeded": "进入黎深无限采拾"
-					},
-					"next": ["已在无限采拾页面"]
-				},
-				"选择祁煜": {
-					"focus": {
-						"Node.Action.Succeeded": "进入祁煜无限采拾"
-					},
-					"next": ["已在无限采拾页面"]
-				},
-				"选择秦彻": {
-					"focus": {
-						"Node.Action.Succeeded": "进入秦彻无限采拾"
-					},
-					"next": ["已在无限采拾页面"]
-				},
-				"选择夏以昼": {
-					"focus": {
-						"Node.Action.Succeeded": "进入夏以昼无限采拾"
-					},
-					"next": ["已在无限采拾页面"]
-				}
-			}
+			"description": "<span style=\"color:orange\">当前版本：共留花期，需过完引导并手动完成关卡一后使用</span>1、由于个别电脑卡顿可能会提前结束任务，重新开始就好<br>2、请单独运行此任务，否则后续任务可能无法进行"
 		}
 	],
 	"option": {
@@ -371,7 +339,10 @@
 					"name": "沈星回",
 					"pipeline_override": {
 						"选择沈星回": {
-							"enabled": true
+							"enabled": true,
+							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"max_hit": 10,
+							"next": ["已在无限采拾页面"]
 						}
 					}
 				},
@@ -379,7 +350,10 @@
 					"name": "黎深",
 					"pipeline_override": {
 						"选择黎深": {
-							"enabled": true
+							"enabled": true,
+							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"max_hit": 10,
+							"next": ["已在无限采拾页面"]
 						}
 					}
 				},
@@ -387,7 +361,10 @@
 					"name": "祁煜",
 					"pipeline_override": {
 						"选择祁煜": {
-							"enabled": true
+							"enabled": true,
+							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"max_hit": 10,
+							"next": ["已在无限采拾页面"]
 						}
 					}
 				},
@@ -395,7 +372,10 @@
 					"name": "秦彻",
 					"pipeline_override": {
 						"选择秦彻": {
-							"enabled": true
+							"enabled": true,
+							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"max_hit": 10,
+							"next": ["已在无限采拾页面"]
 						}
 					}
 				},
@@ -403,7 +383,10 @@
 					"name": "夏以昼",
 					"pipeline_override": {
 						"选择夏以昼": {
-							"enabled": true
+							"enabled": true,
+							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"max_hit": 10,
+							"next": ["已在无限采拾页面"]
 						}
 					}
 				}
