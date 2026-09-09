@@ -75,9 +75,9 @@
 		"pre_delay": 500,
 		"post_delay": 1000,
 		"post_wait_freezes": 500,
-		"next": ["进入喵呜柜台"]
+		"next": ["限时喵喵牌进入喵呜柜台"]
 	},
-	"进入喵呜柜台": {
+	"限时喵喵牌进入喵呜柜台": {
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
@@ -97,16 +97,18 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["playtime/catcard/限时喵喵徽章.png"],
+				"template": ["playtime/catcard/喵呜徽章限时图标.png"],
 				"roi": [69, 246, 87, 122]
 			}
 		},
 		"action": {
 			"type": "Click",
 			"param": {
-				"target_offset": [5, 5, -10, -10]
+				"target_offset": [70, 70, -15, -15]
 			}
 		},
+		"repeat": 5,
+		"repeat_delay": 100,
 		"next": ["开始限时喵喵牌抽卡"]
 	},
 	"开始限时喵喵牌抽卡": {
@@ -122,8 +124,7 @@
 			"param": {}
 		},
 		"timeout": 5000,
-		"next": ["限时喵喵牌抽卡确定"],
-		"on_error": ["喵喵牌切换人物", "[JumpBack]返回上一级页面"]
+		"next": ["检查限时喵呜币数量", "限时喵喵牌抽卡确定"]
 	},
 	"限时喵喵牌抽卡确定": {
 		"recognition": {
@@ -137,8 +138,10 @@
 			"type": "Click",
 			"param": {}
 		},
+		"on_error": ["null"],
+		"post_delay": 2000,
 		"timeout": 10000,
-		"next": ["限时喵喵牌再抽一次"]
+		"next": ["检查限时喵呜币数量", "[JumpBack]限时喵喵牌再抽一次"]
 	},
 	"限时喵喵牌再抽一次": {
 		"recognition": {
@@ -153,35 +156,42 @@
 			"param": {}
 		},
 		"timeout": 4000,
-		"repeat": 18,
-		"repeat_delay": 1500,
+		"next": []
+	},
+	"检查限时喵呜币数量": {
+		"recognition": {
+			"type": "And",
+			"param": {
+				"all_of": [
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["^0$"],
+								"roi": [673, 58, 47, 25]
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": ["playtime/catcard/catcoin_event"],
+								"roi": [633, 48, 56, 48]
+							}
+						}
+					}
+				]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"timeout": 5000,
+		"focus": {
+			"Node.Recognition.Succeeded": "限时喵呜币已耗尽"
+		},
 		"next": ["喵喵牌切换人物", "[JumpBack]返回上一级页面"]
-	},
-	"限时喵喵牌再抽一次1": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["再抽一次"],
-				"roi": [442, 1070, 103, 29]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		},
-		"post_delay": 0
-	},
-	"检查限时喵喵牌次数": {
-		"recognition": {
-			"type": "OCR",
-			"param": {
-				"expected": ["喵呜币不足"],
-				"roi": [177, 515, 371, 144]
-			}
-		},
-		"action": {
-			"type": "Click",
-			"param": {}
-		}
 	}
 }
