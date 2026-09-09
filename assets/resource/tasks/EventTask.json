@@ -351,7 +351,7 @@
 					"pipeline_override": {
 						"选择黎深": {
 							"enabled": true,
-							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"focus": {"Node.Action.Succeeded": "进入黎深无限采拾"},
 							"max_hit": 10,
 							"next": ["已在无限采拾页面"]
 						}
@@ -362,7 +362,7 @@
 					"pipeline_override": {
 						"选择祁煜": {
 							"enabled": true,
-							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"focus": {"Node.Action.Succeeded": "进入祁煜无限采拾"},
 							"max_hit": 10,
 							"next": ["已在无限采拾页面"]
 						}
@@ -373,7 +373,7 @@
 					"pipeline_override": {
 						"选择秦彻": {
 							"enabled": true,
-							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"focus": {"Node.Action.Succeeded": "进入秦彻无限采拾"},
 							"max_hit": 10,
 							"next": ["已在无限采拾页面"]
 						}
@@ -384,7 +384,7 @@
 					"pipeline_override": {
 						"选择夏以昼": {
 							"enabled": true,
-							"focus": {"Node.Action.Succeeded": "进入沈星回无限采拾"},
+							"focus": {"Node.Action.Succeeded": "进入夏以昼无限采拾"},
 							"max_hit": 10,
 							"next": ["已在无限采拾页面"]
 						}
