@@ -27,7 +27,7 @@
 			"type": "Click",
 			"param": {}
 		},
-		"next": ["点击鎏金卡", "月卡领取"]
+		"next": ["点击鎏金卡", "月卡页面处理"]
 	},
 	"点击鎏金卡": {
 		"recognition": {
@@ -42,14 +42,37 @@
 			"param": {}
 		},
 		"timeout": 5000,
-		"next": ["月卡领取"]
+		"next": ["月卡页面处理"]
+	},
+	"月卡页面处理": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["鎏金卡", "金卡"],
+				"roi": [50, 244, 170, 69]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"timeout": 5000,
+		"rate_limit": 400,
+		"next": [
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]月卡领取",
+			"[JumpBack]鎏金礼·珍贵领取",
+			"[JumpBack]鎏金礼·璀璨领取",
+			"月卡宝箱月卡已激活"
+		],
+		"on_error": ["null"]
 	},
 	"月卡领取": {
 		"recognition": {
 			"type": "OCR",
 			"param": {
 				"roi": [519, 631, 93, 88],
-				"expected": ["领取"]
+				"expected": ["^领取$"]
 			}
 		},
 		"action": {
@@ -59,12 +82,8 @@
 		"focus": {
 			"Node.Action.Succeeded": "领取每日月卡"
 		},
-		"next": [
-			"[JumpBack]鎏金礼·珍贵领取",
-			"[JumpBack]鎏金礼·璀璨领取",
-			"[JumpBack]退出获得奖励popop"
-		],
-		"on_error": ["null"]
+		"max_hit": 1,
+		"post_delay": 800
 	},
 	"鎏金礼·珍贵领取": {
 		"recognition": {
@@ -82,7 +101,9 @@
 		},
 		"focus": {
 			"Node.Action.Succeeded": "领取鎏金礼·珍贵成功!"
-		}
+		},
+		"max_hit": 1,
+		"post_delay": 800
 	},
 	"鎏金礼·璀璨领取": {
 		"recognition": {
@@ -100,6 +121,145 @@
 		},
 		"focus": {
 			"Node.Action.Succeeded": "领取鎏金礼·璀璨成功!"
+		},
+		"max_hit": 1,
+		"post_delay": 800
+	},
+	"月卡宝箱月卡已激活": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^已激活$"],
+				"roi": [254, 790, 80, 46]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"enabled": false,
+		"timeout": 4000,
+		"next": ["月卡宝箱今日售罄", "月卡宝箱购买入口"],
+		"on_error": ["null"]
+	},
+	"月卡宝箱今日售罄": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "shopping/daily/鎏金宝箱售罄.png",
+				"roi": [124, 1083, 151, 55],
+				"threshold": 0.8
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "今日鎏金宝箱已售罄，跳过购买"
+		}
+	},
+	"月卡宝箱购买入口": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "shopping/daily/鎏金宝箱购买.png",
+				"roi": [124, 1083, 151, 55],
+				"threshold": 0.8
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"enabled": false,
+		"max_hit": 1,
+		"post_delay": 800,
+		"next": ["月卡宝箱详情"],
+		"on_error": ["月卡宝箱退出弹窗"]
+	},
+	"月卡宝箱详情": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["鎏金宝箱", "宝箱"],
+				"roi": [270, 360, 155, 52]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"timeout": 5000,
+		"next": ["月卡宝箱价格"],
+		"on_error": ["月卡宝箱退出弹窗"]
+	},
+	"月卡宝箱价格": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^10$"],
+				"roi": [355, 826, 37, 38]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"timeout": 5000,
+		"next": ["月卡宝箱确认购买"],
+		"on_error": ["月卡宝箱退出弹窗"]
+	},
+	"月卡宝箱确认购买": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["^购买$"],
+				"roi": [320, 864, 80, 50]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"max_hit": 1,
+		"post_delay": 1000,
+		"timeout": 5000,
+		"next": ["[JumpBack]退出获得奖励popop", "月卡宝箱已售罄"],
+		"on_error": ["月卡宝箱退出弹窗"]
+	},
+	"月卡宝箱退出弹窗": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "Click",
+			"param": {
+				"target": [19, 936, 12, 13]
+			}
+		},
+		"focus": {
+			"Node.Action.Succeeded": "鎏金宝箱状态未确认，已尝试退出弹窗，请手动检查"
+		},
+		"post_delay": 800,
+		"next": ["stop"]
+	},
+	"月卡宝箱已售罄": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": "shopping/daily/鎏金宝箱售罄.png",
+				"roi": [124, 1083, 151, 55],
+				"threshold": 0.8
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": {
+			"Node.Recognition.Succeeded": "鎏金宝箱购买成功，今日已售罄"
 		}
 	}
 }

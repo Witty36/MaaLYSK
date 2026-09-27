@@ -9,35 +9,65 @@
 			"name": "💰月卡领取",
 			"entry": "进入月卡领取",
 			"default_check": false,
-			"option": ["是否领取鎏金礼"]
+			"option": ["是否领取鎏金礼", "是否购买鎏金宝箱"]
 		}
 	],
 	"option": {
 		"是否领取鎏金礼": {
 			"type": "switch",
+			"default_case": "No",
 			"cases": [
 				{
 					"name": "No",
 					"pipeline_override": {
-						"月卡领取": {
-							"next": ["stop"]
+						"鎏金礼·珍贵领取": {
+							"enabled": false
+						},
+						"鎏金礼·璀璨领取": {
+							"enabled": false
 						}
 					}
 				},
 				{
 					"name": "Yes",
 					"pipeline_override": {
-						"月卡领取": {
-							"timeout": 5000,
-							"rate_limit": 400,
-							"next": [
-								"[JumpBack]鎏金礼·珍贵领取",
-								"[JumpBack]鎏金礼·璀璨领取",
-								"[JumpBack]退出获得奖励popop"
-							]
+						"鎏金礼·珍贵领取": {
+							"enabled": true
+						},
+						"鎏金礼·璀璨领取": {
+							"enabled": true
 						}
 					},
 					"option": ["领取鎏金礼·珍贵", "领取鎏金礼·璀璨"]
+				}
+			]
+		},
+		"是否购买鎏金宝箱": {
+			"type": "switch",
+			"description": "每日最多购买一次鎏金宝箱，每次消耗10紫钻；仅在月卡已激活且宝箱未售罄时购买。",
+			"default_case": "No",
+			"cases": [
+				{
+					"name": "No",
+					"pipeline_override": {
+						"月卡宝箱月卡已激活": {
+							"enabled": false
+						},
+						"月卡宝箱购买入口": {
+							"enabled": false
+						}
+					}
+				},
+				{
+					"name": "Yes",
+					"pipeline_override": {
+						"月卡宝箱月卡已激活": {
+							"enabled": true
+						},
+						"月卡宝箱购买入口": {
+							"enabled": true
+						}
+					}
 				}
 			]
 		},
