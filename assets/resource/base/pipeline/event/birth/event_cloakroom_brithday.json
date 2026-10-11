@@ -22,9 +22,9 @@
 	},
 	"生日衣帽间菜单页面": {
 		"recognition": {
-			"type": "TemplateMatch",
+			"type": "OCR",
 			"param": {
-				"template": ["event/daily_get/澄云向昼菜单.png"],
+				"expected": ["岁愿萤星"],
 				"roi": [10, 1179, 701, 79]
 			}
 		},
@@ -136,9 +136,9 @@
 	},
 	"服装剧情点点": {
 		"recognition": {
-			"type": "TemplateMatch",
+			"type": "OCR",
 			"param": {
-				"template": "event/衣帽间剧情页.png",
+				"expected": ["LOVE","YOU","LOVE YOU"],
 				"roi": [419, 133, 276, 152]
 			}
 		},

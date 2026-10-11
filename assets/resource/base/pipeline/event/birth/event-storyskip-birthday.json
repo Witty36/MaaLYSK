@@ -23,9 +23,9 @@
 	},
 	"进入生日剧情页": {
 		"recognition": {
-			"type": "TemplateMatch",
+			"type": "OCR",
 			"param": {
-				"template": ["event/daily_get/澄云向昼菜单.png"],
+				"expected": ["岁愿萤星"],
 				"roi": [10, 1179, 701, 79]
 			}
 		},
