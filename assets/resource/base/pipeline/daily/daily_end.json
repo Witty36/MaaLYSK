@@ -235,17 +235,35 @@
 	},
 	"日常签到领取": {
 		"recognition": {
-			"type": "TemplateMatch",
+			"type": "Or",
 			"param": {
-				"template": [
-					"task/daily/日常签到领取.png",
-					"task/daily/日常签到领取1.png",
-					"task/daily/日常签到领取2.png",
-					"task/daily/日常签到领取3.png"
-				],
-				"roi": [88, 306, 562, 777],
-				"threshold": [0.45],
-				"order_by": "Score"
+				"any_of": [
+					{
+						"recognition": {
+							"type": "TemplateMatch",
+							"param": {
+								"template": [
+									"task/daily/日常签到领取.png",
+									"task/daily/日常签到领取1.png",
+									"task/daily/日常签到领取2.png",
+									"task/daily/日常签到领取3.png"
+								],
+								"roi": [88, 306, 562, 777],
+								"threshold": [0.45],
+								"order_by": "Score"
+							}
+						}
+					},
+					{
+						"recognition": {
+							"type": "OCR",
+							"param": {
+								"expected": ["可领取"],
+								"roi": [88, 306, 562, 777]
+							}
+						}
+					}
+				]
 			}
 		},
 		"action": {
