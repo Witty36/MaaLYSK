@@ -64,7 +64,7 @@
 						"recognition": {
 							"type": "OCR",
 							"param": {
-								"expected": ["1"],
+								"expected": ["1","01"],
 								"replace": [
 									["I", "1"],
 									["l", "1"],
@@ -107,7 +107,7 @@
 						"recognition": {
 							"type": "OCR",
 							"param": {
-								"expected": ["2"],
+								"expected": ["2","02"],
 								"replace": [
 									["z", "2"],
 									["Z", "2"]
@@ -149,7 +149,7 @@
 						"recognition": {
 							"type": "OCR",
 							"param": {
-								"expected": ["3"],
+								"expected": ["3","03"],
 								"replace": [["I", "3"]],
 								"roi": [212, 1041, 106, 107]
 							}
@@ -183,7 +183,7 @@
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"expected": ["4"],
+				"expected": ["4","04"],
 				"roi": [296, 1050, 106, 106]
 			}
 		},
