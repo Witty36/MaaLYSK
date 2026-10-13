@@ -78,7 +78,7 @@
 						"recognition": {
 							"type": "TemplateMatch",
 							"param": {
-								"template": ["event/生日剧情未解锁.png"],
+								"template": ["event/生日剧情未解锁2026.png"],
 								"roi": [135, 1062, 105, 106],
 								"threshold": 0.6
 							}
@@ -120,7 +120,7 @@
 						"recognition": {
 							"type": "TemplateMatch",
 							"param": {
-								"template": ["event/生日剧情未解锁.png"],
+								"template": ["event/生日剧情未解锁2026.png"],
 								"roi": [212, 1041, 106, 107],
 								"threshold": 0.6
 							}
@@ -150,7 +150,6 @@
 							"type": "OCR",
 							"param": {
 								"expected": ["3","03"],
-								"replace": [["I", "3"]],
 								"roi": [212, 1041, 106, 107]
 							}
 						}
@@ -159,7 +158,7 @@
 						"recognition": {
 							"type": "TemplateMatch",
 							"param": {
-								"template": ["event/生日剧情未解锁.png"],
+								"template": ["event/生日剧情未解锁2026.png"],
 								"roi": [296, 1050, 106, 106],
 								"threshold": 0.6
 							}
