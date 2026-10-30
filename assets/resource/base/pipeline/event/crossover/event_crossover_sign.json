@@ -1,0 +1,64 @@
+{
+    "进入签到_联动签到": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["为你而真"],
+				"roi": [21, 1187, 680, 100]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": [
+			"点击签到_联动签到","联动签到_已完成"
+		]
+	},
+	"点击签到_联动签到": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["领取奖励"],
+				"roi": [507,1049,209,83]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+        "focus":"联动签到奖励领取成功!",
+		"next": ["联动签到_已完成","[JumpBack]点击联动对话","退出点击空白继续1popop",
+        "[JumpBack]退出点击（上限）popop","stop"] 
+	},
+    "点击联动对话": {
+        "recognition": {
+            "type": "TemplateMatch",
+            "param": {
+                "template": ["event/crossover_continue.png"],
+                "roi": [149,288,436,621]
+            }
+        },
+            "action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": [],
+        "pre_delay": 100,
+		"post_delay": 300
+    },
+    "联动签到_已完成": {
+        "recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["已领取"],
+				"roi": [507,1049,209,83]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"next": ["stop"]
+    }
+}
