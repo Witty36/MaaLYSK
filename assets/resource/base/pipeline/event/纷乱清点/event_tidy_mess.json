@@ -20,9 +20,9 @@
 	},
 	"软绒奇境菜单": {
 		"recognition": {
-			"type": "TemplateMatch",
+			"type": "OCR",
 			"param": {
-				"template": ["event/软绒奇境(202605肝活)/软绒奇境菜单.png"],
+				"expected": ["绒往直前", "绒往", "直前"],
 				"roi": [10, 1179, 701, 79]
 			}
 		},
@@ -60,12 +60,12 @@
 				"roi": [87, 4, 149, 150]
 			}
 		},
-		"post_delay": 5000,
+		"post_delay": 4000,
 		"next": [
 			"进行快速分拣",
 			"纷乱清点_再来一局页面",
+			"[JumpBack]纷乱清点玩偶已满",
 			"[JumpBack]纷乱清点_白象1",
-			"[JumpBack]纷乱清点_黑猫1",
 			"[JumpBack]纷乱清点_棕熊1",
 			"[JumpBack]纷乱清点_蓝豚1",
 			"[JumpBack]纷乱清点_绿刺1",
@@ -74,7 +74,10 @@
 			"[JumpBack]纷乱清点_紫茄1",
 			"[JumpBack]纷乱清点_粉猪1",
 			"[JumpBack]纷乱清点_红番1",
-			"[JumpBack]纷乱清点_红萝1"
+			"[JumpBack]纷乱清点_红萝1",
+			"[JumpBack]纷乱清点_胡萝卜1",
+			"[JumpBack]纷乱清点_青蛙1",
+			"[JumpBack]纷乱清点_黑猫1"
 		],
 		"on_error": ["纷乱清点结算退出"]
 	},
@@ -96,8 +99,8 @@
 						"recognition": {
 							"type": "ColorMatch",
 							"param": {
-								"lower": [250, 204, 141],
-								"upper": [255, 218, 168],
+								"lower": [254, 242, 191],
+								"upper": [255, 246, 203],
 								"count": 500,
 								"roi": [98, 1190, 107, 26]
 							}
@@ -118,7 +121,6 @@
 			"进行快速分拣2",
 			"纷乱清点_再来一局页面",
 			"[JumpBack]纷乱清点_白象1",
-			"[JumpBack]纷乱清点_黑猫1",
 			"[JumpBack]纷乱清点_棕熊1",
 			"[JumpBack]纷乱清点_蓝豚1",
 			"[JumpBack]纷乱清点_绿刺1",
@@ -127,7 +129,10 @@
 			"[JumpBack]纷乱清点_紫茄1",
 			"[JumpBack]纷乱清点_粉猪1",
 			"[JumpBack]纷乱清点_红番1",
-			"[JumpBack]纷乱清点_红萝1"
+			"[JumpBack]纷乱清点_红萝1",
+			"[JumpBack]纷乱清点_胡萝卜1",
+			"[JumpBack]纷乱清点_青蛙1",
+			"[JumpBack]纷乱清点_黑猫1"
 		],
 		"on_error": ["纷乱清点结算退出"]
 	},
@@ -149,8 +154,8 @@
 						"recognition": {
 							"type": "ColorMatch",
 							"param": {
-								"lower": [250, 204, 141],
-								"upper": [255, 218, 168],
+								"lower": [254, 242, 191],
+								"upper": [255, 246, 203],
 								"count": 500,
 								"roi": [98, 1190, 107, 26]
 							}
@@ -172,7 +177,6 @@
 			"纷乱清点_再来一局页面",
 			"[JumpBack]纷乱清点玩偶已满",
 			"[JumpBack]纷乱清点_白象1",
-			"[JumpBack]纷乱清点_黑猫1",
 			"[JumpBack]纷乱清点_棕熊1",
 			"[JumpBack]纷乱清点_蓝豚1",
 			"[JumpBack]纷乱清点_绿刺1",
@@ -181,7 +185,10 @@
 			"[JumpBack]纷乱清点_紫茄1",
 			"[JumpBack]纷乱清点_粉猪1",
 			"[JumpBack]纷乱清点_红番1",
-			"[JumpBack]纷乱清点_红萝1"
+			"[JumpBack]纷乱清点_红萝1",
+			"[JumpBack]纷乱清点_胡萝卜1",
+			"[JumpBack]纷乱清点_青蛙1",
+			"[JumpBack]纷乱清点_黑猫1"
 		],
 		"on_error": ["纷乱清点结算退出"]
 	},
@@ -206,7 +213,7 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["event/软绒奇境(202605肝活)/立即结束游戏.png"],
+				"template": ["event/软绒奇境(202605肝活)/立即结束游戏-祁煜.png"],
 				"roi": [136, 581, 163, 248]
 			}
 		},
@@ -265,9 +272,10 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["event/软绒奇境(202605肝活)/纷乱清点玩偶已满.png"],
+				"template": ["event/软绒奇境(202605肝活)/纷乱清点玩偶已满-祁煜.png"],
 				"roi": [529, 366, 162, 197]
 			}
+
 		},
 		"action": {
 			"type": "Click",
@@ -955,5 +963,123 @@
 		"timeout": 500,
 		"next": ["补齐一组玩偶"],
 		"on_error": ["null"]
+	},
+	"纷乱清点_胡萝卜1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [228, 171, 98],
+				"upper": [255, 208, 130],
+				"count": 100,
+				"connected": true,
+				"order_by": "Score",
+				"roi": [195, 679, 331, 321]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 300,
+		"timeout": 1000,
+		"rate_limit": 300,
+		"next": ["纷乱清点_再来一局页面", "纷乱清点_胡萝卜2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_胡萝卜2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [228, 171, 98],
+				"upper": [255, 208, 130],
+				"count": 100,
+				"connected": true,
+				"order_by": "Score",
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 300,
+		"timeout": 1000,
+		"rate_limit": 300,
+		"next": ["纷乱清点_再来一局页面", "纷乱清点_胡萝卜3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_胡萝卜3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [228, 171, 98],
+				"upper": [255, 208, 130],
+				"count": 100,
+				"connected": true,
+				"order_by": "Score",
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
+	},
+	"纷乱清点_青蛙1": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [169, 198, 180],
+				"upper": [198, 217, 197],
+				"count": 100,
+				"connected": true,
+				"order_by": "Score",
+				"roi": [195, 679, 331, 321]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 300,
+		"timeout": 1000,
+		"rate_limit": 300,
+		"next": ["纷乱清点_再来一局页面", "纷乱清点_青蛙2"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_青蛙2": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [169, 198, 180],
+				"upper": [198, 217, 197],
+				"count": 100,
+				"connected": true,
+				"order_by": "Score",
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"post_delay": 300,
+		"timeout": 1000,
+		"rate_limit": 300,
+		"next": ["纷乱清点_再来一局页面", "纷乱清点_青蛙3"],
+		"on_error": ["null"]
+	},
+	"纷乱清点_青蛙3": {
+		"recognition": {
+			"type": "ColorMatch",
+			"param": {
+				"lower": [169, 198, 180],
+				"upper": [198, 217, 197],
+				"count": 100,
+				"connected": true,
+				"order_by": "Score",
+				"roi": [172, 625, 367, 394]
+			}
+		},
+		"action": {
+			"type": "Click"
+		},
+		"next": []
 	}
 }

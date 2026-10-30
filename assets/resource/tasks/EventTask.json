@@ -80,11 +80,16 @@
 		},
 		{
 			"name": "🌈限时活动小游戏",
-			"entry": "stop",
-			//"entry": "进入限时活动小游戏",
+			//"entry": "stop",
+			"entry": "进入限时活动小游戏",
 			"default_check": false,
 			//"option": ["选择男主技能"],
-			"description": "<span style=\"color:orange\">当前版本：目前关闭中</span>1、由于个别电脑卡顿可能会提前结束任务，重新开始就好<br>2、请单独运行此任务，否则后续任务可能无法进行"
+			"description": "<span style=\"color:orange\">当前版本：祁煜月卡配套活动-绒往直前-纷乱清点</span>1、由于个别电脑卡顿可能会提前结束任务，重新开始就好<br>2、请单独运行此任务，否则后续任务可能无法进行",
+			"pipeline_override": {
+				"进入限时活动小游戏": {
+					"next": ["进入软绒奇境"]
+				}
+			}
 		}
 	],
 	"option": {
