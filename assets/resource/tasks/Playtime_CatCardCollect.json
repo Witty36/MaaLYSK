@@ -38,12 +38,6 @@
 					"next": ["进入限时抽喵喵徽章页面"]
 				}
 			}
-		},
-		{
-			"name": "🃏喵喵牌抽卡",
-			"entry": "进入喵喵牌抽卡",
-			"default_check": false,
-			"description": "在喵喵牌抽卡页面启动，自己找没有9/9的徽章并进行抽卡。<br><span style=\"color:red\">限时喵喵牌期间无法使用</span>"
 		}
 	],
 	"option": {
