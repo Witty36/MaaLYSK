@@ -213,7 +213,9 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["event/软绒奇境(202605肝活)/立即结束游戏-祁煜.png"],
+				"template": [
+					"event/软绒奇境(202605肝活)/立即结束游戏-祁煜.png"
+				],
 				"roi": [136, 581, 163, 248]
 			}
 		},
@@ -272,10 +274,11 @@
 		"recognition": {
 			"type": "TemplateMatch",
 			"param": {
-				"template": ["event/软绒奇境(202605肝活)/纷乱清点玩偶已满-祁煜.png"],
+				"template": [
+					"event/软绒奇境(202605肝活)/纷乱清点玩偶已满-祁煜.png"
+				],
 				"roi": [529, 366, 162, 197]
 			}
-
 		},
 		"action": {
 			"type": "Click",
