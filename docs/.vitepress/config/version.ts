@@ -6,6 +6,7 @@ import {
     githubReleasesPage,
     interfaceJsonPath,
     changelogPath,
+    releaseMetaPath,
 } from "./constants";
 
 type InterfaceConfig = {
@@ -14,6 +15,12 @@ type InterfaceConfig = {
 
 type GitHubRelease = {
     draft?: boolean;
+    tag_name?: string;
+    html_url?: string;
+    published_at?: string;
+};
+
+type StoredReleaseMeta = {
     tag_name?: string;
     html_url?: string;
     published_at?: string;
@@ -60,9 +67,32 @@ function getChangelogDate(): string {
     }
 }
 
+function readStoredReleaseMeta(): StoredReleaseMeta | null {
+    try {
+        return JSON.parse(
+            fs.readFileSync(releaseMetaPath, "utf-8"),
+        ) as StoredReleaseMeta
+    } catch {
+        return null
+    }
+}
+
 async function getLatestReleaseMeta(): Promise<ReleaseMeta> {
     const body = readChangelog()
     const published_at = getChangelogDate() || undefined
+
+    // 优先使用 release 事件写入的版本信息，保证文档站只在发布后更新。
+    const stored = readStoredReleaseMeta()
+    if (stored?.tag_name) {
+        console.log(`[docs] release version: ${stored.tag_name} (from release.json)`)
+        return {
+            version: stored.tag_name,
+            link: stored.html_url ?? githubReleasesPage,
+            body: body || undefined,
+            bodyFingerprint: body ? computeFingerprint(body) : undefined,
+            published_at: stored.published_at ?? published_at,
+        }
+    }
 
     try {
         const response = await fetch(githubReleasesApi, {
@@ -83,6 +113,7 @@ async function getLatestReleaseMeta(): Promise<ReleaseMeta> {
         );
 
         if (latestRelease?.tag_name) {
+            console.log(`[docs] release version: ${latestRelease.tag_name} (from GitHub API)`)
             return {
                 version: latestRelease.tag_name,
                 link: latestRelease.html_url ?? githubReleasesPage,
@@ -95,6 +126,7 @@ async function getLatestReleaseMeta(): Promise<ReleaseMeta> {
         // Keep local docs builds working when GitHub is unreachable.
     }
 
+    console.log(`[docs] release version: ${interfaceConfig.version ?? "unknown"} (from interface.json)`)
     return {
         version: interfaceConfig.version ?? "unknown",
         link: githubReleasesPage,

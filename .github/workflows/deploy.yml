@@ -1,35 +1,98 @@
-# 构建 VitePress 站点并将其部署到 GitHub Pages 的示例工作流程
-#
+# 构建 VitePress 站点并将其部署到 GitHub Pages
 name: Deploy VitePress site to Pages
 
 on:
-  # 在针对 `main` 分支的推送上运行。如果你
-  # 使用 `master` 分支作为默认分支，请将其更改为 `master`
+  # 在针对 `main` 分支的推送上运行
   push:
     branches: [main]
 
-  # 监听 release 发布（包括在网页上创建 tag 并发布 release）
+  # 发布 Release 后延迟重建（见 sync-release）
   release:
     types: [published]
 
   # 允许你从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
 
-# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
-# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
-concurrency:
-  group: pages
-  cancel-in-progress: false
-
 jobs:
+  # 发布 Release 一段时间后，写入该次发布的信息并触发一次新的部署。
+  #
+  # 为什么需要新提交：GitHub Pages 按提交 SHA 记录部署版本（pages_build_version
+  # 直接取自 GITHUB_SHA，且该变量不允许覆盖），同一个提交只会真正部署一次。
+  # 发版提交在 push 时已经部署过（当时 Release 尚未发布，读到的是旧版本），
+  # release 事件再用同一个 SHA 部署时，Pages 会直接返回旧的“成功”状态，
+  # 不会启用新产物。因此这里提交一次 release.json，用新的 SHA 重新构建。
+  sync-release:
+    if: ${{ github.event_name == 'release' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+    steps:
+      # 留一点缓冲，等 Release 页面就绪；版本信息直接取自发布事件，无需等接口缓存
+      - name: Wait 3 minutes
+        run: sleep 180
+
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Write release metadata
+        shell: bash
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+          PUBLISHED_AT: ${{ github.event.release.published_at }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
+        run: |
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          meta = {
+              "tag_name": os.environ["TAG"],
+              "published_at": os.environ["PUBLISHED_AT"],
+              "html_url": os.environ["RELEASE_URL"],
+          }
+          path = Path("docs/.vitepress/release.json")
+          path.write_text(
+              json.dumps(meta, ensure_ascii=False, indent=4) + "\n",
+              encoding="utf-8",
+          )
+          PY
+
+      - name: Commit release metadata
+        shell: bash
+        env:
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/.vitepress/release.json
+          if git diff --cached --quiet; then
+            git commit --allow-empty -m "chore: rebuild docs for ${TAG}"
+          else
+            git commit -m "chore: sync release metadata for ${TAG}"
+          fi
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      # 用 GITHUB_TOKEN 推送的提交不会自动触发新工作流，因此显式触发一次
+      - name: Trigger docs build on main
+        shell: bash
+        run: gh workflow run deploy.yml --ref main --repo "$GITHUB_REPOSITORY"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
   # 构建工作
   build:
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -60,9 +123,17 @@ jobs:
 
   # 部署工作
   deploy:
+    if: ${{ github.event_name == 'push' || github.event_name == 'workflow_dispatch' }}
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
+    permissions:
+      pages: write
+      id-token: write
+    # 只允许同时进行一次部署；放在任务级，避免 sync-release 的等待占住部署队列
+    concurrency:
+      group: pages
+      cancel-in-progress: false
     environment:
       name: ${{ github.event_name == 'workflow_dispatch' && 'github-pages' || 'release-deployment' }}
       url: ${{ steps.deployment.outputs.page_url }}
