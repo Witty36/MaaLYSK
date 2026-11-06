@@ -4,6 +4,7 @@ export const rootDir = process.cwd();
 export const docsDir = path.resolve(rootDir, "docs");
 export const interfaceJsonPath = path.resolve(rootDir, "assets", "interface.json");
 export const changelogPath = path.resolve(rootDir, "assets", "resource", "Announcement", "Changelog.md");
+export const releaseMetaPath = path.resolve(docsDir, ".vitepress", "release.json");
 
 export const githubRepoLink = "https://github.com/Witty36/MaaLYSK";
 export const githubReleasesApi =
