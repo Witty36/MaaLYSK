@@ -59,9 +59,13 @@ def _exe(name: str) -> str:
 
 
 def _build_tool(sdk: Path, relative: str) -> Path:
+    """优先用构建时安装的 36.0.0；不同 build-tools 的 apksigner 输出格式可能不同。"""
     build_tools = sdk / "build-tools"
     if not build_tools.is_dir():
         raise FileNotFoundError(f"找不到 Android build-tools：{build_tools}")
+    preferred = build_tools / "36.0.0" / relative
+    if preferred.is_file():
+        return preferred
     for version in sorted(build_tools.iterdir(), reverse=True):
         candidate = version / relative
         if candidate.is_file():
@@ -104,16 +108,39 @@ def _check_badging(sdk: Path, apk: Path, args) -> None:
         raise ValueError(f"application-label 不是 {args.label}")
 
 
-def _signature(sdk: Path, apk: Path) -> str:
+def _parse_certificate(output: str) -> str:
+    match = re.search(
+        r"Signer #1 certificate SHA-?256 digest:\s*([0-9a-fA-F]+)",
+        output,
+        re.IGNORECASE,
+    )
+    return match.group(1).lower() if match else ""
+
+
+def _signature(sdk: Path, apk: Path) -> tuple[str, str]:
+    """返回 (证书 SHA-256, apksigner 原始输出)；verify 失败时抛错。
+
+    证书指纹只用于可选的 --certificate-sha256 比对；apksigner 退出码 0 已经
+    证明签名有效，输出格式偶有差异（不同 build-tools / stderr）不该直接判死。
+    """
     jar = _build_tool(sdk, "lib/apksigner.jar")
     java = Path(os.environ.get("JAVA_HOME", "")) / "bin" / _exe("java")
     command = [str(java) if java.is_file() else _exe("java"), "-jar", str(jar)]
     command += ["verify", "--verbose", "--print-certs", str(apk)]
-    output = _run(command)
-    match = re.search(r"Signer #1 certificate SHA-256 digest: ([0-9a-fA-F]+)", output)
-    if match is None:
-        raise ValueError("apksigner 没有输出证书指纹")
-    return match.group(1).lower()
+    result = subprocess.run(
+        command,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        text=True,
+        encoding="utf-8",
+        errors="replace",
+    )
+    output = result.stdout or ""
+    if result.returncode != 0:
+        raise ValueError(
+            f"apksigner verify 失败（exit {result.returncode}）：\n{output}"
+        )
+    return _parse_certificate(output), output
 
 
 def _check_pi(apk: zipfile.ZipFile, args) -> None:
@@ -261,8 +288,18 @@ def main() -> int:
         _check_agent(archive, args)
 
     _check_badging(args.sdk, apk, args)
-    certificate = _signature(args.sdk, apk)
-    if args.certificate_sha256:
+    certificate, signer_output = _signature(args.sdk, apk)
+    if not certificate:
+        print("apksigner output:\n" + signer_output)
+        if args.certificate_sha256:
+            raise ValueError(
+                "没有解析到签名证书指纹，无法与 --certificate-sha256 比对"
+            )
+        print(
+            "::warning::没有从 apksigner 输出解析到证书指纹；"
+            "APK 已通过 apksigner verify，继续"
+        )
+    elif args.certificate_sha256:
         expected = args.certificate_sha256.lower().replace(":", "")
         if certificate != expected:
             raise ValueError(
@@ -287,6 +324,7 @@ def main() -> int:
         "abi": args.abi,
         "maafwVersion": args.maafw_version,
         "verified": True,
+        "signatureVerified": True,
     }
     (args.output / "validation.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
