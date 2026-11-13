@@ -1,0 +1,74 @@
+# MaaLYSK 的 MaaFwApp 打包配方。
+# 相对路径相对本文件；构建前先跑 Android/prepare.py 生成 .build/payload，
+# 再用 MaaFwApp 的 scripts/build_agent_bundle.py 生成 .build/agent-dist。
+assets: .build/payload
+
+# 写了 include 就完全以这里为准。agent/ 与 requirements.txt 不在 assets 下，
+# 但 prepare.py 已把它们复制到 payload 根目录。
+include:
+  - interface.json
+  - android-build.json
+  - resource/**
+  - agent/**
+  # agent/** 已经覆盖，这里显式列出，避免依赖 Gradle 对点文件的默认处理
+  - agent/deploy/.version
+  - requirements.txt
+  - README.md
+  - LICENSE
+  - LICENSE-MaaFwApp
+  - LICENSES.md
+
+agent:
+  sourceDir: .build/agent-dist
+  # 不写 abi（等价 ["*"]）：每个 CI job 只建自己那份运行时，
+  # 外壳按 agent-dist 里实际存在的 ABI 打包；不能与实际运行时对不上。
+  runtimes:
+    - location: bundle
+      executable: bin/python3
+      name: maalysk-agent
+      args: [-u, agent/main.py]
+      env:
+        PYTHONHOME: "{bundle}/prefix"
+        PYTHONPATH: "{bundle}/site-packages/pure.zip:{bundle}/site-packages"
+        LD_LIBRARY_PATH: "{bundle}/prefix/lib:{nativeLibs}"
+        MAAFW_BINARY_PATH: "{nativeLibs}"
+
+display:
+  # 前台模式按手机物理分辨率截图且不缩放，与 MaaLYSK 的 720x1280 流水线对不上；
+  # 只保留后台虚拟屏（需要 Android 10 / API 29 及以上）。
+  foreground: false
+  # 第一项即默认档。MaaLYSK 默认竖屏；
+  # 横屏任务在 App 的「设置 - 分辨率」里手动切到横屏档位。
+  presets:
+    - label: "720P 竖屏"
+      width: 720
+      height: 1280
+      dpi: 240
+    - label: "1080P 竖屏"
+      width: 1080
+      height: 1920
+      dpi: 280
+    - label: "720P 横屏"
+      width: 1280
+      height: 720
+      dpi: 240
+    - label: "1080P 横屏"
+      width: 1920
+      height: 1080
+      dpi: 280
+
+# agent 自己写在资源解包根 debug/ 下的日志；导出日志时一并打包
+logs:
+  include:
+    - debug/**/*.log
+
+app:
+  # CI 的非发版构建会设成 maalysk.ci / MaaLYSK · CI，让预览包和正式包并存；
+  # 本地/发版不设这两个环境变量时用默认值。
+  id: "${MAALYSK_APP_ID:-maalysk}"
+  label: "${MAALYSK_APP_LABEL:-MaaLYSK}"
+  # 只收 png / webp，且要落在上面的 include 白名单里
+  icon: .build/payload/resource/base/image/logo.png
+
+# 不写 update.mirrorchyanRid：Android 没有 MirrorChyan 渠道，
+# 应用内更新走 PI 的 github 字段（GitHub Releases）。

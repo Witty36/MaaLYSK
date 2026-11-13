@@ -1,0 +1,71 @@
+# MaaLYSK 对 MaaFwApp 的最小适配补丁
+# 基线：Aliothmoon/MaaFwApp f29a0b0d5e5ebdc845368f0e98e8104911765c1a (v0.2.2-23)
+# 1) 允许 profile 声明竖屏 display.presets（MaaLYSK 流水线是 720x1280 竖屏）
+# 2) 虚拟屏默认尺寸改为 720x1280
+# 3) 全屏预览只在横屏画面时强制横屏
+# 4) 支持 BUILD_VERSION_CODE / build.versionCode 覆盖 versionCode
+# 升级 MaaFwApp 锁定提交后：重新生成此补丁，并确认 git apply --check 通过。
+
+diff --git a/app/src/main/java/com/aliothmoon/maafw/constant/DefaultDisplayConfig.kt b/app/src/main/java/com/aliothmoon/maafw/constant/DefaultDisplayConfig.kt
+index d12de6d..6b63f6d 100644
+--- a/app/src/main/java/com/aliothmoon/maafw/constant/DefaultDisplayConfig.kt
++++ b/app/src/main/java/com/aliothmoon/maafw/constant/DefaultDisplayConfig.kt
+@@ -11,7 +11,7 @@ object DefaultDisplayConfig {
+ 
+     const val DISPLAY_NONE = -1
+ 
+-    const val WIDTH = 1280
+-    const val HEIGHT = 720
++    const val WIDTH = 720
++    const val HEIGHT = 1280
+     const val DPI = 240
+ }
+diff --git a/app/src/main/java/com/aliothmoon/maafw/ui/tasks/TasksPreviewSection.kt b/app/src/main/java/com/aliothmoon/maafw/ui/tasks/TasksPreviewSection.kt
+index 719efdd..e7f1aeb 100644
+--- a/app/src/main/java/com/aliothmoon/maafw/ui/tasks/TasksPreviewSection.kt
++++ b/app/src/main/java/com/aliothmoon/maafw/ui/tasks/TasksPreviewSection.kt
+@@ -249,10 +249,11 @@ internal fun FullscreenPreview(
+         onDispose { controller?.show(WindowInsetsCompat.Type.systemBars()) }
+     }
+ 
+-    // 虚拟屏是横的，竖着看只有中间一条；退出时还原用户原本的方向设置
++    // 只有横屏画面才值得把手机转横；竖屏画面保持用户原本的方向
+     DisposableEffect(activity) {
+         val original = activity?.requestedOrientation
+-        if (activity?.resources?.configuration?.orientation != Configuration.ORIENTATION_LANDSCAPE) {
++        val landscape = resolution.width > resolution.height
++        if (landscape && activity?.resources?.configuration?.orientation != Configuration.ORIENTATION_LANDSCAPE) {
+             activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE
+         }
+         onDispose { if (original != null) activity.requestedOrientation = original }
+diff --git a/build-logic/convention/src/main/kotlin/com/aliothmoon/maafw/gradle/AndroidApplicationConventionPlugin.kt b/build-logic/convention/src/main/kotlin/com/aliothmoon/maafw/gradle/AndroidApplicationConventionPlugin.kt
+index 773403d..9e72386 100644
+--- a/build-logic/convention/src/main/kotlin/com/aliothmoon/maafw/gradle/AndroidApplicationConventionPlugin.kt
++++ b/build-logic/convention/src/main/kotlin/com/aliothmoon/maafw/gradle/AndroidApplicationConventionPlugin.kt
+@@ -62,7 +62,11 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
+             android.defaultConfig {
+                 applicationId = maafwApplicationId()
+                 targetSdk = TARGET_SDK
+-                versionCode = gitVersionCode()
++                versionCode = textSetting("build.versionCode", "BUILD_VERSION_CODE")?.let {
++                    requireNotNull(it.toIntOrNull()?.takeIf { code -> code in 1..2100000000 }) {
++                        "build.versionCode must be a positive Android version code"
++                    }
++                } ?: gitVersionCode()
+                 val pinnedVersionName = textSetting("build.versionName", "BUILD_VERSION_NAME")
+                 versionName = pinnedVersionName ?: gitVersionName()
+ 
+diff --git a/build-logic/convention/src/main/kotlin/com/aliothmoon/maafw/gradle/BuildProfile.kt b/build-logic/convention/src/main/kotlin/com/aliothmoon/maafw/gradle/BuildProfile.kt
+index 7704259..91cf99b 100644
+--- a/build-logic/convention/src/main/kotlin/com/aliothmoon/maafw/gradle/BuildProfile.kt
++++ b/build-logic/convention/src/main/kotlin/com/aliothmoon/maafw/gradle/BuildProfile.kt
+@@ -205,7 +205,8 @@ private fun Map<*, *>.toResolutionPreset(): ResolutionPresetSpec {
+     val width = int("width")
+     val height = int("height")
+     val dpi = int("dpi")
+-    require(width > height) { "display.presets[] must be landscape, got ${width}x$height" }
++    // MaaLYSK 的流水线是竖屏；方向由 profile 的 presets 决定，这里只挡掉正方形
++    require(width != height) { "display.presets[] must not be square, got ${width}x$height" }
+     require(dpi in PRESET_DPI_RANGE) { "display.presets[].dpi must be within $PRESET_DPI_RANGE, got $dpi" }
+     val label = text("label") ?: "${height}P"
+     // The label is one field of a pipe separated BuildConfig string literal

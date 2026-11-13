@@ -472,3 +472,6 @@ assets/config/
 !.claude/skills/
 
 .agents/*
+
+# MaaFwApp Android build output
+Android/.build/
