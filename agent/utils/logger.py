@@ -149,7 +149,7 @@ def _setup_loguru_logger(log_dir: str = "debug/custom", console_level: str = "IN
         encoding="utf-8",
         # python-for-android builds do not provide _multiprocessing, which
         # loguru needs when enqueue=True initializes its multiprocessing queue.
-        enqueue=False,
+        enqueue=True,
         backtrace=True,
         diagnose=True,
         filter=_enrich_record,
