@@ -475,3 +475,7 @@ assets/config/
 
 # MaaFwApp Android build output
 Android/.build/
+
+# Android signing material（密钥只进 GitHub Secrets，不要进仓库）
+*.jks
+*.keystore

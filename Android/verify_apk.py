@@ -300,7 +300,9 @@ def main() -> int:
             "APK 已通过 apksigner verify，继续"
         )
     elif args.certificate_sha256:
-        expected = args.certificate_sha256.lower().replace(":", "")
+        expected = (
+            args.certificate_sha256.lower().replace(":", "").replace(" ", "")
+        )
         if certificate != expected:
             raise ValueError(
                 f"签名证书不符：{certificate} != {expected}"

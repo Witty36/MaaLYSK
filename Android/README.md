@@ -145,6 +145,11 @@ tag 发版缺签名材料会直接失败——未签名 APK 装不上。
 所以测试包和正式包可以同时安装，不会互相覆盖。实现上 profile 的 `app.id` / `app.label` 用了
 `${MAALYSK_APP_ID:-maalysk}` / `${MAALYSK_APP_LABEL:-MaaLYSK}`，CI 按构建类型注入。
 
+> [!IMPORTANT]
+> Shizuku 授权是按包名给的。预览包是独立的 `com.aliothmoon.maafw.maalysk.ci`，
+> 即使正式包已经授权，预览包也要在 Shizuku 里**单独授权一次**；否则后台模式启动虚拟屏会报
+> “虚拟屏幕启动失败，请检查服务权限”。设备已 root 时可以在 App 里切到 root 模式绕过。
+
 ## 包名与升级
 
 MaaFwApp 的包名固定为 `com.aliothmoon.maafw.` + `app.id`，本配方是
