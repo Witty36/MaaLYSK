@@ -210,10 +210,9 @@ const recommendation = computed<DownloadRecommendation>(() => {
 
   if (platform === 'android') {
     return {
-      button: '下载 Android 版',
-      hint: '请在 GitHub Releases 选择 arm64（多数手机）或 x64 包；首次使用需安装并授权 Shizuku。',
-      filename: resolveFilename('MaaLYSK-android-arm64-vx.x.x.apk'),
-      tone: 'brand',
+      button: 'Android 暂不支持',
+      hint: '安卓端仍在测试阶段，暂不提供下载，如需使用测试版本自行前往Github下载（需科学上网）',
+      tone: 'danger',
     }
   }
 
