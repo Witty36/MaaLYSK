@@ -169,13 +169,15 @@ def list_files(token, path):
         resp.raise_for_status()
         data = resp.json()
         if data.get("code") == 200:
-            content = data.get("data", {}).get("content", [])
+            # Alist 在目录为空（或尚未就绪）时可能返回 content: null，
+            # 这里统一归一化为空列表，避免 len(None) 崩溃。
+            content = (data.get("data") or {}).get("content") or []
             print(f"  [DEBUG] 找到 {len(content)} 个项目")
             return content
         else:
             print(f"✗ 获取文件列表失败: {data.get('message')}")
             return None
-    except requests.exceptions.RequestException as e:
+    except (requests.exceptions.RequestException, ValueError) as e:
         print(f"✗ 请求 Alist 文件列表接口时发生错误: {e}")
         return None
 
@@ -292,10 +294,10 @@ def main():
         print(f"\n--- 正在获取文件列表 (尝试 {i+1}/{MAX_RETRIES}) ---")
         all_files = list_files(token, SOURCE_DIR)
 
-        if all_files is None:
-            sys.exit(1)
-
-        if latest_tag:
+        if not all_files:
+            # 目录可能尚未就绪（刚刷新完存储）或为空，继续重试而不是直接退出
+            print(f"! '{SOURCE_DIR}' 的文件列表为空或获取失败")
+        elif latest_tag:
             # 打印 all_files 内容用于调试
             print(f"  [DEBUG] all_files 中的项目: {[f.get('name') for f in all_files]}")
 
