@@ -97,14 +97,22 @@ MAALYSK_APP_ID=maalysk.ci MAALYSK_APP_LABEL="MaaLYSK · CI" ...
 
 ## CI
 
-[`.github/workflows/android.yml`](../.github/workflows/android.yml)：
+[`.github/workflows/android.yml`](../.github/workflows/android.yml) 同时支持两种入口：
 
-- 触发：`workflow_dispatch`（手动，默认 debug）和 `repository_dispatch[android-release]`
-  （`install.yml` 建完 Release 后派发，payload 里带 tag）
-- 矩阵：`arm64-v8a` → 资产名 `MaaLYSK-android-arm64-<version>.apk`；
-  `x86_64` → `MaaLYSK-android-x64-<version>.apk`
+- 手动：`workflow_dispatch`（默认 debug），只出 Actions artifact，不发布
+- 发版：`install.yml` 把它当作可复用 workflow（`workflow_call`）调用，
+  `assemble=release`、`release_tag=<tag>`；`install.yml` 的 `release` job
+  `needs` 桌面 + Android，**全部成功后才创建 Release**，Android 失败则不发 Release
+
+矩阵：
+
+- `arm64-v8a` → 资产名 `MaaLYSK-android-arm64-<version>.apk`
+- `x86_64` → 资产名 `MaaLYSK-android-x64-<version>.apk`
+
+版本约定：
+
 - 发版：versionName / PI version 都取 tag（含 `v`），versionCode =
-  `github.run_number * 100 + github.run_attempt`；构建成功后 `gh release upload` 到同一个 Release
+  `github.run_number * 100 + github.run_attempt`
 - 手动：version 取 `ci.<run>-<sha>`，只上传 Actions artifact
 
 签名 secrets（发版必需；手动 debug 包不需要）：

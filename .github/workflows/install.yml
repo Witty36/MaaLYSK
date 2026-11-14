@@ -274,9 +274,20 @@ jobs:
           OUTPUT: CHANGES.md
           GITHUB_REPO: ${{ github.repository }}
 
+  android:
+    if: ${{ needs.meta.outputs.is_release == 'true' }}
+    needs: meta
+    uses: ./.github/workflows/android.yml
+    with:
+      assemble: release
+      release_tag: ${{ needs.meta.outputs.tag }}
+    secrets: inherit
+    permissions:
+      contents: read
+
   release:
     if: ${{ needs.meta.outputs.is_release == 'true' }}
-    needs: [meta, install, changelog]
+    needs: [meta, install, changelog, android]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
@@ -302,6 +313,12 @@ jobs:
       - run: |
           cd assets
           for f in *; do
+            # Android artifact：目录里是 apk + sha256，直接提到 Release 根目录
+            if compgen -G "$f/*.apk" > /dev/null; then
+              mv "$f"/*.apk "$f"/*.apk.sha256 . 2>/dev/null || true
+              rm -rf "$f"
+              continue
+            fi
             if [[ "$f" == *win* ]]; then
               # Windows 平台使用 zip
               (cd "$f" && zip -r ../$f-${{ needs.meta.outputs.tag }}.zip .)
@@ -310,7 +327,7 @@ jobs:
               (cd "$f" && tar -czf ../$f-${{ needs.meta.outputs.tag }}.tar.gz .)
             fi
           done
-          # 删除子目录，只保留压缩文件
+          # 删除子目录，只保留压缩文件和 APK
           rm -rf */ 2>/dev/null || true
 
       - uses: softprops/action-gh-release@v2
@@ -330,16 +347,6 @@ jobs:
         run: |
           gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release.yml -f tag=${{ needs.meta.outputs.tag }}
           gh workflow run --repo $GITHUB_REPOSITORY mirrorchyan_release_note.yml -f tag=${{ needs.meta.outputs.tag }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Trigger Android APK build
-        shell: bash
-        run: |
-          gh api "repos/$GITHUB_REPOSITORY/dispatches" \
-            -X POST \
-            -f event_type=android-release \
-            -f "client_payload[tag]=${{ needs.meta.outputs.tag }}"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

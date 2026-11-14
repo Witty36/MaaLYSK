@@ -1,8 +1,23 @@
 name: Android APK (MaaFwApp)
 
-# 手动 dispatch 出 debug 包（artifact，不发布）；
-# install.yml 建完 Release 后派发 android-release，出正式包并上传到同一个 Release。
+# 两个入口共用这一份构建逻辑：
+# - workflow_dispatch：手动出 debug / release 测试包，只上传 artifact，不发布
+# - workflow_call：由 install.yml 在发版时调用，release job 等它成功后再建 Release
 on:
+  workflow_call:
+    inputs:
+      assemble:
+        description: debug 或 release
+        type: string
+        default: debug
+      agent_core_tag:
+        description: 应急内核 tag；留空自动解析
+        type: string
+        default: ""
+      release_tag:
+        description: 发版 tag；非空时出正式包
+        type: string
+        default: ""
   workflow_dispatch:
     inputs:
       assemble:
@@ -16,19 +31,18 @@ on:
         description: "应急：手动指定 MaaAgentCoreAndroid 内核 tag；留空自动解析"
         required: false
         default: ""
-  repository_dispatch:
-    types: [android-release]
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
-  group: android-${{ github.ref }}
-  cancel-in-progress: true
+  group: android-${{ github.ref }}-${{ github.event_name }}
+  # 手动测试可以互相取消；发版调用时不要取消
+  cancel-in-progress: ${{ github.event_name == 'workflow_dispatch' }}
 
 env:
   PROJECT_NAME: MaaLYSK
-  RELEASE_TAG: ${{ github.event_name == 'repository_dispatch' && github.event.client_payload.tag || '' }}
+  RELEASE_TAG: ${{ inputs.release_tag || '' }}
   AGENT_CORE_REPO: Aliothmoon/MaaAgentCoreAndroid
   MAAFW_REPO: MaaXYZ/MaaFramework
   SHELL_REPO: Aliothmoon/MaaFwApp
@@ -55,7 +69,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: resource-source
-          # repository_dispatch 跑在默认分支上，显式切到 Release 对应的 tag
+          # workflow_call 传入 tag 时显式检出该 tag；手动测试用当前 ref
           ref: ${{ env.RELEASE_TAG != '' && env.RELEASE_TAG || github.sha }}
           fetch-depth: 0
           submodules: recursive
@@ -102,7 +116,7 @@ jobs:
         id: version
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          AGENT_CORE_TAG: ${{ github.event.inputs.agent_core_tag || vars.AGENT_CORE_TAG || '' }}
+          AGENT_CORE_TAG: ${{ inputs.agent_core_tag || vars.AGENT_CORE_TAG || '' }}
         run: |
           set -euo pipefail
           if [[ -n "$RELEASE_TAG" ]]; then
@@ -112,7 +126,7 @@ jobs:
             app_id_suffix="maalysk"
             app_label="MaaLYSK"
           else
-            build_type="${{ github.event.inputs.assemble || 'debug' }}"
+            build_type="${{ inputs.assemble || 'debug' }}"
             version="ci.${GITHUB_RUN_NUMBER}-${GITHUB_SHA::7}"
             application_id="com.aliothmoon.maafw.maalysk.ci"
             app_id_suffix="maalysk.ci"
@@ -265,14 +279,6 @@ jobs:
           path: android-artifacts
           if-no-files-found: error
           retention-days: 7
-
-      - name: Upload APK to GitHub Release
-        if: env.RELEASE_TAG != ''
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{ env.RELEASE_TAG }}
-        run: |
-          gh release upload "$TAG" android-artifacts/*.apk android-artifacts/*.sha256 --clobber
 
       - name: Remove temporary signing key
         if: always()
