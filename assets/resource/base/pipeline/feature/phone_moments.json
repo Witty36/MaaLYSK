@@ -80,7 +80,7 @@
 		"recognition": {
 			"type": "OCR",
 			"param": {
-				"roi": [436, 55, 116, 54],
+				"roi": [436, 55, 180, 54],
 				"expected": [
 					"全部",
 					"全",
