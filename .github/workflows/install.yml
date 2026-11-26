@@ -307,6 +307,16 @@ jobs:
                 chmod +x "$f/MaaLYSK"
                 echo "  ✓ Set execute permission for $f/MaaLYSK"
               fi
+
+              # upload-artifact 会丢失文件权限，这里补回其余可执行文件
+              # 内置 Python（Agent 启动需要）
+              if [ -d "$f/python/bin" ]; then
+                chmod +x "$f"/python/bin/*
+                echo "  ✓ Set execute permission for $f/python/bin/*"
+              fi
+              # MaaPiCli 及依赖安装脚本
+              find "$f/runtimes" -type f -name MaaPiCli -exec chmod +x {} + 2>/dev/null || true
+              find "$f" -maxdepth 1 -type f -name '*.sh' -exec chmod +x {} +
             fi
           done
 
