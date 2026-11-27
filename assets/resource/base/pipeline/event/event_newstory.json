@@ -1,0 +1,103 @@
+{
+	"进入主线分线活动": {
+		"recognition": {
+			"type": "DirectHit",
+			"param": {}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"max_hit": 1,
+		"next": [
+			"主线分线活动菜单",
+			"[JumpBack]退出点击空白继续popop",
+			"[JumpBack]退出获得奖励popop",
+			"[JumpBack]点击活动",
+			"[JumpBack]返回上一级页面",
+			"[JumpBack]导航回主页面"
+		]
+	},
+	"主线分线活动菜单": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["危域寻隙"],
+				"roi": [21, 1187, 680, 100]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": ["主线分线_已完成","主线分线_无次数","开始勘察_主线分线"]
+	},
+	"开始勘察_主线分线": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/主线分线活动.png"],
+				"roi": [63,278,603,612]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"focus": "开始勘察",
+		"next": [
+			"主线分线_已完成",
+			"主线分线_无次数",
+			"[JumpBack]点击分线活动对话",
+			"退出点击空白继续1popop",
+			"[JumpBack]退出点击（上限）popop",
+			"stop"
+		]
+	},
+	"点击分线活动对话": {
+		"recognition": {
+			"type": "TemplateMatch",
+			"param": {
+				"template": ["event/newstory_continue.png"],
+				"roi": [141,345,475,713]
+			}
+		},
+		"action": {
+			"type": "Click",
+			"param": {}
+		},
+		"next": [],
+		"pre_delay": 100,
+		"post_delay": 300
+	},
+	"主线分线_已完成": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["6/6","6l6","6I6","616"],
+				"roi": [345,1003,54,29]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": "勘察进度已满",
+		"next": ["stop"]
+	},
+	"主线分线_无次数": {
+		"recognition": {
+			"type": "OCR",
+			"param": {
+				"expected": ["已完成"],
+				"roi": [115,1086,196,42]
+			}
+		},
+		"action": {
+			"type": "DoNothing",
+			"param": {}
+		},
+		"focus": "今日勘察已完成",
+		"next": ["stop"]
+	}
+}
