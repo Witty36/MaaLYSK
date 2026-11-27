@@ -257,7 +257,7 @@ jobs:
           build_type="${{ steps.version.outputs.build_type }}"
           apk="maafw-source/app/build/outputs/apk/$build_type/app-$build_type.apk"
           extra=()
-          if [[ -n "$CERT" ]]; then
+          if [[ "$build_type" == release && -n "$CERT" ]]; then
             extra+=(--certificate-sha256 "$CERT")
           fi
           python resource-source/Android/verify_apk.py "$apk" \
