@@ -106,7 +106,7 @@ jobs:
           repository: MaaXYZ/MaaFramework
           fileName: "MAA-${{ matrix.os }}-${{ matrix.arch }}*"
           #latest: true
-          tag: "v5.13.1"
+          tag: "v5.16.1"
           out-file-path: "deps"
           extract: true
 
@@ -118,7 +118,7 @@ jobs:
           repository: MaaXYZ/MFAAvalonia
           fileName: "MFAAvalonia-*-${{ (matrix.os == 'win' && 'win') || (matrix.os == 'macos' && 'osx') || (matrix.os == 'linux' && 'linux') }}-${{ (matrix.arch == 'x86_64' && 'x64') || (matrix.arch == 'aarch64' && 'arm64') }}*"
           #latest: true
-          tag: "v2.16.2"
+          tag: "v2.16.6"
           out-file-path: "MFA"
           extract: true
 
