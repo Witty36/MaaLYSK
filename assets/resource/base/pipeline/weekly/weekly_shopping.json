@@ -194,7 +194,7 @@
 			"type": "TemplateMatch",
 			"param": {
 				"template": ["shopping/weekly/快乐巧克力.png"],
-				"roi": [632, 54, 41, 38]
+				"roi": [617,47,86,49]
 			}
 		},
 		"action": {

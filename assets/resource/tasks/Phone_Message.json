@@ -184,6 +184,9 @@
 			"pipeline_override": {
 				"读沈星回信息": {
 					"expected": ["{Xavier_nickname}"]
+				},
+				"读沈星回电话": {
+					"expected": ["{Xavier_nickname}"]
 				}
 			}
 		},
@@ -201,6 +204,9 @@
 			"pipeline_override": {
 				"读黎深信息": {
 					"expected": ["{Zayne_nickname}"]
+				},
+				"读沈星回电话": {
+					"expected": ["{Xavier_nickname}"]
 				}
 			}
 		},
@@ -218,6 +224,9 @@
 			"pipeline_override": {
 				"读祁煜信息": {
 					"expected": ["{Rafayel_nickname}"]
+				},
+				"读沈星回电话": {
+					"expected": ["{Xavier_nickname}"]
 				}
 			}
 		},
@@ -235,6 +244,9 @@
 			"pipeline_override": {
 				"读秦彻信息": {
 					"expected": ["{Sylus_nickname}"]
+				},
+				"读沈星回电话": {
+					"expected": ["{Xavier_nickname}"]
 				}
 			}
 		},
@@ -252,6 +264,9 @@
 			"pipeline_override": {
 				"读夏以昼信息": {
 					"expected": ["{Caleb_nickname}"]
+				},
+				"读沈星回电话": {
+					"expected": ["{Xavier_nickname}"]
 				}
 			}
 		}

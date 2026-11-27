@@ -21,11 +21,12 @@
 		},
 		{
 			"name": "🌟限时活动每日领取",
-			"entry": "stop",
+			//"entry": "stop",
 			//"entry": "进入限时活动",
+			"entry": "进入主线分线活动",
 			"default_check": false,
 			//"option": ["韶华宴岁领取", "吉财临门领取", "金叶盈福领取"],
-			"description": "<span style=\"color:orange\">当前版本：目前关闭中</span><br>限时活动领取每日任务奖励，初步适配了进入活动读剧情，如果有问题就提前进入一次页面过下剧情"
+			"description": "<span style=\"color:orange\">当前版本：危域寻隙</span><br>限时活动领取每日任务奖励，初步适配了进入活动读剧情，如果有问题就提前进入一次页面过下剧情"
 		},
 		{
 			"name": "✨限时活动读剧情",
