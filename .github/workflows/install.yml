@@ -323,9 +323,9 @@ jobs:
       - run: |
           cd assets
           for f in *; do
-            # Android artifact：目录里是 apk + sha256，直接提到 Release 根目录
+            # Android artifact：仅将 APK 提到 Release 根目录，校验文件保留在构建产物中
             if compgen -G "$f/*.apk" > /dev/null; then
-              mv "$f"/*.apk "$f"/*.apk.sha256 . 2>/dev/null || true
+              mv "$f"/*.apk .
               rm -rf "$f"
               continue
             fi
