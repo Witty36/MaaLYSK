@@ -17,11 +17,11 @@ jobs:
     steps:
       - id: check
         run: |
-          if [[ "${{ github.repository }}" == "MaaXYZ/MaaPracticeBoilerplate" ]]; then
-            echo "Repository is MaaXYZ/MaaPracticeBoilerplate, proceeding with sync"
+          if [[ "${{ github.repository }}" == "Witty36/MaaLYSK" ]]; then
+            echo "Repository is Witty36/MaaLYSK, proceeding with sync"
             echo "should_run=true" >> $GITHUB_OUTPUT
           else
-            echo "Repository is not MaaXYZ/MaaPracticeBoilerplate, skipping sync"
+            echo "Repository is not Witty36/MaaLYSK, skipping sync"
             echo "should_run=false" >> $GITHUB_OUTPUT
           fi
 
@@ -35,17 +35,27 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Download JSON schema files from MaaFramework
+        shell: bash
         run: |
           echo "Current Date and Time (UTC): $(date -u '+%Y-%m-%d %H:%M:%S')"
 
           # 确保目标目录存在
           mkdir -p deps/tools
 
-          # 下载四个JSON schema文件
-          curl -s -o deps/tools/interface.schema.json https://raw.githubusercontent.com/MaaXYZ/MaaFramework/main/tools/interface.schema.json || echo "Failed to download interface.schema.json"
-          curl -s -o deps/tools/interface_config.schema.json https://raw.githubusercontent.com/MaaXYZ/MaaFramework/main/tools/interface_config.schema.json || echo "Failed to download interface_config.schema.json"
-          curl -s -o deps/tools/interface_import.schema.json https://raw.githubusercontent.com/MaaXYZ/MaaFramework/main/tools/interface_import.schema.json || echo "Failed to download interface_import.schema.json"
-          curl -s -o deps/tools/pipeline.schema.json https://raw.githubusercontent.com/MaaXYZ/MaaFramework/main/tools/pipeline.schema.json || echo "Failed to download pipeline.schema.json"
+          # 只同步官方 schema；custom.*.schema.json 由本项目维护。
+          schemas=(interface.schema.json interface_config.schema.json interface_import.schema.json pipeline.schema.json)
+          for schema in "${schemas[@]}"; do
+            curl --fail --silent --show-error --location --retry 3 \
+              --connect-timeout 15 --max-time 120 \
+              --output "$RUNNER_TEMP/$schema" \
+              "https://raw.githubusercontent.com/MaaXYZ/MaaFramework/main/tools/$schema"
+            python3 -m json.tool "$RUNNER_TEMP/$schema" > /dev/null
+          done
+
+          # 全部下载并通过 JSON 校验后，再替换仓库中的文件。
+          for schema in "${schemas[@]}"; do
+            cp "$RUNNER_TEMP/$schema" "deps/tools/$schema"
+          done
 
           # 检查文件是否成功下载
           echo "Checking downloaded files:"
