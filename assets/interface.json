@@ -8,6 +8,12 @@
 	"contact": "QQ群: 1065676561 <br>文档站：https://maalysk.top <br>Github：https://github.com/Witty36/MaaLYSK",
 	"mirrorchyan_rid": "MaaLYSK",
 	"mirrorchyan_multiplatform": true,
+	"welcome": [
+		"resource/announcement/AboutUpdate.md",
+		"resource/announcement/Base.md",
+		"resource/announcement/Changelog.md",
+		"resource/announcement/Instructions.md"
+	],
 	"controller": [
 		{
 			"name": "ADB模拟器",
