@@ -12,15 +12,19 @@ MaaLYSK更新日志
 
   如果内置更新出现问题（如exe文件消失、UI报错等）请手动前往[【Mirror酱】](https://mirrorchyan.com/zh/projects?source=MaaLYSKnotice&rid=MaaLYSK)或[【Github】](https://github.com/Witty36/MaaLYSK/releases)下载最新版本，而不是重新下载旧版本后继续内置更新。
 
-### 📕 公测版v0.4.6-beta2更新内容
+### 📕 公测版v0.4.7-beta1更新内容
 
 ### 🌟限时活动每日领取
 
-更新版本至待异梦重启
+危域寻隙--主线分线活动领取
+
+### 💫免费福利签到
+
+十日与你-黎深甘味成饮
 
 ## ⚙️ 当前GUI版本
 
-UI版本v2.16.2，框架5.13.1、OCR模型v6
+更新UI版本v2.16.6，更新框架为5.16.1、OCR模型v6
 
 安卓端更换Gui为MaaFWApp
 
